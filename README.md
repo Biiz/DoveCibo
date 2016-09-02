@@ -1,4 +1,8 @@
 # DoveCiboGit
+
+Il `master` è protetto (come backup diciamo), utilizzare `DoveCiboGitB1` o fare altri branch. Non bisogna lavorare allo stesso file contemporaneamente altriment si generano conflitti a non finire.
+---
+
 Scaricate `git bash`, io uso questa [git-scm](https://git-scm.com/downloads) e probabilmente vi servirà avere [GitHub Desktop](https://desktop.github.com) ...io (Biz) ho scaricato entrambe...
 
 Predi il link dal sito per generare il file fisico sul tuo pc:
