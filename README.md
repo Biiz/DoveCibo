@@ -1,4 +1,5 @@
 # DoveCiboGit
+Scaricate `git bash`, io uso questa [git-scm](https://git-scm.com/downloads) e probabilmente vi servirà avere [GitHub Desktop](https://desktop.github.com) ...io (Biz) ho scaricato entrambe...
 
 Predi il link dal sito per generare il file fisico sul tuo pc:
 ```sh
