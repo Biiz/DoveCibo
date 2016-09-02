@@ -1,0 +1,143 @@
+
+
+CREATE TABLE coordinates (
+    id_resturant integer NOT NULL,
+    latitude double precision NOT NULL,
+    longitude double precision NOT NULL,
+    address character varying(255) NOT NULL
+);
+
+
+CREATE TABLE cuisines (
+    id integer NOT NULL,
+    name character varying(25) NOT NULL
+);
+
+
+
+
+CREATE TABLE opening_hours_range_restaurant (
+    id_restaurant integer NOT NULL,
+    id_opening_hours_range integer NOT NULL
+);
+
+
+CREATE TABLE opening_hours_ranges (
+    id integer NOT NULL,
+    day_of_the_week integer,
+    start_hour time without time zone NOT NULL,
+    end_hour time without time zone NOT NULL,
+    CONSTRAINT day_of_the_week_check CHECK (((day_of_the_week >= 1) AND (day_of_the_week <= 7))),
+    CONSTRAINT range_check CHECK ((start_hour < end_hour))
+);
+
+
+
+
+CREATE TABLE photos (
+    id integer NOT NULL,
+    name character varying(25) NOT NULL,
+    description character varying(32000),
+    path character varying(255) NOT NULL,
+    id_restaurant integer NOT NULL,
+    id_owner integer NOT NULL,
+    validation integer
+);
+
+
+
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    name character varying(255),
+    surname character varying(255),
+    nickname character varying(25),
+    email character varying(254) NOT NULL,
+    password character varying(255) NOT NULL
+);
+
+
+
+CREATE TABLE price_ranges (
+    id integer DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
+    name character varying(25) NOT NULL,
+    min_value double precision,
+    max_value double precision,
+    CONSTRAINT price_range_check CHECK (((((min_value IS NULL) AND (max_value IS NOT NULL)) OR ((min_value IS NOT NULL) AND (max_value IS NULL))) OR (min_value < max_value)))
+);
+
+
+CREATE TABLE replies (
+    id integer NOT NULL,
+    description character varying(32000) NOT NULL,
+    date_creation timestamp without time zone DEFAULT now() NOT NULL,
+    id_review integer NOT NULL,
+    id_owner integer NOT NULL,
+    date_validation timestamp without time zone,
+    id_validator integer
+);
+
+
+CREATE TABLE restaurant_cuisine (
+    id_restaurant integer NOT NULL,
+    id_cuisine integer NOT NULL
+);
+
+
+
+CREATE TABLE restaurants (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(32000),
+    web_site_url character varying(255),
+    global_value integer,
+    id_owner integer,
+    id_creator integer NOT NULL,
+    id_price_range integer,
+    CONSTRAINT global_value_check CHECK (((global_value >= 0) AND (global_value <= 5)))
+);
+
+
+
+
+CREATE TABLE reviews (
+    id integer NOT NULL,
+    global_value integer NOT NULL,
+    food integer,
+    service integer,
+    value_for_money integer,
+    atmosphere integer,
+    name character varying(25),
+    description character varying(32000),
+    date_creation timestamp without time zone DEFAULT now() NOT NULL,
+    id_restaurant integer NOT NULL,
+    id_creator integer NOT NULL,
+    id_photo integer,
+    validation integer,
+    CONSTRAINT review_atmosphere_check CHECK (((atmosphere IS NULL) OR ((atmosphere >= 1) AND (atmosphere <= 5)))),
+    CONSTRAINT review_food_check CHECK (((food IS NULL) OR ((food >= 1) AND (food <= 5)))),
+    CONSTRAINT review_global_value_check CHECK (((global_value >= 1) AND (global_value <= 5))),
+    CONSTRAINT review_service_check CHECK (((service IS NULL) OR ((service >= 1) AND (service <= 5)))),
+    CONSTRAINT review_value_for_money_check CHECK (((value_for_money IS NULL) OR ((value_for_money >= 1) AND (value_for_money <= 5))))
+);
+
+
+
+
+CREATE TABLE user_review_likes (
+    id_user integer NOT NULL,
+    id_review integer NOT NULL,
+    id_creator integer NOT NULL,
+    like_type integer NOT NULL,
+    date_creation timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT like_type_check CHECK (((like_type >= 0) AND (like_type <= 1)))
+);
+
+
+
+
+
+
+
+INSERT INTO USERS (ID,NAME,SURNAME,NICKNAME,EMAIL,PASSWORD)
+VALUES (1,'asd','asd','asd','bizzo174@gmail.com','asd');
