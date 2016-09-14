@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package posty;
+package DoveCiboPK;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,7 +54,7 @@ public class ServletLogin extends HttpServlet {
             //RICERCA DB
             User u = new User(nickname, password);
 
-            DB_Menaget dbm = new DB_Menaget();
+            DB_Manager dbm = new DB_Manager();
 
             if (dbm.accedi(u)) {
                 if (u.getId() == null) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package posty;
+package DoveCiboPK;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -69,7 +69,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             out.println(coordinate.getAdrers());
 
             //CREATORE PROVA
-            User u = new User(4, "Admin", "Admin", "Admin", "admin@admin.it", "pollo");
+            User u = new User(1, "Admin", "Admin", "Admin", "admin@admin.it", "pollo");
 
             //RISTORANTE
             Restaurant restaurant = new Restaurant(
@@ -85,65 +85,67 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             out.println(restaurant.getName());
 
             //INSERISCI PRICERANGE
-            DB_Menaget prc = new DB_Menaget();
+            DB_Manager prc = new DB_Manager();
             if (prc.cercaPriceRange_perRange(priceRange)) {
                 out.println(priceRange.getId());
                 if (priceRange.getId() == null) {
-                    DB_Menaget ipr = new DB_Menaget();
-                    out.println("nnnnnn" + priceRange.getMax_value());
+                    DB_Manager ipr = new DB_Manager();
+                    out.println("inserisci nuovo price range" + priceRange.getMax_value());
                     if (!ipr.inserisciPrice_range(priceRange)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
                 }
             } else {
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                //request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
 
-            out.println("<br/>"
+            System.out.println("<br/>"
                     + restaurant.getName() + "<br/>"
                     + restaurant.getDescription() + "<br/>"
                     + restaurant.getWeb_site_url() + "<br/>"
                     + restaurant.getCreator().getId() + "<br/>"
                     + restaurant.getPrice_range().getId() + "<br/>");
-
+       
             //INSERISCI RISTORANTE
-            if (new DB_Menaget().inserisciRistorante(restaurant)) {
-                coordinate.setId_resturant(restaurant.getId());
+            if (new DB_Manager().inserisciRistorante(restaurant)) {
+            coordinate.setId_resturant(restaurant.getId());
+            
             } else {
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                System.out.println("porco dio");
+            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
-
-            out.println("cooooo");
-
+            
+            System.out.println("riga 116 "+ coordinate.getId_resturant().toString() );
+                 
             //INSERISCI COORDINATE
-            if (!(new DB_Menaget().inserisciCoordinate(coordinate))) {
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            if (!(new DB_Manager().inserisciCoordinate(coordinate))) {
+            System.out.println("errore coordinate");
+            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
-
-            out.println("cooooo");
-
+            
+            System.out.println("cooooo");
+            
             //INSERISCI ORARI
             for (int i = 0; i < 7; i++) {
-                if (new DB_Menaget().cercaOrario_perOrario(dh[i], i)) {
-                    if (dh[i].getId() == null) {
-                        if (!new DB_Menaget().inserisciOrario(dh[i], i)) {
-                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                        }
-                    }
-                } else {
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
-                new DB_Menaget().inserisciRelazioneRistoranteOrario(restaurant.getId(), dh[i].getId());
-                out.println("ok" + i + "  ");
+            if (new DB_Manager().cercaOrario_perOrario(dh[i], i)) {
+            if (dh[i].getId() == null) {
+            if (!new DB_Manager().inserisciOrario(dh[i], i)) {
+            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
-
+            }
+            } else {
+            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            }
+            new DB_Manager().inserisciRelazioneRistoranteOrario(restaurant.getId(), dh[i].getId());
+            out.println("ok" + i + "  ");
+            }
+            
             //INSERISCI CUSINES
             Enumeration parameterList = request.getParameterNames();
             while (parameterList.hasMoreElements()) {
-                String sName = parameterList.nextElement().toString();
-                out.println(sName + " = " + request.getParameter(sName) + "<br/>");
+            String sName = parameterList.nextElement().toString();
+            out.println(sName + " = " + request.getParameter(sName) + "<br/>");
             }
-
             out.println("</body>");
             out.println("</html>");
         } catch (Exception ex) {

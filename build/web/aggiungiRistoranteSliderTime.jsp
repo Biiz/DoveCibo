@@ -34,7 +34,7 @@
                         <br/>
                         <input id="m-enabled<%=i%>" type="checkbox" checked="checked" value="aperto"/> Aperto
                         <br/>
-                        <input id="m-look<%=i%>" type="checkbox" checked="checked" value="look"/> Look
+                        <input id="m-look<%=i%>" type="checkbox" checked="checked" value="look"/> Lock
 
                         <p>---</p>
                         <br/>

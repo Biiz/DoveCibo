@@ -1,4 +1,4 @@
-package posty;
+package DoveCiboPK;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,15 +17,16 @@ import java.util.logging.Logger;
  *
  * @author stefano
  */
-public class DB_Menaget {
+public class DB_Manager {
 
     Connection con;
     final String DRIVER = "org.apache.derby.jdbc.ClientDriver"; //Nome del driver
-    final String DB_NAME = "jdbc:derby://localhost:1527/dovecibo1agosto"; //Nome del database completo di percorso
+    final String DB_NAME = "jdbc:derby://localhost:1527/DoveCibo"; //Nome del database completo di percorso
     final String DB_USER = "asd"; // Nome utente
     final String DB_PASSWORD = "asd"; //Password
+    private String errore = "";
 
-    public DB_Menaget() throws SQLException {
+    public DB_Manager() throws SQLException {
 
         try {
             Class.forName(DRIVER); //Carica il driver
@@ -38,31 +39,11 @@ public class DB_Menaget {
         }
     }
 
-    public Boolean inserisciAccount(User u) throws SQLException {
-
-        PreparedStatement sp = null;
-        String query = null;
-
-        try {
-            query = "INSERT INTO users(id,name,surname,nickname,email,password) VALUES(DEFAULT,DEFAULT,DEFAULT,DEFAULT,?,?)";
-            sp = con.prepareStatement(query);
-
-            sp.setString(1, u.getEmail());
-            sp.setString(2, u.getPassword());
-
-            sp.executeUpdate();
-
-            return true;
-        } catch (SQLException e) {
-            return false;
-        } finally {
-            sp.close();
-            con.close();
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
+    public String getErrore() {
+        return errore;
     }
 
-    public Boolean inserisciAccount2(User u) throws SQLException {
+    public Boolean inserisciAccount(User u) throws SQLException {
 
         PreparedStatement sp = null;
         String query = null;
@@ -81,6 +62,7 @@ public class DB_Menaget {
 
             return true;
         } catch (SQLException e) {
+            this.errore = e.toString();
             return false;
         } finally {
             sp.close();
@@ -163,7 +145,7 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                u.setId(generatedKeys.getInt("id"));
+                u.setId(generatedKeys.getInt(1));
             }
 
             r = true;
@@ -204,6 +186,7 @@ public class DB_Menaget {
             }
 
         } catch (SQLException e) {
+            this.errore = e.toString();
             r = false;
         } finally {
             sp.close();
@@ -237,12 +220,13 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                res.setId(generatedKeys.getInt("id"));
+                res.setId(generatedKeys.getInt(1));
             }
 
             r = true;
         } catch (SQLException e) {
-            System.err.println(e);
+            this.errore = e.toString();
+            System.out.println(e+"   p");
             r = false;
         } finally {
             sp.close();
@@ -260,7 +244,7 @@ public class DB_Menaget {
         Boolean r = null;
 
         try {
-            query = "INSERT INTO price_ranges(id,min_value,max_value)"
+            query = "INSERT INTO price_ranges(ID,min_value,max_value)"
                     + "VALUES(DEFAULT,?,?)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
@@ -271,12 +255,14 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                pr.setId(generatedKeys.getInt("id"));
+                pr.setId(generatedKeys.getInt(1));
             }
 
             r = true;
         } catch (SQLException e) {
             r = false;
+            this.errore = e.toString();
+            System.out.println("Possibile causa: " + e.getMessage());
         } finally {
             sp.close();
             con.close();
@@ -304,7 +290,8 @@ public class DB_Menaget {
 
             r = true;
         } catch (SQLException e) {
-            System.err.println(e);
+            this.errore = e.toString();
+            System.err.println("tab coordinate "+e);
             r = false;
         } finally {
             sp.close();
@@ -313,7 +300,7 @@ public class DB_Menaget {
         }
     }
 
-    public Boolean inserisciRepile(Replies rep, Integer idOwner, Integer idRestaurant) throws SQLException {
+    public Boolean inserisciRisposta(Replies rep, Integer idOwner, Integer idRestaurant) throws SQLException {
 
         PreparedStatement sp = null;
         String query = null;
@@ -332,7 +319,7 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                rep.setId(generatedKeys.getInt("id"));
+                rep.setId(generatedKeys.getInt(1));
                 rep.setDate_creation(generatedKeys.getDate("date_creation"));
             }
 
@@ -368,7 +355,7 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                dh.setId(generatedKeys.getInt("id"));
+                dh.setId(generatedKeys.getInt(1));
             }
 
             r = true;
@@ -457,7 +444,7 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                p.setId(generatedKeys.getInt("id"));
+                p.setId(generatedKeys.getInt(1));
             }
 
             r = true;
@@ -515,7 +502,7 @@ public class DB_Menaget {
 
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
-                rew.setId(generatedKeys.getInt("id"));
+                rew.setId(generatedKeys.getInt(1));
             }
 
             r = true;

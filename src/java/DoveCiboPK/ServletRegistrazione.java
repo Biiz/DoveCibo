@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package posty;
+package DoveCiboPK;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author IO-PC
+ * @author stefano
  */
-@WebServlet(name = "addRestaurant", urlPatterns = {"/addRestaurant"})
-public class addRestaurant extends HttpServlet {
+@WebServlet(name = "ServletRegistrazione", urlPatterns = {"/ServletRegistrazione"})
+public class ServletRegistrazione extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -34,18 +37,11 @@ public class addRestaurant extends HttpServlet {
 
         try {
 
-            String first_name = request.getParameter("nome_ristorante");
-            String last_name = request.getParameter("link");
-            String nickname = request.getParameter("nazione");
-            String email = request.getParameter("city");
-            String password = request.getParameter("via");
-            String password = request.getParameter("numero_civico");
-            String password = request.getParameter("latitudine");
-            String password = request.getParameter("longitudine");
-            String password = request.getParameter("descrizione");
-            String password = request.getParameter("via");
-            String password = request.getParameter("via");
-            String password = request.getParameter("via");
+            String first_name = request.getParameter("first_name");
+            String last_name = request.getParameter("last_name");
+            String nickname = request.getParameter("nickname");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
 
             //PRECONDIZIONI
             if (nickname.isEmpty()) {
@@ -74,12 +70,12 @@ public class addRestaurant extends HttpServlet {
             }
 
             //PRECONDIZIONI DB
-            if ((new DB_Menaget()).niknameEsistente(nickname)) {
+            if ((new DB_Manager()).niknameEsistente(nickname)) {
                 request.setAttribute("error", "Attenzione, il Nickname inserito non è valido!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
 
-            if ((new DB_Menaget()).emailEsistente(email)) {
+            if ((new DB_Manager()).emailEsistente(email)) {
                 request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
@@ -87,7 +83,7 @@ public class addRestaurant extends HttpServlet {
             //INSERIMENTO DB
             User u = new User(null, first_name, last_name, nickname, email, password);
 
-            DB_Menaget dbm = new DB_Menaget();
+            DB_Manager dbm = new DB_Manager();
 
             if (dbm.inserisciAccount(u)) {
                 request.getRequestDispatcher("registrazioneEffettuata.jsp").forward(request, response);

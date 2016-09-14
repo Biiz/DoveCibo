@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <!-- 3° row: indirizzo-->
                         <div class="row">
                             <div class="col-md-9">
@@ -89,7 +89,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Numero civico:</label>          
-                                    <input type="text" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{3,255}" title="Inserisci il numero civico!">
+                                    <input type="text" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!">
                                 </div>
                             </div>
                         </div>
