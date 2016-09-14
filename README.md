@@ -1,6 +1,7 @@
 # DoveCiboGit
 
-Il `master` è protetto (come backup diciamo), utilizzare `DoveCiboGitB2` o fare altri branch. Non bisogna lavorare allo stesso file contemporaneamente altriment si generano conflitti a non finire.
+Il `master` è protetto (come backup diciamo), utilizzare `un altro branch` o fare altri branch. Non bisogna lavorare allo stesso file contemporaneamente altriment si generano conflitti a non finire.
+Può essere furbo creare i branch con in nome la data.
 ---
 
 Scaricate `git bash`, io uso questa [git-scm](https://git-scm.com/downloads) e probabilmente vi servirà avere [GitHub Desktop](https://desktop.github.com) ...io (Biz) ho scaricato entrambe...
