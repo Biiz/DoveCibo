@@ -49,13 +49,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome Ristorante:</label>          
-                                    <input type="text" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome!" placeholder="Nome Ristorante">
+                                    <input type="text" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome!" placeholder="Nome Ristorante" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Link al sito ufficiale:</label>          
-                                    <input type="url" class="form-control" name="link" pattern="https?://.+.{3,255}" title="Aggiungi http://www.example.com" placeholder="link">
+                                    <input type="url" class="form-control" name="link" pattern="https?://.+.{3,255}" title="Aggiungi http://www.example.com" placeholder="http://www.example.com" required>
                                 </div>
                             </div>
                         </div>
@@ -67,13 +67,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nazione:</label>          
-                                    <input type="text" id="txtNazione" class="form-control" name="nazione" placeholder="Nazione" pattern=".{3,255}" title="Inserisci la nazione!">
+                                    <input type="text" id="txtNazione" class="form-control" name="nazione" placeholder="Nazione" pattern=".{3,255}" title="Inserisci la nazione!"required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Città:</label>          
-                                    <input type="text" id="txtCity" class="form-control" name="city" placeholder="Città" pattern=".{3,255}" title="Inserisci la città!">
+                                    <input type="text" id="txtCity" class="form-control" name="city" placeholder="Città" pattern=".{3,255}" title="Inserisci la città!"required>
                                 </div>
                             </div>
                         </div>
@@ -83,13 +83,13 @@
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <label>Via:</label>          
-                                    <input type="text" id="txtVia" class="form-control" name="via" placeholder="Via" pattern=".{3,255}" title="Inserisci la via">
+                                    <input type="text" id="txtVia" class="form-control" name="via" placeholder="Via" pattern=".{3,255}" title="Inserisci la via"required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Numero civico:</label>          
-                                    <input type="text" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!">
+                                    <input type="text" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!"required>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="comment">Descrizione:</label>
-                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Inserisci il numero civico!"></textarea>
+                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Inserisci il numero civico!"required></textarea>
                                 </div>
                             </div>
                         </div>

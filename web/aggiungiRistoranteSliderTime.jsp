@@ -36,7 +36,7 @@
                         <br/>
                         <input id="m-look<%=i%>" type="checkbox" checked="checked" value="look"/> Lock
 
-                        <p>---</p>
+                        <p></p>
                         <br/>
                         <input id="StP<%=i%>" name="StP<%=i%>" style="margin: 10px; border-width: 0px; width: 40px" value="17:00"/>
                         <br/>

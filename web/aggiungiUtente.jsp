@@ -25,13 +25,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First name:</label>          
-                                    <input type="text" class="form-control" name="first_name" placeholder="First name" pattern=".{3,255}" title="Inserisci il nome!">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First name" pattern=".{3,255}" title="Inserisci il nome!" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last name:</label>          
-                                    <input type="text" class="form-control" name="last_name" placeholder="Last name" pattern=".{3,255}" title="Inserisci il cognome!">
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last name" pattern=".{3,255}" title="Inserisci il cognome!" required>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             <div class="col-md-12">
                                 <label for="basic-url">Email:</label>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Email" pattern=".{3,255}" title="Inserisci l'email!">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" pattern=".{3,255}" title="Inserisci l'email!" required>
                                 </div>
                             </div>
                         </div>
@@ -50,13 +50,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nickname:</label>          
-                                    <input type="text" class="form-control" name="nickname" placeholder="Nickname" pattern=".{3,255}" title="Inserisci il nickname!">
+                                    <input type="text" class="form-control" name="nickname" placeholder="Nickname" pattern=".{3,255}" title="Inserisci il nickname!" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label>Password:</label>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{3,255}" title="Inserisci la password!">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{3,255}" title="Inserisci la password!" required>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="checkbox pull-right">
-                                    <label><input type="checkbox" id="checkbox">Accept Terms and Conditions.</label>
+                                    <label><input type="checkbox" id="checkbox" required>Accept Terms and Conditions.</label>
                                 </div>
                             </div>
                         </div>
