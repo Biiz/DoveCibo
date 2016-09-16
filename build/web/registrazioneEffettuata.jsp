@@ -12,7 +12,7 @@
                 <!-- riceve l'attributo dalla servletRegistrazione-->
                 <div id="tagline">
                     <h1>Registrazione effettuata con successo</h1>
-                    <h2>manca la convalida con l'email</h2>
+                    <h2>La password ti è stata inviata nell'email di conferma. Accedi e cambia la password.</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

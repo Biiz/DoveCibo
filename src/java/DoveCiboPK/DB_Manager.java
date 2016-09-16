@@ -21,7 +21,7 @@ public class DB_Manager {
 
     Connection con;
     final String DRIVER = "org.apache.derby.jdbc.ClientDriver"; //Nome del driver
-    final String DB_NAME = "jdbc:derby://localhost:1527/DoveCibo"; //Nome del database completo di percorso
+    final String DB_NAME = "jdbc:derby://localhost:1527/Dovecibo"; //Nome del database completo di percorso
     final String DB_USER = "asd"; // Nome utente
     final String DB_PASSWORD = "asd"; //Password
     private String errore = "";

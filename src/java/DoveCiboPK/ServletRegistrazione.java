@@ -8,6 +8,7 @@ package DoveCiboPK;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -34,26 +35,30 @@ public class ServletRegistrazione extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String first_name = null;
+        String last_name = null;
+        String nickname = null;
+        String email = null;
+        String password = null;
         try {
 
-            String first_name = request.getParameter("first_name");
-            String last_name = request.getParameter("last_name");
-            String nickname = request.getParameter("nickname");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            first_name = request.getParameter("first_name");
+            last_name = request.getParameter("last_name");
+            nickname = request.getParameter("nickname");
+            email = request.getParameter("email");
+            //password = request.getParameter("password");
 
             //PRECONDIZIONI
             if (nickname.isEmpty()) {
                 request.setAttribute("error", "Empty nickname");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
-
+/*
             if (password.isEmpty()) {
                 request.setAttribute("error", "Empty password");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
-
+*/
             if (first_name.isEmpty()) {
                 request.setAttribute("error", "Empty first name");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
@@ -79,7 +84,17 @@ public class ServletRegistrazione extends HttpServlet {
                 request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
-
+            
+            //Password random generator
+            String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder salt = new StringBuilder();
+            Random rnd = new Random();
+            while (salt.length() < 8) {
+                int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                salt.append(SALTCHARS.charAt(index));
+            }
+            password = salt.toString();
+            
             //INSERIMENTO DB
             User u = new User(null, first_name, last_name, nickname, email, password);
 
@@ -95,6 +110,8 @@ public class ServletRegistrazione extends HttpServlet {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
+        
+        SendEmail_Gmail email_registrazione = new SendEmail_Gmail(first_name, nickname, password, email);
 
     }
 
