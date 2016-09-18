@@ -63,4 +63,10 @@ Per vedere i comandi possibili
 ### Todos
 
  - Fare una **servlet** che pesca dal database e manda a *Profilo.jsp*
- - *Profilo.jsp* che riceve i dati, li mostra, e permette di modificarli inviandoli ad un'altra servlet
+ - *Profilo.jsp* che riceve i dati, uno **script** li posiziona dentro al form-input field, e permette di modificarli inviandoli poi così da inserirli nel database. Attualmente esistono i metodi:
+	 - **inserisciAccount**(User u),
+	 - **niknameEsistente**(String nik),
+	 - **emailEsistente**(String em),
+	 - **modificaAccount**(User u),
+	 - **accedi**(User u),
+	 - **cercaUser_perId**(User u)
