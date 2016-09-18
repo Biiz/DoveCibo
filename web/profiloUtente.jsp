@@ -16,7 +16,7 @@
         
         <script>
             
-            //se i form è vuoto viene settato un valore di default
+            //se il form è vuoto viene settato un valore di default
             function first_nameFill() {
                 var x = document.getElementById("first_name");
                 if(x.value==""){
