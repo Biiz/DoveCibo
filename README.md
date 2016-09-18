@@ -56,3 +56,16 @@ Per vedere i comandi possibili
 ```sh
     git
 ```	
+
+---
+---
+
+### Todos
+
+ - Write Tests
+ - Rethink Github Save
+ - Add Code Comments
+ - Add Night Mode
+
+
+**grossetto**
