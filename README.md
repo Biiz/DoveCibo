@@ -56,3 +56,11 @@ Per vedere i comandi possibili
 ```sh
     git
 ```	
+
+---
+---
+
+### Todos
+
+ - Fare una **servlet** che pesca dal database e manda a *Profilo.jsp*
+ - *Profilo.jsp* che riceve i dati, li mostra, e permette di modificarli inviandoli ad un'altra servlet
