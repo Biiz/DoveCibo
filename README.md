@@ -62,10 +62,5 @@ Per vedere i comandi possibili
 
 ### Todos
 
- - Write Tests
- - Rethink Github Save
- - Add Code Comments
- - Add Night Mode
-
-
-**grossetto**
+ - Fare una **servlet** che pesca dal database e manda a *Profilo.jsp*
+ - *Profilo.jsp* che riceve i dati, li mostra, e permette di modificarli inviandoli ad un'altra servlet
