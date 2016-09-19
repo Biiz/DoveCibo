@@ -62,7 +62,7 @@ Per vedere i comandi possibili
 
 ### Todos
 
- - Fare una **servlet** che pesca dal database e manda a *Profilo.jsp*
+ - Fare una **servlet** che pesca dal database e manda a *Profilo.jsp*, oppure usare i cookies/session
  - *Profilo.jsp* che riceve i dati, uno **script** li posiziona dentro al form-input field, e permette di modificarli inviandoli poi così da inserirli nel database. Attualmente esistono i metodi:
 	 - **inserisciAccount**(User u),
 	 - **niknameEsistente**(String nik),
@@ -70,3 +70,5 @@ Per vedere i comandi possibili
 	 - **modificaAccount**(User u),
 	 - **accedi**(User u),
 	 - **cercaUser_perId**(User u)
+ - NavBar che nella pagina aggiungiRistorante.jsp non funziona completamente
+ - Come fare modifica ristorante? Forse uguale a modificaProfilo. Come pescare le info? forse è meglio avere un solo bottone: *il tuo ristorante* dal quale si ha la panoramica del proprio ristorante. Dentro al quale c'è anche un bottone che esporta tutti i campi scritti e li mette negli input field di un clone di aggiungiRistorante
