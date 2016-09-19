@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,6 +68,19 @@ public class ServletLogin extends HttpServlet {
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
+            
+            // Create cookies for first and last names.      
+            Cookie firstName = new Cookie("nick_asd", "asd_nickname");
+            Cookie lastName = new Cookie("nick_asd", "asd_password");
+
+            // Set expiry date after 24 Hrs for both the cookies.
+            firstName.setMaxAge(60*60*24); 
+            lastName.setMaxAge(60*60*24); 
+
+            // Add both the cookies in the response header.
+            response.addCookie( firstName );
+            response.addCookie( lastName );
+
 
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());

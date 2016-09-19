@@ -89,7 +89,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Numero civico:</label>          
-                                    <input type="text" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!"required>
+                                    <input type="number" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!"required>
                                 </div>
                             </div>
                         </div>
