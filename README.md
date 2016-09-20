@@ -73,3 +73,4 @@ Per vedere i comandi possibili
  - NavBar che nella pagina aggiungiRistorante.jsp non funziona completamente
  - Come fare modifica ristorante? Forse uguale a modificaProfilo. Come pescare le info? forse è meglio avere un solo bottone: *il tuo ristorante* dal quale si ha la panoramica del proprio ristorante. Dentro al quale c'è anche un bottone che esporta tutti i campi scritti e li mette negli input field di un clone di aggiungiRistorante
  - caratteri strani (es: euro) nel database vengono persi
+ - Aggiunto **role** in USER, quindi vedere se serve aggiungerlo in giro
