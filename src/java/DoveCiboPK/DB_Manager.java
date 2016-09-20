@@ -49,7 +49,7 @@ public class DB_Manager {
         String query = null;
 
         try {
-            query = "INSERT INTO users(id,name,surname,nickname,email,password) VALUES(DEFAULT,?,?,?,?,?)";
+            query = "INSERT INTO users(id,name,surname,nickname,email,password,role) VALUES(DEFAULT,?,?,?,?,?,?)";
             sp = con.prepareStatement(query);
 
             sp.setString(1, u.getName());
@@ -57,7 +57,7 @@ public class DB_Manager {
             sp.setString(3, u.getNickname());
             sp.setString(4, u.getEmail());
             sp.setString(5, u.getPassword());
-
+            sp.setString(6, u.getRole());
             sp.executeUpdate();
 
             return true;
@@ -181,6 +181,7 @@ public class DB_Manager {
                 u.setName(rs.getString("name"));
                 u.setEmail(rs.getString("email"));
                 u.setSurname(rs.getString("surname"));
+                u.setRole(rs.getString("role"));
             } else {
                 u = null;
             }

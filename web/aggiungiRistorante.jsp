@@ -107,7 +107,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="comment">Descrizione:</label>
-                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Inserisci il numero civico!"required></textarea>
+                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante!" required></textarea>
                                 </div>
                             </div>
                         </div>

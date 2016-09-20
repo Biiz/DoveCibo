@@ -40,6 +40,8 @@ public class ServletRegistrazione extends HttpServlet {
         String nickname = null;
         String email = null;
         String password = null;
+        String role = "3";
+        
         try {
 
             first_name = request.getParameter("first_name");
@@ -47,7 +49,7 @@ public class ServletRegistrazione extends HttpServlet {
             nickname = request.getParameter("nickname");
             email = request.getParameter("email");
             //password = request.getParameter("password");
-
+            
             //PRECONDIZIONI
             if (nickname.isEmpty()) {
                 request.setAttribute("error", "Empty nickname");
@@ -93,15 +95,18 @@ public class ServletRegistrazione extends HttpServlet {
                 int index = (int) (rnd.nextFloat() * SALTCHARS.length());
                 salt.append(SALTCHARS.charAt(index));
             }
-            password = salt.toString();
+            //password = salt.toString();
+            password = "asd";
             
             //INSERIMENTO DB
-            User u = new User(null, first_name, last_name, nickname, email, password);
+            User u = new User(null, first_name, last_name, nickname, email, password, role);
 
             DB_Manager dbm = new DB_Manager();
 
             if (dbm.inserisciAccount(u)) {
+                SendEmail_Gmail email_registrazione = new SendEmail_Gmail(first_name, nickname, password, email);
                 request.getRequestDispatcher("registrazioneEffettuata.jsp").forward(request, response);
+                
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
@@ -111,7 +116,6 @@ public class ServletRegistrazione extends HttpServlet {
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
         
-        SendEmail_Gmail email_registrazione = new SendEmail_Gmail(first_name, nickname, password, email);
 
     }
 

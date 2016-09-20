@@ -69,7 +69,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             out.println(coordinate.getAdrers());
 
             //CREATORE PROVA
-            User u = new User(1, "Admin", "Admin", "Admin", "admin@admin.it", "pollo");
+            User u = new User(1, "Admin", "Admin", "Admin", "admin@admin.it", "pollo", "3");
 
             //RISTORANTE
             Restaurant restaurant = new Restaurant(
