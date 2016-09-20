@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
     </head>
     <body style="padding-top: 70px;">
-
         <div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
 
             <!-- bottone menù che compare quando la finestra è piccola-->
@@ -34,11 +34,13 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Nome e Cognome <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
+                            <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Il vostro ristorante</a></li>
+                            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi il tuo ristorante</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica il tuo ristorante</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Esci</a></li>
                         </ul>
@@ -101,7 +103,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="bottom text-center">
-                            Prima volta ? <a href="aggiungeUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati !</b></a>
+                            Prima volta ? <a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati !</b></a>
                         </div>
                     </div>
                 </div>   
@@ -141,4 +143,5 @@
         </div> <!-- fine modal notifiche -->
 
     </body>
+    
 </html>

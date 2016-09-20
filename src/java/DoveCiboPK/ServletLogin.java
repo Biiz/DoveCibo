@@ -8,10 +8,12 @@ package DoveCiboPK;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,8 +63,17 @@ public class ServletLogin extends HttpServlet {
                     request.setAttribute("error", "Non esiste tale account");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
                 } else {
+                    Cookie cookie_nick_role = new Cookie("" + u.getNickname(), "" + u.getRole());
+
+                    // Set expiry date after 24 Hrs for both the cookies.
+                    cookie_nick_role.setMaxAge(60 * 60 * 24);
+
+                    // Add both the cookies in the response header.
+                    response.addCookie(cookie_nick_role);
+
                     request.setAttribute("user", u);
                     request.getRequestDispatcher("home.jsp").forward(request, response);
+
                 }
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);

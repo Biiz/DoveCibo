@@ -55,13 +55,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Latitudine:</label>          
-                    <input class="form-control" name="lat" id="lat" placeholder="12.12345678901234">
+                    <input class="form-control" name="lat" id="lat" onchange="latFill()" placeholder="12.12345678901234">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Longitudine:</label>          
-                    <input  class="form-control" name="lng" id="lng"   placeholder="12.12345678901234">
+                    <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  placeholder="12.12345678901234">
                 </div>
             </div>
         </div>

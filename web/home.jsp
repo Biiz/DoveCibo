@@ -26,7 +26,7 @@
         <%
             User u = (User) request.getAttribute("user");
             if (u == null) {
-                u = new User(-1, "Anonimo", "", "", "", "");
+                u = new User(-1, "Anonimo", "", "", "", "", "");
             }
         %>
 

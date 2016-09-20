@@ -1,3 +1,8 @@
+<%-- 
+    Document   : modificaRistorante
+    Created on : 19-set-2016, 10.49.47
+    Author     : IO-PC
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,6 +35,69 @@
 
         <script>
             $("#ex2").slider();
+                        
+            //se il form è vuoto viene settato un valore di default
+            function nome_ristoranteFill() {
+                var x = document.getElementById("nome_ristorante");
+                if(x.value==""){
+                    x.value="Nome Ristorante";
+                }
+            }
+            
+            function linkFill() {
+                var x = document.getElementById("link");
+                if(x.value==""){
+                    x.value="http://www.example.com";
+                }
+            }
+            
+            function txtNazioneFill() {
+                var x = document.getElementById("txtNazione");
+                if(x.value==""){
+                    x.value="Nazione";
+                }
+            }
+            
+            function txtCityFill() {
+                var x = document.getElementById("txtCity");
+                if(x.value==""){
+                    x.value="Città";
+                }
+            }
+            
+            function txtViaFill() {
+                var x = document.getElementById("txtVia");
+                if(x.value==""){
+                    x.value="Via";
+                }
+            }
+            
+            function txtNumeroFill() {
+                var x = document.getElementById("txtNumero");
+                if(x.value==""){
+                    x.value="1";
+                }
+            }
+            
+            function latFill() {
+                var x = document.getElementById("lat");
+                if(x.value==""){
+                    x.value="1";
+                }
+            }
+            function lonFill() {
+                var x = document.getElementById("lng");
+                if(x.value==""){
+                    x.value="1";
+                }
+            }
+            
+            function descrizioneFill() {
+                var x = document.getElementById("descrizione");
+                if(x.value==""){
+                    x.value="descrizione ecc ecc";
+                }
+            }
         </script>
 
     </head>
@@ -40,7 +108,7 @@
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
                     <div class="col-md-6 col-sm-8 col-xs-10 colonna2">
                         <div id="tagline">
-                            <h1>Aggiungi un Ristorante</h1>
+                            <h1>Modifica il tuo Ristorante</h1>
                         </div>
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
@@ -49,13 +117,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome Ristorante:</label>          
-                                    <input type="text" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome!" placeholder="Nome Ristorante" required>
+                                    <input type="text" id="nome_ristorante" onchange="nome_ristoranteFill()" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome!" placeholder="Nome Ristorante" value="Nome Ristorante">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Link al sito ufficiale:</label>          
-                                    <input type="url" class="form-control" name="link" pattern="https?://.+.{3,255}" title="Aggiungi http://www.example.com" placeholder="http://www.example.com" required>
+                                    <input type="url" id="link" onchange="linkFill()" class="form-control" name="link" pattern="https?://.+.{3,255}" title="Aggiungi http://www.example.com" placeholder="http://www.example.com" value="http://www.example.com">
                                 </div>
                             </div>
                         </div>
@@ -67,13 +135,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nazione:</label>          
-                                    <input type="text" id="txtNazione" class="form-control" name="nazione" placeholder="Nazione" pattern=".{3,255}" title="Inserisci la nazione!"required>
+                                    <input type="text" id="txtNazione" onchange="txtNazioneFill()" class="form-control" name="nazione" placeholder="Nazione" pattern=".{3,255}" title="Inserisci la nazione!" value="nazione">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Città:</label>          
-                                    <input type="text" id="txtCity" class="form-control" name="city" placeholder="Città" pattern=".{3,255}" title="Inserisci la città!"required>
+                                    <input type="text" id="txtCity" onchange="txtCityFill()" class="form-control" name="city" placeholder="Città" pattern=".{3,255}" title="Inserisci la città!" value="città">
                                 </div>
                             </div>
                         </div>
@@ -83,20 +151,19 @@
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <label>Via:</label>          
-                                    <input type="text" id="txtVia" class="form-control" name="via" placeholder="Via" pattern=".{3,255}" title="Inserisci la via"required>
+                                    <input type="text" id="txtVia" onchange="txtViaFill()" class="form-control" name="via" placeholder="Via" pattern=".{3,255}" title="Inserisci la via" value="via">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Numero civico:</label>          
-                                    <input type="number" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!"required>
+                                    <input type="number" id="txtNumero" onchange="txtNumeroFill()" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!" value="7">
                                 </div>
                             </div>
                         </div>
 
                         <!-- 4° row: coordinate geografiche-->
                         <div class="row" >
-
                             <%@include file="aggiungiRistoranteMap.jsp" %>
                         </div>
 
@@ -107,7 +174,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="comment">Descrizione:</label>
-                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante!" required></textarea>
+                                    <textarea class="form-control"  id="descrizione" onchange="descrizioneFill()" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante!" value="descrizione"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -248,4 +315,6 @@
         </form>
 
     </body>
+</html>
+
 </html>

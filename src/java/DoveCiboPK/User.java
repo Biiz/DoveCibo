@@ -17,18 +17,20 @@ public class User {
     private String nickname;
     private String email;
     private String password;
+    private String role;
 
     public User(Integer id) {
         this.id = id;
     }
 
-    public User(Integer id, String name, String surname, String nickname, String email, String password) {
+    public User(Integer id, String name, String surname, String nickname, String email, String password, String role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.nickname = nickname;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     protected void setId(Integer id) {
@@ -56,6 +58,10 @@ public class User {
         this.surname = surname;
     }
 
+    protected void setRole(String role) {
+        this.role = role;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -78,6 +84,10 @@ public class User {
 
     public String getSurname() {
         return surname;
+    }
+    
+    public String getRole() {
+        return role;
     }
 
     public User() {
