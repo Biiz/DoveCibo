@@ -5,9 +5,15 @@
         <group>
             <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/navBar.html</file>
             <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/modificaRistorante.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/aggiungiRistoranteMap.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletLogin.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/User.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletStampaTuttoRistorante.java</file>
             <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/aggiungiRistorante.jsp</file>
             <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/ristorante.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletRegistrazione.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/profiloUtente.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/home.jsp</file>
         </group>
     </open-files>
 </project-private>
