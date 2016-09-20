@@ -164,7 +164,6 @@
 
                         <!-- 4° row: coordinate geografiche-->
                         <div class="row" >
-
                             <%@include file="aggiungiRistoranteMap.jsp" %>
                         </div>
 
