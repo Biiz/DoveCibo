@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Registrazione</title>
-        <%@ include file="navBar.html" %>  
+        <%@ include file="navBar.jsp" %>  
     </head>
     <body>
         <form name="loginForm"  action="ServletRegistrazione" method="post">

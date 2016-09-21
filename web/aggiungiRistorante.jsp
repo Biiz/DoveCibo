@@ -3,7 +3,7 @@
 <html>
     <head>
 
-        <%@ include file="navBar.html" %>
+        <%@ include file="navBar.jsp" %>
 
         <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="all" />   
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js" type="text/javascript"></script>

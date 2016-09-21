@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 package DoveCiboPK;
-
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.*;
+//import java.io.IOException;
+//import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.Date;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -73,7 +76,6 @@ public class ServletLogin extends HttpServlet {
 
                     request.setAttribute("user", u);
                     request.getRequestDispatcher("home.jsp").forward(request, response);
-
                 }
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);

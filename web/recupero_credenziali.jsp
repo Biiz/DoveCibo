@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Recupera Credenziali</title>
-        <%@ include file="navBar.html" %>
+        <%@ include file="navBar.jsp" %>
         <script>
             function validateForm() {
                 var x = document.forms["loginForm"]["mail"].value;
