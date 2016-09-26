@@ -75,3 +75,4 @@ Per vedere i comandi possibili
  - caratteri strani (es: euro) nel database vengono persi
  - Aggiunto **role** in USER, quindi vedere se serve aggiungerlo in giro
  - togliere tasto lingua
+ - password criptata

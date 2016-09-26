@@ -10,7 +10,7 @@
 <html>
     <head>
         <title>ModificaAccount</title>
-        <%@ include file="navBar.html" %>  
+        <%@ include file="navBar.jsp" %>  
     </head>
     <body>
         

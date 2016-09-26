@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <%@ include file="navBar.html" %>
+        <%@ include file="navBar.jsp" %>
         <title>DoveCibo</title>
 
         <style>

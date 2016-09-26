@@ -1,4 +1,5 @@
-<!DOCTYPE HTML>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -7,7 +8,6 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        
     </head>
     <body style="padding-top: 70px;">
         <div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
@@ -45,17 +45,14 @@
                             <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Esci</a></li>
                         </ul>
                     </li>
-
-                    <!-- lingua -->
-                    <li><a href="#"><span class="glyphicon glyphicon-flag"></span> Lingua</a></li>
-
                     <!-- bottone che puppa la finestrella per accedere-->
                     <li><a href="#" data-toggle="modal" data-target="#accedi"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
+                      
 
+                
                     <!-- registrati -->
                     </a><li style="padding-right: 35px;"><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>   
                 </ul> 
-
             </div><!-- fine menù -->
         </div><!-- fine navBar -->
 
@@ -123,11 +120,11 @@
                             <div class="col-md-12">
                                 <div class="bottom">
                                     <p style="color: black; font-size: 18px"><b>Notifiche recenti:</b></p>
-                                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: #e5e5e5;" noshade>
+                                    <hr align=?left? size=?1? width=?300? style="border-top-color: #e5e5e5;" noshade>
                                     John ha caricato una foto
-                                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: #e5e5e5;" noshade>
+                                    <hr align=?left? size=?1? width=?300? style="border-top-color: #e5e5e5;" noshade>
                                     John reclama un ristorante
-                                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: #e5e5e5;" noshade>
+                                    <hr align=?left? size=?1? width=?300? style="border-top-color: #e5e5e5;" noshade>
                                     John chiede l'eliminazione di una foto 
                                 </div>
                             </div>
