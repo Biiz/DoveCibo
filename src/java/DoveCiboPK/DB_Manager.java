@@ -535,7 +535,7 @@ public class DB_Manager {
             if (rs.next()) {
                 res.setAltro(
                         rs.getString("description"),
-                        rs.getDouble("global_value"),
+                        rs.getInt("global_value"),
                         new User(rs.getInt("id_owner")),
                         new Price_range(rs.getInt("id_price_range")),
                         rs.getString("name"),

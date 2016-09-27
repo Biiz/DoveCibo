@@ -19,7 +19,7 @@ public class Restaurant {
     private String name;
     private String description;
     private String web_site_url;
-    private Double global_value;
+    private Integer global_value;
     private User owner;
     private User creator;
     private Price_range price_range;
@@ -56,7 +56,7 @@ public class Restaurant {
         return description;
     }
 
-    public Double getGlobal_value() {
+    public Integer getGlobal_value() {
         return global_value;
     }
 
@@ -88,7 +88,7 @@ public class Restaurant {
         return reviews;
     }
 
-    protected void setAltro(String description, Double global_value, User owner,
+    protected void setAltro(String description, Integer global_value, User owner,
             Price_range price_range, String name, String web_site_url, User creator) {
         this.description = description;
         this.global_value = global_value;
