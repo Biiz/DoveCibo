@@ -66,16 +66,21 @@ public class ServletLogin extends HttpServlet {
                     request.setAttribute("error", "Non esiste tale account");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
                 } else {
+                    String cookie_check = request.getParameter("mantieni_accesso");
                     Cookie cookie_nick_role = new Cookie("" + u.getNickname(), "" + u.getRole());
-
-                    // Set expiry date after 24 Hrs for both the cookies.
-                    cookie_nick_role.setMaxAge(60 * 60 * 24);
-
+                    if(cookie_check == null){
+                        // Set expiry date after 24 Hrs for both the cookies.
+                        cookie_nick_role.setMaxAge(-1);
+                    }
+                    if(cookie_check != null){
+                        // Set expiry date after 24 Hrs for both the cookies.
+                        cookie_nick_role.setMaxAge(60 * 60 * 24 * 30);
+                    }
                     // Add both the cookies in the response header.
                     response.addCookie(cookie_nick_role);
 
                     request.setAttribute("user", u);
-                    request.getRequestDispatcher("home.jsp").forward(request, response);
+                    response.sendRedirect("/DoveCiboGit/home.jsp");
                 }
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);

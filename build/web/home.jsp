@@ -23,18 +23,9 @@
     </head>
     <body>
 
-        <%
-            User u = (User) request.getAttribute("user");
-            if (u == null) {
-                u = new User(-1, "Anonimo", "", "", "", "", "");
-            }
-        %>
+       
 
         <div class="container">
-            <div class="row">
-                <h1> CIAO <%= u.getName()%> !!</h1>
-            </div>
-
             <div class="row ">
 
                 <div class="col-md-3"></div>

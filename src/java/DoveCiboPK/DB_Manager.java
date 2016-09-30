@@ -78,7 +78,7 @@ public class DB_Manager {
         String query = null;
 
         try {
-            query = "SELECT  * FROM users WHERE nickname LIKE ? ";
+            query = "SELECT * FROM users WHERE nickname LIKE ? ";
             sp = con.prepareStatement(query);
 
             sp.setString(1, nik);
@@ -95,6 +95,31 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
+        }
+    }
+    
+    public void niknameEsistente_login (User u) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+        
+        try {
+            query = "SELECT name, surname FROM users WHERE nickname LIKE ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setString(1, u.getNickname());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if(rs.next()){
+                u.setName(rs.getString("name"));           
+                u.setSurname(rs.getString("surname"));
+            }
+
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
         }
     }
 

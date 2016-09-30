@@ -105,7 +105,8 @@ public class ServletRegistrazione extends HttpServlet {
 
             if (dbm.inserisciAccount(u)) {
                 SendEmail_Gmail email_registrazione = new SendEmail_Gmail(first_name, nickname, password, email);
-                request.getRequestDispatcher("registrazioneEffettuata.jsp").forward(request, response);
+                response.sendRedirect("/DoveCiboGit/registrazioneEffettuata.jsp"); 
+                
                 
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
