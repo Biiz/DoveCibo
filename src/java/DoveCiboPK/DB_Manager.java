@@ -563,6 +563,53 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+// differisce da cercaRistorante_perId in quanto non riceve un ristorante bensì un ID diretto, per fare le prove più velocemente
+    public Boolean cercaRistor_perId(int ID) throws SQLException {
+
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+
+        try {
+            query = "SELECT  * FROM restaurants WHERE id = ? ";
+            sp = con.prepareStatement(query);
+
+            sp.setInt(1, ID);
+
+            ResultSet rs = sp.executeQuery();
+
+            if (rs.next()) {
+                        rs.getString("description");
+                        rs.getInt("global_value");
+                        new User(rs.getInt("id_owner"));
+                        new Price_range(rs.getInt("id_price_range"));
+                        rs.getString("name");
+                        rs.getString("web_site_url");
+                        new User(rs.getInt("id_creator"));
+    
+            } else {
+                System.out.println("non esiste tale ristorante ");
+          
+            }
+            r = true;
+
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
 
     public Boolean cercaUser_perId(User u) throws SQLException {
 

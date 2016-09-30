@@ -3,8 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
         <%@ include file="navBar.jsp" %>
         <title>DoveCibo</title>
+        
 
         <style>
             body {
@@ -75,7 +78,7 @@
         <br>
 
         <div class="container">
-            <div id="sortPlease">   
+            
             <!-- bottoni-radio (toggle di java) che si possono premere uno per volta -->
             <div class="row row-centered" style="padding-bottom: 20px;">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-12 ">
@@ -93,32 +96,9 @@
                 </div>
             </div>
             <div class="row row-centered">
-
+            <div id="sortPlease">
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=15>
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante15</b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=9>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey="9">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
@@ -141,30 +121,7 @@
                 </div>
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=1>
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante1</b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=5>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey="5">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
@@ -187,7 +144,30 @@
                 </div>
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=8>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey="3">
+                    <div class="polaroid colonna2" >
+                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante3</b></p>
+                            </div>                 
+                        </div>
+                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
+                            <div class="col-md-12 text-center">
+                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
+                                <br>
+                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
+                                <br>
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pannello del ristorante-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey="8">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
@@ -209,9 +189,48 @@
                     </div>
                 </div>
 
+                <!-- pannello del ristorante-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey="1">
+                    <div class="polaroid colonna2" >
+                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante1</b></p>
+                            </div>                 
+                        </div>
+                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
+                            <div class="col-md-12 text-center">
+                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
+                                <br>
+                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
+                                <br>
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         </div>  
+<script>
+            jQuery.fn.sortDomElements = (function() {
+                return function(comparator) {
+                    return Array.prototype.sort.call(this, comparator).each(function(i) {
+                          this.parentNode.appendChild(this);
+                    });
+                };
+            })();
 
+            $("#sortPlease").children().sortDomElements(function(a,b){
+                akey = $(a).attr("sortkey");
+                bkey = $(b).attr("sortkey");
+                if (akey == bkey) return 0;
+                if (akey < bkey) return -1;
+                if (akey > bkey) return 1;
+            })
+        </script>
     </body>
 </html>
