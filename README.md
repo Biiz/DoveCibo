@@ -81,5 +81,5 @@ Per vedere i comandi possibili
 	- Rimuovere "&callback=initMap" (aggiungiRistoranteMap.jsp),
 	- Rimuovere "<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>" (alla fine di aggiungiRistoranteSliderTime.jsp),
 	- Rimuovere "<link rel="stylesheet" href="homepageCSS.css"> (navBar.jsp),
-- "include<navBar>" va posizionato nel <body> (NO nella <head>). Questo nel caso di aggiungiRistorante.jsp e modificaRistorante.jsp causa la scomparsa dello slider "Fascia di Prezzo"
+- "include<navBar>" va posizionato nel <body> (NO nella <head>). Questo nel caso di aggiungiRistorante.jsp e modificaRistorante.jsp causa la scomparsa dello slider "Fascia di Prezzo".
 	SOLUZIONE: Creare "aggiungiRistoranteSliderPrice.jsp" contenente il codice dello slider.
