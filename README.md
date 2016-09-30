@@ -78,8 +78,8 @@ Per vedere i comandi possibili
 - NavBar che nella pagina aggiungiRistorante.jsp e modificaRistorante.jsp non funziona.
 	SOLUZIONE: 
 	- Tutti i link a librerie & eventuali devo essere in "http" (NO https),
-	- Rimuovere "&callback=initMap" (aggiungiRistoranteMap.jsp),
-	- Rimuovere "<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>" (alla fine di aggiungiRistoranteSliderTime.jsp),
-	- Rimuovere "<link rel="stylesheet" href="homepageCSS.css"> (navBar.jsp),
-- "include<navBar>" va posizionato nel <body> (NO nella <head>). Questo nel caso di aggiungiRistorante.jsp e modificaRistorante.jsp causa la scomparsa dello slider "Fascia di Prezzo".
+	- Rimuovere *callback=initMap* (aggiungiRistoranteMap.jsp),
+	- Rimuovere *script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"* (alla fine di aggiungiRistoranteSliderTime.jsp),
+	- Rimuovere *link rel="stylesheet" href="homepageCSS.css"* (navBar.jsp),
+- *include navBar* va posizionato nel *body* (NO nella *head*). Questo nel caso di aggiungiRistorante.jsp e modificaRistorante.jsp causa la scomparsa dello slider "Fascia di Prezzo".
 	SOLUZIONE: Creare "aggiungiRistoranteSliderPrice.jsp" contenente il codice dello slider.
