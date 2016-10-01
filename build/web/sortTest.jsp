@@ -231,6 +231,14 @@
                 if (akey < bkey) return -1;
                 if (akey > bkey) return 1;
             })
+            
+        $(document).ready(function(){
+            $("p").click(function(){
+                alert("The paragraph was clicked.");
+            });
+        });
+            
+            
         </script>
     </body>
 </html>

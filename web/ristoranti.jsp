@@ -75,7 +75,7 @@
         <br>
 
         <div class="container">
-            <div id="sortPlease">   
+            
             <!-- bottoni-radio (toggle di java) che si possono premere uno per volta -->
             <div class="row row-centered" style="padding-bottom: 20px;">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-12 ">
@@ -95,12 +95,12 @@
             <div class="row row-centered">
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=15>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante15</b></p>
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -118,12 +118,12 @@
                 </div>
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=9>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante9</b></p>
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -141,12 +141,12 @@
                 </div>
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=1>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante1</b></p>
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -164,12 +164,12 @@
                 </div>
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=5>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante5</b></p>
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -187,12 +187,12 @@
                 </div>
 
                 <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" sortKey=8>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante8</b></p>
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
@@ -210,7 +210,6 @@
                 </div>
 
             </div>
-        </div>
         </div>  
 
     </body>
