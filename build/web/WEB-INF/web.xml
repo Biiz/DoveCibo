@@ -8,6 +8,10 @@
         <servlet-name>TestSession</servlet-name>
         <servlet-class>DoveCiboPK.TestSession</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExitProfio</servlet-name>
+        <servlet-class>DoveCiboPK.ExitProfio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>TestSession</servlet-name>
         <url-pattern>/TestSession</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExitProfio</servlet-name>
+        <url-pattern>/ExitProfio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
