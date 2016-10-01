@@ -49,7 +49,9 @@
                             <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog" disabled></span> Profilo</a></li>
                             <li role="separator" class="divider"></li>
                             <form class="form" action="ExitProfilo" method="post">
+                                <div class="row text-center">
                                 <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+                                </div>
                             </form>
                         </ul>
                     </li>
@@ -80,7 +82,9 @@
             <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
             <li role="separator" class="divider"></li>
             <form class="form" action="ExitProfilo" method="post">
+                <div class="row text-center">
                 <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+                </div>
             </form>
         </ul>
     </li>
@@ -106,7 +110,9 @@
         <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
         <li role="separator" class="divider"></li>
         <form class="form" action="ExitProfilo" method="post">
+            <div class="row text-center">
             <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+            </div>
         </form>
     </ul>
 </li>
