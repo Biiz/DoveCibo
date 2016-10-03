@@ -23,7 +23,7 @@ public class Restaurant {
     private User owner;
     private User creator;
     private Price_range price_range;
-    private Week_hours weew_hours;
+    private Week_hours week_hours;
     private Coordinate cordinate;
     private ArrayList<Review> reviews;
 
@@ -39,7 +39,7 @@ public class Restaurant {
         this.web_site_url = web_site_url;
         this.creator = creator;
         this.price_range = price_range;
-        this.weew_hours = weew_hours;
+        this.week_hours = week_hours;
         reviews = new ArrayList();
 
     }
@@ -47,6 +47,24 @@ public class Restaurant {
     protected void setId(Integer id) {
         this.id = id;
     }
+
+    protected void setWeek_hours(Week_hours weew_hours) {
+        this.week_hours = weew_hours;
+    }
+
+    public Week_hours getWeek_hours() {
+        return week_hours;
+    }
+
+    public Coordinate getCordinate() {
+        return cordinate;
+    }
+    
+    
+    
+    
+    
+    
 
     public void addReviews(Review reviews) {
         this.reviews.add(reviews);
@@ -89,7 +107,7 @@ public class Restaurant {
     }
 
     protected void setAltro(String description, Integer global_value, User owner,
-            Price_range price_range, String name, String web_site_url, User creator) {
+            Price_range price_range, String name, String web_site_url, User creator, Coordinate c) {
         this.description = description;
         this.global_value = global_value;
         this.owner = owner;
@@ -97,6 +115,7 @@ public class Restaurant {
         this.price_range = price_range;
         this.name = name;
         this.web_site_url = web_site_url;
+        this.cordinate = c;
     }
 
 }

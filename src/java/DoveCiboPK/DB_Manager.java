@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -540,7 +541,8 @@ public class DB_Manager {
                         new Price_range(rs.getInt("id_price_range")),
                         rs.getString("name"),
                         rs.getString("web_site_url"),
-                        new User(rs.getInt("id_creator"))
+                        new User(rs.getInt("id_creator")),
+                        new Coordinate(res.getId())
                 );
 
                 System.out.println("ristorante: " + res.getName());
@@ -618,6 +620,9 @@ public class DB_Manager {
         Boolean r = null;
 
         try {
+            
+            if(u.getId()==null) return true;
+            
             query = "SELECT  * FROM users WHERE id = ? ";
             sp = con.prepareStatement(query);
 
@@ -789,6 +794,135 @@ public class DB_Manager {
             r = true;
 
         } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
+        
+    public Boolean tuttiRistoranti(ArrayList <Restaurant> ALR) throws SQLException {
+
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+
+        try {
+            query = "SELECT  * FROM restaurants";
+            sp = con.prepareStatement(query);
+
+            ResultSet rs = sp.executeQuery();
+
+            while (rs.next()) {
+                Restaurant res = new Restaurant(rs.getInt("id"));
+                System.out.println("find id ok");
+                res.setAltro(rs.getString("description"), 
+                                rs.getInt("global_value"), 
+                                new User(rs.getInt("id_owner")), 
+                                new Price_range(rs.getInt("id_price_range")), 
+                                rs.getString("name"), 
+                                rs.getString("web_site_url"), 
+                                new User(rs.getInt("id_creator")),
+                                new Coordinate(rs.getInt("id"))
+                );
+                                System.out.println("porco dio");
+                ALR.add(res);
+            }
+
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    } 
+    
+    public Boolean setOrariPerRistorante(Restaurant res) throws SQLException {
+
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+
+        try {
+            query = "SELECT OHR.DAY_OF_THE_WEEK, OHR.START_HOUR_M, OHR.END_HOUR_M, OHR.START_HOUR_P, OHR.END_HOUR_P "
+                    + "FROM OPENING_HOURS_RANGES AS OHR, OPENING_HOURS_RANGE_RESTAURANT AS OHRR "
+                    + "WHERE OHR.ID = OHRR.ID_OPENING_HOURS_RANGE "
+                    + "AND OHRR.ID_RESTAURANT = ?";
+            
+            
+            sp = con.prepareStatement(query);
+            
+
+            System.out.println("qery giusta");
+            
+            sp.setInt(1, res.getId());
+
+            
+            
+            ResultSet rs = sp.executeQuery();
+            
+            Day_hours[] orario = new Day_hours[7];
+
+            while (rs.next()) {                
+                orario[ rs.getInt(1) ] = new Day_hours(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));                   
+            }
+            
+            res.setWeek_hours( new Week_hours(orario));
+
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }   
+    
+    
+    
+    public Boolean cercaCoordinate_perId(Coordinate c) throws SQLException {
+
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+
+        try {
+            query = "SELECT  * FROM COORDINATES WHERE ID_RESTAURANT = ? ";
+            sp = con.prepareStatement(query);
+
+            sp.setInt(1, c.getId_resturant());
+
+            ResultSet rs = sp.executeQuery();
+
+            System.out.println("ok query");
+            
+            if (rs.next()) {
+
+                        c.setAdrers(rs.getString("ADDRESS"));
+                        c.setLatitude(rs.getFloat("LATITUDE"));
+                        c.setLongitude(rs.getFloat("LONGITUDE"));
+    
+            } else {
+                System.out.println("non esiste tale ristorante ");
+          
+            }
+            r = true;
+
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
             System.out.println("Possibile causa: " + e.getMessage());
             r = false;
         } finally {

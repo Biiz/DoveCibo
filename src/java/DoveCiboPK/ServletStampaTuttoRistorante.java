@@ -63,8 +63,8 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
 
             //COORDINATE
             Coordinate coordinate = new Coordinate(
-                    request.getParameter("lat").isEmpty() ? null : Double.parseDouble(request.getParameter("lat")),
-                    request.getParameter("lng").isEmpty() ? null : Double.parseDouble(request.getParameter("lng")),
+                    request.getParameter("lat").isEmpty() ? null : Float.parseFloat(request.getParameter("lat")),
+                    request.getParameter("lng").isEmpty() ? null : Float.parseFloat(request.getParameter("lng")),
                     request.getParameter("via") + ", " + request.getParameter("numero_civico") + ", " + request.getParameter("city") + ", " + request.getParameter("nazione"));
             out.println(coordinate.getAdrers());
 
