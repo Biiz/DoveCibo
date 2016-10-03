@@ -53,12 +53,6 @@
                                     <input type="text" class="form-control" name="nickname" placeholder="Nickname" pattern=".{3,255}" title="Inserisci il nickname!" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <label>Password:</label>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{3,255}" title="Inserisci la password!" disabled>
-                                </div>
-                            </div>
                         </div>
                         <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>
                         <!-- 4° row-->

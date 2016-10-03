@@ -48,7 +48,11 @@
                         <ul class="dropdown-menu">
                             <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog" disabled></span> Profilo</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Esci</a></li>
+                            <form class="form" action="ExitProfilo" method="post">
+                                <div class="row text-center">
+                                <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+                                </div>
+                            </form>
                         </ul>
                     </li>
                 </ul> 
@@ -77,7 +81,11 @@
         <ul class="dropdown-menu">
             <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Esci</a></li>
+            <form class="form" action="ExitProfilo" method="post">
+                <div class="row text-center">
+                <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+                </div>
+            </form>
         </ul>
     </li>
 </ul> 
@@ -95,12 +103,17 @@
         </ul>
     </li>
 <!-- Nome e Cognome dropdown -->
+
 <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span> <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span>  <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
     <ul class="dropdown-menu">
         <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Esci</a></li>
+        <form class="form" action="ExitProfilo" method="post">
+            <div class="row text-center">
+                <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+            </div>
+        </form>
     </ul>
 </li>
 </ul> 

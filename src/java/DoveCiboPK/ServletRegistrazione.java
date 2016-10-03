@@ -50,32 +50,6 @@ public class ServletRegistrazione extends HttpServlet {
             email = request.getParameter("email");
             //password = request.getParameter("password");
             
-            //PRECONDIZIONI
-            if (nickname.isEmpty()) {
-                request.setAttribute("error", "Empty nickname");
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
-            }
-/*
-            if (password.isEmpty()) {
-                request.setAttribute("error", "Empty password");
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
-            }
-*/
-            if (first_name.isEmpty()) {
-                request.setAttribute("error", "Empty first name");
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
-            }
-
-            if (last_name.isEmpty()) {
-                request.setAttribute("error", "Empty last name");
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
-            }
-
-            if (email.isEmpty()) {
-                request.setAttribute("error", "Empty email");
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
-            }
-
             //PRECONDIZIONI DB
             if ((new DB_Manager()).niknameEsistente(nickname)) {
                 request.setAttribute("error", "Attenzione, il Nickname inserito non è valido!");

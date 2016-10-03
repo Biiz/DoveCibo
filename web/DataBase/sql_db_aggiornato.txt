@@ -146,3 +146,7 @@ INSERT INTO CUISINES (ID, NAME) VALUES (3,'RISTORANTE');
 INSERT INTO CUISINES (ID, NAME) VALUES (4,'DISCO RESTAURANT');
 INSERT INTO CUISINES (ID, NAME) VALUES (5,'STRANIERA');
 INSERT INTO CUISINES (ID, NAME) VALUES (6,'ALTRO');
+
+INSERT INTO users(id,name,surname,nickname,email,password,role) VALUES(DEFAULT, 'admin_name', 'admin_sur', 'admin', 'admin@admin.admin', 'admin', '1');
+INSERT INTO users(id,name,surname,nickname,email,password,role) VALUES(DEFAULT, 'risto_name', 'risto_sur', 'risto', 'risto@risto.risto', 'risto', '2');
+INSERT INTO users(id,name,surname,nickname,email,password,role) VALUES(DEFAULT, 'user_name', 'user_sur', 'user', 'user@user.user', 'user', '3');

@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Logger;
 
 /**
  *
@@ -122,6 +121,33 @@ public class DB_Manager {
             con.close();
         }
     }
+    
+    public void CheckProfilo (User u) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+        
+        try {
+            query = "SELECT name, surname, email, password FROM users WHERE nickname LIKE ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setString(1, u.getNickname());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if(rs.next()){
+                u.setName(rs.getString("name"));           
+                u.setSurname(rs.getString("surname"));
+                u.setEmail(rs.getString("email"));
+                u.setPassword(rs.getString("password"));
+            }
+
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
 
     public Boolean emailEsistente(String em) throws SQLException {
         Boolean r = false;
@@ -130,7 +156,7 @@ public class DB_Manager {
         String query = null;
 
         try {
-            query = "SELECT  * FROM users WHERE email LIKE ? ";
+            query = "SELECT * FROM users WHERE email LIKE ? ";
             sp = con.prepareStatement(query);
 
             sp.setString(1, em);
@@ -149,30 +175,25 @@ public class DB_Manager {
             return r;
         }
     }
-
-    public Boolean modificaAccount(User u) throws SQLException {
+    
+    public Boolean modificaAccount(User u, String string) throws SQLException {
 
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
 
         try {
-            query = "UPDATE users SET name = ?, surname = ?, nickname = ? WHERE email = ? AND password = ?";
-            sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            query = "UPDATE users SET name = ?, surname = ?, email = ?, password = ? WHERE nickname like ?";
+            sp = con.prepareStatement(query);
 
             sp.setString(1, u.getName());
             sp.setString(2, u.getSurname());
-            sp.setString(3, u.getNickname());
-            sp.setString(4, u.getEmail());
-            sp.setString(5, u.getPassword());
+            sp.setString(3, u.getEmail());
+            sp.setString(4, u.getPassword());
+            sp.setString(5, string);
 
-            sp.execute();
-
-            ResultSet generatedKeys = sp.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                u.setId(generatedKeys.getInt(1));
-            }
-
+            sp.executeUpdate();
+            
             r = true;
         } catch (SQLException e) {
             System.out.println("Possibile causa: " + e.getMessage());
