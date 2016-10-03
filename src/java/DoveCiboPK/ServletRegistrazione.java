@@ -40,7 +40,7 @@ public class ServletRegistrazione extends HttpServlet {
         String nickname = null;
         String email = null;
         String password = null;
-        String role = "2";
+        String role = "3";
         
         try {
 

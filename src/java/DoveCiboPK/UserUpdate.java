@@ -40,26 +40,35 @@ public class UserUpdate extends HttpServlet {
             String password = request.getParameter("password");
 
             DB_Manager db = new DB_Manager();
-            User u = new User();
-
-            /*
-            //PRECONDIZIONI DB
-            if (db.emailEsistente(email)) {
-                request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
+            
+            Cookie cookies[] = request.getCookies();
+            String nickName = cookies[1].getName();
+            User u1 = new User(-1,"","",nickName,"","","");
+            db.CheckProfilo(u1);
+            
+            if(!u1.getEmail().equals(email)){
+                
+                //PRECONDIZIONI DB
+                if ((new DB_Manager()).emailEsistente(email)) {
+                    request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
+                    request.getRequestDispatcher("errore.jsp").forward(request, response);
+                }
+                
             }
-             */
+            
+            User u = new User();
             
             u.setName(name);
             u.setSurname(surname);
             u.setEmail(email);
             u.setPassword(password);
 
-            Cookie cookies[] = request.getCookies();
-            String nickName = cookies[1].getName();
-            db.modificaAccount(u, nickName);
-
-            response.sendRedirect("/DoveCiboGit/profiloUtente.jsp");
+           System.out.println("++++++++++++++++++++++++++++++++++");
+           (new DB_Manager()).modificaAccount(u, nickName);
+           System.out.println("----------------------------------");
+           
+           
+           response.sendRedirect("/DoveCiboGit/profiloUtente.jsp");
 
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
