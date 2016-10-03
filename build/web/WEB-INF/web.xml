@@ -12,6 +12,14 @@
         <servlet-name>ExitProfio</servlet-name>
         <servlet-class>DoveCiboPK.ExitProfio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfiloUtente</servlet-name>
+        <servlet-class>DoveCiboPK.ProfiloUtente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserUpdate</servlet-name>
+        <servlet-class>DoveCiboPK.UserUpdate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>ExitProfio</servlet-name>
         <url-pattern>/ExitProfio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfiloUtente</servlet-name>
+        <url-pattern>/ProfiloUtente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserUpdate</servlet-name>
+        <url-pattern>/UserUpdate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

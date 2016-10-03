@@ -57,6 +57,10 @@ public class User {
     protected void setSurname(String surname) {
         this.surname = surname;
     }
+    
+    protected void setPassword(String password) {
+        this.password = password;
+    }
 
     protected void setRole(String role) {
         this.role = role;
@@ -78,7 +82,7 @@ public class User {
         return nickname;
     }
 
-    protected String getPassword() {
+    public String getPassword() {
         return password;
     }
 

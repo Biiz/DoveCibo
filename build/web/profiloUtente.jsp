@@ -7,46 +7,25 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
-<html>
+
     <head>
         <title>ModificaAccount</title>
         <%@ include file="navBar.jsp" %>  
     </head>
-    <body>
+    <body>    
+    
+        <%
+            Cookie cookiess[] = request.getCookies();
+            if(cookiess != null && cookiess.length > 1){
+                DoveCiboPK.DB_Manager db = new DoveCiboPK.DB_Manager ();
+                String nickName = cookiess[1].getName();
+                DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
+                db.CheckProfilo(u);
+        %>
         
-        <script>
-            
-            //se il form è vuoto viene settato un valore di default
-            function first_nameFill() {
-                var x = document.getElementById("first_name");
-                if(x.value==""){
-                    x.value="NomeUtente";
-                }
-            }
-            
-            function last_nameFill() {
-                var x = document.getElementById("last_name");
-                if(x.value==""){
-                    x.value="CognomeUtente";
-                }
-            }
-            
-            function emailFill() {
-                var x = document.getElementById('email')
-                if(x.value==""){
-                    x.value="emailUtente@example.it";
-                }
-            }
-            
-            function nicknameFill() {
-                var x = document.getElementById('nickname')
-                if(x.value==""){
-                    x.value="nicknameUtente";
-                }
-            }
-        </script> 
         
-        <form name="loginForm"  action="Servlet?" method="post">
+        <form name="loginForm"  action="UserUpdate" method="post">
+            
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
@@ -60,7 +39,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First name:</label>  
-                                    <input type="text" id="first_name" onchange="first_nameFill()" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="NomeUtente">
+                                    <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=u.getName()%>" required>
                                     <script>
                                         
                                     </script>
@@ -69,7 +48,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last name:</label>          
-                                    <input type="text" id="last_name" onchange="last_nameFill()" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="CognomeUtente">
+                                    <input type="text" id="last_name" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="<%=u.getSurname()%>" required>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +58,7 @@
                             <div class="col-md-12">
                                 <label for="basic-url">Email:</label>
                                 <div class="form-group">
-                                    <input type="email" id="email" onchange="emailFill()" class="form-control" name="email" placeholder="Email" pattern=".{3,255}" title="La tua email!" value="emailUtente@example.it">
+                                    <input type="email" id="email" class="form-control" name="email" pattern=".{3,255}" title="La tua email!" value="<%=u.getEmail()%>" required>
                                 </div>
                             </div>
                         </div>
@@ -91,42 +70,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nickname:</label>          
-                                    <input type="text" id="nickname" onchange="nicknameFill()" class="form-control" name="nickname" placeholder="Nickname" pattern=".{3,255}" title="Inserisci il nickname!" value="nicknameUtente">
+                                    <input type="text" id="nickname" class="form-control" name="nickname" pattern=".{3,255}" title="Inserisci il nickname!" value="<%=nickName%>" disabled>
                                 </div>
                             </div>
                             
                         </div>
                        
                         <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>
-                        
-                        <!-- 5° row-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Inserisci la vecchia password:</label>          
-                                    <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{3,255}" title="Inserisci la password!">
-                                </div>
-                            </div>
-                        </div>
-                        
+                       
                         <!-- 6° row-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Inserisci la nuova password:</label>          
-                                    <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{3,255}" title="Inserisci la password!">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Inserisci nuovamente la password:</label>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" pattern=".{3,255}" title="Inserisci la password!">
+                                    <label>password:</label>          
+                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{3,255}" title="Inserisci la password!" value="<%=u.getPassword()%>" required>
                                 </div>
                             </div>
                         </div>
                         
                         <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>
-                        
                          <!-- 4° row-->
                         <div class="row">
                             <div class="col-md-12">
@@ -144,5 +106,8 @@
         <br>
         <br>
         <br>
+        <%
+        }
+        %>
     </body>
-</html>
+
