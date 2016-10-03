@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-success btn-lg pull-right" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-home"></span> Torna alla home</button>
-                        <button class="btn btn-sm btn-default" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
+                        <button class="btn btn-sm btn-danger" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
                         <!-- script per tornare indietro di pagina nel browser-->
                         <script>
                             function goBack() {
