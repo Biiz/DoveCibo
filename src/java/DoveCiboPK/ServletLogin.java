@@ -59,9 +59,8 @@ public class ServletLogin extends HttpServlet {
             //RICERCA DB
             User u = new User(nickname, password);
 
-            DB_Manager dbm = new DB_Manager();
 
-            if (dbm.accedi(u)) {
+            if ((new DB_Manager()).accedi(u)) {
                 if (u.getId() == null) {
                     request.setAttribute("error", "Non esiste tale account");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);

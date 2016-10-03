@@ -38,13 +38,11 @@ public class UserUpdate extends HttpServlet {
             String surname = request.getParameter("last_name");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-
-            DB_Manager db = new DB_Manager();
             
             Cookie cookies[] = request.getCookies();
             String nickName = cookies[1].getName();
             User u1 = new User(-1,"","",nickName,"","","");
-            db.CheckProfilo(u1);
+            (new DB_Manager()).CheckProfilo(u1);
             
             if(!u1.getEmail().equals(email)){
                 
@@ -63,9 +61,8 @@ public class UserUpdate extends HttpServlet {
             u.setEmail(email);
             u.setPassword(password);
 
-           System.out.println("++++++++++++++++++++++++++++++++++");
+           
            (new DB_Manager()).modificaAccount(u, nickName);
-           System.out.println("----------------------------------");
            
            
            response.sendRedirect("/DoveCiboGit/profiloUtente.jsp");

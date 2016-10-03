@@ -32,10 +32,10 @@
                             if(cookies.length > 1){
                                 String value = cookies[1].getValue();
                                 //String value = "3"; per provare la navbar
-                                DoveCiboPK.DB_Manager db = new DoveCiboPK.DB_Manager();
+                                
                                 String nickName = cookies[1].getName();
                                 DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
-                                db.niknameEsistente_login(u);
+                                (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
                                 if (value.equals("1")) {
                                     
                     %>
