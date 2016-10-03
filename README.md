@@ -45,7 +45,8 @@ Per navigare tra i branch
 ```sh
     git checkout master
 	git checkout branch
-	git checkout branch1 
+	git checkout branch1
+	git branch -a //per vederli tutti
 ```		
 
  - La directory per un progetto è sempre la stessa per tutti i branch. Quindi prima di cambiare branch è bene salvare le modifiche del branch su cui si sta lavorando altrimenti andranno perse.
