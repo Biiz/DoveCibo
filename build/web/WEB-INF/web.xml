@@ -20,6 +20,14 @@
         <servlet-name>UserUpdate</servlet-name>
         <servlet-class>DoveCiboPK.UserUpdate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewMain</servlet-name>
+        <servlet-class>DoveCiboPK.NewMain</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletGetTuttiRistoranti</servlet-name>
+        <servlet-class>DoveCiboPK.ServletGetTuttiRistoranti</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>UserUpdate</servlet-name>
         <url-pattern>/UserUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewMain</servlet-name>
+        <url-pattern>/NewMain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGetTuttiRistoranti</servlet-name>
+        <url-pattern>/ServletGetTuttiRistoranti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
