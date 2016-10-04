@@ -62,7 +62,7 @@ public class ServletLogin extends HttpServlet {
 
             if ((new DB_Manager()).accedi(u)) {
                 if (u.getId() == null) {
-                    request.setAttribute("error", "Non esiste tale account");
+                    request.setAttribute("error", "Nome o password incorretti");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
                 } else {
                     String cookie_check = request.getParameter("mantieni_accesso");
