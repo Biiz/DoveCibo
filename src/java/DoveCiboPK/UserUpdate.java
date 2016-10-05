@@ -40,29 +40,36 @@ public class UserUpdate extends HttpServlet {
             String password = request.getParameter("password");
             
             Cookie cookies[] = request.getCookies();
-            String nickName = cookies[1].getName();
-            User u1 = new User(-1,"","",nickName,"","","");
-            (new DB_Manager()).CheckProfilo(u1);
-            
-            //PRECONDIZIONI DB
-            if(!u1.getEmail().equals(email)){
-                
-                if ((new DB_Manager()).emailEsistente(email)) {
-                    request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
-                    request.getRequestDispatcher("errore.jsp").forward(request, response);
-                }
-                
-            }
-            
-            User u = new User();
-            
-            u.setName(name);
-            u.setSurname(surname);
-            u.setEmail(email);
-            u.setPassword(password);
+            if(cookies != null){
+                for (int i = 0; i<cookies.length ;i++){
+                    if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+                        String nickName = cookies[i].getName();
+                        User u1 = new User(-1,"","",nickName,"","","");
+                        (new DB_Manager()).CheckProfilo(u1);
+                        //PRECONDIZIONI DB
+                        if(!u1.getEmail().equals(email)){
 
-           (new DB_Manager()).modificaAccount(u, nickName);
-           
+                            if ((new DB_Manager()).emailEsistente(email)) {
+                                request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
+                                request.getRequestDispatcher("errore.jsp").forward(request, response);
+                            }
+
+                        }
+
+                        User u = new User();
+
+                        u.setName(name);
+                        u.setSurname(surname);
+                        u.setEmail(email);
+                        u.setPassword(password);
+
+                       (new DB_Manager()).modificaAccount(u, nickName);
+                        
+                        
+                    }
+                }
+            }
+
            response.sendRedirect("/DoveCiboGit/profiloUtente.jsp");
 
         } catch (Exception ex) {

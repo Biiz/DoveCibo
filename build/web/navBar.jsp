@@ -29,15 +29,14 @@
                     <%
                         Cookie cookies[] = request.getCookies();
                         if (cookies != null) {
-                            if(cookies.length > 1){
-                                String value = cookies[1].getValue();
-                                //String value = "3"; per provare la navbar
-                                
-                                String nickName = cookies[1].getName();
-                                DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
-                                (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
-                                if (value.equals("1")) {
+                            for(int i = 0; i < cookies.length ;i++){
+                                if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+                                    String value = cookies[i].getValue();
+                                    String nickName = cookies[i].getName();
+                                    DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
+                                    (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
                                     
+                                    if (value.equals("1")) {                    
                     %>
                     <!-- bottone che puppa la finestrella delle notifiche-->
                     <li><a href="#" data-toggle="modal" data-target="#notifiche" style="padding-right: 15px;"><span class="glyphicon glyphicon-tags"></span> Notifiche</a></li>
@@ -126,7 +125,7 @@
 
 <%
     }
-}else {
+}else if(cookies.length < 2) {
 %>
 <!-- registrati -->
 </a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
@@ -138,7 +137,17 @@
 <%
     }
 }
-
+}else{
+%>
+<!-- registrati -->
+</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
+<!-- bottone che puppa la finestrella per accedere-->
+<li><a href="#" data-toggle="modal" data-target="#accedi" style="padding-right: 35px;"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>     
+</ul> 
+</div><!-- fine menù -->
+</div><!-- fine navBar -->
+<%
+}
 %>
 
 
