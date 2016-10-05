@@ -130,7 +130,7 @@ public class DB_Manager {
         String query = null;
        
         try {
-            query = "SELECT name, surname, email, password FROM users WHERE nickname LIKE ? ";
+            query = "SELECT id, name, surname, email, password, role FROM users WHERE nickname LIKE ? ";
             sp = con.prepareStatement(query);
            
             sp.setString(1, u.getNickname());
@@ -138,10 +138,12 @@ public class DB_Manager {
             ResultSet rs = sp.executeQuery();
            
             if(rs.next()){
+                u.setId(rs.getInt("id"));
                 u.setName(rs.getString("name"));          
                 u.setSurname(rs.getString("surname"));
                 u.setEmail(rs.getString("email"));
                 u.setPassword(rs.getString("password"));
+                u.setRole(rs.getString("role"));
             }
  
         } catch (SQLException e) {
@@ -574,7 +576,7 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "SELECT  * FROM restaurants WHERE id = ? ";
+            query = "SELECT  * FROM restaurants WHERE id =  ";
             sp = con.prepareStatement(query);
  
             sp.setInt(1, res.getId());
@@ -593,18 +595,14 @@ public class DB_Manager {
                         new Coordinate(res.getId())
                 );
  
-                System.out.println("ristorante: " + res.getName());
+                
  
             } else {
-                System.out.println("non esiste tale ristorante ");
                 res = null;
             }
             r = true;
  
         } catch (SQLException e) {
-            System.out.print(e.getMessage());
-            System.out.println("accesso fallito");
-            System.out.println("Possibile causa: " + e.getMessage());
             r = false;
         } finally {
             sp.close();

@@ -70,9 +70,9 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi il tuo ristorante</a></li>
+            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica il tuo ristorante</a></li>
+            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
         </ul>
     </li>
     <!-- Nome e Cognome dropdown -->
@@ -100,6 +100,10 @@
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 15px;"><span class="glyphicon glyphicon-cutlery"></span> Ristorante <span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
     </li>
 <!-- Nome e Cognome dropdown -->

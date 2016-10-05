@@ -44,9 +44,9 @@ public class UserUpdate extends HttpServlet {
             User u1 = new User(-1,"","",nickName,"","","");
             (new DB_Manager()).CheckProfilo(u1);
             
+            //PRECONDIZIONI DB
             if(!u1.getEmail().equals(email)){
                 
-                //PRECONDIZIONI DB
                 if ((new DB_Manager()).emailEsistente(email)) {
                     request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
@@ -61,9 +61,7 @@ public class UserUpdate extends HttpServlet {
             u.setEmail(email);
             u.setPassword(password);
 
-           
            (new DB_Manager()).modificaAccount(u, nickName);
-           
            
            response.sendRedirect("/DoveCiboGit/profiloUtente.jsp");
 

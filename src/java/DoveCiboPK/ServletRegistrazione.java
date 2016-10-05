@@ -48,7 +48,7 @@ public class ServletRegistrazione extends HttpServlet {
             last_name = request.getParameter("last_name");
             nickname = request.getParameter("nickname");
             email = request.getParameter("email");
-            //password = request.getParameter("password");
+            
             
             //PRECONDIZIONI DB
             if ((new DB_Manager()).niknameEsistente(nickname)) {

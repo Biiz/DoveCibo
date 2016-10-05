@@ -105,10 +105,6 @@
         </style>
     </head>
     <body>
-        <%
-            DoveCiboPK.Restaurant res = new DoveCiboPK.Restaurant(-1,null,null,null,null,null,null,null);
-            
-        %>
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">
