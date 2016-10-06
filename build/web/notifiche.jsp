@@ -2,7 +2,6 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <%@ include file="navBar.jsp" %>
         <title>DoveCibo</title>
 
         <style>
@@ -20,7 +19,7 @@
         </style>
     </head>
     <body>
-
+        <%@ include file="navBar.jsp" %>
         <!-- notifiche per ristoratore -->
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">

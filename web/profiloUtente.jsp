@@ -9,11 +9,10 @@
 <!DOCTYPE HTML>
 
     <head>
-        <title>ModificaAccount</title>
-        <%@ include file="navBar.jsp" %>  
+        <title>ModificaAccount</title>  
     </head>
     <body>    
-    
+        <%@ include file="navBar.jsp" %>
         <%
             Cookie cookiess[] = request.getCookies();
             if(cookies != null){
@@ -23,11 +22,7 @@
                         String nickName = cookiess[1].getName();
                         DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
                         db.CheckProfilo(u);
-                    
-                
-            
-        %>
-        
+        %>     
         
         <form name="loginForm"  action="UserUpdate" method="post">
             

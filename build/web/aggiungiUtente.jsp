@@ -9,9 +9,9 @@
 <html>
     <head>
         <title>Registrazione</title>
-        <%@ include file="navBar.jsp" %>  
     </head>
     <body>
+        <%@ include file="navBar.jsp" %>
         <form name="loginForm"  action="ServletRegistrazione" method="post">
             <div class="container">
                 <div class="row">

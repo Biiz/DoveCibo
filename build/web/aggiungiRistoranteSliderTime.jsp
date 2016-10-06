@@ -7,9 +7,7 @@
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
     </head>
     <body>
-
         <table>
-
             <tr>
 
                 <% String gw[] = {"lun", "mar", "mer", "gio", "ven", "sab", "dom"};
@@ -146,11 +144,7 @@
                     </script>
                 <th/>
                 <% }%>
-
             <tr/>
         <table/>
-
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
     </body>
  </html>

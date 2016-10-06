@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file="navBar.jsp" %>
         <title>DoveCibo</title>
 
         <style>
@@ -22,9 +21,7 @@
         </style>
     </head>
     <body>
-
-       
-
+        <%@ include file="navBar.jsp" %>
         <div class="container">
             <div class="row ">
 
