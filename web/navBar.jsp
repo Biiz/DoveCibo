@@ -3,10 +3,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="homepageCSS.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body style="padding-top: 70px;">
@@ -29,15 +27,14 @@
                     <%
                         Cookie cookies[] = request.getCookies();
                         if (cookies != null) {
-                            if(cookies.length > 1){
-                                String value = cookies[1].getValue();
-                                //String value = "3"; per provare la navbar
-                                
-                                String nickName = cookies[1].getName();
-                                DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
-                                (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
-                                if (value.equals("1")) {
+                            for(int i = 0; i < cookies.length ;i++){
+                                if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+                                    String value = cookies[i].getValue();
+                                    String nickName = cookies[i].getName();
+                                    DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
+                                    (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
                                     
+                                    if (value.equals("1")) {                    
                     %>
                     <!-- bottone che puppa la finestrella delle notifiche-->
                     <li><a href="#" data-toggle="modal" data-target="#notifiche" style="padding-right: 15px;"><span class="glyphicon glyphicon-tags"></span> Notifiche</a></li>
@@ -70,9 +67,9 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi il tuo ristorante</a></li>
+            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica il tuo ristorante</a></li>
+            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
         </ul>
     </li>
     <!-- Nome e Cognome dropdown -->
@@ -100,6 +97,10 @@
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 15px;"><span class="glyphicon glyphicon-cutlery"></span> Ristorante <span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
     </li>
 <!-- Nome e Cognome dropdown -->
@@ -122,7 +123,7 @@
 
 <%
     }
-}else {
+}else if(cookies.length < 2) {
 %>
 <!-- registrati -->
 </a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
@@ -134,7 +135,17 @@
 <%
     }
 }
-
+}else{
+%>
+<!-- registrati -->
+</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
+<!-- bottone che puppa la finestrella per accedere-->
+<li><a href="#" data-toggle="modal" data-target="#accedi" style="padding-right: 35px;"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>     
+</ul> 
+</div><!-- fine menù -->
+</div><!-- fine navBar -->
+<%
+}
 %>
 
 
@@ -222,7 +233,5 @@
         </div>   
     </div>
 </div> <!-- fine modal notifiche -->
-
 </body>
-
 </html>

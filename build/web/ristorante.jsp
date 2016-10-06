@@ -9,7 +9,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@ include file="navBar.jsp" %>
         <title>DoveCibo</title>
 
         <style>
@@ -105,7 +104,7 @@
         </style>
     </head>
     <body>
-
+        <%@ include file="navBar.jsp" %>
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">

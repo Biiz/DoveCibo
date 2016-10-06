@@ -2,14 +2,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <%@ include file="navBar.jsp" %>
-
         <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="all" />   
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="./bootstrap-slider/bootstrap-slider.css" media="all" />
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>DoveCibo</title>
@@ -34,6 +30,7 @@
 
     </head>
     <body>
+        <%@ include file="navBar.jsp" %>
         <form name="addRestaurantForm"  action="ServletStampaTuttoRistorante" method="post">
             <div class="container">
                 <div class="row">
@@ -96,7 +93,6 @@
 
                         <!-- 4° row: coordinate geografiche-->
                         <div class="row" >
-
                             <%@include file="aggiungiRistoranteMap.jsp" %>
                         </div>
 
@@ -161,30 +157,11 @@
 
                         <!-- 7° row: fascia di prezzo-->
                         <div class="row">
-
-                            <div class="col-md-12">
+                            <div class="col-md-12 text-center">
                                 <h4><b>Fascia di prezzo:</b></h4>
-
                                 <div class="row">
-                                    <div class="col-md-12 text-center"> 
-
-
-                                        <input id="price" name="price" type="text" 
-                                               class="span2" value="" data-slider-min="0" 
-                                               data-slider-max="100" data-slider-step="5" 
-                                               data-slider-value="[20,80]"
-                                               data-slider-ticks="[0, 20, 40, 60, 80, 100]" 
-                                               data-slider-ticks-snap-bounds="30" 
-                                               data-slider-ticks-labels='["€0", "€20", "€40", "€60", "€80", "€100"]'/>  
-
-                                        <script>
-                                            $("#price").slider({
-                                                ticks: [0, 20, 40, 60, 80, 100],
-                                                ticks_labels: ["€0", "€20", "€40", "€60", "€80", "€100"],
-                                                ticks_snap_bounds: 30
-                                            });
-                                        </script>
-
+                                    <div class="col-md-12">
+					<%@include file="aggiungiRistoranteSliderPrice.jsp" %>
                                     </div>
                                 </div> <!-- fine row cena -->
                             </div>
@@ -195,17 +172,11 @@
 
                         <!-- 8° row: orario di apertura-->
                         <div class="row">
-
                             <div class="col-md-12">
                                 <h4><b>Orario di apertura:</b></h4>
-
                                 <div class="row">
                                     <div class="col-md-12"> 
-
-
                                         <%@include file="aggiungiRistoranteSliderTime.jsp" %>
-
-
                                     </div>
                                 </div> <!-- fine row cena -->
                             </div>

@@ -9,20 +9,20 @@
 <!DOCTYPE HTML>
 
     <head>
-        <title>ModificaAccount</title>
-        <%@ include file="navBar.jsp" %>  
+        <title>ModificaAccount</title>  
     </head>
     <body>    
-    
+        <%@ include file="navBar.jsp" %>
         <%
             Cookie cookiess[] = request.getCookies();
-            if(cookiess != null && cookiess.length > 1){
-                DoveCiboPK.DB_Manager db = new DoveCiboPK.DB_Manager ();
-                String nickName = cookiess[1].getName();
-                DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
-                db.CheckProfilo(u);
-        %>
-        
+            if(cookies != null){
+                for(int i = 0;i<cookies.length;i++){
+                    if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+                        DoveCiboPK.DB_Manager db = new DoveCiboPK.DB_Manager ();
+                        String nickName = cookiess[1].getName();
+                        DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
+                        db.CheckProfilo(u);
+        %>     
         
         <form name="loginForm"  action="UserUpdate" method="post">
             
@@ -107,6 +107,8 @@
         <br>
         <br>
         <%
+                }
+            }
         }
         %>
     </body>

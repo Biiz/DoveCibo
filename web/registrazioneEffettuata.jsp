@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file="navBar.jsp" %>
         <title>DoveCibo</title>
     </head>
     <body>
+        <%@ include file="navBar.jsp" %>
         <br><br><br>
         <div class="container">  
             <div class="alert alert-success " role="alert">

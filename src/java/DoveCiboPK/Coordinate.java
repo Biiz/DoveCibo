@@ -12,15 +12,15 @@ package DoveCiboPK;
 public class Coordinate {
 
     private Integer id_resturant;
-    private Double latitude;
-    private Double longitude;
+    private Float latitude;
+    private Float longitude;
     private String adrers;
 
     public Coordinate(Integer id_resturant) {
         this.id_resturant = id_resturant;
     }
 
-    public Coordinate(Double latitude, Double longitude, String adrers) {
+    public Coordinate(Float latitude, Float longitude, String adrers) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.adrers = adrers;
@@ -29,8 +29,8 @@ public class Coordinate {
     //iniz con solo adress
     public Coordinate(Integer id_resturant, String adrers) {
         this.id_resturant = id_resturant;
-        this.latitude = 0d; //da calcolare;
-        this.longitude = 0d; //da calcolare;
+        this.latitude = 0f; //da calcolare;
+        this.longitude = 0f; //da calcolare;
         this.adrers = adrers;
     }
 
@@ -38,11 +38,11 @@ public class Coordinate {
         return adrers;
     }
 
-    public Double getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public Double getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
@@ -53,5 +53,19 @@ public class Coordinate {
     protected void setId_resturant(Integer id_resturant) {
         this.id_resturant = id_resturant;
     }
+
+    protected void setAdrers(String adrers) {
+        this.adrers = adrers;
+    }
+
+    protected void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    protected void setLongitude(Float longitude) {
+        this.longitude = longitude;
+    }
+    
+    
 
 }

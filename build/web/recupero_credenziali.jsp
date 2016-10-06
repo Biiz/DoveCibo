@@ -9,7 +9,6 @@
 <html>
     <head>
         <title>Recupera Credenziali</title>
-        <%@ include file="navBar.jsp" %>
         <script>
             function validateForm() {
                 var x = document.forms["loginForm"]["mail"].value;
@@ -21,6 +20,7 @@
         </script>   
     </head>
     <body>
+        <%@ include file="navBar.jsp" %>
         <form name="Verifica_credenziali" method="post" action="SendEmail.jsp" onsubmit="return validateForm()">
             <div class="container">
                 <div class="row">
