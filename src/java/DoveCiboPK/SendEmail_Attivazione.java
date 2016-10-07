@@ -17,10 +17,10 @@ import javax.mail.PasswordAuthentication;
  *
  * @author IO-PC
  */
-public class SendEmail_Gmail {
+public class SendEmail_Attivazione {
 
     
-    public SendEmail_Gmail(String name, String nick, String psw, String email) {
+    public SendEmail_Attivazione(String name, String nick, String psw, String email) {
 
         try{
             final String username = "DoveCibo@gmail.com";
@@ -50,10 +50,10 @@ public class SendEmail_Gmail {
             
             //sostituire la mia email con "email"
             msg.setRecipients(Message.RecipientType.TO,
-            InternetAddress.parse("bizzo174@gmail.com",false));
+            InternetAddress.parse(email,false));
             msg.setSubject("DoveCibo attivazione");
-            msg.setText("Ciao "+ name + "\nti sei registrato a DoveCibo il " + new Date()
-                    + "\nI tuoi dati sono:\n\nNickname: " + nick + "\nPassword: " + psw + "\nCollegati a http://localhost:8084/DoveCiboGit/home.jsp e cambia la password!\n");
+            msg.setText("Ciao, "+ name + "\nti sei registrato a DoveCibo il " + new Date()
+                    + "\n\nI tuoi dati sono:\nNickname: " + nick + "\nPassword: " + psw + "\n\nCollegati a http://localhost:8084/DoveCiboGit/home.jsp e cambia la password!\n");
             msg.setSentDate(new Date());
 
             System.out.println("\nTrying to send email...\n");

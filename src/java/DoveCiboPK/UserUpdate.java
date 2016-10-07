@@ -62,15 +62,17 @@ public class UserUpdate extends HttpServlet {
                         u.setSurname(surname);
                         u.setEmail(email);
                         u.setPassword(password);
-
-                       (new DB_Manager()).modificaAccount(u, nickName);
-                        
-                        
+                      
+                        DB_Manager dbm = new DB_Manager();
+                        if(dbm.modificaAccount(u, nickName)){
+                            new SendEmail_Modifica_Profilo(name, surname, email, nickName, password);
+                            response.sendRedirect("/DoveCiboGit/modificheEffettuate.jsp"); 
+                        }else{
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                        } 
                     }
                 }
             }
-
-           response.sendRedirect("/DoveCiboGit/profiloUtente.jsp");
 
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());

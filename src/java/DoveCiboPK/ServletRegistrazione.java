@@ -69,8 +69,8 @@ public class ServletRegistrazione extends HttpServlet {
                 int index = (int) (rnd.nextFloat() * SALTCHARS.length());
                 salt.append(SALTCHARS.charAt(index));
             }
-            //password = salt.toString();
-            password = "asd";
+            password = salt.toString();
+            //password = "asd";
             
             //INSERIMENTO DB
             User u = new User(null, first_name, last_name, nickname, email, password, role);
@@ -78,7 +78,7 @@ public class ServletRegistrazione extends HttpServlet {
             DB_Manager dbm = new DB_Manager();
 
             if (dbm.inserisciAccount(u)) {
-                SendEmail_Gmail email_registrazione = new SendEmail_Gmail(first_name, nickname, password, email);
+                SendEmail_Attivazione email_registrazione = new SendEmail_Attivazione(first_name, nickname, password, email);
                 response.sendRedirect("/DoveCiboGit/registrazioneEffettuata.jsp"); 
                 
                 
