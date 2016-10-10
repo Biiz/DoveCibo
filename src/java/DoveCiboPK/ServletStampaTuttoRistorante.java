@@ -37,7 +37,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             Cookie cookies[] = request.getCookies();
             String NickName = cookies[1].getName();
             User u = new User(-1, "", "", NickName, "", "", "");
-            (new DB_Manager()).CheckProfilo(u);
+            new DB_Manager().CheckProfilo(u);
             
             // GIORNI D?APERTURA        
             Day_hours[] dh = new Day_hours[7];

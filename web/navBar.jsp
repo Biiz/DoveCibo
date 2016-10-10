@@ -67,7 +67,7 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
+            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
         </ul>
@@ -98,7 +98,7 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
+            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
