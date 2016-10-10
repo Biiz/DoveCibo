@@ -77,18 +77,18 @@
         <%@ include file="navBar.jsp" %>
         <br>
         
-         <!-- bottoni-radio (toggle di java) che si possono premere uno per volta -->
+        <!-- bottoni-radio (toggle di java) che si possono premere uno per volta -->
         <div class="row row-centered" style="padding-bottom: 20px;">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-12 ">
-                <div class="" data-toggle="buttons">
-                    <label class="btn btn-info btn-lg active">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <div data-toggle="buttons">
+                    <label class="btn btn-info btn-lg active" style="margin-bottom: 10px;">
                         <input type="radio" name="valutazione" id="option1" checked> Valutazione
                     </label>
-                    <label class="btn btn-info btn-lg">
+                    <label class="btn btn-info btn-lg" style="margin-bottom: 10px;">
                         <input type="radio" name="fascia_di_prezzo" id="option2"> Fascia di prezzo
                     </label>
-                    <label class="btn btn-info btn-lg">
-                        <input type="radio" name="vicinanza" id="option3"> Vicinanza
+                    <label class="btn btn-info btn-lg" style="margin-bottom: 10px;">
+                        <input type="radio" name="vicinanza" id="option3" > Vicinanza
                     </label>
                 </div>
             </div>
