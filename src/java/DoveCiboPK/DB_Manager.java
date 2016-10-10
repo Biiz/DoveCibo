@@ -416,7 +416,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean inserisciOrario(Day_hours dh, Integer wd) throws SQLException {
+        public Boolean inserisciOrario(Day_hours dh, Integer wd) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -443,6 +443,34 @@ public class DB_Manager {
             r = true;
         } catch (SQLException e) {
             System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+        }
+    }
+    
+    public Boolean checkNavBar_restaurant(User u) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT * FROM restaurants WHERE id_creator = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, u.getId());
+ 
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                u.setName(rs.getString("name"));
+            }
+ 
+            r = true;
+        } catch (SQLException e) {
             r = false;
         } finally {
             sp.close();
