@@ -124,13 +124,13 @@
             (new DoveCiboPK.DB_Manager()).cercaRistorante_perId(res);
           
 %>
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" style="padding: none;">
+               <!-- pannello del ristorante-->
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" style="float: none;">
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b><%=res.getName()%></b></p>
+                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
