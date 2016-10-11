@@ -57,7 +57,7 @@
                 left: 0;
                 content:'';
                 width: 2.5em;
-                background: #D1D3D4;
+                background: #808080;
                 border-radius: 3px 0 0 3px;
             }
             .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
