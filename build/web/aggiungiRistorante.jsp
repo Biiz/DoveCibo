@@ -32,7 +32,7 @@
                 /*min-width: 400px;*/
                 width: 100%;
                 border-radius: 3px;
-                border: 1px solid #D1D3D4;
+                border: 1px solid #808080;
                 font-weight: normal;
             }
             .funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty {
