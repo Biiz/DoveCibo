@@ -9,6 +9,10 @@
         <title>DoveCibo</title>
 
         <style>
+            html { 
+                overflow-wrap: break-word;
+                word-break: break-word; /* old webkit */
+            }
             body {
                 background-image: url("img/img (7)b.jpg");
                 background-repeat: no-repeat;
