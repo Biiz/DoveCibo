@@ -129,7 +129,8 @@
           
 %>
                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" style="float: none;">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" style="float: none;">
+                    <form method="POST" action=="window.location.href = 'ristorante.jsp'" >
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
@@ -192,6 +193,7 @@
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <%
                   
