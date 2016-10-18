@@ -62,18 +62,17 @@ Per vedere i comandi possibili
 ---
 
 ### Todos
-- Fare una *servlet* che pesca dal database e manda a profiloUtente.jsp oppure usare i cookies/session
-- Dopo che profiloUtente.jsp ha ricevuto i dati, uno *script* li posiziona dentro al form-input field e permette di modificarli rinviandoli poi così nel database. Attualmente esistono i seguenti metodi:
-	- inserisciAccount(User u),
-	- nicknameEsistente(String nik),
-	- emailEsistente(String em),
-	- modificaAccount(User u),
-	- accedi(User u),
-	- cercaUser_perId(User u).
-- Come fare modificaRistorante.jsp? Forse uguale a modificaProfilo. Come pescare le info? Forse è meglio avere un solo bottone: *il tuo ristorante* dal quale si ha la panoramica del proprio ristorante. Dentro al quale c'è anche un bottone che esporta tutti i campi scritti e li mette negli input field di un clone di aggiungiRistorante
-- Caratteri strani (es: euro) nel database non vengono interpretati correttamente
-- Aggiunto *role* nella tabella USER (vedere se serve aggiungerlo in giro)
-- Password criptata
+- [ ] File upload foto (sta facendo giorgio)
+- [ ] caricare db ~200 ristoranti (30 per iniziare)
+- [ ] Filtro visualizzazione ristoranti (ricerca nome poesizione ecc)
+- [ ] slider ore
+- [ ] mobile friendly
+- [ ] mappa ristorante da gestire
+- [ ] Password cifrata
+- [ ] Numero civico in aggiungiRistorante.jsp
+- [ ] Notifiche in generale (foto commenti e valutazioni)
+- [ ] password dimenticata
+- [x] example
 
 ## Todos completati
 - NavBar che nella pagina aggiungiRistorante.jsp e modificaRistorante.jsp non funziona.
