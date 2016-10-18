@@ -57,29 +57,3 @@ Per vedere i comandi possibili
 ```sh
     git
 ```	
-
----
----
-
-### Todos
-- [ ] File upload foto (sta facendo giorgio)
-- [ ] caricare db ~200 ristoranti (30 per iniziare)
-- [ ] Filtro visualizzazione ristoranti (ricerca nome poesizione ecc)
-- [ ] slider ore
-- [ ] mobile friendly
-- [ ] mappa ristorante da gestire
-- [ ] Password cifrata
-- [ ] Numero civico in aggiungiRistorante.jsp
-- [ ] Notifiche in generale (foto commenti e valutazioni)
-- [ ] password dimenticata
-- [x] example
-
-## Todos completati
-- NavBar che nella pagina aggiungiRistorante.jsp e modificaRistorante.jsp non funziona.
-	SOLUZIONE: 
-	- Tutti i link a librerie & eventuali devo essere in "http" (NO https),
-	- Rimuovere *callback=initMap* (aggiungiRistoranteMap.jsp),
-	- Rimuovere *script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"* (alla fine di aggiungiRistoranteSliderTime.jsp),
-	- Rimuovere *link rel="stylesheet" href="homepageCSS.css"* (navBar.jsp),
-- *include navBar* va posizionato nel *body* (NO nella *head*). Questo nel caso di aggiungiRistorante.jsp e modificaRistorante.jsp causa la scomparsa dello slider "Fascia di Prezzo".
-	SOLUZIONE: Creare "aggiungiRistoranteSliderPrice.jsp" contenente il codice dello slider.
