@@ -1,3 +1,6 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,6 +9,10 @@
         <title>DoveCibo</title>
 
         <style>
+            html { 
+                overflow-wrap: break-word;
+                word-break: break-word; /* old webkit */
+            }
             body {
                 background-image: url("img/img (7)b.jpg");
                 background-repeat: no-repeat;
@@ -74,18 +81,18 @@
         <%@ include file="navBar.jsp" %>
         <br>
         
-         <!-- bottoni-radio (toggle di java) che si possono premere uno per volta -->
+        <!-- bottoni-radio (toggle di java) che si possono premere uno per volta -->
         <div class="row row-centered" style="padding-bottom: 20px;">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-12 ">
-                <div class="" data-toggle="buttons">
-                    <label class="btn btn-info btn-lg active">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <div data-toggle="buttons">
+                    <label class="btn btn-info btn-lg active" style="margin-bottom: 10px;">
                         <input type="radio" name="valutazione" id="option1" checked> Valutazione
                     </label>
-                    <label class="btn btn-info btn-lg">
+                    <label class="btn btn-info btn-lg" style="margin-bottom: 10px;">
                         <input type="radio" name="fascia_di_prezzo" id="option2"> Fascia di prezzo
                     </label>
-                    <label class="btn btn-info btn-lg">
-                        <input type="radio" name="vicinanza" id="option3"> Vicinanza
+                    <label class="btn btn-info btn-lg" style="margin-bottom: 10px;">
+                        <input type="radio" name="vicinanza" id="option3" > Vicinanza
                     </label>
                 </div>
             </div>
@@ -93,121 +100,105 @@
 
         <div class="container">
             <div class="row row-centered">
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
+                
+<%
+        Cookie cookie[] = request.getCookies();
+        String nickname = null;
+        if(cookie != null){
+            for (int j = 0;j<cookie.length;j++){
+                if(cookie[j].getValue().equals("1") || cookie[j].getValue().equals("2") || cookie[j].getValue().equals("3")){
+                    nickname = cookie[j].getName();
+                }
+            }
+            
+        }
+        
+        DoveCiboPK.User u = new DoveCiboPK.User(-1, "", "", nickname, "", "", "");
+        (new DoveCiboPK.DB_Manager()).CheckProfilo(u);
+        
+        //Integer count [] = {0};
+        List<Integer> id_restaurant = new ArrayList<Integer>();
+        (new DoveCiboPK.DB_Manager()).Prova(u, id_restaurant);
+        Iterator itr = id_restaurant.iterator();
+        
+        
+        while(itr.hasNext()) {
+            Integer element = (Integer)itr.next();
+            DoveCiboPK.Restaurant res = new DoveCiboPK.Restaurant(element, "", "", "", null, null, null, null);
+            (new DoveCiboPK.DB_Manager()).cercaRistorante_perId(res);
+          
+%>
+               <!-- pannello del ristorante-->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" style="float: none;">
+                    <form method="POST" action=="window.location.href = 'ristorante.jsp'" >
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
+                                <p style="color: black; font-size: 28px"><b><%=res.getName()%></b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
                             <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
+                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
+                                    <%
+                                        List<Integer> id_cuisine = new ArrayList<Integer>();
+                                        List<String> cuisine_name = new ArrayList<String>();
+                                        (new DoveCiboPK.DB_Manager()).cercaCuisine_perId_Restaurant(res, id_cuisine);
+                                        Iterator itr1 = id_cuisine.iterator();
+                                        while(itr1.hasNext()){
+                                            Integer element1 = (Integer)itr1.next();
+                                            
+                                            (new DoveCiboPK.DB_Manager()).cercaCuisine(element1, cuisine_name);
+                                            
+                                        }
+                                        
+                                        Iterator itr2 = cuisine_name.iterator();
+                                        
+                                        while(itr2.hasNext()){
+                                            
+                                            String element1 = (String)itr2.next();
+                                            if(itr2.hasNext()){
+                                        %>
+                                                 <%=element1+", "%>
+                                        <%
+                                            }else{
+                                        %>
+                                                 <%=element1+""%>
+                                            
+                                        <%
+                                            }
+                                        }
+                                        %>
+                                </b>
                                 <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
+                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>
+                                <%
+                                    Integer prezzo[] = {0,0};
+                                    (new DoveCiboPK.DB_Manager()).cercaPriceRanges_Restaurant(res, prezzo);
+                                    
+                                %>
+                                <%=prezzo[0]+" - "+prezzo[1]%>
+                                </b>
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
                                 <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>
+                                <%
+                                    String address[] = {"w"};
+                                    (new DoveCiboPK.DB_Manager()).cercaCoordinate_perID_Restaurant(res, address);
+                                %>
+                                <%=address[0]%>
+                                </b>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'">
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%
+                  
+                }
+                %>
 
             </div>
         </div>  

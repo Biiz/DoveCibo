@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     <body style="padding-top: 70px;">
         <div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
@@ -32,6 +34,7 @@
                                     String value = cookies[i].getValue();
                                     String nickName = cookies[i].getName();
                                     DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
+                                    (new DoveCiboPK.DB_Manager()).CheckProfilo(u);
                                     (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
                                     
                                     if (value.equals("1")) {                    
@@ -67,7 +70,7 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
+            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
         </ul>
@@ -91,6 +94,12 @@
 <%
     }
     if (value.equals("3")) {
+        DoveCiboPK.User u1 = new DoveCiboPK.User (-1,"","",nickName,"","","");
+        (new DoveCiboPK.DB_Manager()).CheckProfilo(u1);
+        (new DoveCiboPK.DB_Manager()).checkNavBar_restaurant(u1);
+        if(!u1.getName().equals(u.getName())){
+
+
 %>
 <!-- Ristorante dropdown -->
     <li class="dropdown">
@@ -98,7 +107,7 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristorante.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
+            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
@@ -122,6 +131,34 @@
 </div><!-- fine navBar -->
 
 <%
+        }else{
+%>
+  <!-- Ristorante dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 15px;"><span class="glyphicon glyphicon-cutlery"></span> Ristorante <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
+        </ul>
+    </li>
+<!-- Nome e Cognome dropdown -->
+
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span>  <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
+        <li role="separator" class="divider"></li>
+        <form class="form" action="ExitProfilo" method="post">
+            <div class="row text-center">
+                <li><button href="home.jsp" type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Esci </button></li>
+            </div>
+        </form>
+    </ul>
+</li>
+</ul> 
+</div><!-- fine menù -->
+</div><!-- fine navBar -->
+<%
+        }
     }
 }else if(cookies.length < 2) {
 %>

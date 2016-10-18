@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
  
 /**
@@ -42,6 +44,34 @@ public class DB_Manager {
  
     public String getErrore() {
         return errore;
+    }
+    
+    public void Prova(User u, List<Integer> id_restaurant) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        
+        try {
+            
+            query = "SELECT id FROM restaurants WHERE id_creator = ?";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, u.getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            while(rs.next()){
+                id_restaurant.add(rs.getInt(1));
+            }
+            
+            
+        } catch (SQLException e) {
+            this.errore = e.toString();
+        } finally {
+            sp.close();
+            con.close();
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
     }
  
     public Boolean inserisciAccount(User u) throws SQLException {
@@ -386,7 +416,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean inserisciOrario(Day_hours dh, Integer wd) throws SQLException {
+        public Boolean inserisciOrario(Day_hours dh, Integer wd) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -413,6 +443,34 @@ public class DB_Manager {
             r = true;
         } catch (SQLException e) {
             System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+        }
+    }
+    
+    public Boolean checkNavBar_restaurant(User u) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT * FROM restaurants WHERE id_creator = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, u.getId());
+ 
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                u.setName(rs.getString("name"));
+            }
+ 
+            r = true;
+        } catch (SQLException e) {
             r = false;
         } finally {
             sp.close();
@@ -576,13 +634,13 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "SELECT  * FROM restaurants WHERE id =  ";
+            query = "SELECT  * FROM restaurants WHERE id = ?";
             sp = con.prepareStatement(query);
  
             sp.setInt(1, res.getId());
- 
+            
             ResultSet rs = sp.executeQuery();
- 
+            
             if (rs.next()) {
                 res.setAltro(
                         rs.getString("description"),
@@ -612,6 +670,127 @@ public class DB_Manager {
         }
     }
  
+    public Boolean cercaCuisine_perId_Restaurant(Restaurant res, List list) throws SQLException {
+        
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT id_cuisine FROM restaurant_cuisine WHERE id_restaurant = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, res.getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            } 
+            r = true;
+ 
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public Boolean cercaCuisine(Integer id_cuisine, List list) throws SQLException {
+        
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+             
+                query = "SELECT name FROM cuisines WHERE id = ?";
+               
+                sp = con.prepareStatement(query);
+            
+                sp.setInt(1, id_cuisine);
+                
+                ResultSet rs = sp.executeQuery();
+                
+                while (rs.next()) {
+                    list.add(rs.getString(1));
+                } 
+
+            r = true;
+ 
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public Boolean cercaCoordinate_perID_Restaurant(Restaurant res, String string[]) throws SQLException {
+        
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT address FROM coordinates WHERE id_restaurant = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, res.getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                string[0] = rs.getString(1);
+            } 
+            r = true;
+ 
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    public Boolean cercaPriceRanges_Restaurant(Restaurant res, Integer prezzo[]) throws SQLException {
+        
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT min_value, max_value FROM price_ranges WHERE id = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, res.getPrice_range().getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                prezzo[0] = rs.getInt(1);
+                prezzo[1] = rs.getInt(2);
+            } 
+            r = true;
+ 
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
     public Boolean cercaUser_perId(User u) throws SQLException {
  
         PreparedStatement sp = null;

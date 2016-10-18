@@ -28,6 +28,10 @@
         <servlet-name>ServletGetTuttiRistoranti</servlet-name>
         <servlet-class>DoveCiboPK.ServletGetTuttiRistoranti</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendEmail_Modifica_Profilo</servlet-name>
+        <servlet-class>DoveCiboPK.SendEmail_Modifica_Profilo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ServletGetTuttiRistoranti</servlet-name>
         <url-pattern>/ServletGetTuttiRistoranti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendEmail_Modifica_Profilo</servlet-name>
+        <url-pattern>/SendEmail_Modifica_Profilo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
