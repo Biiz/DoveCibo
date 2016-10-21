@@ -265,7 +265,7 @@
                         <!-- 10° row: bottoni-->
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Sign in</button>
+                                <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Conferma</button>
                                 <button type="reset" class="btn btn-sm btn-danger" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
                                 <!-- script per tornare indietro di pagina nel browser-->
                                 <script>
