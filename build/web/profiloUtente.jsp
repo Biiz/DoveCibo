@@ -12,17 +12,14 @@
         <title>ModificaAccount</title>  
     </head>
     <body>    
-        <%@ include file="navBar.jsp" %>
+        <%@ include file="navBar.jsp" %>   
         <%
-            Cookie cookiess[] = request.getCookies();
+            
             if(cookies != null){
                 for(int i = 0;i<cookies.length;i++){
                     if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
-                        DoveCiboPK.DB_Manager db = new DoveCiboPK.DB_Manager ();
-                        String nickName = cookiess[1].getName();
-                        DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
-                        db.CheckProfilo(u);
-        %>     
+                      
+        %> 
         
         <form name="loginForm"  action="UserUpdate" method="post">
             
@@ -39,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First name:</label>  
-                                    <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=u.getName()%>" required>
+                                    <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=session.getAttribute("user_name") %>" required>
                                     <script>
                                         
                                     </script>
@@ -48,7 +45,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last name:</label>          
-                                    <input type="text" id="last_name" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="<%=u.getSurname()%>" required>
+                                    <input type="text" id="last_name" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="<%=session.getAttribute("user_surname")%>" required>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +55,7 @@
                             <div class="col-md-12">
                                 <label for="basic-url">Email:</label>
                                 <div class="form-group">
-                                    <input type="email" id="email" class="form-control" name="email" pattern=".{3,255}" title="La tua email!" value="<%=u.getEmail()%>" required>
+                                    <input type="email" id="email" class="form-control" name="email" pattern=".{3,255}" title="La tua email!" value="<%=session.getAttribute("user_email")%>" required>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +67,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nickname:</label>          
-                                    <input type="text" id="nickname" class="form-control" name="nickname" pattern=".{3,255}" title="Inserisci il nickname!" value="<%=nickName%>" disabled>
+                                    <input type="text" id="nickname" class="form-control" name="nickname" pattern=".{3,255}" title="Inserisci il nickname!" value="<%=cookies[i].getName()%>" disabled>
                                 </div>
                             </div>
                             
@@ -83,7 +80,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>password:</label>          
-                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{3,255}" title="Inserisci la password!" value="<%=u.getPassword()%>" required>
+                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{3,255}" title="Inserisci la password!" value="<%=session.getAttribute("user_pass")%>" required>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +103,7 @@
         <br>
         <br>
         <br>
-        <%
+    <%
                 }
             }
         }

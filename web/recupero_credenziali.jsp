@@ -9,19 +9,11 @@
 <html>
     <head>
         <title>Recupera Credenziali</title>
-        <script>
-            function validateForm() {
-                var x = document.forms["loginForm"]["mail"].value;
-                if (x == null || x == "") {
-                    alert("inserire l'email");
-                    return false;
-                }
-            }
-        </script>   
+          
     </head>
     <body>
         <%@ include file="navBar.jsp" %>
-        <form name="Verifica_credenziali" method="post" action="SendEmail.jsp" onsubmit="return validateForm()">
+        <form name="Verifica_credenziali" method="post" action="ServletRecuperoCredenziali">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
@@ -34,7 +26,7 @@
                             <div class="col-md-12">
                                 <label for="basic-url">Inserire email:</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                                 </div>
                                 <label for="basic-url">Il nickname e la password le saranno inviate via email</label>
                             </div>

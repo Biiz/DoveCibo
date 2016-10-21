@@ -59,26 +59,50 @@ public class ServletLogin extends HttpServlet {
             //RICERCA DB
             User u = new User(nickname, password);
 
-
+            
             if ((new DB_Manager()).accedi(u)) {
+                
                 if (u.getId() == null) {
                     request.setAttribute("error", "Nome o password incorretti");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
                 } else {
+                    HttpSession session = request.getSession(true);
+                    
                     String cookie_check = request.getParameter("mantieni_accesso");
+                    
+                    User u1 = new User (-1,"","",nickname,"","","");
+                    (new DB_Manager()).CheckProfilo(u1);
+                    (new DB_Manager()).checkNavBar_restaurant(u1);
+                    
+                    
+                    String s_n = null;
+                    if(!u1.getName().equals(u.getName())){
+                        s_n = "yes";
+                    }else{
+                        s_n = "no";
+                    }
+                    
                     Cookie cookie_nick_role = new Cookie("" + u.getNickname(), "" + u.getRole());
+                    
                     if(cookie_check == null){
                         // Set expiry date after 24 Hrs for both the cookies.
                         cookie_nick_role.setMaxAge(-1);
+                       
                     }
                     if(cookie_check != null){
                         // Set expiry date after 24 Hrs for both the cookies.
                         cookie_nick_role.setMaxAge(60 * 60 * 24 * 30);
+                   
                     }
-                    // Add both the cookies in the response header.
+                    
                     response.addCookie(cookie_nick_role);
-
-                    request.setAttribute("user", u);
+                    session.setAttribute("user_name", ""+u.getName());
+                    session.setAttribute("user_surname", ""+u.getSurname());
+                    session.setAttribute("user_email", u.getEmail());
+                    session.setAttribute("user_pass", u.getPassword());
+                    session.setAttribute("user_res", ""+s_n);
+                    
+                    
                     response.sendRedirect("/DoveCiboGit/home.jsp");
                 }
             } else {

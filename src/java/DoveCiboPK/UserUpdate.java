@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +35,8 @@ public class UserUpdate extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            HttpSession session = request.getSession(false);
+   
             String name = request.getParameter("first_name");
             String surname = request.getParameter("last_name");
             String email = request.getParameter("email");
@@ -66,12 +69,23 @@ public class UserUpdate extends HttpServlet {
                         DB_Manager dbm = new DB_Manager();
                         if(dbm.modificaAccount(u, nickName)){
                             new SendEmail_Modifica_Profilo(name, surname, email, nickName, password);
+                            session.removeAttribute("user_name");
+                            session.removeAttribute("user_surname");
+                            session.removeAttribute("user_email");
+                            session.removeAttribute("user_pass");
+                            session.setAttribute("user_name", name);
+                            session.setAttribute("user_surname", surname);
+                            session.setAttribute("user_email", email);
+                            session.setAttribute("user_pass", password);
+                            
                             response.sendRedirect("/DoveCiboGit/modificheEffettuate.jsp"); 
                         }else{
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                         } 
                     }
                 }
+            }else{
+                response.sendRedirect("/DoveCiboGit/home.jsp"); 
             }
 
         } catch (Exception ex) {

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DoveCiboPK;
+
 import java.io.*;
 
 import javax.servlet.ServletException;
@@ -12,13 +13,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author stefano
  */
-@WebServlet(name = "ExitProfilo", urlPatterns = {"/ExitProfilo"})
-public class ExitProfilo extends HttpServlet {
+@WebServlet(name = "ServletRecuperoCredenziali", urlPatterns = {"/ServletRecuperoCredenziali"})
+public class ServletRecuperoCredenziali extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -33,17 +35,26 @@ public class ExitProfilo extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-          
-            Cookie cookies[] = request.getCookies();
-            if(cookies != null){
-                for(int i = 0; i < cookies.length; i++){
-                        cookies[i].setMaxAge(0);
-                        response.addCookie(cookies[i]);
-                }
+            String email = request.getParameter("email");
+           
+            if ((new DB_Manager()).emailEsistente(email)) {
+                User u = new User (-1,"","","",email,"","");
+            
+                (new DB_Manager()).CheckEmail(u);
+            
+                new SendEmail_Recupero_credenziali(u.getName(), u.getSurname(), u.getEmail(), u.getNickname(), u.getPassword());
+            
+                response.sendRedirect("/DoveCiboGit/confermaRecupero_credenziali.jsp"); 
+                
+            }else{
+                request.setAttribute("error", "Attenzione, l'Email inserita non è valida!");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
             
-           response.sendRedirect("/DoveCiboGit/home.jsp");
             
+                        
+              
+           
 
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());

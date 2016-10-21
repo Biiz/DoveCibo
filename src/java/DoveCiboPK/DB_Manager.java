@@ -183,6 +183,35 @@ public class DB_Manager {
             con.close();
         }
     }
+    
+    public void CheckEmail (User u) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id, name, surname, nickname, password, role FROM users WHERE email LIKE ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setString(1, u.getEmail());
+           
+            ResultSet rs = sp.executeQuery();
+           
+            if(rs.next()){
+                u.setId(rs.getInt("id"));
+                u.setName(rs.getString("name"));          
+                u.setSurname(rs.getString("surname"));
+                u.setNickname(rs.getString("nickname"));
+                u.setPassword(rs.getString("password"));
+                u.setRole(rs.getString("role"));
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
  
     public Boolean emailEsistente(String em) throws SQLException {
         Boolean r = false;
