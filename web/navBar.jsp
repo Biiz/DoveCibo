@@ -28,6 +28,17 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <%
+                        if(session.isNew()){
+                            %>
+                            <!-- registrati -->
+</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
+<!-- bottone che puppa la finestrella per accedere-->
+<li><a href="#" data-toggle="modal" data-target="#accedi" style="padding-right: 35px;"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>     
+</ul> 
+</div><!-- fine menù -->
+</div><!-- fine navBar -->
+                    <%        
+                        }else{
                         Cookie cookies[] = request.getCookies();
                         if (cookies != null && cookies.length > 1) {   
                             for(int i = 0; i < cookies.length ;i++){
@@ -65,7 +76,7 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
+            <li><a href="/DoveCiboPK/VisualizzaRistoranti"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
         </ul>
@@ -97,7 +108,7 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
+            <li><a href="/VisualizzaRistoranti.java"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
@@ -162,6 +173,7 @@
 </div><!-- fine navBar -->
 <%
 }
+}
 %>
 
 
@@ -200,11 +212,6 @@
 
                             <button type="reset" class="btn btn-sm btn-warning">Clear</button>
                             <button href="home.jsp" type="submit" class="btn btn-success pull-right">Log in</button>
-                            <div class="checkbox">
-                                <label class="pull-right">
-                                    <input type="checkbox" name = "mantieni_accesso" value= "true"> mantieni l'accesso
-                                </label>
-                            </div>  
                         </form>
                     </div>
                 </div>    

@@ -102,55 +102,26 @@
             <div class="row row-centered">
                 
 <%
-        Cookie cookie[] = request.getCookies();
-        String nickname = null;
-        if(cookie != null){
-            for (int j = 0;j<cookie.length;j++){
-                if(cookie[j].getValue().equals("1") || cookie[j].getValue().equals("2") || cookie[j].getValue().equals("3")){
-                    nickname = cookie[j].getName();
-                }
-            }
-            
-        }
-        
-        DoveCiboPK.User u = new DoveCiboPK.User(-1, "", "", nickname, "", "", "");
-        (new DoveCiboPK.DB_Manager()).CheckProfilo(u);
-        
-        //Integer count [] = {0};
-        List<Integer> id_restaurant = new ArrayList<Integer>();
-        (new DoveCiboPK.DB_Manager()).Prova(u, id_restaurant);
-        Iterator itr = id_restaurant.iterator();
-        
-        
-        while(itr.hasNext()) {
-            Integer element = (Integer)itr.next();
-            DoveCiboPK.Restaurant res = new DoveCiboPK.Restaurant(element, "", "", "", null, null, null, null);
-            (new DoveCiboPK.DB_Manager()).cercaRistorante_perId(res);
-          
+    List id_restaurant = (List)session.getAttribute("id_restaurant");
+    Iterator itr = id_restaurant.iterator();
+    int i = 0;
+    while (itr.hasNext()) {
 %>
                <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" onclick="window.location.href = 'ristorante.jsp'" style="float: none;">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" style="float: none;">
+                   
                     <div class="polaroid colonna2" >
                         <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b><%=res.getName()%></b></p>
+                                <p style="color: black; font-size: 28px"><b><%=session.getAttribute("res_name"+i)%></b></p>
                             </div>                 
                         </div>
                         <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
                             <div class="col-md-12 text-center">
                                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
                                     <%
-                                        List<Integer> id_cuisine = new ArrayList<Integer>();
-                                        List<String> cuisine_name = new ArrayList<String>();
-                                        (new DoveCiboPK.DB_Manager()).cercaCuisine_perId_Restaurant(res, id_cuisine);
-                                        Iterator itr1 = id_cuisine.iterator();
-                                        while(itr1.hasNext()){
-                                            Integer element1 = (Integer)itr1.next();
-                                            
-                                            (new DoveCiboPK.DB_Manager()).cercaCuisine(element1, cuisine_name);
-                                            
-                                        }
+                                        List cuisine_name = (List)session.getAttribute("cuisine_name"+i);
                                         
                                         Iterator itr2 = cuisine_name.iterator();
                                         
@@ -167,34 +138,26 @@
                                             
                                         <%
                                             }
-                                        }
+                                        } 
                                         %>
                                 </b>
                                 <br>
                                 <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>
-                                <%
-                                    Integer prezzo[] = {0,0};
-                                    (new DoveCiboPK.DB_Manager()).cercaPriceRanges_Restaurant(res, prezzo);
-                                    
-                                %>
-                                <%=prezzo[0]+" - "+prezzo[1]%>
+                                <%=session.getAttribute("prezzo_min"+i)+" - "+session.getAttribute("prezzo_max"+i)%>
                                 </b>
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
                                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
                                 <br>
                                 <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>
-                                <%
-                                    String address[] = {"w"};
-                                    (new DoveCiboPK.DB_Manager()).cercaCoordinate_perID_Restaurant(res, address);
-                                %>
-                                <%=address[0]%>
+                                
+                                <%=session.getAttribute("res_address"+i)%>
                                 </b>
                             </div>
                         </div>
                     </div>
                 </div>
                 <%
-                  
+                  i++;
                 }
                 %>
 

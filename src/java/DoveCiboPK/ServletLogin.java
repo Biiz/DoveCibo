@@ -68,8 +68,6 @@ public class ServletLogin extends HttpServlet {
                 } else {
                     HttpSession session = request.getSession(true);
                     
-                    String cookie_check = request.getParameter("mantieni_accesso");
-                    
                     User u1 = new User (-1,"","",nickname,"","","");
                     (new DB_Manager()).CheckProfilo(u1);
                     (new DB_Manager()).checkNavBar_restaurant(u1);
@@ -83,19 +81,9 @@ public class ServletLogin extends HttpServlet {
                     }
                     
                     Cookie cookie_nick_role = new Cookie("" + u.getNickname(), "" + u.getRole());
-                    
-                    if(cookie_check == null){
-                        // Set expiry date after 24 Hrs for both the cookies.
-                        cookie_nick_role.setMaxAge(-1);
-                       
-                    }
-                    if(cookie_check != null){
-                        // Set expiry date after 24 Hrs for both the cookies.
-                        cookie_nick_role.setMaxAge(60 * 60 * 24 * 30);
-                   
-                    }
-                    
+                    cookie_nick_role.setMaxAge(-1);
                     response.addCookie(cookie_nick_role);
+                    
                     session.setAttribute("user_name", ""+u.getName());
                     session.setAttribute("user_surname", ""+u.getSurname());
                     session.setAttribute("user_email", u.getEmail());

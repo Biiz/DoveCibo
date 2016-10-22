@@ -14,7 +14,7 @@
     <body>    
         <%@ include file="navBar.jsp" %>   
         <%
-            
+            Cookie cookies[] = request.getCookies();
             if(cookies != null){
                 for(int i = 0;i<cookies.length;i++){
                     if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){

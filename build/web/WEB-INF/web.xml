@@ -40,6 +40,10 @@
         <servlet-name>ServletRecuperoCredenziali</servlet-name>
         <servlet-class>DoveCiboPK.ServletRecuperoCredenziali</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VisualizzaRistoranti</servlet-name>
+        <servlet-class>DoveCiboPK.VisualizzaRistoranti</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ServletRecuperoCredenziali</servlet-name>
         <url-pattern>/ServletRecuperoCredenziali</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VisualizzaRistoranti</servlet-name>
+        <url-pattern>/VisualizzaRistoranti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
