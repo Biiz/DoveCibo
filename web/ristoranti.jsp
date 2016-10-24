@@ -103,9 +103,8 @@
                 
 <%
     List id_restaurant = (List)session.getAttribute("id_restaurant");
-    Iterator itr = id_restaurant.iterator();
-    int i = 0;
-    while (itr.hasNext()) {
+   
+    for(int i = 0;i<id_restaurant.size();i++){
 %>
                <!-- pannello del ristorante-->
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" style="float: none;">
@@ -157,7 +156,6 @@
                     </div>
                 </div>
                 <%
-                  i++;
                 }
                 %>
 

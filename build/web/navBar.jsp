@@ -99,7 +99,7 @@
 </div><!-- fine navBar -->
 <%
     }
- if (cookies[i].getValue().equals("3")  && session.getAttribute("user_res").equals("yes") ) {
+ if (cookies[i].getValue().equals("3") && session.getAttribute("user_res").equals("yes") ) {
 
 %>
 <!-- Ristorante dropdown -->
@@ -108,7 +108,10 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/VisualizzaRistoranti.java"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
+            <form action="VisualizzaRistoranti" method="post">
+                <li><button type="submit" ><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
+                
+            </form>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
@@ -163,6 +166,7 @@
         }
 }
 }else{
+
 %>
 <!-- registrati -->
 </a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>

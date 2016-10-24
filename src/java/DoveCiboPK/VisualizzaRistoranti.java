@@ -91,7 +91,7 @@ public class VisualizzaRistoranti extends HttpServlet {
                 
                 i++;   
             }
-            
+           
             response.sendRedirect("/DoveCiboGit/ristoranti.jsp");
 
         } catch (Exception ex) {
