@@ -109,8 +109,9 @@
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
             <form action="VisualizzaRistoranti" method="post">
-                <li><button type="submit" ><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
-                
+                <div class="row text-center">
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
+                </div>
             </form>
             <li role="separator" class="divider"></li>
             <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
