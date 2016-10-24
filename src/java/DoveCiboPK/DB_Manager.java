@@ -46,7 +46,7 @@ public class DB_Manager {
         return errore;
     }
     
-    public void Prova(User u, List<Integer> id_restaurant) throws SQLException {
+    public void SetIdRestaurant(User u, List<Integer> id_restaurant) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -54,6 +54,34 @@ public class DB_Manager {
         try {
             
             query = "SELECT id FROM restaurants WHERE id_creator = ?";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, u.getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            while(rs.next()){
+                id_restaurant.add(rs.getInt(1));
+            }
+            
+            
+        } catch (SQLException e) {
+            this.errore = e.toString();
+        } finally {
+            sp.close();
+            con.close();
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public void SetIdRestaurant2(User u, List<Integer> id_restaurant) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        
+        try {
+            
+            query = "SELECT id FROM restaurants WHERE id_owner = ?";
             sp = con.prepareStatement(query);
             
             sp.setInt(1, u.getId());

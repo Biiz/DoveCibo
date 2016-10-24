@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,6 +36,7 @@ public class ExitProfilo extends HttpServlet {
         try {
           
             Cookie cookies[] = request.getCookies();
+            HttpSession session = request.getSession(false);
             if(cookies != null){
                 for(int i = 0; i < cookies.length; i++){
                     if (cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")) {
@@ -43,7 +45,7 @@ public class ExitProfilo extends HttpServlet {
                     }
                 }
             }
-            
+            session.invalidate();
            response.sendRedirect("/DoveCiboGit/home.jsp");
             
 

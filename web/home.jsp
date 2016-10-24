@@ -34,7 +34,7 @@
                             <input type="text" class="form-control" placeholder="Cerca un ristorante">
                             <span class="input-group-btn">
                                 <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
-                                <button class="btn btn-success" type="button" onclick="window.location.href = 'ristoranti.jsp'">Go!</button> 
+                                <button class="btn btn-success" type="button" onclick="window.location.href = 'CercaRistoranti.jsp'">Go!</button> 
                         </div> 
                     </form>                                 
                 </div> 

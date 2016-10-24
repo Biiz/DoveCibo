@@ -22,7 +22,6 @@
             .product .img-responsive {
                 margin: 0 auto;
             }
-
             /* centered columns styles */
             .row-centered {
                 text-align:center;
@@ -97,70 +96,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="container">
-            <div class="row row-centered">
-                
-<%
-    List id_restaurant = (List)session.getAttribute("id_restaurant");
-   
-    for(int i = 0;i<id_restaurant.size();i++){
-%>
-               <!-- pannello del ristorante-->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-centered colonna1" style="float: none;">
-                   
-                    <div class="polaroid colonna2" >
-                        <img src="img/img (5).jpg" class="img-responsive img-rounded" id="no-rounded" style="width:100%">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: black; font-size: 28px"><b><%=session.getAttribute("res_name"+i)%></b></p>
-                            </div>                 
-                        </div>
-                        <div class="row" style="padding-bottom: 10px; padding-top: 10px;">
-                            <div class="col-md-12 text-center">
-                                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
-                                    <%
-                                        List cuisine_name = (List)session.getAttribute("cuisine_name"+i);
-                                        
-                                        Iterator itr2 = cuisine_name.iterator();
-                                        
-                                        while(itr2.hasNext()){
-                                            
-                                            String element1 = (String)itr2.next();
-                                            if(itr2.hasNext()){
-                                        %>
-                                                 <%=element1+", "%>
-                                        <%
-                                            }else{
-                                        %>
-                                                 <%=element1+""%>
-                                            
-                                        <%
-                                            }
-                                        } 
-                                        %>
-                                </b>
-                                <br>
-                                <span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>
-                                <%=session.getAttribute("prezzo_min"+i)+" - "+session.getAttribute("prezzo_max"+i)%>
-                                </b>
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b>
-                                <br>
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>
-                                
-                                <%=session.getAttribute("res_address"+i)%>
-                                </b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <%
-                }
-                %>
-
-            </div>
-        </div>  
 
     </body>
 </html>

@@ -20,6 +20,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -142,7 +143,11 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
 
             }
             
-            response.sendRedirect("/DoveCiboGit/ristorante.jsp");
+            HttpSession session = request.getSession(false);
+            session.removeAttribute("user_res");
+            session.setAttribute("user_res", "yes");
+            
+            response.sendRedirect("/DoveCiboGit/ristorante_inserito_successo.jsp");
 
         } catch (Exception ex) {
 

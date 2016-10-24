@@ -26,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stefano
  */
-@WebServlet(name = "VisualizzaRistoranti", urlPatterns = {"/VisualizzaRistoranti"})
-public class VisualizzaRistoranti extends HttpServlet {
+@WebServlet(name = "VisualizzaRistorantiUtente2", urlPatterns = {"/VisualizzaRistorantiUtente2"})
+public class VisualizzaRistorantiUtente2 extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -58,7 +58,7 @@ public class VisualizzaRistoranti extends HttpServlet {
             (new DB_Manager()).CheckProfilo(u);
 
             List<Integer> id_restaurant = new ArrayList<Integer>();
-            (new DB_Manager()).SetIdRestaurant(u, id_restaurant);
+            (new DB_Manager()).SetIdRestaurant2(u, id_restaurant);
             session.setAttribute("id_restaurant", id_restaurant);
             Iterator itr = id_restaurant.iterator();
             int i = 0;

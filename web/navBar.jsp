@@ -76,9 +76,17 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/DoveCiboPK/VisualizzaRistoranti"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
+            <form action="VisualizzaRistorantiUtente2" method="post">
+                <div class="row text-center">
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</button></li>
+                </div>
+            </form>
             <li role="separator" class="divider"></li>
-            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
+            <form action="VisualizzaRistoranti" method="post">
+                <div class="row text-center">
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
+                </div>
+            </form>
         </ul>
     </li>
     <!-- Nome e Cognome dropdown -->
@@ -113,8 +121,6 @@
                     <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
                 </div>
             </form>
-            <li role="separator" class="divider"></li>
-            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
         </ul>
     </li>
 <!-- Nome e Cognome dropdown -->
