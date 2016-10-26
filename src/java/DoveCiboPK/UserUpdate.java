@@ -73,6 +73,7 @@ public class UserUpdate extends HttpServlet {
                             session.removeAttribute("user_surname");
                             session.removeAttribute("user_email");
                             session.removeAttribute("user_pass");
+                            
                             session.setAttribute("user_name", name);
                             session.setAttribute("user_surname", surname);
                             session.setAttribute("user_email", email);

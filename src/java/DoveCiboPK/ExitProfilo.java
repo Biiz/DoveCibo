@@ -46,7 +46,7 @@ public class ExitProfilo extends HttpServlet {
                 }
             }
             session.invalidate();
-           response.sendRedirect("/DoveCiboGit/home.jsp");
+            response.sendRedirect("/DoveCiboGit/home.jsp");
             
 
         } catch (Exception ex) {

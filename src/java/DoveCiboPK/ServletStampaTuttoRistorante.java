@@ -45,10 +45,10 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             for (int i = 0; i < 7; i++) {
 
                 dh[i] = new Day_hours(
-                        request.getParameter("StM" + i),
-                        request.getParameter("FtM" + i),
-                        request.getParameter("StP" + i),
-                        request.getParameter("FtP" + i));
+                        request.getParameter("StM" + i).toLowerCase(),
+                        request.getParameter("FtM" + i).toLowerCase(),
+                        request.getParameter("StP" + i).toLowerCase(),
+                        request.getParameter("FtP" + i).toLowerCase());
             }
 
             //PRICE RANGE               
@@ -61,16 +61,18 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             Coordinate coordinate = new Coordinate(
                     request.getParameter("lat").isEmpty() ? null : Float.parseFloat(request.getParameter("lat")),
                     request.getParameter("lng").isEmpty() ? null : Float.parseFloat(request.getParameter("lng")),
-                    request.getParameter("via") + ", " + request.getParameter("numero_civico") + ", " + request.getParameter("city") + ", " + request.getParameter("nazione"));
+                    request.getParameter("via").toLowerCase() + " " + request.getParameter("numero_civico"), 
+                    request.getParameter("city").toLowerCase(),
+                    request.getParameter("nazione").toLowerCase());
             
 
             
             //RISTORANTE
             Restaurant restaurant = new Restaurant(
                     null,
-                    request.getParameter("nome_ristorante"),
+                    request.getParameter("nome_ristorante").toLowerCase(),
                     request.getParameter("descrizione"),
-                    request.getParameter("link"),
+                    request.getParameter("link").toLowerCase(),
                     u,
                     null,
                     priceRange,

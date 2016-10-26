@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -416,14 +417,16 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "INSERT INTO coordinates(id_restaurant,longitude,latitude,address)"
-                    + "VALUES(?,?,?,?)";
+            query = "INSERT INTO coordinates(id_restaurant,longitude,latitude,address,city,nazione)"
+                    + "VALUES(?,?,?,?,?,?)";
             sp = con.prepareStatement(query);
  
             sp.setInt(1, coo.getId_resturant());
             sp.setDouble(2, coo.getLongitude());
             sp.setDouble(3, coo.getLatitude());
             sp.setString(4, coo.getAdrers());
+            sp.setString(5, coo.getCity());
+            sp.setString(6, coo.getNazione());
  
             sp.executeUpdate();
  
@@ -1165,6 +1168,150 @@ public class DB_Manager {
             con.close();
             return r;
             //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public void SetResForName (Restaurant res, ArrayList <Integer> r) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id FROM restaurants WHERE name LIKE ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setString(1, res.getName());
+           
+            ResultSet rs = sp.executeQuery();
+           
+            while(rs.next()){
+                r.add(rs.getInt("id"));            
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
+    
+    public void SetResForNazione (Coordinate cor, ArrayList <Integer> res) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id_restaurant FROM coordinates WHERE nazione LIKE ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setString(1, cor.getNazione());
+           
+            ResultSet rs = sp.executeQuery();
+           
+            while(rs.next()){
+                res.add(rs.getInt("id_restaurant"));            
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
+    
+    public void SetResForCity (Coordinate cor, ArrayList <Integer> res) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id_restaurant FROM coordinates WHERE city LIKE ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setString(1, cor.getCity());
+           
+            ResultSet rs = sp.executeQuery();
+           
+            while(rs.next()){
+                res.add(rs.getInt("id_restaurant"));            
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
+    
+    public void SetResForAdrers (Coordinate cor, ArrayList <Integer> res) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id_restaurant FROM coordinates WHERE address LIKE ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setString(1, cor.getAdrers());
+           
+            ResultSet rs = sp.executeQuery();
+           
+            while(rs.next()){
+                res.add(rs.getInt("id_restaurant"));            
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
+      
+    public void SetResForCuisine (String cui, ArrayList <Integer> id_cu) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id FROM cuisines WHERE name LIKE ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setString(1, cui);
+           
+            ResultSet rs = sp.executeQuery();
+           
+            while(rs.next()){
+                id_cu.add(rs.getInt("id"));            
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
+        }
+    }
+    
+    public void SetResForCuisineId (Integer id_cu, ArrayList <Integer> id_res) throws SQLException {
+        PreparedStatement sp = null;
+        String query = null;
+       
+        try {
+            query = "SELECT id_restaurant FROM restaurant_cuisine WHERE id_cuisine = ? ";
+            sp = con.prepareStatement(query);
+           
+            sp.setInt(1, id_cu);
+           
+            ResultSet rs = sp.executeQuery();
+           
+            while(rs.next()){
+                id_res.add(rs.getInt("id_restaurant"));            
+            }
+ 
+        } catch (SQLException e) {
+            // r = false;
+        } finally {
+            sp.close();
+            con.close();
         }
     }
  

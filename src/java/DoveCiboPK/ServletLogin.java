@@ -68,6 +68,13 @@ public class ServletLogin extends HttpServlet {
                 } else {
                     HttpSession session = request.getSession(true);
                     
+                    
+                    session.removeAttribute("user_name");
+                    session.removeAttribute("user_surname");
+                    session.removeAttribute("user_email");
+                    session.removeAttribute("user_pass");
+                    session.removeAttribute("user_res");
+                    
                     User u1 = new User (-1,"","",nickname,"","","");
                     (new DB_Manager()).CheckProfilo(u1);
                     (new DB_Manager()).checkNavBar_restaurant(u1);
@@ -84,11 +91,11 @@ public class ServletLogin extends HttpServlet {
                     cookie_nick_role.setMaxAge(-1);
                     response.addCookie(cookie_nick_role);
                     
-                    session.setAttribute("user_name", ""+u.getName());
-                    session.setAttribute("user_surname", ""+u.getSurname());
+                    session.setAttribute("user_name", u.getName());
+                    session.setAttribute("user_surname", u.getSurname());
                     session.setAttribute("user_email", u.getEmail());
                     session.setAttribute("user_pass", u.getPassword());
-                    session.setAttribute("user_res", ""+s_n);
+                    session.setAttribute("user_res", s_n);
                     
                     
                     response.sendRedirect("/DoveCiboGit/home.jsp");

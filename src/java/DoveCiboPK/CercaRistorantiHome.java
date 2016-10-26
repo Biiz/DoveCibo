@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package DoveCiboPK;
-
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -26,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stefano
  */
-@WebServlet(name = "VisualizzaRistoranti", urlPatterns = {"/VisualizzaRistoranti"})
-public class VisualizzaRistoranti extends HttpServlet {
+@WebServlet(name = "CercaRistorantiHome", urlPatterns = {"/CercaRistorantiHome"})
+public class CercaRistorantiHome extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -42,21 +41,58 @@ public class VisualizzaRistoranti extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-
             HttpSession session = request.getSession(false);
-            Cookie cookie[] = request.getCookies();
-            String nickname = null;
-            if (cookie != null) {
-                for (int j = 0; j < cookie.length; j++) {
-                    if (cookie[j].getValue().equals("1") || cookie[j].getValue().equals("2") || cookie[j].getValue().equals("3")) {
-                        nickname = cookie[j].getName();
-                    }
+            
+            String string = request.getParameter("go").toLowerCase();
+            
+            String[] separated = string.split("\\s*,\\s*");
+            
+            
+            Set <Integer> id = new HashSet <Integer> ();
+            
+            for(int i = 0;i<separated.length;i++){
+                ArrayList <Integer> list = new ArrayList <Integer>();
+                Restaurant res = new Restaurant(-1, separated[i], "", "",null, null, null, null);
+                (new DB_Manager()).SetResForName(res, list);
+                for(int j = 0;j<list.size();j++){
+                    id.add(list.get(j));
+                }
+                
+                ArrayList <Integer> list1 = new ArrayList <Integer>();
+                Coordinate cor = new Coordinate(null,null,separated[i],separated[i],separated[i]);
+                (new DB_Manager()).SetResForNazione(cor, list1);
+                for(int j = 0;j<list1.size();j++){
+                    id.add(list1.get(j));
+                }
+                
+                ArrayList <Integer> list2 = new ArrayList <Integer>();
+                (new DB_Manager()).SetResForCity(cor, list2);
+                for(int j = 0;j<list2.size();j++){
+                    id.add(list2.get(j));
+                }
+                
+                ArrayList <Integer> list3 = new ArrayList <Integer>();
+                (new DB_Manager()).SetResForAdrers(cor, list3);
+                for(int j = 0;j<list3.size();j++){
+                   id.add(list3.get(j));
+                }
+                
+                ArrayList <Integer> list4 = new ArrayList <Integer>();
+                ArrayList <Integer> list5 = new ArrayList <Integer>();
+                String str = separated[i];
+                (new DB_Manager()).SetResForCuisine(str,list4);
+                for(int j = 0;j<list4.size();j++){
+                    (new DB_Manager()).SetResForCuisineId(list4.get(j),list5);
+                }
+                for(int j = 0;j<list5.size();j++){
+                   id.add(list5.get(j));
                 }
             }
-
-            DoveCiboPK.User u = new DoveCiboPK.User(-1, "", "", nickname, "", "", "");
-            (new DB_Manager()).CheckProfilo(u);
-
+            
+           
+            
+            
+            
             session.removeAttribute("id_restaurant");
             session.removeAttribute("res_name");
             session.removeAttribute("cuisine_name");
@@ -64,15 +100,12 @@ public class VisualizzaRistoranti extends HttpServlet {
             session.removeAttribute("prezzo_max");
             session.removeAttribute("res_address");
             
+            session.setAttribute("id_restaurant", id);
             
-            List<Integer> id_restaurant = new ArrayList<Integer>();
-            (new DB_Manager()).SetIdRestaurant(u, id_restaurant);
-            session.setAttribute("id_restaurant", id_restaurant);
-            Iterator itr = id_restaurant.iterator();
-            int i = 0;
-            while (itr.hasNext()) {
-                Integer element = (Integer) itr.next();
-                DoveCiboPK.Restaurant res = new DoveCiboPK.Restaurant(element, "", "", "", null, null, null, null);
+            int i= 0;   
+            for (Iterator<Integer> it = id.iterator(); it.hasNext(); ) {
+                Integer f = it.next();
+                Restaurant res = new Restaurant(f, "", "", "",null, null, null, null);
                 (new DB_Manager()).cercaRistorante_perId(res);
                 session.setAttribute("res_name"+i, res.getName());
                 
@@ -97,11 +130,13 @@ public class VisualizzaRistoranti extends HttpServlet {
                 (new DoveCiboPK.DB_Manager()).cercaCoordinate_perID_Restaurant(res, address);
                 session.setAttribute("res_address"+i, address[0]);
                 
-                i++;   
+                i++;
+                
             }
-           
-            response.sendRedirect("/DoveCiboGit/VisualizzaRistoranti.jsp");
-
+            
+            response.sendRedirect("/DoveCiboGit/CercaRistorantiHome.jsp");
+            
+    
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);

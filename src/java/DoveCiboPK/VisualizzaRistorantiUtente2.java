@@ -56,6 +56,16 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
 
             DoveCiboPK.User u = new DoveCiboPK.User(-1, "", "", nickname, "", "", "");
             (new DB_Manager()).CheckProfilo(u);
+            
+            
+            session.removeAttribute("id_restaurant");
+            session.removeAttribute("res_name");
+            session.removeAttribute("cuisine_name");
+            session.removeAttribute("prezzo_min");
+            session.removeAttribute("prezzo_max");
+            session.removeAttribute("res_address");
+            
+            
 
             List<Integer> id_restaurant = new ArrayList<Integer>();
             (new DB_Manager()).SetIdRestaurant2(u, id_restaurant);
