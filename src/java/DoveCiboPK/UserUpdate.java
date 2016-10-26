@@ -48,7 +48,9 @@ public class UserUpdate extends HttpServlet {
                     if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
                         String nickName = cookies[i].getName();
                         User u1 = new User(-1,"","",nickName,"","","");
-                        (new DB_Manager()).CheckProfilo(u1);
+                        if(!(new DB_Manager()).CheckProfilo(u1)){
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                        }
                         //PRECONDIZIONI DB
                         if(!u1.getEmail().equals(email)){
 
@@ -66,8 +68,7 @@ public class UserUpdate extends HttpServlet {
                         u.setEmail(email);
                         u.setPassword(password);
                       
-                        DB_Manager dbm = new DB_Manager();
-                        if(dbm.modificaAccount(u, nickName)){
+                        if((new DB_Manager()).modificaAccount(u, nickName)){
                             new SendEmail_Modifica_Profilo(name, surname, email, nickName, password);
                             session.removeAttribute("user_name");
                             session.removeAttribute("user_surname");

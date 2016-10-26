@@ -38,7 +38,9 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             Cookie cookies[] = request.getCookies();
             String NickName = cookies[1].getName();
             User u = new User(-1, "", "", NickName, "", "", "");
-            new DB_Manager().CheckProfilo(u);
+            if(!(new DB_Manager()).CheckProfilo(u)){
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            }
             
             // GIORNI D?APERTURA        
             Day_hours[] dh = new Day_hours[7];
@@ -79,12 +81,11 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                     null);
 
             //INSERISCI PRICERANGE
-            DB_Manager prc = new DB_Manager();
-            if (prc.cercaPriceRange_perRange(priceRange)) {
+            
+            if ((new DB_Manager()).cercaPriceRange_perRange(priceRange)) {
                
                 if (priceRange.getId() == null) {
-                    DB_Manager ipr = new DB_Manager();
-                    if (!ipr.inserisciPrice_range(priceRange)) {
+                    if (!(new DB_Manager()).inserisciPrice_range(priceRange)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
                 }
@@ -116,7 +117,9 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
-                new DB_Manager().inserisciRelazioneRistoranteOrario(restaurant.getId(), dh[i].getId());
+                if(!(new DB_Manager()).inserisciRelazioneRistoranteOrario(restaurant.getId(), dh[i].getId())){
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
               
             }
             //STAMPA ORARI
@@ -140,7 +143,9 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                     if (!new DB_Manager().inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
-                    new DB_Manager().inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i);
+                    if(!(new DB_Manager()).inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i)){
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
                 }
 
             }

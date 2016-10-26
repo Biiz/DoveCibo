@@ -47,7 +47,7 @@ public class DB_Manager {
         return errore;
     }
     
-    public void SetIdRestaurant(User u, List<Integer> id_restaurant) throws SQLException {
+    public boolean SetIdRestaurant(User u, List<Integer> id_restaurant) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -65,9 +65,10 @@ public class DB_Manager {
                 id_restaurant.add(rs.getInt(1));
             }
             
-            
+            return true;
         } catch (SQLException e) {
             this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
@@ -75,7 +76,7 @@ public class DB_Manager {
         }
     }
     
-    public void SetIdRestaurant2(User u, List<Integer> id_restaurant) throws SQLException {
+    public boolean SetIdRestaurant2(User u, List<Integer> id_restaurant) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -93,9 +94,10 @@ public class DB_Manager {
                 id_restaurant.add(rs.getInt(1));
             }
             
-            
+            return true;
         } catch (SQLException e) {
             this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
@@ -184,7 +186,7 @@ public class DB_Manager {
         }
     }
    
-    public void CheckProfilo (User u) throws SQLException {
+    public boolean CheckProfilo (User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -204,16 +206,17 @@ public class DB_Manager {
                 u.setPassword(rs.getString("password"));
                 u.setRole(rs.getString("role"));
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
         }
     }
     
-    public void CheckEmail (User u) throws SQLException {
+    public boolean CheckEmail (User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -233,9 +236,10 @@ public class DB_Manager {
                 u.setPassword(rs.getString("password"));
                 u.setRole(rs.getString("role"));
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
@@ -261,7 +265,7 @@ public class DB_Manager {
             }
  
         } catch (SQLException e) {
-            // r = false;
+             r = false;
         } finally {
             sp.close();
             con.close();
@@ -502,7 +506,6 @@ public class DB_Manager {
  
             r = true;
         } catch (SQLException e) {
-            System.out.println("Possibile causa: " + e.getMessage());
             r = false;
         } finally {
             sp.close();
@@ -515,7 +518,6 @@ public class DB_Manager {
  
         PreparedStatement sp = null;
         String query = null;
-        Boolean r = null;
  
         try {
             query = "SELECT * FROM restaurants WHERE id_creator = ?";
@@ -529,13 +531,13 @@ public class DB_Manager {
                 u.setName(rs.getString("name"));
             }
  
-            r = true;
+            return true;
         } catch (SQLException e) {
-            r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
-            return r;
         }
     }
  
@@ -557,7 +559,6 @@ public class DB_Manager {
  
             r = true;
         } catch (SQLException e) {
-            System.out.println("Possibile causa: " + e.getMessage());
             r = false;
         } finally {
             sp.close();
@@ -798,7 +799,7 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "SELECT address FROM coordinates WHERE id_restaurant = ?";
+            query = "SELECT address, city FROM coordinates WHERE id_restaurant = ?";
             sp = con.prepareStatement(query);
  
             sp.setInt(1, res.getId());
@@ -807,6 +808,7 @@ public class DB_Manager {
             
             if (rs.next()) {
                 string[0] = rs.getString(1);
+                string[1] = rs.getString(2);
             } 
             r = true;
  
@@ -1171,7 +1173,7 @@ public class DB_Manager {
         }
     }
     
-    public void SetResForName (Restaurant res, ArrayList <Integer> r) throws SQLException {
+    public Boolean SetResForName (Restaurant res, ArrayList <Integer> r) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -1186,16 +1188,18 @@ public class DB_Manager {
             while(rs.next()){
                 r.add(rs.getInt("id"));            
             }
- 
+            
+            return true;
         } catch (SQLException e) {
-            // r = false;
+           this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
         }
     }
     
-    public void SetResForNazione (Coordinate cor, ArrayList <Integer> res) throws SQLException {
+    public Boolean SetResForNazione (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -1210,16 +1214,17 @@ public class DB_Manager {
             while(rs.next()){
                 res.add(rs.getInt("id_restaurant"));            
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
         }
     }
     
-    public void SetResForCity (Coordinate cor, ArrayList <Integer> res) throws SQLException {
+    public Boolean SetResForCity (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -1234,16 +1239,17 @@ public class DB_Manager {
             while(rs.next()){
                 res.add(rs.getInt("id_restaurant"));            
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
         }
     }
     
-    public void SetResForAdrers (Coordinate cor, ArrayList <Integer> res) throws SQLException {
+    public Boolean SetResForAdrers (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -1257,16 +1263,17 @@ public class DB_Manager {
             while(rs.next()){
                 res.add(rs.getInt("id_restaurant"));            
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
         }
     }
       
-    public void SetResForCuisine (String cuis, ArrayList <Integer> id_cu) throws SQLException {
+    public Boolean SetResForCuisine (String cuis, ArrayList <Integer> id_cu) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -1280,16 +1287,17 @@ public class DB_Manager {
             while(rs.next()){
                 id_cu.add(rs.getInt("id"));            
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();
         }
     }
     
-    public void SetResForCuisineId (Integer id_cu, ArrayList <Integer> id_res) throws SQLException {
+    public Boolean SetResForCuisineId (Integer id_cu, ArrayList <Integer> id_res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
@@ -1304,9 +1312,10 @@ public class DB_Manager {
             while(rs.next()){
                 id_res.add(rs.getInt("id_restaurant"));            
             }
- 
+            return true;
         } catch (SQLException e) {
-            // r = false;
+            this.errore = e.toString();
+            return false;
         } finally {
             sp.close();
             con.close();

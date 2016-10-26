@@ -76,8 +76,12 @@ public class ServletLogin extends HttpServlet {
                     session.removeAttribute("user_res");
                     
                     User u1 = new User (-1,"","",nickname,"","","");
-                    (new DB_Manager()).CheckProfilo(u1);
-                    (new DB_Manager()).checkNavBar_restaurant(u1);
+                    if(!(new DB_Manager()).CheckProfilo(u1)){
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                    if(!(new DB_Manager()).checkNavBar_restaurant(u1)){
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
                     
                     
                     String s_n = null;

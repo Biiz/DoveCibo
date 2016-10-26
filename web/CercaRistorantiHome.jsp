@@ -49,14 +49,21 @@
                             <td>
                                 <!-- bottone SUBMIT che contiene il nome del ristorante -->
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-justified" type="submit"><b><%=session.getAttribute("res_name" + i)%></b></button>
+                                    <%
+                                        String res_name = (String)session.getAttribute("res_name" + i);
+                                    %>
+                                    <button class="btn btn-info btn-justified" type="submit"><b><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></b></button>
                                 </div>
                             </td>
                             <td>stelle</td>
                             <td><%=session.getAttribute("prezzo_min" + i)%></td>
                             <td><%=session.getAttribute("prezzo_max" + i)%></td>
-                            <td><%=session.getAttribute("res_address" + i)%></td>
-                            <td>
+                            <%
+                            String res_city = (String)session.getAttribute("res_city" + i);
+                            String res_address = (String)session.getAttribute("res_address" + i);
+                            %>
+                            <td><%=res_address.substring(0, 1).toUpperCase() + res_address.substring(1)%>, <%=res_city.substring(0, 1).toUpperCase() + res_city.substring(1)%></td>
+                            <td>                                                
                                 <%
                                     List cuisine_name = (List) session.getAttribute("cuisine_name" + i);
 

@@ -54,29 +54,36 @@ public class CercaRistorantiHome extends HttpServlet {
                 for(int g = 0; g < separated[i].length();g++){
                     if(g >= 2){
                         String str = separated[i].substring(0, g+1);
-                        System.out.println("+++++++++++++++++++++++++++"+str);
                         ArrayList <Integer> list = new ArrayList <Integer>();
                         Restaurant res = new Restaurant(-1, str, "", "",null, null, null, null);
-                        (new DB_Manager()).SetResForName(res, list);
+                        if(!(new DB_Manager()).SetResForName(res, list)){
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                        }
                         for(int j = 0;j<list.size();j++){
                             id.add(list.get(j));
                         }
 
                         ArrayList <Integer> list1 = new ArrayList <Integer>();
                         Coordinate cor = new Coordinate(null,null,str,str,str);
-                        (new DB_Manager()).SetResForNazione(cor, list1);
+                        if(!(new DB_Manager()).SetResForNazione(cor, list1)){
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                        }
                         for(int j = 0;j<list1.size();j++){
                             id.add(list1.get(j));
                         }
 
                         ArrayList <Integer> list2 = new ArrayList <Integer>();
-                        (new DB_Manager()).SetResForCity(cor, list2);
+                        if(!(new DB_Manager()).SetResForCity(cor, list2)){
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
+                        }
                         for(int j = 0;j<list2.size();j++){
                             id.add(list2.get(j));
                         }
 
                         ArrayList <Integer> list3 = new ArrayList <Integer>();
-                        (new DB_Manager()).SetResForAdrers(cor, list3);
+                        if(!(new DB_Manager()).SetResForAdrers(cor, list3)){
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                        }
                         for(int j = 0;j<list3.size();j++){
                            id.add(list3.get(j));
                         }
@@ -84,9 +91,13 @@ public class CercaRistorantiHome extends HttpServlet {
                         ArrayList <Integer> list4 = new ArrayList <Integer>();
                         ArrayList <Integer> list5 = new ArrayList <Integer>();
                         
-                        (new DB_Manager()).SetResForCuisine(str,list4);
+                        if(!(new DB_Manager()).SetResForCuisine(str,list4)){
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                        }
                         for(int j = 0;j<list4.size();j++){
-                            (new DB_Manager()).SetResForCuisineId(list4.get(j),list5);
+                            if(!(new DB_Manager()).SetResForCuisineId(list4.get(j),list5)){
+                                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                            }
                         }
                         for(int j = 0;j<list5.size();j++){
                            id.add(list5.get(j));
@@ -105,6 +116,7 @@ public class CercaRistorantiHome extends HttpServlet {
             session.removeAttribute("prezzo_min");
             session.removeAttribute("prezzo_max");
             session.removeAttribute("res_address");
+            session.removeAttribute("res_city");
             
             session.setAttribute("id_restaurant", id);
             
@@ -112,29 +124,40 @@ public class CercaRistorantiHome extends HttpServlet {
             for (Iterator<Integer> it = id.iterator(); it.hasNext(); ) {
                 Integer f = it.next();
                 Restaurant res = new Restaurant(f, "", "", "",null, null, null, null);
-                (new DB_Manager()).cercaRistorante_perId(res);
+                if(!(new DB_Manager()).cercaRistorante_perId(res)){
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
                 session.setAttribute("res_name"+i, res.getName());
                 
                 List<Integer> id_cuisine = new ArrayList<Integer>();
                 List<String> cuisine_name = new ArrayList<String>();
-                (new DoveCiboPK.DB_Manager()).cercaCuisine_perId_Restaurant(res, id_cuisine);
+                if(!(new DoveCiboPK.DB_Manager()).cercaCuisine_perId_Restaurant(res, id_cuisine)){
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
                 Iterator itr1 = id_cuisine.iterator();
                 while (itr1.hasNext()) {
                     Integer element1 = (Integer) itr1.next();
 
-                    (new DoveCiboPK.DB_Manager()).cercaCuisine(element1, cuisine_name);
+                    if(!(new DoveCiboPK.DB_Manager()).cercaCuisine(element1, cuisine_name)){
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
 
                 }
                 session.setAttribute("cuisine_name"+i, cuisine_name);
                 
                 Integer prezzo[] = {0,0};
-                (new DoveCiboPK.DB_Manager()).cercaPriceRanges_Restaurant(res, prezzo);
+                if(!(new DoveCiboPK.DB_Manager()).cercaPriceRanges_Restaurant(res, prezzo)){
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
                 session.setAttribute("prezzo_min"+i, prezzo[0]);
                 session.setAttribute("prezzo_max"+i, prezzo[1]);
                 
-                String address[] = {"w"};
-                (new DoveCiboPK.DB_Manager()).cercaCoordinate_perID_Restaurant(res, address);
+                String address[] = {"w", "W"};
+                if(!(new DoveCiboPK.DB_Manager()).cercaCoordinate_perID_Restaurant(res, address)){
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
                 session.setAttribute("res_address"+i, address[0]);
+                session.setAttribute("res_city"+i, address[1]);
                 
                 i++;
                 

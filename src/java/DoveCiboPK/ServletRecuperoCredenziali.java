@@ -40,7 +40,9 @@ public class ServletRecuperoCredenziali extends HttpServlet {
             if ((new DB_Manager()).emailEsistente(email)) {
                 User u = new User (-1,"","","",email,"","");
             
-                (new DB_Manager()).CheckEmail(u);
+                if(!(new DB_Manager()).CheckEmail(u)){
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
             
                 new SendEmail_Recupero_credenziali(u.getName(), u.getSurname(), u.getEmail(), u.getNickname(), u.getPassword());
             
