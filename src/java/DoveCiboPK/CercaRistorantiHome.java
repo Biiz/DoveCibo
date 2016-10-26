@@ -51,41 +51,47 @@ public class CercaRistorantiHome extends HttpServlet {
             Set <Integer> id = new HashSet <Integer> ();
             
             for(int i = 0;i<separated.length;i++){
-                ArrayList <Integer> list = new ArrayList <Integer>();
-                Restaurant res = new Restaurant(-1, separated[i], "", "",null, null, null, null);
-                (new DB_Manager()).SetResForName(res, list);
-                for(int j = 0;j<list.size();j++){
-                    id.add(list.get(j));
-                }
-                
-                ArrayList <Integer> list1 = new ArrayList <Integer>();
-                Coordinate cor = new Coordinate(null,null,separated[i],separated[i],separated[i]);
-                (new DB_Manager()).SetResForNazione(cor, list1);
-                for(int j = 0;j<list1.size();j++){
-                    id.add(list1.get(j));
-                }
-                
-                ArrayList <Integer> list2 = new ArrayList <Integer>();
-                (new DB_Manager()).SetResForCity(cor, list2);
-                for(int j = 0;j<list2.size();j++){
-                    id.add(list2.get(j));
-                }
-                
-                ArrayList <Integer> list3 = new ArrayList <Integer>();
-                (new DB_Manager()).SetResForAdrers(cor, list3);
-                for(int j = 0;j<list3.size();j++){
-                   id.add(list3.get(j));
-                }
-                
-                ArrayList <Integer> list4 = new ArrayList <Integer>();
-                ArrayList <Integer> list5 = new ArrayList <Integer>();
-                String str = separated[i];
-                (new DB_Manager()).SetResForCuisine(str,list4);
-                for(int j = 0;j<list4.size();j++){
-                    (new DB_Manager()).SetResForCuisineId(list4.get(j),list5);
-                }
-                for(int j = 0;j<list5.size();j++){
-                   id.add(list5.get(j));
+                for(int g = 0; g < separated[i].length();g++){
+                    if(g >= 2){
+                        String str = separated[i].substring(0, g+1);
+                        System.out.println("+++++++++++++++++++++++++++"+str);
+                        ArrayList <Integer> list = new ArrayList <Integer>();
+                        Restaurant res = new Restaurant(-1, str, "", "",null, null, null, null);
+                        (new DB_Manager()).SetResForName(res, list);
+                        for(int j = 0;j<list.size();j++){
+                            id.add(list.get(j));
+                        }
+
+                        ArrayList <Integer> list1 = new ArrayList <Integer>();
+                        Coordinate cor = new Coordinate(null,null,str,str,str);
+                        (new DB_Manager()).SetResForNazione(cor, list1);
+                        for(int j = 0;j<list1.size();j++){
+                            id.add(list1.get(j));
+                        }
+
+                        ArrayList <Integer> list2 = new ArrayList <Integer>();
+                        (new DB_Manager()).SetResForCity(cor, list2);
+                        for(int j = 0;j<list2.size();j++){
+                            id.add(list2.get(j));
+                        }
+
+                        ArrayList <Integer> list3 = new ArrayList <Integer>();
+                        (new DB_Manager()).SetResForAdrers(cor, list3);
+                        for(int j = 0;j<list3.size();j++){
+                           id.add(list3.get(j));
+                        }
+
+                        ArrayList <Integer> list4 = new ArrayList <Integer>();
+                        ArrayList <Integer> list5 = new ArrayList <Integer>();
+                        
+                        (new DB_Manager()).SetResForCuisine(str,list4);
+                        for(int j = 0;j<list4.size();j++){
+                            (new DB_Manager()).SetResForCuisineId(list4.get(j),list5);
+                        }
+                        for(int j = 0;j<list5.size();j++){
+                           id.add(list5.get(j));
+                        }  
+                    }
                 }
             }
             

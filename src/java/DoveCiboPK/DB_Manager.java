@@ -1179,7 +1179,7 @@ public class DB_Manager {
             query = "SELECT id FROM restaurants WHERE name LIKE ? ";
             sp = con.prepareStatement(query);
            
-            sp.setString(1, res.getName());
+            sp.setString(1, "%" + res.getName() + "%");
            
             ResultSet rs = sp.executeQuery();
            
@@ -1203,7 +1203,7 @@ public class DB_Manager {
             query = "SELECT id_restaurant FROM coordinates WHERE nazione LIKE ? ";
             sp = con.prepareStatement(query);
            
-            sp.setString(1, cor.getNazione());
+            sp.setString(1, "%" + cor.getNazione() + "%");
            
             ResultSet rs = sp.executeQuery();
            
@@ -1226,8 +1226,8 @@ public class DB_Manager {
         try {
             query = "SELECT id_restaurant FROM coordinates WHERE city LIKE ? ";
             sp = con.prepareStatement(query);
-           
-            sp.setString(1, cor.getCity());
+       
+            sp.setString(1, "%" + cor.getCity()+ "%");
            
             ResultSet rs = sp.executeQuery();
            
@@ -1250,8 +1250,7 @@ public class DB_Manager {
         try {
             query = "SELECT id_restaurant FROM coordinates WHERE address LIKE ? ";
             sp = con.prepareStatement(query);
-           
-            sp.setString(1, cor.getAdrers());
+            sp.setString(1, "%" + cor.getAdrers() + "%");
            
             ResultSet rs = sp.executeQuery();
            
@@ -1267,15 +1266,14 @@ public class DB_Manager {
         }
     }
       
-    public void SetResForCuisine (String cui, ArrayList <Integer> id_cu) throws SQLException {
+    public void SetResForCuisine (String cuis, ArrayList <Integer> id_cu) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
        
         try {
             query = "SELECT id FROM cuisines WHERE name LIKE ? ";
             sp = con.prepareStatement(query);
-           
-            sp.setString(1, cui);
+            sp.setString(1, "%" + cuis + "%");
            
             ResultSet rs = sp.executeQuery();
            
