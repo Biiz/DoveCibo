@@ -117,12 +117,14 @@ public class CercaRistorantiHome extends HttpServlet {
             session.removeAttribute("prezzo_max");
             session.removeAttribute("res_address");
             session.removeAttribute("res_city");
+            session.removeAttribute("res_id");
             
             session.setAttribute("id_restaurant", id);
             
             int i= 0;   
             for (Iterator<Integer> it = id.iterator(); it.hasNext(); ) {
                 Integer f = it.next();
+                session.setAttribute("res_id"+i, f);
                 Restaurant res = new Restaurant(f, "", "", "",null, null, null, null);
                 if(!(new DB_Manager()).cercaRistorante_perId(res)){
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
