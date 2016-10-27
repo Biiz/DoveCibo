@@ -26,6 +26,7 @@ public class Restaurant {
     private Week_hours week_hours;
     private Coordinate cordinate;
     private ArrayList<Review> reviews;
+    private ArrayList<Cusine> cusines = new ArrayList<Cusine>();
 
     public Restaurant(Integer id) {
         this.id = id;
@@ -59,9 +60,17 @@ public class Restaurant {
     public Coordinate getCordinate() {
         return cordinate;
     }
+
+    public ArrayList<Cusine> getCusines() {
+        return cusines;
+    }
     
     
     
+    
+    public void addCusine( Cusine c) {
+        cusines.add(c);
+    }    
     
     
     

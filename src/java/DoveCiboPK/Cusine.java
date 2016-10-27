@@ -17,6 +17,10 @@ public class Cusine {
     public Cusine(Integer id) {
         this.id = id;
     }
+    
+    public Cusine(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

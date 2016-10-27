@@ -629,6 +629,7 @@ public class DB_Manager {
         }
     }
  
+  
     public Boolean inserisciReview(Review rew, Integer id_restaurant) throws SQLException {
  
         PreparedStatement sp = null;
@@ -636,38 +637,41 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "INSERT INTO rewiev(id,"
+            query = "INSERT INTO reviews(id,"
                     + "global_value,"
                     + "food,"
                     + "service,"
                     + "value_for_money,"
-                    + "atmospere,"
+                    + "atmosphere,"
                     + "name, "
-                    + "description"
+                    + "description, "
                     + "date_creation, "
-                    + "id_resturant, "
+                    + "id_restaurant, "
                     + "id_creator, "
                     + "id_photo) "
                     + "VALUES(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,?)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
-            Double food = rew.getFood();
-            Double service = rew.getService();
-            Double atmospere = rew.getAtmosphere();
-            Double value = rew.getValue_of_money();
-            Double global = rew.getGlobal_value();
+            Integer food = rew.getFood();
+            Integer service = rew.getService();
+            Integer atmospere = rew.getAtmosphere();
+            Integer value = rew.getValue_of_money();
+            Integer global = rew.getGlobal_value();
  
-            sp.setDouble(1, global);
-            sp.setDouble(2, food);
-            sp.setDouble(3, service);
-            sp.setDouble(4, value);
-            sp.setDouble(5, atmospere);
+            System.out.println("SQL OK");
+            
+            
+            sp.setInt(1, global);
+            sp.setInt(2, food);
+            sp.setInt(3, service);
+            sp.setInt(4, value);
+            sp.setInt(5, atmospere);
             sp.setString(6, rew.getName());
             sp.setString(7, rew.getDescription());
  
-            sp.setInt(9, id_restaurant);
-            sp.setInt(10, rew.getCreator().getId());
-            sp.setInt(6, rew.getPhoto().getId());
+            sp.setInt(8, id_restaurant);
+            sp.setInt(9, rew.getCreator().getId());
+            sp.setInt(10, rew.getPhoto().getId());
  
             sp.executeUpdate();
  
@@ -1321,5 +1325,80 @@ public class DB_Manager {
             con.close();
         }
     }
+    
+    
+    
+//NEW POSTAL
+
+    public Boolean cercaCusines_perRistoranye(Restaurant res) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+           
+            
+            query = "SELECT  c.* FROM RESTAURANT_CUISINE as rc, CUISINES as c "
+                    + "WHERE ? = rc.id_restaurant AND c.id = rc.id_cuisine";
+            sp = con.prepareStatement(query);
+ 
+            
+            
+            sp.setInt(1, res.getId());
+ 
+            ResultSet rs = sp.executeQuery();
+ 
+            
+            while (rs.next()) {
+                
+                res.addCusine(new Cusine(rs.getString("name")));
+            }
+            r = true;
+            
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
+    
+    public Integer contaPhoto() throws SQLException {
+ 
+        Statement sp = null;
+        String query = null;
+ 
+        try {
+                  
+            query = "SELECT COUNT(*) as n FROM PHOTOS ";
+            sp = con.createStatement();
+            ResultSet rs = sp.executeQuery(query);
+            rs.next();
+            return rs.getInt("n");
+            
+        } catch (SQLException e) {
+
+            System.out.println("Possibile causa: " + e.getMessage());
+            return -1;
+            
+        } finally {
+            sp.close();
+            con.close();
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }        
+    
+    
+    
  
 }
