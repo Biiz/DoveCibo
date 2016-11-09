@@ -17,25 +17,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author postal
  */
-@WebServlet(name = "ServletGetTuttiRistoranti", urlPatterns = {"/ServletGetTuttiRistoranti"})
-public class ServletGetTuttiRistoranti extends HttpServlet {
+@WebServlet(name = "ServletGetRistorante", urlPatterns = {"/ServletGetRistorante"})
+public class ServletGetRistorante extends HttpServlet {
 
 
  @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
 
-
-            //RICERCA DB
-
-            ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
+        //PIGLIARE ID RISTORANTE
+        Integer idR = Integer.parseInt( request.getParameter("idR") );
+        Restaurant rest = new Restaurant(idR);
+        
+        
+        DB_Manager dbm = new DB_Manager();
             
-            if( new DB_Manager().tuttiRistoranti(ALR)){
-                
-                for(Restaurant rest : ALR){
-                    
+        if( new DB_Manager().cercaRistorante_perId(rest)){
+
                     if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
@@ -43,26 +43,41 @@ public class ServletGetTuttiRistoranti extends HttpServlet {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
                     if( ! new DB_Manager().setOrariPerRistorante(rest))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
+                          request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
                     if( ! new DB_Manager().cercaPriceRange_perId(rest.getPrice_range()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-
+                    
                     if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-               
-                     if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                    
+                    if( ! new DB_Manager().setCommenti_perRistorante(rest))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+                    
+                    if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    
+                    if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);                    
-              
-                }
-                
-            }else{
+                    
+                    if( ! new DB_Manager().cercaPhotos_perRistorante(rest))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    
+                    for (Review rew : rest.getReviews()) {
+                        if (! new DB_Manager().setPhoto_perCommento(rew))
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
+                        
+                        if (! new DB_Manager().cercaUser_perId(rew.getCreator()))
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
+                    }
+                    
+        }else{
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            }
+        }           
             
 
-            request.setAttribute("listaRistoranti", ALR);
-            request.getRequestDispatcher("QEL_CHE_LE.jsp").forward(request, response);
+            request.setAttribute("ristorante", rest);
+            request.getRequestDispatcher("ristorante.jsp").forward(request, response);
 
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());

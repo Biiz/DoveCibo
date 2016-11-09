@@ -4,6 +4,10 @@
     Author     : IO-PC
 --%>
 
+<%@page import="DoveCiboPK.Review"%>
+<%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
+<%@page import="DoveCiboPK.Cusine"%>
+<%@page import="DoveCiboPK.Restaurant"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -105,22 +109,29 @@
     </head>
     <body>
         <%@ include file="navBar.jsp" %>
+        <%  Restaurant R = (Restaurant) request.getAttribute("ristorante"); %>
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4">
                             <div id="tagline">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
+                                <p style="color: black; font-size: 28px"><b><%=R.getName()%></b></p>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul>
-                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b></li>
-                                        <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b></li>
-                                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b></li>
-                                        <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b>Link sito</b></li>
-                                        <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b></li>
+                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%=R.getCordinate().getAdrers() %></b></li>
+                                        <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value() %> - <%=R.getPrice_range().getMax_value() %></b></li>
+                                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value() %></b></li>
+                                        <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url() %></b></li>
+                                        <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
+                                            
+                                                <% for(Cusine c : R.getCusines()){ %>
+                                                <%= c.getName() %>
+                                                <% } %>
+                                                
+                                            </b></li>
                                         <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode</b></li>
 
                                     </ul>
@@ -187,7 +198,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;">sahdsakjhdakjsdh kjsahdakjshdasj khdaskjdh askd haskdh askjdhasjkdhadjkshadjh ajdhsa jksha kjashaskjhd asjkhdaskj hajkh asjd asjkh  ask askjh d hd ashd hha jah dakjdh akd jks</p>                                    
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%= R.getDescription() %></p>                                    
 
                         </div> 
                     </div>
@@ -231,8 +242,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-
-                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                            Nome:<input class="text-left" neme="nome"><br/>
+                                            <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
                                         </div>
                                     </div>
 
@@ -241,24 +252,112 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Valutazione</b></p>
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>global_value</b></p>
                                         </div>
 
                                         <fieldset class="rating">
-                                            <input type="radio" id="star5" name="rating" value="5" />
+                                            <input type="radio" id="star5" name="global_value" value="5" />
                                             <label for="star5"> 5 stars</label>
-                                            <input type="radio" id="star4" name="rating" value="4" />
+                                            <input type="radio" id="star4" name="global_value" value="4" />
                                             <label for="star4"> 4 stars</label>
-                                            <input type="radio" id="star3" name="rating" checked="checked" value="3" />
+                                            <input type="radio" id="star3" name="global_value" checked="checked" value="3" />
                                             <label for="star3"> 3 stars</label>
-                                            <input type="radio" id="star2" name="rating" value="2" />
+                                            <input type="radio" id="star2" name="global_value" value="2" />
                                             <label for="star2"> 2 stars</label>
-                                            <input type="radio" id="star1" name="rating" value="1" />
+                                            <input type="radio" id="star1" name="global_value" value="1" />
                                             <label for="star1"> 1 star</label>
                                         </fieldset>
 
                                     </div>
                                 </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tagline">
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>food</b></p>
+                                        </div>
+
+                                        <fieldset class="rating">
+                                            <input type="radio" id="star5" name="food" value="5" />
+                                            <label for="star5"> 5 stars</label>
+                                            <input type="radio" id="star4" name="food" value="4" />
+                                            <label for="star4"> 4 stars</label>
+                                            <input type="radio" id="star3" name="food" checked="checked" value="3" />
+                                            <label for="star3"> 3 stars</label>
+                                            <input type="radio" id="star2" name="food" value="2" />
+                                            <label for="star2"> 2 stars</label>
+                                            <input type="radio" id="star1" name="food" value="1" />
+                                            <label for="star1"> 1 star</label>
+                                        </fieldset>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tagline">
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>service</b></p>
+                                        </div>
+
+                                        <fieldset class="rating">
+                                            <input type="radio" id="star5" name="service" value="5" />
+                                            <label for="star5"> 5 stars</label>
+                                            <input type="radio" id="star4" name="service" value="4" />
+                                            <label for="star4"> 4 stars</label>
+                                            <input type="radio" id="star3" name="service" checked="checked" value="3" />
+                                            <label for="star3"> 3 stars</label>
+                                            <input type="radio" id="star2" name="service" value="2" />
+                                            <label for="star2"> 2 stars</label>
+                                            <input type="radio" id="star1" name="service" value="1" />
+                                            <label for="star1"> 1 star</label>
+                                        </fieldset>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tagline">
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>value_for_money</b></p>
+                                        </div>
+
+                                        <fieldset class="rating">
+                                            <input type="radio" id="star5" name="value_for_money" value="5" />
+                                            <label for="star5"> 5 stars</label>
+                                            <input type="radio" id="star4" name="value_for_money" value="4" />
+                                            <label for="star4"> 4 stars</label>
+                                            <input type="radio" id="star3" name="value_for_money" checked="checked" value="3" />
+                                            <label for="star3"> 3 stars</label>
+                                            <input type="radio" id="star2" name="value_for_money" value="2" />
+                                            <label for="star2"> 2 stars</label>
+                                            <input type="radio" id="star1" name="value_for_money" value="1" />
+                                            <label for="star1"> 1 star</label>
+                                        </fieldset>
+
+                                    </div>
+                                </div>           
+                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tagline">
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>atmospere</b></p>
+                                        </div>
+
+                                        <fieldset class="rating">
+                                            <input type="radio" id="star5" name="atmospere" value="5" />
+                                            <label for="star5"> 5 stars</label>
+                                            <input type="radio" id="star4" name="atmospere" value="4" />
+                                            <label for="star4"> 4 stars</label>
+                                            <input type="radio" id="star3" name="atmospere" checked="checked" value="3" />
+                                            <label for="star3"> 3 stars</label>
+                                            <input type="radio" id="star2" name="atmospere" value="2" />
+                                            <label for="star2"> 2 stars</label>
+                                            <input type="radio" id="star1" name="atmospere" value="1" />
+                                            <label for="star1"> 1 star</label>
+                                        </fieldset>
+
+                                    </div>
+                                </div>                                   
 
                                 <div class="row">
                                     <div class="col-md-12">
@@ -281,7 +380,7 @@
 
 
 
-
+    <% for(Review rew : R.getReviews()) { %>
 
 
     <div class="modal-dialog modal-lg" >
@@ -290,7 +389,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div id="tagline">
-                            <p style="color: black; font-size: 25px"><b>Autore commento</b></p>
+                            <p style="color: black; font-size: 25px"><b><%= rew.getName() %></b></p>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -302,7 +401,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;">sahdsakjhdakjsdh kjsahdakjshdasj khdaskjdh askd haskdh askjdhasjkdhadjkshadjh ajdhsa jksha kjashaskjhd asjkhdaskj hajkh asjd asjkh  ask askjh d hd ashd hha jah dakjdh akd jks</p>  
+                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription() %></p>  
 
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
@@ -346,6 +445,10 @@
             </div>
         </div>   
     </div>
+    
+    <% } %>
+    
+    
 
 </body>
 </html>

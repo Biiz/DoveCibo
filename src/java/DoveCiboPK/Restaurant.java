@@ -25,7 +25,8 @@ public class Restaurant {
     private Price_range price_range;
     private Week_hours week_hours;
     private Coordinate cordinate;
-    private ArrayList<Review> reviews;
+    private ArrayList<Photo> photos = new ArrayList<Photo>();
+    private ArrayList<Review> reviews = new ArrayList<Review>();
     private ArrayList<Cusine> cusines = new ArrayList<Cusine>();
 
     public Restaurant(Integer id) {
@@ -114,6 +115,21 @@ public class Restaurant {
     public List<Review> getReviews() {
         return reviews;
     }
+
+    protected void setPhoto(Photo photo) {
+        this.photos.add(photo);
+    }
+
+    public ArrayList<Photo> getPhotos() {
+        return photos;
+    }
+
+
+    
+    
+    
+    
+    
 
     protected void setAltro(String description, Integer global_value, User owner,
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c) {

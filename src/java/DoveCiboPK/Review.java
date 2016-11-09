@@ -87,4 +87,11 @@ public class Review {
         this.id = id;
     }
 
+    protected void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+            
+            
+            
+
 }

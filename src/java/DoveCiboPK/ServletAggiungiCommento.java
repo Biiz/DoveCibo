@@ -56,11 +56,20 @@ public class ServletAggiungiCommento extends HttpServlet {
             new DB_Manager().CheckProfilo(u);
             
             //RISTORANTE
-            Integer idR = 1; //(Integer) request.getAttribute("idR");
+            Integer idR = 1; //(Restaurant) request.getAttribute("ristorante");
             
             
             //CREO REW
             Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, u, photo, 0);
+            
+            
+            //RIMPOSTA GLOBALVALUE DEL RISTORANTE
+            //C = NUMERO COMMENTI RISTORANTE
+            //GV = GLOBAL VALUE DEL RISTORANTE
+            //NEW GV = ((GV*C)+REW.GV)/(C+1)
+            //UPDATE GV RIS
+            
+            
             
             
             //INSERIMENTO DB

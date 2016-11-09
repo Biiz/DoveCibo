@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.runtime.RewriteException;
  
 /**
  *
@@ -967,7 +968,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean cercaPhoto_perRistorante(Photo p, Integer id_restaurant) throws SQLException {
+    public Boolean cercaPhotos_perRistorante(Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -977,25 +978,20 @@ public class DB_Manager {
             query = "SELECT  * FROM photos WHERE id_restaurant = ? ";
             sp = con.prepareStatement(query);
  
-            sp.setInt(1, id_restaurant);
+            sp.setInt(1, res.getId());
  
             ResultSet rs = sp.executeQuery();
  
-            if (rs.next()) {
-                p = new Photo(
+            while (rs.next()) {
+                res.setPhoto(new Photo(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getString("path"),
                         new User(rs.getInt("id_owner")),
                         rs.getInt("validation")
-                );
+                ));
  
-                System.out.println("photo: " + p.getName());
- 
-            } else {
-                System.out.println("non esiste tale photo ");
-                p = null;
             }
             r = true;
  
@@ -1397,6 +1393,110 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }        
+    
+    
+    
+
+    public Boolean setCommenti_perRistorante( Restaurant res) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT  * FROM REVIEWS WHERE ID_RESTAURANT = ? ORDER BY DATE_CREATION";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            ResultSet rs = sp.executeQuery();            
+            
+            while (rs.next()) {
+                
+                Review rew = new Review(
+                        rs.getInt("ID"), 
+                        rs.getInt("GLOBAL_VALUE"), 
+                        rs.getInt("FOOD"),
+                        rs.getInt("SERVICE"), 
+                        rs.getInt("VALUE_FOR_MONEY"), 
+                        rs.getInt("ATMOSPHERE"), 
+                        rs.getString("NAME"), 
+                        rs.getString("DESCRIPTION"), 
+                        rs.getDate("DATE_CREATION"), 
+                        new User (rs.getInt("ID_CREATOR")), 
+                        new Photo (rs.getInt("ID_PHOTO")),
+                        rs.getInt("VALIDATION")   );
+                
+                
+                res.addReviews(rew); 
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
+    
+    public Boolean setPhoto_perCommento(Review rew) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            
+            if(rew.getPhoto().getId() == null) return false; //DA RIGUARDARE
+            
+            query = "SELECT  * FROM photos WHERE id = ? ";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, rew.getPhoto().getId());
+ 
+            ResultSet rs = sp.executeQuery();
+ 
+            if (rs.next()) {
+                Photo p = new Photo(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getString("path"),
+                        new User(rs.getInt("id_owner")),
+                        rs.getInt("validation")
+                );
+                
+                rew.setPhoto(p);
+ 
+                System.out.println("photo: " + p.getName());
+ 
+            } else {
+                r=false;
+            }
+
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
+
     
     
     
