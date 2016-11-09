@@ -650,7 +650,7 @@ public class DB_Manager {
                     + "id_restaurant, "
                     + "id_creator, "
                     + "id_photo) "
-                    + "VALUES(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,?)";
+                    + "VALUES(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,null)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
             Integer food = rew.getFood();
@@ -672,7 +672,7 @@ public class DB_Manager {
  
             sp.setInt(8, id_restaurant);
             sp.setInt(9, rew.getCreator().getId());
-            sp.setInt(10, rew.getPhoto().getId());
+            //sp.setInt(10, rew.getPhoto().getId());
  
             sp.executeUpdate();
  

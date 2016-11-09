@@ -64,8 +64,8 @@ public class ServletGetRistorante extends HttpServlet {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
                     for (Review rew : rest.getReviews()) {
-                        if (! new DB_Manager().setPhoto_perCommento(rew))
-                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
+                        //if (! new DB_Manager().setPhoto_perCommento(rew))
+                           // request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
                         
                         if (! new DB_Manager().cercaUser_perId(rew.getCreator()))
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  

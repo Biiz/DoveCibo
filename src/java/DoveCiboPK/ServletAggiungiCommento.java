@@ -47,20 +47,20 @@ public class ServletAggiungiCommento extends HttpServlet {
             String name = request.getParameter("name");
             String description = request.getParameter("description");
             
-            Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
+            //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
 
             //CREATORE
             Cookie cookies[] = request.getCookies();
-            String NickName = "posty"; //cookies[1].getName();
+            String NickName = cookies[1].getName();
             User u = new User(-1, "", "", NickName, "", "", "");
             new DB_Manager().CheckProfilo(u);
             
             //RISTORANTE
-            Integer idR = 1; //(Restaurant) request.getAttribute("ristorante");
+            Integer idR = Integer.parseInt(request.getParameter("ristorante"));
             
             
             //CREO REW
-            Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, u, photo, 0);
+            Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, u, null, 0);
             
             
             //RIMPOSTA GLOBALVALUE DEL RISTORANTE

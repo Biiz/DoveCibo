@@ -163,7 +163,7 @@
                 </div>
             </div>   
         </div>
-
+        <!-- AGGIUNGI CONTROOL COKY -->
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
@@ -180,146 +180,150 @@
 
                     <div id="diversi" class="collapse">
                         <div class="row">
-                            <div class="col-md-12">    
 
-                                <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                            <form method="POST" action="ServletAggiungiCommento" >
+                                <input type="hidden" name="ristorante" value="<%=R.getId()%>">
+                                <div class="col-md-12">    
+                                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Inserisci commento</b></p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Inserisci commento</b></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <p>Titolo commento</p>
+                                                <textarea class="form-control" rows="1" id="comment" name="name"></textarea>
+                                                <p>Descrizione commento</p>
+                                                <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Valutazione generale</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="global_value" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="global_value" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="global_value" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="global_value" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="global_value" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Cibo</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="food" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="food" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="food" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="food" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="food" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Servizio</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="service" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="service" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="service" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="service" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="service" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle </label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Qualità/Prezzo</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="value_for_money" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="value_for_money" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="value_for_money" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="value_for_money" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="value_for_money" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>           
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Atmosfera:</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="atmospere" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="atmospere" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="atmospere" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="atmospere" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="atmospere" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>                                   
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button style="align-items: left" type="submit"  class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
+                                            
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <p>Titolo commento</p>
-                                            <textarea class="form-control" rows="1" id="comment" name="description"></textarea>
-                                            <p>Descrizione commento</p>
-                                            <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Valutazione generale</b></p>
-                                        </div>
-
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star1" name="global_value" value="1" />
-                                            <label for="star1"> 1 &ensp;</label>
-                                            <input type="radio" id="star2" name="global_value" value="2" />
-                                            <label for="star2"> 2 &ensp;</label>
-                                            <input type="radio" id="star3" name="global_value" checked="checked" value="3" />
-                                            <label for="star3"> 3 &ensp;</label>
-                                            <input type="radio" id="star4" name="global_value" value="4" />
-                                            <label for="star4"> 4 &ensp;</label>
-                                            <input type="radio" id="star5" name="global_value" value="5" />
-                                            <label for="star5"> 5 &ensp;stelle</label>
-                                        </fieldset>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Cibo</b></p>
-                                        </div>
-
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star1" name="food" value="1" />
-                                            <label for="star1"> 1 &ensp;</label>
-                                            <input type="radio" id="star2" name="food" value="2" />
-                                            <label for="star2"> 2 &ensp;</label>
-                                            <input type="radio" id="star3" name="food" checked="checked" value="3" />
-                                            <label for="star3"> 3 &ensp;</label>
-                                            <input type="radio" id="star4" name="food" value="4" />
-                                            <label for="star4"> 4 &ensp;</label>
-                                            <input type="radio" id="star5" name="food" value="5" />
-                                            <label for="star5"> 5 &ensp;stelle</label>
-                                        </fieldset>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Servizio</b></p>
-                                        </div>
-
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star1" name="service" value="1" />
-                                            <label for="star1"> 1 &ensp;</label>
-                                            <input type="radio" id="star2" name="service" value="2" />
-                                            <label for="star2"> 2 &ensp;</label>
-                                            <input type="radio" id="star3" name="service" checked="checked" value="3" />
-                                            <label for="star3"> 3 &ensp;</label>
-                                            <input type="radio" id="star4" name="service" value="4" />
-                                            <label for="star4"> 4 &ensp;</label>
-                                            <input type="radio" id="star5" name="service" value="5" />
-                                            <label for="star5"> 5 &ensp;stelle </label>
-                                        </fieldset>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Qualità/Prezzo</b></p>
-                                        </div>
-
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star1" name="value_for_money" value="1" />
-                                            <label for="star1"> 1 &ensp;</label>
-                                            <input type="radio" id="star2" name="value_for_money" value="2" />
-                                            <label for="star2"> 2 &ensp;</label>
-                                            <input type="radio" id="star3" name="value_for_money" checked="checked" value="3" />
-                                            <label for="star3"> 3 &ensp;</label>
-                                            <input type="radio" id="star4" name="value_for_money" value="4" />
-                                            <label for="star4"> 4 &ensp;</label>
-                                            <input type="radio" id="star5" name="value_for_money" value="5" />
-                                            <label for="star5"> 5 &ensp;stelle</label>
-                                        </fieldset>
-
-                                    </div>
-                                </div>           
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Atmosfera:</b></p>
-                                        </div>
-
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star1" name="atmospere" value="1" />
-                                            <label for="star1"> 1 &ensp;</label>
-                                            <input type="radio" id="star2" name="atmospere" value="2" />
-                                            <label for="star2"> 2 &ensp;</label>
-                                            <input type="radio" id="star3" name="atmospere" checked="checked" value="3" />
-                                            <label for="star3"> 3 &ensp;</label>
-                                            <input type="radio" id="star4" name="atmospere" value="4" />
-                                            <label for="star4"> 4 &ensp;</label>
-                                            <input type="radio" id="star5" name="atmospere" value="5" />
-                                            <label for="star5"> 5 &ensp;stelle</label>
-                                        </fieldset>
-
-                                    </div>
-                                </div>                                   
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button style="align-items: left" type="button" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -335,8 +339,9 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-9">
+                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
                         <div id="tagline">
-                            <p style="color: black; font-size: 25px"><b><%= rew.getName()%></b></p>
+                            <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                         </div>
                     </div>
                     <div class="col-md-3">
