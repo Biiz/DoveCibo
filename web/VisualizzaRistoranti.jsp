@@ -21,10 +21,8 @@
     <body>
         <%@ include file="navBar.jsp" %>
 
-        <div class="container">
+        <div class="container">        
             <div class="row row-centered">
-
-
 
                 <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
@@ -35,6 +33,7 @@
                             <th>€ MAX</th>
                             <th>INDIRIZZO</th>
                             <th>CUCINE</th>
+                            <th>ID</th>
                         </tr>
                     </thead>
                     <tbody style="background-color: white;">
@@ -82,6 +81,7 @@
                                     }
                                 %>
                             </td>
+                            <td><%=session.getAttribute("res_id"+i)%></td>
                         </tr>
                     </form>
                             <%
@@ -91,12 +91,18 @@
                 </table>
 
                 <script>
-                    $(document).ready(function () {
-                        $('#DataTable').DataTable();
-                    });
-                    
-                    $('#DataTable').DataTable( {
-                        responsive: true
+            
+                    $(document).ready(function() {
+                        $('#DataTable').DataTable( {
+                            "columnDefs": [
+                                {
+                                    "targets": [ 6 ],
+                                    "visible": false,
+                                    "searchable": false
+                                }
+                                
+                            ]
+                        } );
                     } );
                 </script>
                 
