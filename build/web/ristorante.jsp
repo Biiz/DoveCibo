@@ -82,6 +82,10 @@
                                         <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value()%> - <%=R.getPrice_range().getMax_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
+                                        <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
+                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>orari di apertura</b></li>
+                                        
+
                                         <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
 
                                                 <% for (Cusine c : R.getCusines()) {%>
@@ -89,7 +93,7 @@
                                                 <% }%>
 
                                             </b></li>
-                                        <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode</b></li>
+                                        <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode conentente le seguenti informazioni: Nome, indirizzo, orari di apertura</b></li>
 
                                     </ul>
 
