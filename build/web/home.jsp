@@ -31,7 +31,7 @@
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
 
                         <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
-                            <input type="text" name="go" class="form-control" placeholder="Cerca un ristorante">
+                            <input type="text" name="go" class="form-control" placeholder="Cerca un ristorante" required>
                             <span class="input-group-btn">
                                 <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
                                 <button class="btn btn-success" type="submit">Go!</button> 
