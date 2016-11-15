@@ -100,6 +100,7 @@
     </head>
     <body>
         <%@ include file="navBar.jsp" %>
+        <%  DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");%>
         <form name="addRestaurantForm"  action="ServletStampaTuttoRistorante" method="post">
             <div class="container">
                 <div class="row">

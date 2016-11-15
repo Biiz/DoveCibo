@@ -65,7 +65,7 @@
                         </tr>
                     </tfoot>
                     <tbody style="background-color: white;">
-                        <%                            Set id_restaurant = (HashSet) session.getAttribute("id_restaurant");
+                        <%  Set id_restaurant = (HashSet) session.getAttribute("id_restaurant");
                             for (int i = 0; i < id_restaurant.size(); i++) {
                         %>
                     <form name="ApriRistorante" method="POST" action="">

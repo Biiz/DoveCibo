@@ -66,7 +66,9 @@
     </head>
     <body>
         <%@ include file="navBar.jsp" %>
-        <%  Restaurant R = (Restaurant) request.getAttribute("ristorante");%>
+        <%  
+            DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
+        %>
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">
@@ -75,7 +77,7 @@
                             <div id="tagline">
                                 <p style="color: black; font-size: 28px"><b><%=R.getName()%></b></p>
                             </div>
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-md-12">
                                     <ul>
                                         <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%=R.getCordinate().getAdrers()%></b></li>
@@ -167,7 +169,12 @@
                 </div>
             </div>   
         </div>
-        <!-- AGGIUNGI CONTROOL COKY -->
+        <%
+        Cookie cookies[] = request.getCookies();
+            if(cookies != null){
+                for(int i = 0;i<cookies.length;i++){
+                    if(cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+        %>
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
@@ -333,8 +340,12 @@
 
                 </div>                     
             </div>
-        </div>   
-    </div>
+        </div> 
+        <%
+                }
+            }
+        }
+        %>
 
     <% for (Review rew : R.getReviews()) {%>
 
@@ -355,6 +366,11 @@
 
                     </div>
                 </div>
+                <%
+                if(cookies != null){
+                for(int i = 0;i<cookies.length;i++){
+                    if(cookies[i].getValue().equals("2") && R.getOwner().getNickname() == cookies[i].getName()){
+                %>
                 <div class="row">
                     <div class="col-md-12">
                         <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
@@ -364,7 +380,11 @@
                         <a href="#risposta" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
                     </div> 
                 </div>
-
+                <%
+                        }
+                    }
+                }
+                %>
                 <div id="risposta" class="collapse">
                     <div class="row">
                         <div class="col-md-12">    
