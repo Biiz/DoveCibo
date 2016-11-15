@@ -8,7 +8,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DoveCibo</title>
 
-
         <style>
             body {
                 background-image: url("img/img (7)b.jpg");

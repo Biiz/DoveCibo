@@ -22,8 +22,8 @@
                 background-size: cover;
                 color: #000000;
             }
-		
-		    .funkyradio div {
+
+            .funkyradio div {
                 clear: both;
                 /*margin: 0 50px;*/
                 overflow: hidden;
@@ -139,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- 3° row: indirizzo-->
                         <div class="row">
                             <div class="col-md-9">
@@ -226,7 +226,7 @@
                                 <h4><b>Fascia di prezzo:</b></h4>
                                 <div class="row">
                                     <div class="col-md-12">
-					<%@include file="aggiungiRistoranteSliderPrice.jsp" %>
+                                        <%@include file="aggiungiRistoranteSliderPrice.jsp" %>
                                     </div>
                                 </div> <!-- fine row cena -->
                             </div>
@@ -244,6 +244,53 @@
                                         <%@include file="aggiungiRistoranteSliderTime.jsp" %>
                                     </div>
                                 </div> <!-- fine row cena -->
+                            </div>
+                        </div>
+
+                        <!-- 5° row-->
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <label for="comment">Orari di apertura Pranzo:</label>
+                                <br>
+
+                                <div class="col-md-6">
+                                    <label for="sel1">Da:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <input class="form-control" type="time" id="sel1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">  
+                                    <label for="sel1">A:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <input class="form-control" type="time" id="sel1">
+                                    </div>
+                                </div>                    
+                            </div>
+                        </div>
+                        <!-- 5° row-->
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <label for="comment">Orari di apertura Cena:</label>
+                                <br>
+
+                                <div class="col-md-6">
+                                    <label for="sel1">Da:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <input class="form-control" type="time" id="sel1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">  
+                                    <label for="sel1">A:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <input class="form-control" type="time" id="sel1">
+                                    </div>
+                                </div>                    
                             </div>
                         </div>
 
