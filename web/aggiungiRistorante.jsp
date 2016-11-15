@@ -254,45 +254,116 @@
                                 <label for="comment">Orari di apertura Pranzo:</label>
                                 <br>
 
-                                <div class="col-md-6">
-                                    <label for="sel1">Da:</label>
+                                <div class="col-md-3">
+                                    <label for="sel1"> Da, ore:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <input class="form-control" type="time" id="sel1">
+                                        <select class="form-control" id="sel1">
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                          </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">  
-                                    <label for="sel1">A:</label>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <input class="form-control" type="time" id="sel1">
+                                        <select class="form-control" id="sel1">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
                                     </div>
-                                </div>                    
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">A ore:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1">
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                                    
                             </div>
                         </div>
+                        
                         <!-- 5° row-->
                         <div class="row">
 
                             <div class="col-md-12">
-                                <label for="comment">Orari di apertura Cena:</label>
+                                <label for="comment">Orari di apertura Cena</label>
                                 <br>
 
-                                <div class="col-md-6">
-                                    <label for="sel1">Da:</label>
+                                <div class="col-md-3">
+                                    <label for="sel1"> Da, ore:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <input class="form-control" type="time" id="sel1">
+                                        <select class="form-control" id="sel1">
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                          </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">  
-                                    <label for="sel1">A:</label>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <input class="form-control" type="time" id="sel1">
+                                        <select class="form-control" id="sel1">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
                                     </div>
-                                </div>                    
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">A ore:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1">
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                                    
                             </div>
                         </div>
+
 
                         <br>
 
