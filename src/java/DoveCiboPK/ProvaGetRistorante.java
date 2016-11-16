@@ -22,7 +22,7 @@ public class ProvaGetRistorante {
         
         
         //PIGLIARE ID RISTORANTE
-        Integer idR = 1; //MOMENTANEO
+        Integer idR = 3; //MOMENTANEO
         Restaurant rest = new Restaurant(idR);
         
         
@@ -30,11 +30,11 @@ public class ProvaGetRistorante {
             
             if( new DB_Manager().cercaRistorante_perId(rest)){
 
-                    if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
-                        System.out.println("ERROE1");
                     
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         System.out.println("ERROE2");
+                    System.out.println("id ho"+ rest.getDay_hours().getId());
+                    
                     
                     if( ! new DB_Manager().setOrariPerRistorante(rest))
                           System.out.println("ERROE3");
@@ -47,13 +47,16 @@ public class ProvaGetRistorante {
                     
                     if( ! new DB_Manager().setCommenti_perRistorante(rest))
                         System.out.println("ERROE6");
+                    
+                    new DB_Manager().cercaOwners_perRistoranti(rest);
 
                     System.out.println("ID r " + rest.getId());
-                    System.out.println("nik ow " + rest.getOwner().getNickname());
+                    System.out.println("ID o " + rest.getOwners().size());
+                    
                     System.out.println("nik cr " + rest.getCreator().getNickname());
-                    System.out.println("end m mar " + rest.getWeek_hours().getWeek()[1].getEndM());
+                    System.out.println("end m mar " + rest.getDay_hours().getEndM());
                     System.out.println("coordinate " + rest.getCordinate().getAdrers());
-                    System.out.println("Commento " + rest.getReviews().get(0).getName());
+                    System.out.println("Commento " + rest.getReviews().size());
                 
                 
             }else{

@@ -27,6 +27,21 @@ public class Day_hours {
         this.endP = endP;
     }
 
+    public Day_hours(Integer id, String startM, String endM, String startP, String endP) {
+        this.id = id;
+        this.startM = startM;
+        this.endM = endM;
+        this.startP = startP;
+        this.endP = endP;
+    }
+    
+    
+
+    public Day_hours(Integer id) {
+        this.id = id;
+    }
+    
+
     public String getEndM() {
         return endM;
     }

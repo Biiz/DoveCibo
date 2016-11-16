@@ -258,7 +258,7 @@
                                     <label for="sel1"> Da, ore:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="StMh">
                                             <option>9</option>
                                             <option>10</option>
                                             <option>11</option>
@@ -270,7 +270,7 @@
                                     <label for="sel1">minuti:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="StMm">
                                             <option>0</option>
                                             <option>15</option>
                                             <option>30</option>
@@ -282,7 +282,7 @@
                                     <label for="sel1">A ore:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="FtMh">
                                             <option>13</option>
                                             <option>14</option>
                                             <option>15</option>
@@ -294,7 +294,7 @@
                                     <label for="sel1">minuti:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="FtMm">
                                             <option>0</option>
                                             <option>15</option>
                                             <option>30</option>
@@ -317,7 +317,7 @@
                                     <label for="sel1"> Da, ore:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="StPh">
                                             <option>17</option>
                                             <option>18</option>
                                             <option>19</option>
@@ -329,7 +329,7 @@
                                     <label for="sel1">minuti:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="StPm">
                                             <option>0</option>
                                             <option>15</option>
                                             <option>30</option>
@@ -341,7 +341,7 @@
                                     <label for="sel1">A ore:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="FtPh">
                                             <option>21</option>
                                             <option>22</option>
                                             <option>23</option>
@@ -352,7 +352,7 @@
                                     <label for="sel1">minuti:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="FtPm">
                                             <option>0</option>
                                             <option>15</option>
                                             <option>30</option>

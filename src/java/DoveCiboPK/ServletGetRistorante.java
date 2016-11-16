@@ -36,8 +36,13 @@ public class ServletGetRistorante extends HttpServlet {
             
         if( new DB_Manager().cercaRistorante_perId(rest)){
 
-                    if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
+                    if( ! new DB_Manager().cercaOwners_perRistoranti(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    
+                    for (User u : rest.getOwners()){
+                        if( ! new DB_Manager().cercaUser_perId(u))
+                            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
                     
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
@@ -54,19 +59,13 @@ public class ServletGetRistorante extends HttpServlet {
                     if( ! new DB_Manager().setCommenti_perRistorante(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
                     
-                    if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    
                     if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);                    
                     
-                    if( ! new DB_Manager().cercaPhotos_perRistorante(rest))
+                    if( ! new DB_Manager().cercaPhotos_perRistorante(rest, 0))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
-                    for (Review rew : rest.getReviews()) {
-                        //if (! new DB_Manager().setPhoto_perCommento(rew))
-                           // request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
-                        
+                    for (Review rew : rest.getReviews()) {                        
                         if (! new DB_Manager().cercaUser_perId(rew.getCreator()))
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
                     }

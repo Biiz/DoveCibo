@@ -22,12 +22,11 @@ public class Review {
     private String name;
     private String description;
     private Date date_creation;
+    private Integer like;
     private User creator;
-    private Photo photo;
-    private Integer validation;
     private Replies repile;
 
-    public Review(Integer id, Integer global_value, Integer food, Integer service, Integer value_of_money, Integer atmosphere, String name, String description, Date date_creation, User creator, Photo photo, Integer validation) {
+    public Review(Integer id, Integer global_value, Integer food, Integer service, Integer value_of_money, Integer atmosphere, String name, String description, Date date_creation, Integer like, User creator) {
         this.id = id;
         this.global_value = global_value;
         this.food = food;
@@ -37,10 +36,15 @@ public class Review {
         this.name = name;
         this.description = description;
         this.date_creation = date_creation;
+        this.like = like;
         this.creator = creator;
-        this.photo = photo;
-        this.validation = validation;
-        this.repile = repile;
+    }
+
+
+    
+
+    public Integer getLike() {
+        return like;
     }
 
     public void setRepile(Replies repile) {
@@ -75,9 +79,6 @@ public class Review {
         return value_of_money;
     }
 
-    public Photo getPhoto() {
-        return photo;
-    }
 
     public Integer getGlobal_value() {
         return global_value;
@@ -87,9 +88,6 @@ public class Review {
         this.id = id;
     }
 
-    protected void setPhoto(Photo photo) {
-        this.photo = photo;
-    }
             
             
             

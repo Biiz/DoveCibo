@@ -5,6 +5,7 @@ package DoveCiboPK;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.security.acl.Owner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -351,8 +352,8 @@ public class DB_Manager {
  
         try {
  
-            query = "INSERT INTO restaurants(id,name,description,web_site_url,id_creator,id_price_range) "
-                    + "VALUES(DEFAULT,?,?,?,?,?)";
+            query = "INSERT INTO restaurants(id,name,description,web_site_url,id_creator,id_price_range, id_opening_hours, n_reviews, love) "
+                    + "VALUES(DEFAULT,?,?,?,?,?,?,0,0)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
             sp.setString(1, res.getName());
@@ -360,6 +361,7 @@ public class DB_Manager {
             sp.setString(3, res.getWeb_site_url());
             sp.setInt(4, res.getCreator().getId());
             sp.setInt(5, res.getPrice_range().getId());
+            sp.setInt(6, res.getDay_hours().getId());
  
             sp.executeUpdate();
  
@@ -481,22 +483,21 @@ public class DB_Manager {
         }
     }
  
-        public Boolean inserisciOrario(Day_hours dh, Integer wd) throws SQLException {
+        public Boolean inserisciOrario(Day_hours dh) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
  
         try {
-            query = "INSERT INTO opening_hours_ranges(id, day_of_the_week, start_hour_m, end_hour_m, start_hour_p, end_hour_p)"
-                    + "VALUES(DEFAULT,?,?,?,?,?)";
+            query = "INSERT INTO opening_hours_ranges(id, start_hour_m, end_hour_m, start_hour_p, end_hour_p)"
+                    + "VALUES(DEFAULT,?,?,?,?)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
-            sp.setInt(1, wd);
-            sp.setString(2, dh.getStartM());
-            sp.setString(3, dh.getEndM());
-            sp.setString(4, dh.getStartP());
-            sp.setString(5, dh.getEndP());
+            sp.setString(1, dh.getStartM());
+            sp.setString(2, dh.getEndM());
+            sp.setString(3, dh.getStartP());
+            sp.setString(4, dh.getEndP());
  
             sp.executeUpdate();
  
@@ -542,31 +543,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean inserisciRelazioneRistoranteOrario(Integer id_restourant, Integer id_day_hours) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
- 
-        try {
-            query = "INSERT INTO opening_hours_range_restaurant(id_restaurant, id_opening_hours_range)"
-                    + "VALUES(?,?)";
-            sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
- 
-            sp.setInt(1, id_restourant);
-            sp.setInt(2, id_day_hours);
- 
-            sp.executeUpdate();
- 
-            r = true;
-        } catch (SQLException e) {
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-        }
-    }
+
  
     public Boolean inserisciRelazioneCuisinesRestaurant(Integer id_restourant, Integer id_cuisine) throws SQLException {
  
@@ -581,6 +558,36 @@ public class DB_Manager {
  
             sp.setInt(1, id_restourant);
             sp.setInt(2, id_cuisine);
+ 
+            sp.executeUpdate();
+ 
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+        }
+    }
+    
+    
+    
+    
+    public Boolean inserisciRelazioneOwnerRestaurant(Integer id_restourant, Integer id_owner) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "INSERT INTO restaurant_owner(id_restaurant, id_owner)"
+                    + "VALUES(?,?)";
+            sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+ 
+            sp.setInt(1, id_restourant);
+            sp.setInt(2, id_owner);
  
             sp.executeUpdate();
  
@@ -649,8 +656,8 @@ public class DB_Manager {
                     + "date_creation, "
                     + "id_restaurant, "
                     + "id_creator, "
-                    + "id_photo) "
-                    + "VALUES(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,null)";
+                    + "love) "
+                    + "VALUES(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,0)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
             Integer food = rew.getFood();
@@ -711,15 +718,15 @@ public class DB_Manager {
                 res.setAltro(
                         rs.getString("description"),
                         rs.getInt("global_value"),
-                        new User(rs.getInt("id_owner")),
                         new Price_range(rs.getInt("id_price_range")),
                         rs.getString("name"),
                         rs.getString("web_site_url"),
                         new User(rs.getInt("id_creator")),
                         new Coordinate(res.getId())
                 );
- 
-                
+                res.setDay_hours(new Day_hours(rs.getInt("id_opening_hours")));
+                res.setLike(rs.getInt("love"));
+                res.setN_reviews(rs.getInt("n_reviews"));
  
             } else {
                 res = null;
@@ -881,6 +888,8 @@ public class DB_Manager {
                 u.setName(rs.getString("name"));
                 u.setSurname(rs.getString("surname"));
                 u.setNickname(rs.getString("nickname"));
+                u.setLike(rs.getInt("love"));
+                
  
                 System.out.println("account: " + u.getName());
  
@@ -968,17 +977,18 @@ public class DB_Manager {
         }
     }
  
-    public Boolean cercaPhotos_perRistorante(Restaurant res) throws SQLException {
+    public Boolean cercaPhotos_perRistorante(Restaurant res, Integer val) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
  
         try {
-            query = "SELECT  * FROM photos WHERE id_restaurant = ? ";
+            query = "SELECT  * FROM photos WHERE id_restaurant = ? AND validation = ?";
             sp = con.prepareStatement(query);
  
             sp.setInt(1, res.getId());
+            sp.setInt(2, val);
  
             ResultSet rs = sp.executeQuery();
  
@@ -1008,7 +1018,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean cercaOrario_perOrario(Day_hours dh, Integer dw) throws SQLException {
+    public Boolean cercaOrario_perOrario(Day_hours dh) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1017,14 +1027,13 @@ public class DB_Manager {
         try {
             query = "SELECT  * FROM opening_hours_ranges WHERE "
                     + "start_hour_m = ? AND end_hour_m = ? AND "
-                    + "start_hour_p = ? AND end_hour_p = ? AND day_of_the_week = ?";
+                    + "start_hour_p = ? AND end_hour_p = ? ";
             sp = con.prepareStatement(query);
  
             sp.setString(1, dh.getStartM());
             sp.setString(2, dh.getEndM());
             sp.setString(3, dh.getStartP());
             sp.setString(4, dh.getEndP());
-            sp.setInt(5, dw);
  
             ResultSet rs = sp.executeQuery();
  
@@ -1065,7 +1074,6 @@ public class DB_Manager {
                 System.out.println("find id ok");
                 res.setAltro(rs.getString("description"),
                                 rs.getInt("global_value"),
-                                new User(rs.getInt("id_owner")),
                                 new Price_range(rs.getInt("id_price_range")),
                                 rs.getString("name"),
                                 rs.getString("web_site_url"),
@@ -1094,10 +1102,10 @@ public class DB_Manager {
         Boolean r = true;
  
         try {
-            query = "SELECT OHR.DAY_OF_THE_WEEK, OHR.START_HOUR_M, OHR.END_HOUR_M, OHR.START_HOUR_P, OHR.END_HOUR_P "
-                    + "FROM OPENING_HOURS_RANGES AS OHR, OPENING_HOURS_RANGE_RESTAURANT AS OHRR "
-                    + "WHERE OHR.ID = OHRR.ID_OPENING_HOURS_RANGE "
-                    + "AND OHRR.ID_RESTAURANT = ?";
+            query = "SELECT START_HOUR_M, END_HOUR_M, START_HOUR_P, END_HOUR_P "
+                    + "FROM OPENING_HOURS_RANGES "
+                    + "WHERE "
+                    + "ID = ?";
            
            
             sp = con.prepareStatement(query);
@@ -1105,21 +1113,17 @@ public class DB_Manager {
  
             System.out.println("qery giusta");
            
-            sp.setInt(1, res.getId());
- 
-           
-           
-            ResultSet rs = sp.executeQuery();
-           
-            Day_hours[] orario = new Day_hours[7];
- 
-            while (rs.next()) {                
-                orario[ rs.getInt(1) ] = new Day_hours(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));                  
+            sp.setInt(1, res.getDay_hours().getId());
+
+            ResultSet rs = sp.executeQuery();        
+             
+            
+            if (rs.next()) {
+                res.setDay_hours( new Day_hours(res.getDay_hours().getId(), rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));                  
             }
-           
-            res.setWeek_hours( new Week_hours(orario));
  
         } catch (SQLException e) {
+            System.out.println(e.toString());
             this.errore = e.toString();
             r = false;
         } finally {
@@ -1407,6 +1411,8 @@ public class DB_Manager {
             query = "SELECT  * FROM REVIEWS WHERE ID_RESTAURANT = ? ORDER BY DATE_CREATION";
             sp = con.prepareStatement(query);
             
+            System.out.println("IDRRR"+ res.getId());
+            
             sp.setInt(1, res.getId());
             ResultSet rs = sp.executeQuery();            
             
@@ -1422,12 +1428,44 @@ public class DB_Manager {
                         rs.getString("NAME"), 
                         rs.getString("DESCRIPTION"), 
                         rs.getDate("DATE_CREATION"), 
-                        new User (rs.getInt("ID_CREATOR")), 
-                        new Photo (rs.getInt("ID_PHOTO")),
-                        rs.getInt("VALIDATION")   );
+                        rs.getInt("LOVE"), 
+                        new User (rs.getInt("ID_CREATOR")) );
                 
                 
                 res.addReviews(rew); 
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    public Boolean cercaOwners_perRistoranti( Restaurant res) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT * FROM RESTAURANT_OWNER WHERE ID_RESTAURANT = ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            ResultSet rs = sp.executeQuery();            
+            
+            while (rs.next()) {          
+                
+                User ow = new User(rs.getInt("ID_OWNER"));
+                System.out.println("ooooo"+ ow.getId());
+                res.addOwner(ow); 
             }
  
         } catch (SQLException e) {
@@ -1439,60 +1477,10 @@ public class DB_Manager {
             return r;
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
-    }
+    }    
     
     
-    
-    
-    
-    public Boolean setPhoto_perCommento(Review rew) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = true;
- 
-        try {
-            
-            if(rew.getPhoto().getId() == null) return false; //DA RIGUARDARE
-            
-            query = "SELECT  * FROM photos WHERE id = ? ";
-            sp = con.prepareStatement(query);
- 
-            sp.setInt(1, rew.getPhoto().getId());
- 
-            ResultSet rs = sp.executeQuery();
- 
-            if (rs.next()) {
-                Photo p = new Photo(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("path"),
-                        new User(rs.getInt("id_owner")),
-                        rs.getInt("validation")
-                );
-                
-                rew.setPhoto(p);
- 
-                System.out.println("photo: " + p.getName());
- 
-            } else {
-                r=false;
-            }
 
-        } catch (SQLException e) {
-            System.out.print(e.getMessage());
-            System.out.println("accesso fallito");
-            System.out.println("Possibile causa: " + e.getMessage());
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
     
     
     

@@ -60,7 +60,7 @@ public class ServletAggiungiCommento extends HttpServlet {
             
             
             //CREO REW
-            Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, u, null, 0);
+            Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null,0, u);
             
             
             //RIMPOSTA GLOBALVALUE DEL RISTORANTE

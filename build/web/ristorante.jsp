@@ -369,7 +369,8 @@
                 <%
                 if(cookies != null){
                 for(int i = 0;i<cookies.length;i++){
-                    if(cookies[i].getValue().equals("2") && R.getOwner().getNickname() == cookies[i].getName()){
+                    // DA SISTEMARE PER OGNI OWNER
+                    if(cookies[i].getValue().equals("2") && R.getOwners().get(0).getNickname() == cookies[i].getName()){
                 %>
                 <div class="row">
                     <div class="col-md-12">
