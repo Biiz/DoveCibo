@@ -233,19 +233,7 @@
                         </div>
                         <br>
 
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
-                        <!-- 8° row: orario di apertura-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4><b>Orario di apertura:</b></h4>
-                                <div class="row">
-                                    <div class="col-md-12"> 
-                                        <%@include file="aggiungiRistoranteSliderTime.jsp" %>
-                                    </div>
-                                </div> <!-- fine row cena -->
-                            </div>
-                        </div>
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>                       
 
                         <!-- 5° row-->
                         <div class="row">
