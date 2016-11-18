@@ -3,10 +3,14 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import DoveCiboPK.User;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.ArrayList;
 
-public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class CercaRistorantiHome_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -50,23 +54,23 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>DoveCibo</title>\n");
+      out.write("\n");
       out.write("\n");
       out.write("        <style>\n");
       out.write("            body {\n");
-      out.write("                background-image: url('img/img (1)big.jpeg');\n");
+      out.write("                background-image: url(\"img/img (7)b.jpg\");\n");
       out.write("                background-repeat: no-repeat;\n");
       out.write("                background-attachment: fixed;\n");
       out.write("                background-size: cover;\n");
-      out.write("            }\n");
-      out.write("            h1 {\n");
-      out.write("                /* text-shadow: 5px 5px 13px black; */\n");
-      out.write("            }\n");
-      out.write("            .ombra {\n");
-      out.write("                /* box-shadow: 5px 5px 13px black; */\n");
       out.write("            }\n");
       out.write("        </style>\n");
       out.write("    </head>\n");
@@ -380,26 +384,118 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</body>\n");
       out.write("</html>\n");
       out.write("\n");
+      out.write("\n");
       out.write("        <div class=\"container\">\n");
-      out.write("            <div class=\"row\" style=\"margin-top: 25%;\">\n");
+      out.write("            <div class=\"row row-centered\">\n");
       out.write("\n");
-      out.write("                <div class=\"col-md-3\"></div>\n");
-      out.write("                <div class=\"col-md-6\" style=\"background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;\">\n");
-      out.write("                    <form action=\"CercaRistorantiHome\" method=\"post\">\n");
-      out.write("                        <h1 style=\"color: black; font-size: 50px; padding-top: 5%; \">Cerca un ristorante</h1>\n");
       out.write("\n");
-      out.write("                        <div class=\"input-group input-group-lg ombra\" style=\"padding-bottom: 5%; \">\n");
-      out.write("                            <input type=\"text\" name=\"go\" class=\"form-control\" placeholder=\"Cerca un ristorante\">\n");
-      out.write("                            <span class=\"input-group-btn\">\n");
-      out.write("                                <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->\n");
-      out.write("                                <button class=\"btn btn-success\" type=\"submit\">Go!</button> \n");
-      out.write("                        </div> \n");
-      out.write("                    </form>                                 \n");
-      out.write("                </div> \n");
-      out.write("                <div class=\"col-md-3\"></div>\n");
+      out.write("\n");
+      out.write("                <table id=\"DataTable\" class=\"table table-striped table-bordered\" cellspacing=\"0\" width=\"100%\">\n");
+      out.write("                    <thead>\n");
+      out.write("                        <tr style=\"background-color: rgba(198, 239, 255, 1);\">\n");
+      out.write("                            <th>NOME</th>\n");
+      out.write("                            <th>VALUTAZIONE</th>\n");
+      out.write("                            <th>€ MIN</th>\n");
+      out.write("                            <th>€ MAX</th>\n");
+      out.write("                            <th>INDIRIZZO</th>\n");
+      out.write("                            <th>CUCINE</th>\n");
+      out.write("                        </tr>\n");
+      out.write("                    </thead>\n");
+      out.write("                    <tbody style=\"background-color: white;\">\n");
+      out.write("                        ");
+                            
+                            Set id_restaurant = (HashSet) session.getAttribute("id_restaurant");
+                            for (int i = 0; i < id_restaurant.size(); i++) {
+                        
+      out.write("\n");
+      out.write("                    <form name=\"ApriRistorante\" method=\"POST\" action=\"\">\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                <!-- bottone SUBMIT che contiene il nome del ristorante -->\n");
+      out.write("                                <div class=\"bottom text-center\">\n");
+      out.write("                                    ");
+
+                                        String res_name = (String)session.getAttribute("res_name" + i);
+                                    
+      out.write("\n");
+      out.write("                                    <button class=\"btn btn-info btn-justified\" type=\"submit\" href='/ServletGetRistorante?idR=1'><b>");
+      out.print(res_name.substring(0, 1).toUpperCase() + res_name.substring(1));
+      out.write("</b></button>\n");
+      out.write("                                </div>\n");
+      out.write("                            </td>\n");
+      out.write("                            <td>stelle</td>\n");
+      out.write("                            <td>");
+      out.print(session.getAttribute("prezzo_min" + i));
+      out.write("</td>\n");
+      out.write("                            <td>");
+      out.print(session.getAttribute("prezzo_max" + i));
+      out.write("</td>\n");
+      out.write("                            ");
+
+                            String res_city = (String)session.getAttribute("res_city" + i);
+                            String res_address = (String)session.getAttribute("res_address" + i);
+                            
+      out.write("\n");
+      out.write("                            <td>");
+      out.print(res_address.substring(0, 1).toUpperCase() + res_address.substring(1));
+      out.write(',');
+      out.write(' ');
+      out.print(res_city.substring(0, 1).toUpperCase() + res_city.substring(1));
+      out.write("</td>\n");
+      out.write("                            <td>                                                \n");
+      out.write("                                ");
+
+                                    List cuisine_name = (List) session.getAttribute("cuisine_name" + i);
+
+                                    Iterator itr2 = cuisine_name.iterator();
+
+                                    while (itr2.hasNext()) {
+
+                                    String element1 = (String) itr2.next();
+                                        if (itr2.hasNext()) {
+                                
+      out.write("\n");
+      out.write("                                ");
+      out.print(element1 + ", ");
+      out.write("\n");
+      out.write("                                ");
+
+                                    } else {
+                                
+      out.write("\n");
+      out.write("                                ");
+      out.print(element1 + "");
+      out.write("\n");
+      out.write("                                ");
+
+                                        }
+                                    }
+                                
+      out.write("\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                    </form>\n");
+      out.write("                            ");
+
+                                }
+                            
+      out.write("\n");
+      out.write("                    </tbody>\n");
+      out.write("                </table>\n");
+      out.write("\n");
+      out.write("                <script>\n");
+      out.write("                    $(document).ready(function () {\n");
+      out.write("                        $('#DataTable').DataTable();\n");
+      out.write("                    });\n");
+      out.write("                    \n");
+      out.write("                    $('#DataTable').DataTable( {\n");
+      out.write("                        responsive: true\n");
+      out.write("                    } );\n");
+      out.write("                </script>\n");
+      out.write("                \n");
       out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n");
+      out.write("        </div>  \n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
