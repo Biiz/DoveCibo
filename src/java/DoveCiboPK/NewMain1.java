@@ -30,8 +30,6 @@ public class NewMain1 {
         
         for (Review rew : res.getReviews()) {
             System.out.println("name: " + rew.getName());
-            new DB_Manager().setPhoto_perCommento(rew);
-            System.out.println("phat: " + rew.getPhoto().getPath());
             new DB_Manager().cercaUser_perId(rew.getCreator());
             System.out.println("name creator: " + rew.getCreator().getNickname());
         }

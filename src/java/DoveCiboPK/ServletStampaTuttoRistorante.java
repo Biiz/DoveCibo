@@ -37,6 +37,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             //CREATORE
             Cookie cookies[] = request.getCookies();
             String NickName = cookies[1].getName();
+            
             User u = new User(-1, "", "", NickName, "", "", "");
             if (!(new DB_Manager()).CheckProfilo(u)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);

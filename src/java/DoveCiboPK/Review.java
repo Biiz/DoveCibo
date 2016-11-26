@@ -40,8 +40,15 @@ public class Review {
         this.creator = creator;
     }
 
-
+    public Review(Integer id) {
+        this.id = id;
+    }
     
+    
+
+    public Integer getId() {
+        return id;
+    }
 
     public Integer getLike() {
         return like;

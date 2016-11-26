@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DoveCiboPK;
 
+
+import DoveCiboPK.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletAggiungiCommento", urlPatterns = {"/ServletAggiungiCommento"})
-public class ServletAggiungiCommento extends HttpServlet {
+@WebServlet(name = "ServletAggiungiOwner", urlPatterns = {"/ServletAggiungiOwner"})
+public class ServletAggiungiOwner extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -39,16 +40,6 @@ public class ServletAggiungiCommento extends HttpServlet {
         
         try {
 
-            Integer global_v = Integer.parseInt(request.getParameter("global_value"));
-            Integer food = Integer.parseInt(request.getParameter("food"));
-            Integer service = Integer.parseInt(request.getParameter("service"));
-            Integer value_for_money = Integer.parseInt(request.getParameter("value_for_money"));
-            Integer atmospere = Integer.parseInt(request.getParameter("atmospere"));
-            String name = request.getParameter("name");
-            String description = request.getParameter("description");
-            
-            //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
-
             //CREATORE
             Cookie cookies[] = request.getCookies();
             String NickName = cookies[1].getName();
@@ -58,26 +49,11 @@ public class ServletAggiungiCommento extends HttpServlet {
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));
             
-            
-            //CREO REW
-            Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null,0, u);
-            
-            
-            //RIMPOSTA GLOBALVALUE DEL RISTORANTE
-            //C = NUMERO COMMENTI RISTORANTE
-            //GV = GLOBAL VALUE DEL RISTORANTE
-            //NEW GV = ((GV*C)+REW.GV)/(C+1)
-            //UPDATE GV RIS
-            
-            
-            
-            
+
             //INSERIMENTO DB
-            if(! new DB_Manager().inserisciReview(rew, idR))
+            if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()));
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
-            if (!new DB_Manager().increaseReviewRestaurant(new Restaurant(idR)))
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
         

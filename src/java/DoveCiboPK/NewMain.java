@@ -32,7 +32,7 @@ public class NewMain {
                 
                 for(Restaurant rest : ALR){
                     
-                    if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
+                    if( ! new DB_Manager().cercaUser_perId(rest.getOwners().get(0)))
                         System.out.println("ERROE1");
                     
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
@@ -54,9 +54,9 @@ public class NewMain {
                 for(Restaurant rest : ALR){
                     
                     System.out.println("ID r " + rest.getId());
-                    System.out.println("nik ow " + rest.getOwner().getNickname());
+                    System.out.println("nik ow " + rest.getOwners().get(0).getNickname());
                     System.out.println("nik cr " + rest.getCreator().getNickname());
-                    System.out.println("end m mar " + rest.getWeek_hours().getWeek()[1].getEndM());
+                    System.out.println("end m mar " + rest.getDay_hours().getEndM());
                    System.out.println("coordinate " + rest.getCordinate().getAdrers());
                 }
                 

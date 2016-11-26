@@ -4,6 +4,9 @@
     Author     : IO-PC
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.*"%>
+<%@page import="DoveCiboPK.User"%>
 <%@page import="DoveCiboPK.Review"%>
 <%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
 <%@page import="DoveCiboPK.Cusine"%>
@@ -67,8 +70,11 @@
     <body>
         <%@ include file="navBar.jsp" %>
         <%  
+            User thisUser = (User) session.getAttribute("user");
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
         %>
+        
+
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">
@@ -87,7 +93,7 @@
                                         <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>orari di apertura</b></li>
                                         
-
+                                        
                                         <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
 
                                                 <% for (Cusine c : R.getCusines()) {%>
@@ -183,9 +189,17 @@
                         <div class="col-md-12 text-center">
                             <label class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-picture"></span> Carica foto<input type="file" accept="image/*" style="display: none;"></label>
 
+                            
+                            <% Date d = new Date(10); %>
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
 
-                            <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
+                            <% if(thisUser!=null)
+                               if(!R.isOwner(thisUser)){ %>
+                            <form method="POST" action="ServletReclamaRistorante" >
+                                <input type="hidden" name="ristorante" value="<%=R.getId()%>">
+                                <button type="submit" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
+                            </form>
+                             <% } %>
                         </div> 
                     </div>
 
@@ -209,7 +223,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <p>Titolo commento</p>
-                                                <textarea class="form-control" rows="1" id="comment" name="name"></textarea>
+                                                <input type="text" class="form-control" rows="1" id="comment" name="name" pattern=".{1,25}" required>
                                                 <p>Descrizione commento</p>
                                                 <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
                                             </div>
@@ -349,28 +363,45 @@
 
     <% for (Review rew : R.getReviews()) {%>
 
+    aggiungere stelline titolo descrizione
+    
     <div class="modal-dialog modal-lg" >
         <div class="modal-content colonna2">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-9">
-                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
+                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b>-<%=rew.getCreator().getLike()%></p>
                         <div id="tagline">
                             <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button style="" type="button" class="btn-like btn-default">
-                            <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true">123</span>
+                        
+                        
+                    <form method="POST" action="ServletAggiungiLike" >    
+                        <input type="hidden" name="ristorante" value="<%= R.getId() %>">
+                        <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId() %>">
+                       <input type="hidden" name="commento" value="<%= rew.getId() %>">
+                       
+                       <% if(thisUser != null){ %>
+                        <button style="" type="submit" class="btn-like btn-default">
+                            <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike() %> </span>
                         </button>
-
+                        <% } %>
+                        
+                    </form>
+                        
+                        
+                        
+                        
                     </div>
                 </div>
+                        
+                        
                 <%
-                if(cookies != null){
-                for(int i = 0;i<cookies.length;i++){
                     // DA SISTEMARE PER OGNI OWNER
-                    if(cookies[i].getValue().equals("2") && R.getOwners().get(0).getNickname() == cookies[i].getName()){
+                   if(thisUser!=null)
+                   if(R.isOwner((User) session.getAttribute("user"))){   
                 %>
                 <div class="row">
                     <div class="col-md-12">
@@ -382,9 +413,9 @@
                     </div> 
                 </div>
                 <%
-                        }
+                        
                     }
-                }
+                
                 %>
                 <div id="risposta" class="collapse">
                     <div class="row">

@@ -101,6 +101,7 @@ public class ServletLogin extends HttpServlet {
                     session.setAttribute("user_pass", u.getPassword());
                     session.setAttribute("user_res", s_n);
                     
+                    session.setAttribute("user", u);
                     
                     response.sendRedirect("/DoveCiboGit/home.jsp");
                 }

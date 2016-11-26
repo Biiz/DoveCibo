@@ -23,7 +23,6 @@ public class Restaurant {
     private Integer n_reviews;
     private ArrayList<User> owners = new ArrayList<User>();
     private User creator;
-    private Integer like;
     private Price_range price_range;
     private Day_hours day_hours;
     private Coordinate cordinate;
@@ -60,9 +59,7 @@ public class Restaurant {
         this.owners.add(owner);
     }
 
-    protected void setLike(Integer like) {
-        this.like = like;
-    }
+
 
     protected void setN_reviews(Integer n_reviews) {
         this.n_reviews = n_reviews;
@@ -75,9 +72,7 @@ public class Restaurant {
     
     
 
-    public Integer getLike() {
-        return like;
-    }
+
 
     public Integer getN_reviews() {
         return n_reviews;
@@ -156,7 +151,13 @@ public class Restaurant {
 
     
     
-    
+    public Boolean isOwner(User user){
+        
+        for (User uf : owners) {
+            if(uf.getId() == user.getId()) return true;
+        }
+        return false;
+    }
     
     
 
