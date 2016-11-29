@@ -187,8 +187,13 @@
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            <label class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-picture"></span> Carica foto<input type="file" accept="image/*" style="display: none;"></label>
-
+                            
+                            <form method="POST" action="ServletUpload" enctype="multipart/form-data" >                           
+                                <input type="hidden" name="idR" value="<%= R.getId() %>">
+                                <input type="hidden" name="idU" value="<%= thisUser.getId() %>">
+                                <input type="file" name="file" id="file" />
+                                <input type="submit" value="Upload" name="upload" id="upload" />
+                            </form>
                             
                             <% Date d = new Date(10); %>
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>

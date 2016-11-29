@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/postal/DoveCiboGit6/src/java/ServletAggiungiOwner.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/ServletStampaTuttoRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit6/web/profiloUtente.jsp</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/ServletAggiungiCommento.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/ServletAggiungiLike.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/ServletLogin.java</file>
-            <file>file:/home/postal/DoveCiboGit6/web/aggiungiRistorante.jsp</file>
-            <file>file:/home/postal/DoveCiboGit6/web/aggiungiRistoranteMap.jsp</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/User.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/Restaurant.java</file>
-            <file>file:/home/postal/DoveCiboGit6/web/ristorante.jsp</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/Review.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/ServletGetRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/DB_Manager.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/NewMain1.java</file>
-            <file>file:/home/postal/DoveCiboGit6/src/java/DoveCiboPK/Photo.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
