@@ -76,7 +76,7 @@
                                     <%
                                         String res_name = (String) session.getAttribute("res_name" + i);
                                     %>
-                                    <button class="btn btn-info btn-justified" type="submit"><b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%=id_restaurant.toArray()[i]%> ' style="color: white"><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></a></b></button>
+                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%=id_restaurant.toArray()[i]%> ' style="color: blue"><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></a></b>
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
