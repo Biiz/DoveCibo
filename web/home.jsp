@@ -1,10 +1,22 @@
 <%@page import="DoveCiboPK.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DoveCibo</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <style>
             body {
                 background-image: url('img/img (1)big.jpeg');
@@ -20,7 +32,8 @@
             }
         </style>
     </head>
-    <body>
+    
+    <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <div class="container">
             <div class="row" style="margin-top: 25%;">
