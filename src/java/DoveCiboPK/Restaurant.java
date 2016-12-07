@@ -19,7 +19,7 @@ public class Restaurant {
     private String name;
     private String description;
     private String web_site_url;
-    private Integer global_value;
+    private Float global_value;
     private Integer n_reviews;
     private ArrayList<User> owners = new ArrayList<User>();
     private User creator;
@@ -108,7 +108,7 @@ public class Restaurant {
         return description;
     }
 
-    public Integer getGlobal_value() {
+    public Float getGlobal_value() {
         return global_value;
     }
 
@@ -161,7 +161,7 @@ public class Restaurant {
     
     
 
-    protected void setAltro(String description, Integer global_value, 
+    protected void setAltro(String description, Float global_value, 
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c) {
         this.description = description;
         this.global_value = global_value;

@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -50,14 +51,15 @@ public class ServletAggiungiCommento extends HttpServlet {
             //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
 
             //CREATORE
-            Cookie cookies[] = request.getCookies();
-            String NickName = cookies[1].getName();
-            User u = new User(-1, "", "", NickName, "", "", "");
-            new DB_Manager().CheckProfilo(u);
+            HttpSession session = request.getSession(false);
+            User u = (User) session.getAttribute("user");
             
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));
-            
+            Restaurant res = new Restaurant(idR);
+ 
+            if(! new DB_Manager().cercaRistorante_perId(res))
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
             
             //CREO REW
             Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null,0, u);
@@ -69,7 +71,13 @@ public class ServletAggiungiCommento extends HttpServlet {
             //NEW GV = ((GV*C)+REW.GV)/(C+1)
             //UPDATE GV RIS
             
+            Float newGV =
+                    ((float)(res.getN_reviews()*res.getGlobal_value()+global_v))
+                    /
+                    ((float)(res.getN_reviews()+1));
             
+            if(! new DB_Manager().updateRate(res, newGV))
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
             
             
             //INSERIMENTO DB

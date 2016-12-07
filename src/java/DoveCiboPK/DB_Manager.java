@@ -719,7 +719,7 @@ public class DB_Manager {
             if (rs.next()) {
                 res.setAltro(
                         rs.getString("description"),
-                        rs.getInt("global_value"),
+                        rs.getFloat("global_value"),
                         new Price_range(rs.getInt("id_price_range")),
                         rs.getString("name"),
                         rs.getString("web_site_url"),
@@ -1072,7 +1072,7 @@ public class DB_Manager {
                 Restaurant res = new Restaurant(rs.getInt("id"));
                 System.out.println("find id ok");
                 res.setAltro(rs.getString("description"),
-                                rs.getInt("global_value"),
+                                rs.getFloat("global_value"),
                                 new Price_range(rs.getInt("id_price_range")),
                                 rs.getString("name"),
                                 rs.getString("web_site_url"),
@@ -1539,6 +1539,32 @@ public class DB_Manager {
             query = "UPDATE RESTAURANTS SET N_REVIEWS = N_REVIEWS+1 WHERE ID = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, res.getId());
+            sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }
+    
+    
+    public Boolean updateRate(Restaurant res, Float newGV) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "UPDATE RESTAURANTS SET GLOBAL_VALUE = ? WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setFloat(1, newGV);
+            sp.setInt(2, res.getId());
             sp.executeUpdate();
             r = true;
         } catch (SQLException e) {
