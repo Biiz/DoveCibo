@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="DoveCiboPK.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DoveCiboPK.Review"%>
 <%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
@@ -196,7 +198,7 @@
                                 <input type="submit" value="Upload" name="upload" id="upload" />
                             </form>
                             
-                            <% Date d = new Date(10); %>
+                            <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO%>
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
 
                             <% if(thisUser!=null)

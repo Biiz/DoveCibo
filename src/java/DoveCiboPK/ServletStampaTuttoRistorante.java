@@ -35,13 +35,8 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
         try {
 
             //CREATORE
-            Cookie cookies[] = request.getCookies();
-            String NickName = cookies[1].getName();
-            
-            User u = new User(-1, "", "", NickName, "", "", "");
-            if (!(new DB_Manager()).CheckProfilo(u)) {
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            }
+            HttpSession session = request.getSession(false);
+            User u = (User) session.getAttribute("user");
 
             // GIORNI D?APERTURA       
             Day_hours dh = new Day_hours(
@@ -117,10 +112,6 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
 
-
-            
-            
-
             //INSERISCI CUSINES
             String[] cucine_arr_string = new String[7];
             cucine_arr_string[1] = request.getParameter("cb1");
@@ -136,14 +127,10 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                     if (!new DB_Manager().inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
-                    if (!(new DB_Manager()).inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i)) {
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    }
                 }
 
             }
 
-            HttpSession session = request.getSession(false);
             session.removeAttribute("user_res");
             session.setAttribute("user_res", "yes");
 

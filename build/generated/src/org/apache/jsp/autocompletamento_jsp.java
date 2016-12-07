@@ -3,8 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import DoveCiboPK.User;
 import java.util.ArrayList;
+import DoveCiboPK.User;
 
 public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -50,16 +50,27 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
 
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <title>DoveCibo</title>\n");
+      out.write("        <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">        \n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css\">\n");
       out.write("        <link href=\"//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css\" rel=\"stylesheet\"/>\n");
-      out.write("\n");
-      out.write("<script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js\"></script>\n");
-      out.write("<script src=\"//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js\"></script>\n");
-      out.write("<script src=\"//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js\"></script>\n");
-      out.write("\n");
+      out.write("        \n");
+      out.write("        <script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js\"></script>\n");
+      out.write("        <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>      \n");
+      out.write("        <script src=\"http://code.jquery.com/jquery-1.12.3.js\"></script>\n");
+      out.write("        <script src=\"https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js\"></script>\n");
+      out.write("        <script src=\"https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js\"></script>\n");
+      out.write("        <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js\"></script>\n");
+      out.write("        <script src=\"//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js\"></script>\n");
+      out.write("        <script src=\"//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js\"></script>\n");
+      out.write("        \n");
+      out.write("        <meta charset=\"utf-8\">\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
+      out.write("        \n");
       out.write("        <style>\n");
       out.write("            body {\n");
       out.write("                background-image: url('img/img (1)big.jpeg');\n");
@@ -99,53 +110,29 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        .ui-helper-hidden-accessible {\n");
       out.write("          display: none;\n");
       out.write("        }\n");
-      out.write("      \n");
-      out.write("\n");
       out.write("        </style>\n");
       out.write("        \n");
       out.write("        <script>\n");
-      out.write("$(function() {\n");
-      out.write("  var availableTags = [\n");
-      out.write("    \"ActionScript\", \"AppleScript\", \"Asp\", \"BASIC\", \"C\", \"C++\",\n");
-      out.write("    \"Clojure\", \"COBOL\", \"ColdFusion\", \"Erlang\", \"Fortran\",\n");
-      out.write("    \"Groovy\", \"Haskell\", \"Java\", \"JavaScript\", \"Lisp\", \"Perl\",\n");
-      out.write("    \"PHP\", \"Python\", \"Ruby\", \"Scala\", \"Scheme\"\n");
-      out.write("  ];\n");
-      out.write("  \n");
-      out.write("  $(\".autocomplete\").autocomplete({\n");
-      out.write("    source: availableTags\n");
-      out.write("  });\n");
-      out.write("});\n");
+      out.write("            $(function() {\n");
+      out.write("              var availableTags = [\n");
+      out.write("                \"ActionScript\", \"AppleScript\", \"Asp\", \"BASIC\", \"C\", \"C++\",\n");
+      out.write("                \"Clojure\", \"COBOL\", \"ColdFusion\", \"Erlang\", \"Fortran\",\n");
+      out.write("                \"Groovy\", \"Haskell\", \"Java\", \"JavaScript\", \"Lisp\", \"Perl\",\n");
+      out.write("                \"PHP\", \"Python\", \"Ruby\", \"Scala\", \"Scheme\"\n");
+      out.write("              ];\n");
+      out.write("\n");
+      out.write("              $(\".autocomplete\").autocomplete({\n");
+      out.write("                source: availableTags\n");
+      out.write("              });\n");
+      out.write("            });\n");
       out.write("        </script>\n");
       out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        ");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta charset=\"utf-8\">\n");
-      out.write("        <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">\n");
-      out.write("        \n");
-      out.write("        <link rel=\"stylesheet\" href=\"https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css\">\n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        <script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js\"></script>\n");
-      out.write("        <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("        <script src=\"http://code.jquery.com/jquery-1.12.3.js\"></script>\n");
-      out.write("        <script src=\"https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js\"></script>\n");
-      out.write("        <script src=\"https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js\"></script>\n");
-      out.write("\n");
-      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("\n");
-      out.write("    </head>\n");
+      out.write("    \n");
       out.write("    <body style=\"padding-top: 70px;\">\n");
-      out.write("        <div class=\"navbar navbar-inverse navbar-static-top navbar-fixed-top\" role=\"navigation\">\n");
+      out.write("        ");
+      out.write("<div class=\"navbar navbar-inverse navbar-static-top navbar-fixed-top\" role=\"navigation\">\n");
       out.write("\n");
-      out.write("            <!-- bottone menù che compare quando la finestra è piccola-->\n");
+      out.write("            <!-- bottone menÃ¹ che compare quando la finestra Ã¨ piccola-->\n");
       out.write("            <div class=\"navbar-header\">\n");
       out.write("                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\n");
       out.write("                    <span class=\"sr-only\">Toggle navigation</span>\n");
@@ -156,7 +143,7 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                <a class=\"navbar-brand\" href=\"home.jsp\">DoveCibo</a>\n");
       out.write("            </div>\n");
       out.write("\n");
-      out.write("            <!-- il contenuto del menù -->\n");
+      out.write("            <!-- il contenuto del menÃ¹ -->\n");
       out.write("            <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\n");
       out.write("                <ul class=\"nav navbar-nav navbar-right\">\n");
       out.write("                    ");
@@ -169,7 +156,7 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("<!-- bottone che puppa la finestrella per accedere-->\n");
       out.write("<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#accedi\" style=\"padding-right: 35px;\"><span class=\"glyphicon glyphicon-log-in\"></span> Accedi</a></li>     \n");
       out.write("</ul> \n");
-      out.write("</div><!-- fine menù -->\n");
+      out.write("</div><!-- fine menÃ¹ -->\n");
       out.write("</div><!-- fine navBar -->\n");
       out.write("                    ");
         
@@ -202,7 +189,7 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                        </ul>\n");
       out.write("                    </li>\n");
       out.write("                </ul> \n");
-      out.write("            </div><!-- fine menù -->\n");
+      out.write("            </div><!-- fine menÃ¹ -->\n");
       out.write("        </div><!-- fine navBar -->\n");
       out.write("        ");
 
@@ -249,7 +236,7 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        </ul>\n");
       out.write("    </li>\n");
       out.write("</ul> \n");
-      out.write("</div><!-- fine menù -->\n");
+      out.write("</div><!-- fine menÃ¹ -->\n");
       out.write("</div><!-- fine navBar -->\n");
 
     }
@@ -289,7 +276,7 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    </ul>\n");
       out.write("</li>\n");
       out.write("</ul> \n");
-      out.write("</div><!-- fine menù -->\n");
+      out.write("</div><!-- fine menÃ¹ -->\n");
       out.write("</div><!-- fine navBar -->\n");
       out.write("\n");
 
@@ -323,7 +310,7 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    </ul>\n");
       out.write("</li>\n");
       out.write("</ul> \n");
-      out.write("</div><!-- fine menù -->\n");
+      out.write("</div><!-- fine menÃ¹ -->\n");
       out.write("</div><!-- fine navBar -->\n");
 
         }
@@ -337,15 +324,12 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("<!-- bottone che puppa la finestrella per accedere-->\n");
       out.write("<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#accedi\" style=\"padding-right: 35px;\"><span class=\"glyphicon glyphicon-log-in\"></span> Accedi</a></li>     \n");
       out.write("</ul> \n");
-      out.write("</div><!-- fine menù -->\n");
+      out.write("</div><!-- fine menÃ¹ -->\n");
       out.write("</div><!-- fine navBar -->\n");
 
 }
 }
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("<!-- Modal accedi-->\n");
@@ -394,7 +378,6 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("    </div>\n");
       out.write("</div> <!-- fine modal accedi -->\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!-- Modal notifiche-->\n");
       out.write("<div class=\"modal fade\" id=\"notifiche\" role=\"dialog\">\n");
       out.write("    <div class=\"modal-dialog modal-sm\">\n");
@@ -425,8 +408,6 @@ public final class autocompletamento_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        </div>   \n");
       out.write("    </div>\n");
       out.write("</div> <!-- fine modal notifiche -->\n");
-      out.write("</body>\n");
-      out.write("</html>\n");
       out.write("\n");
       out.write("        <div class=\"container\">\n");
       out.write("            <div class=\"row\" style=\"margin-top: 25%;\">\n");

@@ -32,11 +32,10 @@
             }
         </style>
     </head>
-    
-    <body style="padding-top: 70px;">
+    <body>
         <%@ include file="navBar.jsp" %>
         <div class="container">
-            <div class="row" style="margin-top: 25%;">
+            <div class="row" style="margin-top: 15%;">
 
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
@@ -45,6 +44,62 @@
 
                         <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
                             <input type="text" name="go" class="form-control" placeholder="Cerca un ristorante" required>
+                            <span class="input-group-btn">
+                                <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
+                                <button class="btn btn-success" type="submit">Go!</button> 
+                        </div> 
+                    </form>                                 
+                </div> 
+                <div class="col-md-3"></div>
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
+                    
+                        <form action="" method="post">
+                            
+                            <h2 style="color: black; font-size: 30px;">Ricerca per tipologia e vicinanza</h2>
+<div class="row">
+                            <div class="col-md-9">
+                            <div class="input-group-md ombra" style="padding-bottom: 5%; ">
+                                <input type="text" name="go" class="form-control" placeholder="Zona del ristorante" required>
+
+                                <div class="form-group ">
+                                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Tipologia: </div>
+                                        <select class="form-control" id="sel1">
+                                            <option>Pizzeria</option>
+                                            <option>Trattoria</option>
+                                            <option>Ristorante</option>
+                                            <option>Disco Restaurant</option>
+                                            <option>Straniera</option>
+                                            <option>Altro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-3">
+                            <button class="btn btn-success" type="submit">Go!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+                <div class="col-md-3"></div>
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
+                    <form action="" method="post">
+ <h2 style="color: black; font-size: 30px;">Ricerca per classifica e vicinanza</h2>
+
+                        <div class="input-group input-group-md ombra" style="padding-bottom: 5%; ">
+                            <input type="text" name="go" class="form-control" placeholder="Zona del ristorante" required>
                             <span class="input-group-btn">
                                 <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
                                 <button class="btn btn-success" type="submit">Go!</button> 

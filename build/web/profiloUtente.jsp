@@ -1,17 +1,22 @@
-<%-- 
-    Document   : profiloUtente
-    Created on : 18-set-2016, 16.49.45
-    Author     : IO-PC
---%>
-
-
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML>
 
+<!DOCTYPE HTML>
     <head>
-        <title>ModificaAccount</title>  
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     </head>
-    <body>    
+    
+    <body style="padding-top: 70px;">    
         <%@ include file="navBar.jsp" %>   
         <%
             Cookie cookies[] = request.getCookies();
@@ -22,7 +27,6 @@
         %> 
         
         <form name="loginForm"  action="UserUpdate" method="post">
-            
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
@@ -109,4 +113,3 @@
         }
         %>
     </body>
-
