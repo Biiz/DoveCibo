@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DoveCiboPK;
+
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Message;
@@ -13,16 +9,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
-import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author IO-PC
  */
 public class SendEmail_Recupero_credenziali {
-
-    
     public SendEmail_Recupero_credenziali(String name, String surname, String email, String nick, String psw) {
-
         try{
             final String username = "DoveCibo@gmail.com";
             final String password = "DoveCibo123";
@@ -62,11 +54,9 @@ public class SendEmail_Recupero_credenziali {
             transport.connect ("smtp.gmail.com", 465, username, password);
             transport.sendMessage(msg, msg.getAllRecipients());
             transport.close();
-            
         }
         catch(Exception e){
             e.printStackTrace();
         }
-
     }
 }

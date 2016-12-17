@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DoveCiboPK;
 
 import java.io.IOException;
@@ -20,25 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ServletGetTuttiRistoranti", urlPatterns = {"/ServletGetTuttiRistoranti"})
 public class ServletGetTuttiRistoranti extends HttpServlet {
 
-
  @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {
-
-
             //RICERCA DB
-
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             
             if( new DB_Manager().tuttiRistoranti(ALR)){
-                
                 for(Restaurant rest : ALR){
-                    
-                    if( ! new DB_Manager().cercaUser_perId(rest.getOwner()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
@@ -53,24 +38,18 @@ public class ServletGetTuttiRistoranti extends HttpServlet {
                
                      if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);                    
-              
                 }
-                
             }else{
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
-
             request.setAttribute("listaRistoranti", ALR);
             request.getRequestDispatcher("QEL_CHE_LE.jsp").forward(request, response);
-
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-
     }
-
 
     /**
      * Returns a short description of the servlet.
@@ -81,5 +60,4 @@ public class ServletGetTuttiRistoranti extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

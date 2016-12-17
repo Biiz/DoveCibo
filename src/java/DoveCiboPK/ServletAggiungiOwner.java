@@ -1,19 +1,8 @@
 package DoveCiboPK;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import DoveCiboPK.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -51,20 +40,15 @@ public class ServletAggiungiOwner extends HttpServlet {
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));
             
-
             //INSERIMENTO DB
             if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()));
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
-            
-            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
-        
+            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);        
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -76,5 +60,4 @@ public class ServletAggiungiOwner extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
