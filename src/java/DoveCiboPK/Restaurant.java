@@ -19,19 +19,22 @@ public class Restaurant {
     private String name;
     private String description;
     private String web_site_url;
-    private Integer global_value;
-    private User owner;
+    private Float global_value;
+    private Integer n_reviews;
+    private ArrayList<User> owners = new ArrayList<User>();
     private User creator;
     private Price_range price_range;
-    private Week_hours week_hours;
+    private Day_hours day_hours;
     private Coordinate cordinate;
-    private ArrayList<Review> reviews;
+    private ArrayList<Photo> photos = new ArrayList<Photo>();
+    private ArrayList<Review> reviews = new ArrayList<Review>();
+    private ArrayList<Cusine> cusines = new ArrayList<Cusine>();
 
     public Restaurant(Integer id) {
         this.id = id;
     }
 
-    public Restaurant(Integer id, String name, String description, String web_site_url, User creator, Coordinate cordinate, Price_range price_range, Week_hours weew_hours) {
+    public Restaurant(Integer id, String name, String description, String web_site_url, User creator, Coordinate cordinate, Price_range price_range, Day_hours day_hours) {
         this.id = id;
         this.name = name;
         this.cordinate = cordinate;
@@ -39,7 +42,7 @@ public class Restaurant {
         this.web_site_url = web_site_url;
         this.creator = creator;
         this.price_range = price_range;
-        this.week_hours = week_hours;
+        this.day_hours = day_hours;
         reviews = new ArrayList();
 
     }
@@ -48,20 +51,51 @@ public class Restaurant {
         this.id = id;
     }
 
-    protected void setWeek_hours(Week_hours weew_hours) {
-        this.week_hours = weew_hours;
+    protected void setDay_hours(Day_hours day_hours) {
+        this.day_hours = day_hours;
     }
 
-    public Week_hours getWeek_hours() {
-        return week_hours;
+    protected void addOwner(User owner) {
+        this.owners.add(owner);
+    }
+
+
+
+    protected void setN_reviews(Integer n_reviews) {
+        this.n_reviews = n_reviews;
+    }
+    
+    
+    
+    
+    
+    
+    
+
+
+
+    public Integer getN_reviews() {
+        return n_reviews;
+    }
+    
+    public Day_hours getDay_hours() {
+        return day_hours;
     }
 
     public Coordinate getCordinate() {
         return cordinate;
     }
+
+    public ArrayList<Cusine> getCusines() {
+        return cusines;
+    }
     
     
     
+    
+    public void addCusine( Cusine c) {
+        cusines.add(c);
+    }    
     
     
     
@@ -74,7 +108,7 @@ public class Restaurant {
         return description;
     }
 
-    public Integer getGlobal_value() {
+    public Float getGlobal_value() {
         return global_value;
     }
 
@@ -82,8 +116,8 @@ public class Restaurant {
         return id;
     }
 
-    public User getOwner() {
-        return owner;
+    public ArrayList<User> getOwners() {
+        return owners;
     }
 
     public Price_range getPrice_range() {
@@ -106,11 +140,31 @@ public class Restaurant {
         return reviews;
     }
 
-    protected void setAltro(String description, Integer global_value, User owner,
+    protected void setPhoto(Photo photo) {
+        this.photos.add(photo);
+    }
+
+    public ArrayList<Photo> getPhotos() {
+        return photos;
+    }
+
+
+    
+    
+    public Boolean isOwner(User user){
+        
+        for (User uf : owners) {
+            if(uf.getId() == user.getId()) return true;
+        }
+        return false;
+    }
+    
+    
+
+    protected void setAltro(String description, Float global_value, 
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c) {
         this.description = description;
         this.global_value = global_value;
-        this.owner = owner;
         this.creator = creator;
         this.price_range = price_range;
         this.name = name;

@@ -1,16 +1,28 @@
-<%-- 
-    Document   : ristorante
-    Created on : 22-lug-2016, 10.59.10
-    Author     : IO-PC
---%>
-
+<%@page import="java.sql.Date"%>
+<%@page import="DoveCiboPK.User"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DoveCiboPK.Review"%>
+<%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
+<%@page import="DoveCiboPK.Cusine"%>
+<%@page import="DoveCiboPK.Restaurant"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>DoveCibo</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
         <style>
             .btn-like {
                 padding: 14px 24px;
@@ -58,70 +70,41 @@
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
                 border-radius: 5px;
             }
-
-            .rating {
-                float:left;
-                border:none;
-            }
-            .rating:not(:checked) > input {
-                position:fixed;
-                top:-9999px;
-                clip:rect(0, 0, 0, 0);
-
-
-            }
-            .rating:not(:checked) > label {
-                float:right;
-                width:1em;
-                padding:0 .1em;
-                overflow:hidden;
-                white-space:nowrap;
-                cursor:pointer;
-                font-size:200%;
-                line-height:1.2;
-                color:#4e4e4e;
-
-            }
-            .rating:not(:checked) > label:before {
-                content:'★ ';
-
-            }
-            .rating > input:checked ~ label {
-                color: #f70;
-
-            }
-            .rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
-                color: gold;
-
-            }
-            .rating > input:checked + label:hover, .rating > input:checked + label:hover ~ label, .rating > input:checked ~ label:hover, .rating > input:checked ~ label:hover ~ label, .rating > label:hover ~ input:checked ~ label {
-                color: #ea0;
-            }
-            .rating > label:active {
-                position:relative;
-            }
-
         </style>
     </head>
-    <body>
+    
+    <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
+        <%  User thisUser = (User) session.getAttribute("user");
+            DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante"); %>
+        
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4">
                             <div id="tagline">
-                                <p style="color: black; font-size: 28px"><b>Nome ristorante</b></p>
+                                <p style="color: black; font-size: 28px"><b><%=R.getName()%></b></p>
                             </div>
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-md-12">
                                     <ul>
-                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b>Indirizzo</b></li>
-                                        <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b>Fascia di Prezzo</b></li>
-                                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b>Valutazione</b></li>
-                                        <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b>Link sito</b></li>
-                                        <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>Cucina</b></li>
-                                        <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode</b></li>
+                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%=R.getCordinate().getAdrers()%></b></li>
+                                        <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value()%> - <%=R.getPrice_range().getMax_value()%></b></li>
+                                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value()%></b></li>
+                                        <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
+                                        <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
+                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>orari di apertura</b></li>
+                                        
+                                        
+                                        <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
+
+                                                <% for (Cusine c : R.getCusines()) {%>
+                                                <%= c.getName()%>
+                                                <% }%>
+
+                                            </b></li>
+                                        <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode conentente le seguenti informazioni: Nome, indirizzo, orari di apertura</b></li>
 
                                     </ul>
 
@@ -187,130 +170,261 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;">sahdsakjhdakjsdh kjsahdakjshdasj khdaskjdh askd haskdh askjdhasjkdhadjkshadjh ajdhsa jksha kjashaskjhd asjkhdaskj hajkh asjd asjkh  ask askjh d hd ashd hha jah dakjdh akd jks</p>                                    
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%= R.getDescription()%></p>                                    
 
                         </div> 
                     </div>
 
-
                 </div>
             </div>   
         </div>
-
-
-
-
+        <%
+        Cookie cookies[] = request.getCookies();
+            if(cookies != null){
+                for(int i = 0;i<cookies.length;i++){
+                    if(cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+        %>
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            <label class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-picture"></span> Carica foto<input type="file" accept="image/*" style="display: none;"></label>
-
+                            
+                            <form method="POST" action="ServletUpload" enctype="multipart/form-data" >                           
+                                <input type="hidden" name="idR" value="<%= R.getId() %>">
+                                <input type="hidden" name="idU" value="<%= thisUser.getId() %>">
+                                <input type="file" name="file" id="file" />
+                                <input type="submit" value="Upload" name="upload" id="upload" />
+                            </form>
+                            
+                            <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO%>
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
 
-                            <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
+                            <% if(thisUser!=null)
+                               if(!R.isOwner(thisUser)){ %>
+                            <form method="POST" action="ServletReclamaRistorante" >
+                                <input type="hidden" name="ristorante" value="<%=R.getId()%>">
+                                <button type="submit" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
+                            </form>
+                             <% } %>
                         </div> 
                     </div>
+
                     <div id="diversi" class="collapse">
                         <div class="row">
-                            <div class="col-md-12">    
 
-                                <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                            <form method="POST" action="ServletAggiungiCommento" >
+                                <input type="hidden" name="ristorante" value="<%=R.getId()%>">
+                                <div class="col-md-12">    
+                                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Inserisci commento</b></p>
+                                            </div>
+                                        </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Inserisci commento</b></p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <p>Titolo commento</p>
+                                                <input type="text" class="form-control" rows="1" id="comment" name="name" pattern=".{1,25}" required>
+                                                <p>Descrizione commento</p>
+                                                <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Valutazione generale</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="global_value" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="global_value" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="global_value" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="global_value" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="global_value" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Cibo</b></p>
+                                            </div>
 
-                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="food" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="food" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="food" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="food" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="food" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
                                         </div>
                                     </div>
 
-                                </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Servizio</b></p>
+                                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="tagline">
-                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Valutazione</b></p>
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="service" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="service" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="service" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="service" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="service" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle </label>
+                                            </fieldset>
+
                                         </div>
+                                    </div>
 
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star5" name="rating" value="5" />
-                                            <label for="star5"> 5 stars</label>
-                                            <input type="radio" id="star4" name="rating" value="4" />
-                                            <label for="star4"> 4 stars</label>
-                                            <input type="radio" id="star3" name="rating" checked="checked" value="3" />
-                                            <label for="star3"> 3 stars</label>
-                                            <input type="radio" id="star2" name="rating" value="2" />
-                                            <label for="star2"> 2 stars</label>
-                                            <input type="radio" id="star1" name="rating" value="1" />
-                                            <label for="star1"> 1 star</label>
-                                        </fieldset>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Qualità/Prezzo</b></p>
+                                            </div>
 
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="value_for_money" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="value_for_money" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="value_for_money" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="value_for_money" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="value_for_money" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>           
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Atmosfera:</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="atmospere" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="atmospere" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="atmospere" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="atmospere" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="atmospere" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>                                   
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button style="align-items: left" type="submit"  class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
+                                            
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button style="align-items: left" type="button" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-                                    </div>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
                 </div>                     
             </div>
-        </div>   
-    </div>
+        </div> 
+        <%
+                }
+            }
+        }
+        %>
 
+    <% for (Review rew : R.getReviews()) {%>
 
-
-
-
-
-
-
-
-
-
+    aggiungere stelline titolo descrizione
+    
     <div class="modal-dialog modal-lg" >
         <div class="modal-content colonna2">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-9">
+                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b>-<%=rew.getCreator().getLike()%></p>
                         <div id="tagline">
-                            <p style="color: black; font-size: 25px"><b>Autore commento</b></p>
+                            <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button style="" type="button" class="btn-like btn-default">
-                            <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true">123</span>
+                        
+                        
+                    <form method="POST" action="ServletAggiungiLike" >    
+                        <input type="hidden" name="ristorante" value="<%= R.getId() %>">
+                        <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId() %>">
+                       <input type="hidden" name="commento" value="<%= rew.getId() %>">
+                       
+                       <% if(thisUser != null){ %>
+                        <button style="" type="submit" class="btn-like btn-default">
+                            <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike() %> </span>
                         </button>
-
+                        <% } %>
+                        
+                    </form>
+                        
+                        
+                        
+                        
                     </div>
                 </div>
+                        
+                        
+                <%
+                    // DA SISTEMARE PER OGNI OWNER
+                   if(thisUser!=null)
+                   if(R.isOwner((User) session.getAttribute("user"))){   
+                %>
                 <div class="row">
                     <div class="col-md-12">
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;">sahdsakjhdakjsdh kjsahdakjshdasj khdaskjdh askd haskdh askjdhasjkdhadjkshadjh ajdhsa jksha kjashaskjhd asjkhdaskj hajkh asjd asjkh  ask askjh d hd ashd hha jah dakjdh akd jks</p>  
+                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
 
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
                         <a href="#risposta" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
                     </div> 
                 </div>
-
-
+                <%
+                        
+                    }
+                
+                %>
                 <div id="risposta" class="collapse">
                     <div class="row">
                         <div class="col-md-12">    
@@ -333,7 +447,6 @@
 
                             </div>
 
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <button style="align-items: left" type="button" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
@@ -346,6 +459,8 @@
             </div>
         </div>   
     </div>
+
+    <% }%>   
 
 </body>
 </html>

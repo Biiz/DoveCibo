@@ -1,20 +1,24 @@
-<%-- 
-    Document   : modificaRistorante
-    Created on : 19-set-2016, 10.49.47
-    Author     : IO-PC
---%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="all" />   
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./bootstrap-slider/bootstrap-slider.css" media="all" />
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>DoveCibo</title>
         <style>
             .colonna2{
                 background-color: rgba(255, 255, 255, 0.80);
@@ -96,10 +100,11 @@
                 }
             }
         </script>
-
     </head>
-    <body>
+	
+    <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
+        <%  DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");%>
         <form name="addRestaurantForm"  action="ServletStampaTuttoRistorante" method="post">
             <div class="container">
                 <div class="row">
@@ -286,8 +291,5 @@
                 </div><br>
             </div>    
         </form>
-
     </body>
-</html>
-
 </html>

@@ -1,11 +1,11 @@
-<style>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>
 
+<style>
     #map {
         height: 500px;
-        width: 500px;
+        width: 350px;
         margin: auto;
     }
-
 </style>
 
 <script>
@@ -43,7 +43,6 @@
             }
         });
     }
-
 </script>
 
 <body onload="initialize()" >
@@ -68,5 +67,3 @@
     </div>
     <div id="map"></div>
 </body>
-
-<script  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>

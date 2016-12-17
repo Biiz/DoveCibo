@@ -1,14 +1,24 @@
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="all" />   
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./bootstrap-slider/bootstrap-slider.css" media="all" />
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>DoveCibo</title>
         <style>
             .colonna2{
                 background-color: rgba(255, 255, 255, 0.80);
@@ -22,8 +32,8 @@
                 background-size: cover;
                 color: #000000;
             }
-		
-		    .funkyradio div {
+
+            .funkyradio div {
                 clear: both;
                 /*margin: 0 50px;*/
                 overflow: hidden;
@@ -92,9 +102,9 @@
         <script>
             $("#ex2").slider();
         </script>
-
     </head>
-    <body>
+    
+    <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <form name="addRestaurantForm"  action="ServletStampaTuttoRistorante" method="post">
             <div class="container">
@@ -139,7 +149,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- 3° row: indirizzo-->
                         <div class="row">
                             <div class="col-md-9">
@@ -150,7 +160,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Numero civico:</label>          
+                                    <label>Civico:</label>          
                                     <input type="number" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!"required>
                                 </div>
                             </div>
@@ -226,26 +236,132 @@
                                 <h4><b>Fascia di prezzo:</b></h4>
                                 <div class="row">
                                     <div class="col-md-12">
-					<%@include file="aggiungiRistoranteSliderPrice.jsp" %>
+                                        <%@include file="aggiungiRistoranteSliderPrice.jsp" %>
                                     </div>
                                 </div> <!-- fine row cena -->
                             </div>
                         </div>
                         <br>
 
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>                       
 
-                        <!-- 8° row: orario di apertura-->
+                        <!-- 5° row-->
                         <div class="row">
+
                             <div class="col-md-12">
-                                <h4><b>Orario di apertura:</b></h4>
-                                <div class="row">
-                                    <div class="col-md-12"> 
-                                        <%@include file="aggiungiRistoranteSliderTime.jsp" %>
+                                <label for="comment">Orari di apertura Pranzo:</label>
+                                <br>
+
+                                <div class="col-md-3">
+                                    <label for="sel1"> Da, ore:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="StMh">
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                          </select>
                                     </div>
-                                </div> <!-- fine row cena -->
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="StMm">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">A ore:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="FtMh">
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="FtMm">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                                    
                             </div>
                         </div>
+                        
+                        <!-- 5° row-->
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <label for="comment">Orari di apertura Cena</label>
+                                <br>
+
+                                <div class="col-md-3">
+                                    <label for="sel1"> Da, ore:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="StPh">
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="StPm">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">A ore:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="FtPh">
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="sel1">minuti:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                        <select class="form-control" id="sel1" name="FtPm">
+                                            <option>0</option>
+                                            <option>15</option>
+                                            <option>30</option>
+                                            <option>45</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                                    
+                            </div>
+                        </div>
+
 
                         <br>
 
@@ -265,7 +381,7 @@
                         <!-- 10° row: bottoni-->
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Sign in</button>
+                                <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Conferma</button>
                                 <button type="reset" class="btn btn-sm btn-danger" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
                                 <!-- script per tornare indietro di pagina nel browser-->
                                 <script>
@@ -282,6 +398,5 @@
                 </div><br>
             </div>    
         </form>
-
     </body>
 </html>

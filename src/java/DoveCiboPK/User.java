@@ -18,6 +18,7 @@ public class User {
     private String email;
     private String password;
     private String role;
+    private Integer like;
 
     public User(Integer id) {
         this.id = id;
@@ -66,6 +67,15 @@ public class User {
         this.role = role;
     }
 
+    protected void setLike(Integer like) {
+        this.like = like;
+    }
+    
+    
+    
+    
+    
+
     public String getEmail() {
         return email;
     }
@@ -93,6 +103,13 @@ public class User {
     public String getRole() {
         return role;
     }
+
+    public Integer getLike() {
+        return like;
+    }
+    
+    
+    
 
     public User() {
     }

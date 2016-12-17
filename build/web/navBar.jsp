@@ -1,16 +1,4 @@
- <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    </head>
-    <body style="padding-top: 70px;">
-        <div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
 
             <!-- bottone menù che compare quando la finestra è piccola-->
             <div class="navbar-header">
@@ -27,24 +15,29 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <%
+                        if(session.isNew()){
+                            %>
+                            <!-- registrati -->
+</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
+<!-- bottone che puppa la finestrella per accedere-->
+<li><a href="#" data-toggle="modal" data-target="#accedi" style="padding-right: 35px;"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>     
+</ul> 
+</div><!-- fine menù -->
+</div><!-- fine navBar -->
+                    <%        
+                        }else{
                         Cookie cookies[] = request.getCookies();
-                        if (cookies != null) {
+                        if (cookies != null && cookies.length > 1) {   
                             for(int i = 0; i < cookies.length ;i++){
-                                if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
-                                    String value = cookies[i].getValue();
-                                    String nickName = cookies[i].getName();
-                                    DoveCiboPK.User u = new DoveCiboPK.User (-1,"","",nickName,"","","");
-                                    (new DoveCiboPK.DB_Manager()).CheckProfilo(u);
-                                    (new DoveCiboPK.DB_Manager()).niknameEsistente_login(u);
-                                    
-                                    if (value.equals("1")) {                    
-                    %>
+                                if (cookies[i].getValue().equals("1")) { 
+                                        
+                                                        %>
                     <!-- bottone che puppa la finestrella delle notifiche-->
                     <li><a href="#" data-toggle="modal" data-target="#notifiche" style="padding-right: 15px;"><span class="glyphicon glyphicon-tags"></span> Notifiche</a></li>
 
                     <!-- Nome e Cognome dropdown -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span> <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_name") %> <%=session.getAttribute("user_surname") %> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog" disabled></span> Profilo</a></li>
                             <li role="separator" class="divider"></li>
@@ -60,7 +53,7 @@
         </div><!-- fine navBar -->
         <%
             }
-            if (value.equals("2")) {
+ if (cookies[i].getValue().equals("2")) {
         %>
         <!-- bottone che puppa la finestrella delle notifiche-->
     <li><a href="#" data-toggle="modal" data-target="#notifiche"><span class="glyphicon glyphicon-tags" style="padding-right: 15px;"></span> Notifiche</a></li>
@@ -70,14 +63,22 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</a></li>
+            <form action="VisualizzaRistorantiUtente2" method="post">
+                <div class="row text-center">
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i tuoi ristoranti</button></li>
+                </div>
+            </form>
             <li role="separator" class="divider"></li>
-            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i tuoi ristoranti</a></li>
+            <form action="VisualizzaRistoranti" method="post">
+                <div class="row text-center">
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
+                </div>
+            </form>
         </ul>
     </li>
     <!-- Nome e Cognome dropdown -->
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span> <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_name") %> <%=session.getAttribute("user_surname") %> <span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
             <li role="separator" class="divider"></li>
@@ -93,12 +94,7 @@
 </div><!-- fine navBar -->
 <%
     }
-    if (value.equals("3")) {
-        DoveCiboPK.User u1 = new DoveCiboPK.User (-1,"","",nickName,"","","");
-        (new DoveCiboPK.DB_Manager()).CheckProfilo(u1);
-        (new DoveCiboPK.DB_Manager()).checkNavBar_restaurant(u1);
-        if(!u1.getName().equals(u.getName())){
-
+ if (cookies[i].getValue().equals("3") && session.getAttribute("user_res").equals("yes") ) {
 
 %>
 <!-- Ristorante dropdown -->
@@ -107,15 +103,17 @@
         <ul class="dropdown-menu">
             <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="ristoranti.jsp"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="modificaRistorante.jsp"><span class="glyphicon glyphicon-wrench"></span> Modifica i ristoranti inseriti</a></li>
+            <form action="VisualizzaRistoranti" method="post">
+                <div class="row text-center">
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Vedi i ristoranti inseriti</button></li>
+                </div>
+            </form>
         </ul>
     </li>
 <!-- Nome e Cognome dropdown -->
 
 <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span>  <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span>  <%=session.getAttribute("user_name") %> <%=session.getAttribute("user_surname") %> <span class="caret"></span></a>
     <ul class="dropdown-menu">
         <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
         <li role="separator" class="divider"></li>
@@ -131,7 +129,8 @@
 </div><!-- fine navBar -->
 
 <%
-        }else{
+        }
+ if (cookies[i].getValue().equals("3")  && session.getAttribute("user_res").equals("no")){
 %>
   <!-- Ristorante dropdown -->
     <li class="dropdown">
@@ -143,7 +142,7 @@
 <!-- Nome e Cognome dropdown -->
 
 <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span>  <%=u.getName()%> <%=u.getSurname()%> <span class="caret"></span></a>
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 35px;"><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("user_name") %> <%=session.getAttribute("user_surname") %> <span class="caret"></span></a>
     <ul class="dropdown-menu">
         <li><a href="profiloUtente.jsp"><span class="glyphicon glyphicon-cog"></span> Profilo</a></li>
         <li role="separator" class="divider"></li>
@@ -159,20 +158,9 @@
 </div><!-- fine navBar -->
 <%
         }
-    }
-}else if(cookies.length < 2) {
-%>
-<!-- registrati -->
-</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
-<!-- bottone che puppa la finestrella per accedere-->
-<li><a href="#" data-toggle="modal" data-target="#accedi" style="padding-right: 35px;"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>     
-</ul> 
-</div><!-- fine menù -->
-</div><!-- fine navBar -->
-<%
-    }
 }
 }else{
+
 %>
 <!-- registrati -->
 </a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
@@ -183,10 +171,8 @@
 </div><!-- fine navBar -->
 <%
 }
+}
 %>
-
-
-
 
 <!-- Modal accedi-->
 <div class="modal fade" id="accedi" role="dialog">
@@ -202,7 +188,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                    <input type="text" class="form-control" name="nickname" placeholder="Nickname">
+                                    <input type="text" class="form-control" name="nickname" placeholder="Nickname" value="user">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -211,7 +197,7 @@
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-lock"></span>
                                         </div>
-                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                        <input type="password" class="form-control" name="password" placeholder="Password" value="user">
                                     </div>
                                 </div>
                                 <div class="help-block text-right">
@@ -221,11 +207,6 @@
 
                             <button type="reset" class="btn btn-sm btn-warning">Clear</button>
                             <button href="home.jsp" type="submit" class="btn btn-success pull-right">Log in</button>
-                            <div class="checkbox">
-                                <label class="pull-right">
-                                    <input type="checkbox" name = "mantieni_accesso" value= "true"> mantieni l'accesso
-                                </label>
-                            </div>  
                         </form>
                     </div>
                 </div>    
@@ -238,7 +219,6 @@
         </div>   
     </div>
 </div> <!-- fine modal accedi -->
-
 
 <!-- Modal notifiche-->
 <div class="modal fade" id="notifiche" role="dialog">
@@ -270,5 +250,3 @@
         </div>   
     </div>
 </div> <!-- fine modal notifiche -->
-</body>
-</html>

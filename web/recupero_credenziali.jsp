@@ -1,27 +1,25 @@
-<%-- 
-    Document   : password_dimenticata
-    Created on : May 20, 2016, 4:26:27 PM
-    Author     : Michael
---%>
-
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Recupera Credenziali</title>
-        <script>
-            function validateForm() {
-                var x = document.forms["loginForm"]["mail"].value;
-                if (x == null || x == "") {
-                    alert("inserire l'email");
-                    return false;
-                }
-            }
-        </script>   
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    
+    <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
-        <form name="Verifica_credenziali" method="post" action="SendEmail.jsp" onsubmit="return validateForm()">
+        <form name="Verifica_credenziali" method="post" action="ServletRecuperoCredenziali">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
@@ -34,7 +32,7 @@
                             <div class="col-md-12">
                                 <label for="basic-url">Inserire email:</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                                 </div>
                                 <label for="basic-url">Il nickname e la password le saranno inviate via email</label>
                             </div>

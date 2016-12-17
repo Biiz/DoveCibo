@@ -75,9 +75,7 @@ public class ServletRegistrazione extends HttpServlet {
             //INSERIMENTO DB
             User u = new User(null, first_name, last_name, nickname, email, password, role);
 
-            DB_Manager dbm = new DB_Manager();
-
-            if (dbm.inserisciAccount(u)) {
+            if ((new DB_Manager()).inserisciAccount(u)) {
                 SendEmail_Attivazione email_registrazione = new SendEmail_Attivazione(first_name, nickname, password, email);
                 response.sendRedirect("/DoveCiboGit/registrazioneEffettuata.jsp"); 
                 
