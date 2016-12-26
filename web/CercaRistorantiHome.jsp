@@ -1,3 +1,4 @@
+<%@page import="DoveCiboPK.*"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>
@@ -34,6 +35,11 @@
                 padding: 3px;
                 box-sizing: border-box;
             }
+            
+      #map {
+        height: 400px;
+        width: 100%;
+       }
         </style>
     </head>
     
@@ -73,52 +79,34 @@
                         </tr>
                     </tfoot>
                     <tbody style="background-color: white;">
-                        <%  Set id_restaurant = (HashSet) session.getAttribute("id_restaurant");
-                            for (int i = 0; i < id_restaurant.size(); i++) {
+                        <%  ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("listaRistoranti");
+                            for (Restaurant rest : ALR) {
                         %>
                     <form name="ApriRistorante" method="POST" action="">
                         <tr>
                             <td>
                                 <!-- bottone SUBMIT che contiene il nome del ristorante -->
                                 <div class="bottom text-center">
-                                    <%
-                                        String res_name = (String) session.getAttribute("res_name" + i);
-                                    %>
-                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%=id_restaurant.toArray()[i]%> ' style="color: blue"><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></a></b>
+                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style="color: blue"><%= rest.getName() %></a></b>
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-sm btn-justified">mappa</button>
+                                    <button class="btn btn-info btn-sm btn-justified" onclick="moveToLocation(<%= rest.getCordinate().getLatitude() %>,<%= rest.getCordinate().getLongitude() %>)">mappa</button>
                                 </div>
                             </td>
                             <td background="img/img (1)low.jpg"><b style="background-color: white;">stelle</b></td>
                             <td>123</td>
                             <td>123</td>
-                            <td><%=session.getAttribute("prezzo_min" + i)%></td>
-                            <td><%=session.getAttribute("prezzo_max" + i)%></td>
-                            <%
-                                String res_city = (String) session.getAttribute("res_city" + i);
-                                String res_address = (String) session.getAttribute("res_address" + i);
-                            %>
-                            <td><%=res_address.substring(0, 1).toUpperCase() + res_address.substring(1)%>, <%=res_city.substring(0, 1).toUpperCase() + res_city.substring(1)%></td>
+                            <td><%= rest.getPrice_range().getMin_value() %></td>
+                            <td><%= rest.getPrice_range().getMax_value() %></td>
+
+                            <td><%= rest.getCordinate().getNazione() %>, <%= rest.getCordinate().getCity() %> , <%= rest.getCordinate().getAdrers() %> </td>
                             <td>                                                
                                 <%
-                                    List cuisine_name = (List) session.getAttribute("cuisine_name" + i);
-
-                                    Iterator itr2 = cuisine_name.iterator();
-
-                                    while (itr2.hasNext()) {
-
-                                        String element1 = (String) itr2.next();
-                                        if (itr2.hasNext()) {
+                                    for(Cusine c : rest.getCusines()){
                                 %>
-                                <%=element1 + ", "%>
+                                <%=c.getName()+" "%>
                                 <%
-                                } else {
-                                %>
-                                <%=element1 + ""%>
-                                <%
-                                        }
                                     }
                                 %>
                             </td>
@@ -142,6 +130,67 @@
 
             </div>
         </div>
+                    
+                    
+<!--MAPPPA-->
+
+    <div id="map"></div>
+
+    
+    <script>
+      var map; 
+        
+        
+      function initMap() {
+        var uluru = {lat: 43, lng: 12};
+        
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: uluru
+        });
+        
+        <% for(Restaurant rest : ALR){ %>
+        var infowindow<%= rest.getId() %> = new google.maps.InfoWindow({
+            content: "  <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style='color: blue'> <%= rest.getName() %></a></b>"
+        });
+        <%  } %>
+            
+        
+        <% for(Restaurant rest : ALR){ %>
+          var marker<%= rest.getId() %> = new google.maps.Marker({
+              position: {lat:<%= rest.getCordinate().getLatitude() %>,lng:<%= rest.getCordinate().getLongitude() %>},
+          map: map
+        });
+        <%  } %>
+        
+        
+        <% for(Restaurant rest : ALR){ %>
+        marker<%= rest.getId() %>.addListener('click', function() {
+            infowindow<%= rest.getId() %>.open(map, marker<%= rest.getId() %>);
+        });
+        <%  } %>
+      }
+      
+
+
+      function moveToLocation(lat, lng){
+        var center = new google.maps.LatLng(lat, lng);
+        // using global variable:
+        map.panTo(center);
+        map.setZoom(12);
+      }
+
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI&callback=initMap">
+    </script>
+
+
+
+<!--FINE MAPPA-->
+                    
+                    
 
         <script>
             $(document).ready(function () {

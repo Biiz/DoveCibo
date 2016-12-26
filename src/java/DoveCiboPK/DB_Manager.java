@@ -1154,6 +1154,8 @@ public class DB_Manager {
             if (rs.next()) {
  
                         c.setAdrers(rs.getString("ADDRESS"));
+                        c.setCity(rs.getString("CITY"));
+                        c.setNazione(rs.getString("NAZIONE"));
                         c.setLatitude(rs.getFloat("LATITUDE"));
                         c.setLongitude(rs.getFloat("LONGITUDE"));
    
