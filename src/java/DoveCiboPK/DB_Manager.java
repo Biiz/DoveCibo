@@ -5,7 +5,6 @@ package DoveCiboPK;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.security.acl.Owner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,11 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
-import jdk.nashorn.internal.runtime.RewriteException;
  
 /**
  *
