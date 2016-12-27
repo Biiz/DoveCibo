@@ -1,5 +1,7 @@
 package DoveCiboPK;
 
+import java.sql.Date;
+
 /**
  *
  * @author stefano
@@ -11,6 +13,7 @@ public class Photo {
     private String path;
     private User owner;
     private Integer validation;
+    private Date date_creation;
 
     public Photo(Integer id, String name, String description, String path, User owner, Integer validation) {
         this.id = id;
@@ -20,6 +23,21 @@ public class Photo {
         this.owner = owner;
         this.validation = validation;
     }
+
+    public Photo(Integer id, String name, String description, String path, User owner, Integer validation, Date date_creation) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.path = path;
+        this.owner = owner;
+        this.validation = validation;
+        this.date_creation = date_creation;
+    }
+
+    public Date getDate_creation() {
+        return date_creation;
+    }
+    
 
     public Photo(Integer id) {
         this.id = id;

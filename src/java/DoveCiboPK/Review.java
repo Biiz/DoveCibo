@@ -91,6 +91,12 @@ public class Review {
         return global_value;
     }
 
+    public Date getDate_creation() {
+        return date_creation;
+    }
+    
+    
+
     protected void setId(Integer id) {
         this.id = id;
     }

@@ -998,7 +998,8 @@ public class DB_Manager {
                         rs.getString("description"),
                         rs.getString("path"),
                         new User(rs.getInt("id_owner")),
-                        rs.getInt("validation")
+                        rs.getInt("validation"),
+                        rs.getDate("date_creation")
                 ));
  
             }
@@ -1584,7 +1585,35 @@ public class DB_Manager {
     
     
     
-
+    public ArrayList <Restaurant> cercaRistoranti_perOwner(User u) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
+        
+        try {
+            query = "SELECT  * FROM restaurant_owner WHERE id_owner = ?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, u.getId());         
+            ResultSet rs = sp.executeQuery();
+            
+            while (rs.next()) {
+                ALR.add( new Restaurant(rs.getInt("id")) );
+            }
+            
+            
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+        } finally {
+            sp.close();
+            con.close();
+            return ALR;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
     
     
     
