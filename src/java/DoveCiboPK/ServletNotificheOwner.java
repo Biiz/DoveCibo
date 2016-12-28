@@ -43,14 +43,13 @@ public class ServletNotificheOwner extends HttpServlet {
         
         ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
         
-        ArrayList <Notifica> ALNr = new ArrayList<Notifica>();
-        ArrayList <Notifica> ALNp = new ArrayList<Notifica>();
+        ArrayList <Notifica> ALN = new ArrayList<Notifica>();
         
         for(Restaurant rest: ALR) {
             new DB_Manager().setCommenti_perRistorante(rest);
             for(Review rev: rest.getReviews()){
                 new DB_Manager().cercaUser_perId(rev.getCreator());
-                ALNr.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
+                ALN.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
                         rev.getDate_creation(), "/ServletAggiungiRepile?"+rest.getId()));
             }
             
@@ -58,13 +57,13 @@ public class ServletNotificheOwner extends HttpServlet {
             
             for(Photo ph: rest.getPhotos()){
                 new DB_Manager().cercaUser_perId(ph.getOwner());
-                ALNp.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph.getDate_creation(), "/ServletRisciestaEliminazioneFoto", ph));
+                ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph.getDate_creation(), "/ServletRisciestaEliminazioneFoto", ph));
             }
             
         }
         
-        request.setAttribute("notificheCommenti", ALNr);
-        request.setAttribute("notificheFoto", ALNp);
+        request.setAttribute("notifiche", ALN);
+
         request.getRequestDispatcher("ristorante.jsp").forward(request, response);
             
         

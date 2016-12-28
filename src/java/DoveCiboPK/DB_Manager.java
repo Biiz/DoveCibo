@@ -1611,8 +1611,123 @@ public class DB_Manager {
     }
     
     
+    public Boolean updateRuolo(User u, String ruolo) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "UPDATE USERS SET ROLE = ? WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setString(1, ruolo);
+            sp.setInt(2, u.getId());
+            sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }     
+    
+    public Boolean updatePhotoVal(Photo ph, Integer val) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "UPDATE PHOTOS SET VALIDATION = ? WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, val);
+            sp.setInt(2, ph.getId());
+            sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    } 
+    
+ 
+    public Boolean updatePhotoVal(Replies rep, User ad) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "UPDATE PHOTOS SET ID_VALIDATOR = ? , DATE_VALIDATION = DEFAULT WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, ad.getId());
+            sp.setInt(2, rep.getId());
+            sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    } 
     
     
+    
+    
+    public Boolean inserisciRepile(Integer idRew, Replies rep, User own) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "INSERT INTO REPILES(id,"
+                    + "description,"
+                    + "id_owner,"
+                    + "id_review,"
+                    + "VALUES(DEFAULT,?,?,?)";
+            sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+ 
+            System.out.println("SQL OK");
+            
+            
+            sp.setString(1, rep.getDescription());
+            sp.setInt(2, own.getId());
+            sp.setInt(3, idRew);
+
+            sp.executeUpdate();
+ 
+            ResultSet generatedKeys = sp.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                rep.setId(generatedKeys.getInt(1));
+            }
+ 
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+        }
+    }   
     
  
 }

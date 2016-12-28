@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,18 +38,19 @@ public class ServletReclamaRistorante extends HttpServlet {
 
 
             //CREATORE
-            Cookie cookies[] = request.getCookies();
-            String NickName = cookies[1].getName();
-            User u = new User(-1, "", "", NickName, "", "", "");
-            new DB_Manager().CheckProfilo(u);
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("user");   
             
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));            
             
             //INSERIMENTO DB
             if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
-
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+            
+            //CAMBIA RUOLO
+            new DB_Manager().updateRuolo(u, "2");
+            u.setRole("2");
             
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
         
