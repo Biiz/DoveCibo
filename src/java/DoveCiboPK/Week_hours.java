@@ -5,14 +5,12 @@ package DoveCiboPK;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.sql.Time;
 
 /**
  *
  * @author stefano
  */
 public class Week_hours {
-
     private Day_hours[] orari = new Day_hours[7];
 
     public Week_hours(Day_hours[] orari) {

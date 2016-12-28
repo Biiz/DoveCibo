@@ -1,13 +1,4 @@
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>
-
-<style>
-    #map {
-        height: 500px;
-        width: 350px;
-        margin: auto;
-    }
-</style>
-
 <script>
     var geocoder;
     var map;
@@ -17,7 +8,7 @@
         var mapOptions = {
             zoom: 8,
             center: latlng
-        }
+        };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
 
@@ -44,26 +35,32 @@
         });
     }
 </script>
+<script type="text/javascript"> window.onload = function () { initialize(); }; </script>
 
-<body onload="initialize()" >
-    <div style="margin: 15px;">
-        <button type="button" class="btn btn-md btn-info btn-group-justified" style="margin-bottom:15px;" onclick="codeAddress()"><span class="glyphicon glyphicon-play-circle"></span> Genera coordinate</button>
+<style>
+    #map {
+        height: 500px;
+        width: 350px;
+        margin: auto;
+    }
+</style>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Latitudine:</label>          
-                    <input class="form-control" name="lat" id="lat" onchange="latFill()" placeholder="12.12345678901234">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Longitudine:</label>          
-                    <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  placeholder="12.12345678901234">
-                </div>
+<div id="map"></div>
+<div style="margin: 15px;">
+    <button type="button" class="btn btn-md btn-info btn-group-justified" style="margin-bottom:15px;" onclick="codeAddress()"><span class="glyphicon glyphicon-play-circle"></span> Genera coordinate</button>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Latitudine:</label>          
+                <input class="form-control" name="lat" id="lat" onchange="latFill()" placeholder="12.12345678901234">
             </div>
         </div>
-
+        
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Longitudine:</label>          
+                <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  placeholder="12.12345678901234">
+            </div>
+        </div>
     </div>
-    <div id="map"></div>
-</body>
+</div>

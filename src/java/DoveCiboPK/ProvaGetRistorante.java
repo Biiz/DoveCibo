@@ -6,7 +6,6 @@
 package DoveCiboPK;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +15,7 @@ public class ProvaGetRistorante {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
        

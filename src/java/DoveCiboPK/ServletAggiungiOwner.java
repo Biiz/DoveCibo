@@ -1,6 +1,5 @@
 package DoveCiboPK;
 
-import DoveCiboPK.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;

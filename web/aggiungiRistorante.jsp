@@ -97,9 +97,7 @@
             }
         </style>
 
-        <script>
-            $("#ex2").slider();
-        </script>
+        <script> $("#ex2").slider(); </script>
     </head>
     
     <body style="padding-top: 70px;">
@@ -165,10 +163,7 @@
                         </div>
 
                         <!-- 4° row: coordinate geografiche-->
-                        <div class="row" >
-                            <%@include file="aggiungiRistoranteMap.jsp" %>
-                        </div>
-
+                        <div class="row" > <%@include file="aggiungiRistoranteMap.jsp" %> </div>
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
                         <!-- 5° row: descrizione ristorante-->
@@ -233,9 +228,7 @@
                             <div class="col-md-12 text-center">
                                 <h4><b>Fascia di prezzo:</b></h4>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <%@include file="aggiungiRistoranteSliderPrice.jsp" %>
-                                    </div>
+                                    <div class="col-md-12"> <%@include file="aggiungiRistoranteSliderPrice.jsp" %> </div>
                                 </div> <!-- fine row cena -->
                             </div>
                         </div>
@@ -245,7 +238,6 @@
 
                         <!-- 5° row-->
                         <div class="row">
-
                             <div class="col-md-12">
                                 <label for="comment">Orari di apertura Pranzo:</label>
                                 <br>
@@ -297,14 +289,12 @@
                                             <option>45</option>
                                           </select>
                                     </div>
-                                </div>
-                                                    
+                                </div>               
                             </div>
                         </div>
                         
                         <!-- 5° row-->
                         <div class="row">
-
                             <div class="col-md-12">
                                 <label for="comment">Orari di apertura Cena</label>
                                 <br>
@@ -355,14 +345,11 @@
                                             <option>45</option>
                                           </select>
                                     </div>
-                                </div>
-                                                    
+                                </div>                
                             </div>
                         </div>
-
-
                         <br>
-
+                        
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
                         <!-- 9° row: caricamento foto-->
@@ -381,12 +368,9 @@
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Conferma</button>
                                 <button type="reset" class="btn btn-sm btn-danger" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
+                                
                                 <!-- script per tornare indietro di pagina nel browser-->
-                                <script>
-                                    function goBack() {
-                                        window.history.back();
-                                    }
-                                </script>
+                                <script> function goBack() { window.history.back(); } </script>
                                 <button type="reset" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancella Campi</button>
                             </div>
                         </div>
