@@ -193,7 +193,7 @@
                                 <input type="hidden" name="idR" value="<%= R.getId() %>">
                                 <input type="hidden" name="idU" value="<%= thisUser.getId() %>">
                                 <input type="file" name="file" id="file" />
-                                <input type="submit" value="Upload" name="upload" id="upload" />
+                                <input class="btn btn-success" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
                             
                             <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO%>
