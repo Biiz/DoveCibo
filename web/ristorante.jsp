@@ -92,7 +92,8 @@
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
                                         <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
-                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>orari di apertura</b></li>
+                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Pranzo: da <%=R.getDay_hours().getStartM()%> a <%=R.getDay_hours().getEndM()%></b></li>
+                                        <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Cena: da <%=R.getDay_hours().getStartP()%> a <%=R.getDay_hours().getEndP()%></b></li>
                                         
                                         
                                         <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
