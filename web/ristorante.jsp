@@ -193,7 +193,9 @@
                             <form method="POST" action="ServletUpload" enctype="multipart/form-data" >                           
                                 <input type="hidden" name="idR" value="<%= R.getId() %>">
                                 <input type="hidden" name="idU" value="<%= thisUser.getId() %>">
-                                <input type="file" name="file" id="file" />
+                                <label class="btn btn-default btn-file">
+                                    <input type="file" name="file" id="file" />
+                                </label>
                                 <input class="btn btn-success" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
                             

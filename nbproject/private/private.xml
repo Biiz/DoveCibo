@@ -3,23 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletNotificheOwner.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/User.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletReclamaRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/DataBase/sql_db_aggiornato.txt</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Notifica.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/CercaRistorantiHome.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/web/cercaRistorantiMappa.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Photo.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/provaMappa.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/web/provaStampa%20ALR.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/CercaRistorantiHome.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Review.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletLogin.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/VisualizzaRistoranti.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/CercaRistorantiHome.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/VisualizzaRistoranti.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/VisualizzaRistorantiUtente2.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/navBar.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletNotificheOwner.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/Day_hours.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/home.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/Restaurant.java</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/aggiungiUtente.jsp</file>
+            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/ristorante.jsp</file>
         </group>
     </open-files>
 </project-private>
