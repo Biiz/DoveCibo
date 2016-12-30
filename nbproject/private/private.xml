@@ -4,20 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletNotificheOwner.java</file>
+            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/comparatorNotifiche.java</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/User.java</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletReclamaRistorante.java</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
             <file>file:/home/postal/DoveCiboGit/web/DataBase/sql_db_aggiornato.txt</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Notifica.java</file>
             <file>file:/home/postal/DoveCiboGit/web/CercaRistorantiHome.jsp</file>
             <file>file:/home/postal/DoveCiboGit/web/cercaRistorantiMappa.jsp</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Photo.java</file>
+            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletAggiungiRepile.java</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
             <file>file:/home/postal/DoveCiboGit/web/provaMappa.jsp</file>
             <file>file:/home/postal/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/web/provaStampa%20ALR.jsp</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/CercaRistorantiHome.java</file>
+            <file>file:/home/postal/DoveCiboGit/web/provaStampa.jsp</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Review.java</file>
             <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletLogin.java</file>
         </group>

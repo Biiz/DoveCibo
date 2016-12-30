@@ -8,6 +8,7 @@ package DoveCiboPK;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,10 @@ public class ServletNotificheOwner extends HttpServlet {
              
         //CREATORE
         HttpSession session = request.getSession(false);
-        User u = (User) session.getAttribute("user");         
+        User u = (User) session.getAttribute("user");       
+        
+        //User u = new User(2);
+        //new DB_Manager().cercaUser_perId(u);
         
         if (! u.getRole().equals("2")){
             request.setAttribute("error", "accesso negato");
@@ -47,6 +51,8 @@ public class ServletNotificheOwner extends HttpServlet {
         
         for(Restaurant rest: ALR) {
             new DB_Manager().setCommenti_perRistorante(rest);
+            new DB_Manager().cercaRistorante_perId(rest);
+            
             for(Review rev: rest.getReviews()){
                 new DB_Manager().cercaUser_perId(rev.getCreator());
                 ALN.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
@@ -62,9 +68,13 @@ public class ServletNotificheOwner extends HttpServlet {
             
         }
         
+        ALN.sort(new comparatorNotifiche());
+        
+        
+        
         request.setAttribute("notifiche", ALN);
 
-        request.getRequestDispatcher("ristorante.jsp").forward(request, response);
+        request.getRequestDispatcher("provaStampa.jsp").forward(request, response);
             
         
         } catch (SQLException ex) {

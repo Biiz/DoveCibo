@@ -446,7 +446,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean inserisciRisposta(Replies rep, Integer idOwner, Integer idRestaurant) throws SQLException {
+    public Boolean inserisciRisposta(Replies rep, Integer idOwner, Integer idRew) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -458,7 +458,7 @@ public class DB_Manager {
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
             sp.setString(1, rep.getDescription());
-            sp.setInt(2, idRestaurant);
+            sp.setInt(2, idRew);
             sp.setInt(3, idOwner);
  
             sp.executeUpdate();
@@ -884,6 +884,7 @@ public class DB_Manager {
                 u.setName(rs.getString("name"));
                 u.setSurname(rs.getString("surname"));
                 u.setNickname(rs.getString("nickname"));
+                u.setRole(rs.getString("role"));
                 u.setLike(rs.getInt("love"));
                 System.out.println("account: " + u.getName());
  

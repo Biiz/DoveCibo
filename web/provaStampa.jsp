@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="DoveCiboPK.Restaurant"%>
+<%@page import="DoveCiboPK.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,12 +14,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-                        <%  ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("listaRistoranti");
-                            for (Restaurant rest : ALR) {
+                        <%  ArrayList <Notifica> ALR = (ArrayList <Notifica>) request.getAttribute("notifiche");
+                            for (Notifica rest : ALR) {
                         %>
                         
                         
-                        <%= rest.getName() %>
+                        <%= rest.getDescrizione() %>
                         
                         <% } %>
     </body>
