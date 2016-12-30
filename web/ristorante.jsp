@@ -371,8 +371,6 @@
         %>
 
     <% for (Review rew : R.getReviews()) {%>
-
-    aggiungere stelline titolo descrizione
     
     <div class="modal-dialog modal-lg" >
         <div class="modal-content colonna2">
