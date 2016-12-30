@@ -94,8 +94,8 @@
                                     <button class="btn btn-info btn-sm btn-justified" onclick="moveToLocation(<%= rest.getCordinate().getLatitude() %>,<%= rest.getCordinate().getLongitude() %>)">mappa</button>
                                 </div>
                             </td>
-                            <td background="img/img (1)low.jpg"><b style="background-color: white;">stelle</b></td>
-                            <td>123</td>
+                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= rest.getGlobal_value() %> </b></td>
+                            <td> <%= rest.getN_reviews() %> </td>
                             <td>123</td>
                             <td><%= rest.getPrice_range().getMin_value() %></td>
                             <td><%= rest.getPrice_range().getMax_value() %></td>
