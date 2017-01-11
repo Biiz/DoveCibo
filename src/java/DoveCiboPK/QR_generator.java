@@ -39,9 +39,17 @@ public class QR_generator {
             Path currentRelativePath = Paths.get("");
             String s_path = currentRelativePath.toAbsolutePath().toString();
             System.out.println("Current relative path is: " + s_path);
-
-            FileOutputStream fout = new FileOutputStream(new File(
-                    s_path + "\\web\\img\\QR_Rest_" + ID + ".JPG"));
+            FileOutputStream fout;
+            if(s_path.contains("\\")) {
+                fout = new FileOutputStream(new File(s_path + "\\web\\img\\QR_Rest_" + ID + ".JPG"));
+            }
+            else{
+                //il QR viene scritto nella directory standard
+                fout = new FileOutputStream(new File(s_path));}
+            if(s_path.contains("//")) {
+                fout = new FileOutputStream(new File(s_path + "//web//img//QR_Rest_" + ID + ".JPG"));
+            }
+            else{fout = new FileOutputStream(new File(s_path));}
             fout.write(stream.toByteArray());
             fout.flush();
             fout.close();
