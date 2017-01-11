@@ -95,8 +95,8 @@
                                 </div>
                             </td>
                             <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= rest.getGlobal_value() %> </b></td>
-                            <td> <%= rest.getN_reviews() %> </td>
-                            <td>123</td>
+                            <td> posizione in classiffica </td>
+                            <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getPrice_range().getMin_value() %></td>
                             <td><%= rest.getPrice_range().getMax_value() %></td>
 
