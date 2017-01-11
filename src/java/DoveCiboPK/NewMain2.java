@@ -19,8 +19,9 @@ public class NewMain2 {
      */
     public static void main(String[] args) throws SQLException {
         
-       new DB_Manager().increaseLikeUser(new User(1));
+       //new DB_Manager().increaseLikeUser(new User(1));
        
+       QR_generator qr = new QR_generator("blabla", 5);
         
         
 }
