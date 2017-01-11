@@ -74,7 +74,6 @@
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
-            User thisUser = (User) session.getAttribute("User");
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante"); %>
         
         <div class="modal-dialog modal-lg">
@@ -179,7 +178,8 @@
             </div>   
         </div>
         <%
-            if(thisUser.getRole().equals("2") || thisUser.getRole().equals("3")){
+            User thisUser = (User) session.getAttribute("User");
+            if(thisUser!=null && (thisUser.getRole().equals("2") || thisUser.getRole().equals("3"))){
         %>
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
