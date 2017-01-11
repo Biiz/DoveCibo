@@ -28,7 +28,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
 
             //CREATORE
             HttpSession session = request.getSession(false);
-            User u = (User) session.getAttribute("user");
+            User u = (User) session.getAttribute("User");
 
             // GIORNI D?APERTURA       
             Day_hours dh = new Day_hours(
@@ -122,9 +122,6 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                 }
 
             }
-
-            session.removeAttribute("user_res");
-            session.setAttribute("user_res", "yes");
 
             response.sendRedirect("/DoveCiboGit/ristorante_inserito_successo.jsp");
 

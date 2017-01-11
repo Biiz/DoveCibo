@@ -10,7 +10,6 @@ import java.util.*;
 import javax.servlet.http.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,32 +35,18 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
 
         try {
 
-            HttpSession session = request.getSession(false);
-            Cookie cookie[] = request.getCookies();
-            String nickname = null;
-            if (cookie != null) {
-                for (int j = 0; j < cookie.length; j++) {
-                    if (cookie[j].getValue().equals("1") || cookie[j].getValue().equals("2") || cookie[j].getValue().equals("3")) {
-                        nickname = cookie[j].getName();
-                    }
-                }
-            }
+            User user = (User) request.getSession(false).getAttribute("User");
+            String nickname = user.getNickname();
 
             DoveCiboPK.User u = new DoveCiboPK.User(-1, "", "", nickname, "", "", "");
             if(!(new DB_Manager()).CheckProfilo(u)){
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
+            request.getSession(false).invalidate();
+            HttpSession session = request.getSession(true);
+            session.setAttribute("User", u);
             
-            session.removeAttribute("id_restaurant");
-            session.removeAttribute("res_name");
-            session.removeAttribute("cuisine_name");
-            session.removeAttribute("prezzo_min");
-            session.removeAttribute("prezzo_max");
-            session.removeAttribute("res_address");
-            session.removeAttribute("res_city");
-            
-
             List<Integer> id_restaurant = new ArrayList<Integer>();
             if(!(new DB_Manager()).SetIdRestaurant2(u, id_restaurant)){
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);

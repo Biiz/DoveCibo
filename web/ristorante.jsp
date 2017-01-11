@@ -73,7 +73,8 @@
     
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
-        <%  User thisUser = (User) session.getAttribute("user");
+        <%  session = request.getSession(false);
+            User thisUser = (User) session.getAttribute("User");
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante"); %>
         
         <div class="modal-dialog modal-lg">
@@ -178,10 +179,7 @@
             </div>   
         </div>
         <%
-        Cookie cookies[] = request.getCookies();
-            if(cookies != null){
-                for(int i = 0;i<cookies.length;i++){
-                    if(cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
+            if(thisUser.getRole().equals("2") || thisUser.getRole().equals("3")){
         %>
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
@@ -363,9 +361,7 @@
             </div>
         </div> 
         <%
-                }
             }
-        }
         %>
 
     <% for (Review rew : R.getReviews()) {%>
@@ -408,7 +404,7 @@
                 <%
                     // DA SISTEMARE PER OGNI OWNER
                    if(thisUser!=null)
-                   if(R.isOwner((User) session.getAttribute("user"))){   
+                   if(R.isOwner((User) session.getAttribute("User"))){   
                 %>
                 <div class="row">
                     <div class="col-md-12">

@@ -8,7 +8,6 @@ package DoveCiboPK;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,17 +34,15 @@ public class UserUpdate extends HttpServlet {
 
         try {
             HttpSession session = request.getSession(false);
-   
+           
             String name = request.getParameter("first_name");
             String surname = request.getParameter("last_name");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             
-            Cookie cookies[] = request.getCookies();
-            if(cookies != null){
-                for (int i = 0; i<cookies.length ;i++){
-                    if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
-                        String nickName = cookies[i].getName();
+                    if(session != null && session.getAttribute("User") != null){
+                        User user = (User) session.getAttribute("User");
+                        String nickName = user.getNickname();
                         User u1 = new User(-1,"","",nickName,"","","");
                         if(!(new DB_Manager()).CheckProfilo(u1)){
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
@@ -61,30 +58,25 @@ public class UserUpdate extends HttpServlet {
                         }
 
                         User u = new User();
-
+                        
                         u.setName(name);
                         u.setSurname(surname);
                         u.setEmail(email);
+                        u.setNickname(nickName);
                         u.setPassword(password);
                       
                         if((new DB_Manager()).modificaAccount(u, nickName)){
                             new SendEmail_Modifica_Profilo(name, surname, email, nickName, password);
-                            session.removeAttribute("user_name");
-                            session.removeAttribute("user_surname");
-                            session.removeAttribute("user_email");
-                            session.removeAttribute("user_pass");
-                            
-                            session.setAttribute("user_name", name);
-                            session.setAttribute("user_surname", surname);
-                            session.setAttribute("user_email", email);
-                            session.setAttribute("user_pass", password);
-                            
+                            if(!(new DB_Manager()).CheckProfilo(u)){
+                                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                            }
+                            session.invalidate();
+                    
+                            request.getSession(true).setAttribute("User", u);
                             response.sendRedirect("/DoveCiboGit/modificheEffettuate.jsp"); 
                         }else{
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                        } 
-                    }
-                }
+                        }
             }else{
                 response.sendRedirect("/DoveCiboGit/home.jsp"); 
             }

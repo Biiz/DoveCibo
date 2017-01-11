@@ -17,11 +17,9 @@
     <body style="padding-top: 70px;">    
         <%@ include file="navBar.jsp" %>   
         <%
-            Cookie cookies[] = request.getCookies();
-            if(cookies != null){
-                for(int i = 0;i<cookies.length;i++){
-                    if(cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")){
-                      
+            session = request.getSession(false);
+            if(session != null && session.getAttribute("User") != null){
+                DoveCiboPK.User user = (DoveCiboPK.User) session.getAttribute("User");
         %> 
         
         <form name="loginForm"  action="UserUpdate" method="post">
@@ -38,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First name:</label>  
-                                    <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=session.getAttribute("user_name") %>" required>
+                                    <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=user.getName() %>" required>
                                     <script>
                                         
                                     </script>
@@ -47,7 +45,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last name:</label>          
-                                    <input type="text" id="last_name" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="<%=session.getAttribute("user_surname")%>" required>
+                                    <input type="text" id="last_name" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="<%=user.getSurname() %>" required>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +55,7 @@
                             <div class="col-md-12">
                                 <label for="basic-url">Email:</label>
                                 <div class="form-group">
-                                    <input type="email" id="email" class="form-control" name="email" pattern=".{3,255}" title="La tua email!" value="<%=session.getAttribute("user_email")%>" required>
+                                    <input type="email" id="email" class="form-control" name="email" pattern=".{3,255}" title="La tua email!" value="<%=user.getEmail() %>" required>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +67,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nickname:</label>          
-                                    <input type="text" id="nickname" class="form-control" name="nickname" pattern=".{3,255}" title="Inserisci il nickname!" value="<%=cookies[i].getName()%>" disabled>
+                                    <input type="text" id="nickname" class="form-control" name="nickname" pattern=".{3,255}" title="Inserisci il nickname!" value="<%=user.getNickname() %>" disabled>
                                 </div>
                             </div>
                             
@@ -82,7 +80,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>password:</label>          
-                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{3,255}" title="Inserisci la password!" value="<%=session.getAttribute("user_pass")%>" required>
+                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{3,255}" title="Inserisci la password!" value="<%=user.getPassword() %>" required>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +104,6 @@
         <br>
         <br>
     <%
-                }
-            }
         }
-        %>
+    %>
     </body>

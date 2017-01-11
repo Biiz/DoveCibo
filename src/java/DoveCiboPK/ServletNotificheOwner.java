@@ -35,7 +35,7 @@ public class ServletNotificheOwner extends HttpServlet {
              
         //CREATORE
         HttpSession session = request.getSession(false);
-        User u = (User) session.getAttribute("user");       
+        User u = (User) session.getAttribute("User");       
         
         //User u = new User(2);
         //new DB_Manager().cercaUser_perId(u);

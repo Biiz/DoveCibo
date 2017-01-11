@@ -8,11 +8,9 @@ package DoveCiboPK;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,18 +32,7 @@ public class ExitProfilo extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-          
-            Cookie cookies[] = request.getCookies();
-            HttpSession session = request.getSession(false);
-            if(cookies != null){
-                for(int i = 0; i < cookies.length; i++){
-                    if (cookies[i].getValue().equals("1") || cookies[i].getValue().equals("2") || cookies[i].getValue().equals("3")) {
-                        cookies[i].setMaxAge(0);
-                        response.addCookie(cookies[i]);
-                    }
-                }
-            }
-            session.invalidate();
+            request.getSession(false).invalidate();
             response.sendRedirect("/DoveCiboGit/home.jsp");
             
 

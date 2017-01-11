@@ -41,7 +41,7 @@ public class ServletAggiungiRepile extends HttpServlet {
 
             //CREATORE
             HttpSession session = request.getSession(false);
-            User u = (User) session.getAttribute("user");
+            User u = (User) session.getAttribute("User");
             
             //RISTORANTE
             Integer idRew = Integer.parseInt(request.getParameter("commento"));

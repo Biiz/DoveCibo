@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,10 +36,8 @@ public class ServletReclamaRistorante extends HttpServlet {
         try {
 
 
-            //CREATORE
-        HttpSession session = request.getSession(false);
-        User u = (User) session.getAttribute("user");   
-            
+        //CREATORE
+        User u = (User) request.getSession(false).getAttribute("User");
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));            
             
@@ -51,6 +48,9 @@ public class ServletReclamaRistorante extends HttpServlet {
             //CAMBIA RUOLO
             new DB_Manager().updateRuolo(u, "2");
             u.setRole("2");
+            
+            request.getSession(false).invalidate();
+            request.getSession(true).setAttribute("User", u);
             
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
         

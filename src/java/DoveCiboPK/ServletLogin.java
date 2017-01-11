@@ -9,7 +9,6 @@ import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,43 +61,11 @@ public class ServletLogin extends HttpServlet {
                     request.setAttribute("error", "Nome o password incorretti");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
                 } else {
+                    request.getSession(false).invalidate();
+                    
                     HttpSession session = request.getSession(true);
                     
-                    
-                    session.removeAttribute("user_name");
-                    session.removeAttribute("user_surname");
-                    session.removeAttribute("user_email");
-                    session.removeAttribute("user_pass");
-                    session.removeAttribute("user_res");
-                    
-                    User u1 = new User (-1,"","",nickname,"","","");
-                    if(!(new DB_Manager()).CheckProfilo(u1)){
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    }
-                    if(!(new DB_Manager()).checkNavBar_restaurant(u1)){
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    }
-                    
-                    
-                    String s_n = null;
-                    if(!u1.getName().equals(u.getName())){
-                        s_n = "yes";
-                    }else{
-                        s_n = "no";
-                    }
-                    
-                    Cookie cookie_nick_role = new Cookie("" + u.getNickname(), "" + u.getRole());
-                    cookie_nick_role.setMaxAge(-1);
-                    response.addCookie(cookie_nick_role);
-                    
-                    session.setAttribute("user_name", u.getName());
-                    session.setAttribute("user_surname", u.getSurname());
-                    session.setAttribute("user_email", u.getEmail());
-                    session.setAttribute("user_pass", u.getPassword());
-                    session.setAttribute("user_res", s_n);
-                    
-                    session.setAttribute("user", u);
-                    
+                    session.setAttribute("User", u);
                     response.sendRedirect("/DoveCiboGit/home.jsp");
                 }
             } else {
