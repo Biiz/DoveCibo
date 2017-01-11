@@ -58,8 +58,12 @@
                                     <%
                                         String res_name = (String)session.getAttribute("res_name" + i);
                                     %>
-                                    <button class="btn btn-info btn-justified" type="submit"><b><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></b></button>
+                                    <b><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></b>
+                                    <br>
+                                    <button class="btn btn-info btn-justified" type="submit">View/Edit</button>
+
                                 </div>
+                                
                                 <br>
                             </td>
                             <td>123</td>
