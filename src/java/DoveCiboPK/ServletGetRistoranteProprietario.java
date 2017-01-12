@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author postal
  */
 @WebServlet(name = "ServletGetRistorante", urlPatterns = {"/ServletGetRistorante"})
-public class ServletGetRistorante extends HttpServlet {
+public class ServletGetRistoranteProprietario extends HttpServlet {
 
  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +64,7 @@ public class ServletGetRistorante extends HttpServlet {
         }           
             
             request.setAttribute("ristorante", rest);
-            request.getRequestDispatcher("ristorante.jsp").forward(request, response);
+            request.getRequestDispatcher("modificaRistorante.jsp").forward(request, response);
 
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());

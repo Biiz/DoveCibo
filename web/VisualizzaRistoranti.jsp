@@ -1,3 +1,4 @@
+<%@page import="DoveCiboPK.*"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,7 +26,13 @@
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
-            }  
+            }
+
+            tfoot input {
+                width: 100%;
+                padding: 3px;
+                box-sizing: border-box;
+            }
         </style>
     </head>
     
@@ -34,68 +41,70 @@
 
         <div class="container">        
             <div class="row row-centered">
+                
+                <h2>Per cercare qualcosa tra i risultati utilizzare l'input di ricerca a destra.</h2>
+                <h2>Per filtrare i risultati, utilizzare gli input sotto ad una colonna.</h2>
+                <br><br>
 
                 <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr style="background-color: rgba(198, 239, 255, 1);">
                             <th>NOME</th>
+                            <th>VALUTAZIONE</th>
                             <th>CLASSIFICA</th>
                             <th>REVIEWS</th>
                             <th>INDIRIZZO</th>
                             <th>CUCINE</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Valutazione</th>
+                            <th>Classifica</th>
+                            <th>Review</th>
+                            <th>Indirizzo</th>
+                            <th>Cucine</th>
+                        </tr>
+                    </tfoot>
                     <tbody style="background-color: white;">
                         <%                            
-                            List id_restaurant = (List) session.getAttribute("id_restaurant");
-                            for (int i = 0; i < id_restaurant.size(); i++) {
+                           ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("RistorantiProprietario");
+                           for (Restaurant rest : ALR) {
                         %>
-                    <form name="ApriRistorante" method="POST" action="">
                         <tr>
                             <td>
                                 <!-- bottone SUBMIT che contiene il nome del ristorante -->
                                 <div class="bottom text-center">
-                                    <%
-                                        String res_name = (String)session.getAttribute("res_name" + i);
-                                    %>
-                                    <b><%=res_name.substring(0, 1).toUpperCase() + res_name.substring(1)%></b>
-                                    <br>
-                                    <button class="btn btn-info btn-justified" type="submit">View/Edit</button>
-
+                                    <b><%=rest.getName().substring(0, 1).toUpperCase() + rest.getName().substring(1)%></b>
                                 </div>
-                                
                                 <br>
+                                <div class="bottom text-center">
+                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%= rest.getId()%>'">View/Edit</button>
+                                </div>
                             </td>
-                            <td>123</td>
-                            <td>123</td>
-                            <%
-                                String res_city = (String)session.getAttribute("res_city" + i);
-                                String res_address = (String)session.getAttribute("res_address" + i);
-                            %>
-                            <td><%=res_address.substring(0, 1).toUpperCase() + res_address.substring(1)%>, <%=res_city.substring(0, 1).toUpperCase() + res_city.substring(1)%></td>
-                            <td>
+                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= rest.getGlobal_value() %> </b></td>
+                            <td> posizione in classiffica </td>
+                            <td><%= rest.getN_reviews() %></td>
+                            <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1) %>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
+                            <td>                                                
                                 <%
-                                    List cuisine_name = (List) session.getAttribute("cuisine_name" + i);
-
-                                    Iterator itr2 = cuisine_name.iterator();
-
-                                    while (itr2.hasNext()) {
-
-                                    String element1 = (String) itr2.next();
-                                        if (itr2.hasNext()) {
+                                    int size = rest.getCusines().size();
+                                    for(Cusine c : rest.getCusines()){
+                                        if(size > 1){
                                 %>
-                                <%=element1 + ", "%>
+                                        <%=c.getName()+", "%>
                                 <%
-                                    } else {
+                                        }else{
                                 %>
-                                <%=element1 + ""%>
+                                            <%=c.getName()%>
                                 <%
                                         }
+                                        size-=1;
                                     }
                                 %>
                             </td>
                         </tr>
-                    </form>
                             <%
                                 }
                             %>
@@ -103,35 +112,35 @@
                 </table>
 
                 <script>
-            
-                    $(document).ready(function() {
-                        $('#DataTable').DataTable( {
-                            "columnDefs": [
-                                {
-                                    "targets": [ 6 ],
-                                    "visible": false,
-                                    "searchable": false
+                    $(document).ready(function () {
+                        $('#DataTable').DataTable();
+                    });
+
+                    $('#DataTable').DataTable({
+                        responsive: true
+                    });
+                    
+                    $(document).ready(function () {
+                        // Setup - add a text input to each footer cell
+                        $('#DataTable tfoot th').each(function () {
+                            var title = $(this).text();
+                            $(this).html('<input type="text" placeholder="' + title + '.. " />');
+                        });
+
+                        // DataTable
+                        var table = $('#DataTable').DataTable();
+
+                        // Apply the search
+                        table.columns().every(function () {
+                            var that = this;
+
+                            $('input', this.footer()).on('keyup change', function () {
+                                if (that.search() !== this.value) {
+                                    that
+                                            .search( this.value )
+                                        .draw();
                                 }
-                                
-                            ]
-                        } );
-                    } );
-                    
-                    
-                    $(document).ready(function() {
-                        var table = $('#DataTable').DataTable( {
-                            "scrollY": "200px",
-                            "paging": false
-                        } );
-
-                        $('a.toggle-vis').on( 'click', function (e) {
-                            e.preventDefault();
-
-                            // Get the column API object
-                            var column = table.column( $(this).attr('data-column') );
-
-                            // Toggle the visibility
-                            column.visible( ! column.visible() );
+                            } );
                         } );
                     } );
                 </script>

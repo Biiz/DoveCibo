@@ -82,12 +82,12 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div id="tagline">
-                                <p style="color: black; font-size: 28px"><b><%=R.getName()%></b></p>
+                                <p style="color: black; font-size: 28px"><b><%=R.getName().substring(0, 1).toUpperCase() + R.getName().substring(1)%></b></p>
                             </div>
                              <div class="row">
                                 <div class="col-md-12">
                                     <ul>
-                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%=R.getCordinate().getAdrers()%></b></li>
+                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%= R.getCordinate().getAdrers().substring(0, 1).toUpperCase()+R.getCordinate().getAdrers().substring(1) %>, <%= R.getCordinate().getCity().substring(0, 1).toUpperCase()+R.getCordinate().getCity().substring(1) %>, <%= R.getCordinate().getNazione().substring(0, 1).toUpperCase()+R.getCordinate().getNazione().substring(1)%></b></li>
                                         <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value()%> - <%=R.getPrice_range().getMax_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
@@ -98,9 +98,21 @@
                                         
                                         <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
 
-                                                <% for (Cusine c : R.getCusines()) {%>
-                                                <%= c.getName()%>
-                                                <% }%>
+                                                <%
+                                                    int size = R.getCusines().size();
+                                                    for(Cusine c : R.getCusines()){
+                                                        if(size > 1){
+                                                %>
+                                                        <%=c.getName()+", "%>
+                                                <%
+                                                        }else{
+                                                %>
+                                                            <%=c.getName()%>
+                                                <%
+                                                        }
+                                                        size-=1;
+                                                    }
+                                                %>
 
                                             </b></li>
                                         <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode conentente le seguenti informazioni: Nome, indirizzo, orari di apertura</b></li>

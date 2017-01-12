@@ -51,52 +51,27 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
             if(!(new DB_Manager()).SetIdRestaurant2(u, id_restaurant)){
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
-            session.setAttribute("id_restaurant", id_restaurant);
-            Iterator itr = id_restaurant.iterator();
-            int i = 0;
-            while (itr.hasNext()) {
-                Integer element = (Integer) itr.next();
-                DoveCiboPK.Restaurant res = new DoveCiboPK.Restaurant(element, "", "", "", null, null, null, null);
-                if(!(new DB_Manager()).cercaRistorante_perId(res)){
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
-                session.setAttribute("res_name"+i, res.getName());
-                
-                List<Integer> id_cuisine = new ArrayList<Integer>();
-                List<String> cuisine_name = new ArrayList<String>();
-                if(!(new DoveCiboPK.DB_Manager()).cercaCuisine_perId_Restaurant(res, id_cuisine)){
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
-                Iterator itr1 = id_cuisine.iterator();
-                while (itr1.hasNext()) {
-                    Integer element1 = (Integer) itr1.next();
-
-                    if(!(new DoveCiboPK.DB_Manager()).cercaCuisine(element1, cuisine_name)){
+            
+            ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
+            
+            for(Integer idRest : id_restaurant){
+                Restaurant rest = new Restaurant(idRest);
+                    
+                    if( ! new DB_Manager().cercaRistorante_perId(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    }
-
-                }
-                session.setAttribute("cuisine_name"+i, cuisine_name);
+                    
+                    if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+               
+                     if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
-                Integer prezzo[] = {0,0};
-                if(!(new DoveCiboPK.DB_Manager()).cercaPriceRanges_Restaurant(res, prezzo)){
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
-                session.setAttribute("prezzo_min"+i, prezzo[0]);
-                session.setAttribute("prezzo_max"+i, prezzo[1]);
-                
-                String address[] = {"w", "W"};
-                if(!(new DoveCiboPK.DB_Manager()).cercaCoordinate_perID_Restaurant(res, address)){
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
-                session.setAttribute("res_address"+i, address[0]);
-                session.setAttribute("res_city"+i, address[1]);
-                
-                i++;   
+                ALR.add(rest);
             }
-           
-            response.sendRedirect("/DoveCiboGit/VisualizzaRistoranti.jsp");
-
+            
+            request.setAttribute("RistorantiProprietario", ALR);
+            request.getRequestDispatcher("VisualizzaRistoranti.jsp").forward(request, response);
+            
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);

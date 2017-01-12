@@ -68,26 +68,25 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>valutazione</th>
-                            <th>classifica</th>
-                            <th>review</th>
-                            <th>min</th>
-                            <th>max</th>
-                            <th>indirizzo</th>
-                            <th>cucine</th>
+                            <th>Nome</th>
+                            <th>Valutazione</th>
+                            <th>Classifica</th>
+                            <th>Review</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Indirizzo</th>
+                            <th>Cucine</th>
                         </tr>
                     </tfoot>
                     <tbody style="background-color: white;">
                         <%  ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("listaRistoranti");
                             for (Restaurant rest : ALR) {
                         %>
-                    <form name="ApriRistorante" method="POST" action="">
                         <tr>
                             <td>
                                 <!-- bottone SUBMIT che contiene il nome del ristorante -->
                                 <div class="bottom text-center">
-                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style="color: blue"><%= rest.getName() %></a></b>
+                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style="color: blue"><%= rest.getName().substring(0, 1).toUpperCase()+rest.getName().substring(1) %></a></b>
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
@@ -99,19 +98,25 @@
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getPrice_range().getMin_value() %></td>
                             <td><%= rest.getPrice_range().getMax_value() %></td>
-
-                            <td><%= rest.getCordinate().getNazione() %>, <%= rest.getCordinate().getCity() %> , <%= rest.getCordinate().getAdrers() %> </td>
+                            <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1) %>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
                             <td>                                                
                                 <%
+                                    int size = rest.getCusines().size();
                                     for(Cusine c : rest.getCusines()){
+                                        if(size > 1){
                                 %>
-                                <%=c.getName()+" "%>
+                                        <%=c.getName()+", "%>
                                 <%
+                                        }else{
+                                %>
+                                            <%=c.getName()%>
+                                <%
+                                        }
+                                        size-=1;
                                     }
                                 %>
                             </td>
                         </tr>
-                    </form>
                     <%
                         }
                     %>

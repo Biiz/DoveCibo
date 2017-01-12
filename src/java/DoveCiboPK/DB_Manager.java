@@ -80,7 +80,7 @@ public class DB_Manager {
         
         try {
             
-            query = "SELECT id FROM restaurants WHERE id_owner = ?";
+            query = "SELECT id_restaurant FROM restaurant_owner WHERE id_owner = ?";
             sp = con.prepareStatement(query);
             
             sp.setInt(1, u.getId());
