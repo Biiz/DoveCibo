@@ -51,7 +51,7 @@ public class CercaRistorantiHome extends HttpServlet {
                         }
 
                         ArrayList <Integer> list1 = new ArrayList <Integer>();
-                        Coordinate cor = new Coordinate(null,null,str,str,str);
+                        Coordinate cor = new Coordinate(null,null,str,null,str,str);
                         if(!(new DB_Manager()).SetResForNazione(cor, list1)){
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                         }
@@ -108,10 +108,10 @@ public class CercaRistorantiHome extends HttpServlet {
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
-                    if( ! new DB_Manager().setOrariPerRistorante(rest))
+                    if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
                     
-                    if( ! new DB_Manager().cercaPriceRange_perId(rest.getPrice_range()))
+                    if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
                     if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))

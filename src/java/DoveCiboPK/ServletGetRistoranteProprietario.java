@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author postal
  */
-@WebServlet(name = "ServletGetRistorante", urlPatterns = {"/ServletGetRistorante"})
+@WebServlet(name = "ServletGetRistoranteProprietario", urlPatterns = {"/ServletGetRistoranteProprietario"})
 public class ServletGetRistoranteProprietario extends HttpServlet {
 
  @Override
@@ -37,10 +37,10 @@ public class ServletGetRistoranteProprietario extends HttpServlet {
             if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-            if( ! new DB_Manager().setOrariPerRistorante(rest))
+            if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
                   request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-            if( ! new DB_Manager().cercaPriceRange_perId(rest.getPrice_range()))
+            if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
             if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
@@ -61,9 +61,9 @@ public class ServletGetRistoranteProprietario extends HttpServlet {
             }    
         }else{
             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-        }           
-            
-            request.setAttribute("ristorante", rest);
+        } 
+            request.getSession(false).removeAttribute("ristorante");
+            request.getSession(false).setAttribute("ristorante", rest);
             request.getRequestDispatcher("modificaRistorante.jsp").forward(request, response);
 
         } catch (Exception ex) {

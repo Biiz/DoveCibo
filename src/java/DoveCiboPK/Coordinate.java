@@ -15,6 +15,7 @@ public class Coordinate {
     private Float latitude;
     private Float longitude;
     private String adrers;
+    private Integer numero;
     private String city;
     private String nazione;
 
@@ -22,10 +23,11 @@ public class Coordinate {
         this.id_resturant = id_resturant;
     }
 
-    public Coordinate(Float latitude, Float longitude, String adrers, String city, String nazione) {
+    public Coordinate(Float latitude, Float longitude, String adrers, Integer numero, String city, String nazione) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.adrers = adrers;
+        this.numero = numero;
         this.city = city;
         this.nazione = nazione;
     }
@@ -36,12 +38,17 @@ public class Coordinate {
         this.latitude = 0f; //da calcolare;
         this.longitude = 0f; //da calcolare;
         this.adrers = adrers;
+        this.numero = numero;
         this.city = city;
         this.nazione = nazione;
     }
 
     public String getAdrers() {
         return adrers;
+    }
+    
+    public Integer getNumero() {
+        return numero;
     }
     
     public String getCity() {
@@ -70,6 +77,10 @@ public class Coordinate {
 
     protected void setAdrers(String adrers) {
         this.adrers = adrers;
+    }
+    
+    protected void setNumero(Integer numero) {
+        this.numero = numero;
     }
     
     protected void setCity(String city) {

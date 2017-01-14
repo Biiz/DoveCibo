@@ -52,6 +52,10 @@
         <servlet-name>CercaRistorantiHome</servlet-name>
         <servlet-class>DoveCiboPK.CercaRistorantiHome</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletModificaRistorante</servlet-name>
+        <servlet-class>DoveCiboPK.ServletModificaRistorante</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>CercaRistorantiHome</servlet-name>
         <url-pattern>/CercaRistorantiHome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModificaRistorante</servlet-name>
+        <url-pattern>/ServletModificaRistorante</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

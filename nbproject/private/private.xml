@@ -3,20 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/CercaRistorantiHome.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/NewMain2.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/QR_generator.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/navBar.jsp</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ProvaGetRistorante.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/CercaRistorantiHome.jsp</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/VisualizzaRistoranti.jsp</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletLogin.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/VisualizzaRistorantiUtente2.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/VisualizzaRistoranti.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
-            <file>file:/C:/Users/IO-PC/Documents/GitHub/DoveCiboGit/web/home.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante_modificato_successo.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante_inserito_successo.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletModificaRistorante.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/navBar.jsp</file>
         </group>
     </open-files>
 </project-private>

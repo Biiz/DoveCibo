@@ -50,28 +50,13 @@ public class Restaurant {
         this.id = id;
     }
 
-    protected void setDay_hours(Day_hours day_hours) {
-        this.day_hours = day_hours;
-    }
-
     protected void addOwner(User owner) {
         this.owners.add(owner);
     }
 
-
-
     protected void setN_reviews(Integer n_reviews) {
         this.n_reviews = n_reviews;
     }
-    
-    
-    
-    
-    
-    
-    
-
-
 
     public Integer getN_reviews() {
         return n_reviews;
@@ -161,7 +146,7 @@ public class Restaurant {
     
 
     protected void setAltro(String description, Float global_value, 
-            Price_range price_range, String name, String web_site_url, User creator, Coordinate c) {
+            Price_range price_range, String name, String web_site_url, User creator, Coordinate c, Day_hours dh) {
         this.description = description;
         this.global_value = global_value;
         this.creator = creator;
@@ -169,6 +154,7 @@ public class Restaurant {
         this.name = name;
         this.web_site_url = web_site_url;
         this.cordinate = c;
+        this.day_hours = dh;
     }
 
 }

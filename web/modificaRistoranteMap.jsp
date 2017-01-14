@@ -1,18 +1,35 @@
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>
+<%
+    DoveCiboPK.Restaurant Res = (DoveCiboPK.Restaurant) request.getSession(false).getAttribute("ristorante");
+%>
 <script>
     var geocoder;
     var map;
-    
-    function initialize() {
-        geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(-34.397, 150.644);
-        var mapOptions = {
-            zoom: 8,
-            center: latlng
-        };
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    }
 
+   function initMap(latitudine,longitudine) {
+        geocoder = new google.maps.Geocoder();
+        
+        var uluru = {lat: latitudine, lng: longitudine};
+        
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: uluru
+        });
+        
+        var infowindow<%= Res.getId() %> = new google.maps.InfoWindow({
+            content: "  <b><%= Res.getName() %></b>"
+        });
+
+        var marker<%= Res.getId() %> = new google.maps.Marker({
+              position: {lat:<%= Res.getCordinate().getLatitude() %>,lng:<%= Res.getCordinate().getLongitude() %>},
+          map: map
+        });
+        
+        marker<%= Res.getId() %>.addListener('click', function() {
+            infowindow<%= Res.getId() %>.open(map, marker<%= Res.getId() %>);
+        });
+      }
+    
     function codeAddress() {
         var address =
                 document.getElementById('txtVia').value + " , " +
@@ -25,10 +42,19 @@
 
                 document.getElementById("lat").value = results[0].geometry.location.lat();
                 document.getElementById("lng").value = results[0].geometry.location.lng();
-
-                var marker = new google.maps.Marker({
+                
+                
+                var infowindow<%= Res.getId() %> = new google.maps.InfoWindow({
+                    content: "  <b><%= Res.getName() %></b>"
+                });
+                
+                var marker<%= Res.getId() %>= new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location
+                });
+                
+                marker<%= Res.getId() %>.addListener('click', function() {
+                    infowindow<%= Res.getId() %>.open(map, marker<%= Res.getId() %>);
                 });
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
@@ -36,7 +62,13 @@
         });
     }
 </script>
-<script type="text/javascript"> window.onload = function () { initialize(); }; </script>
+
+<script type="text/javascript"> 
+    window.onload = function () { 
+        initMap(<%=Res.getCordinate().getLatitude()%>,<%=Res.getCordinate().getLongitude()%>);
+    }; 
+</script>
+
 
 <style>
     #map {
@@ -53,14 +85,14 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Latitudine:</label>          
-                <input class="form-control" name="lat" id="lat" onchange="latFill()" placeholder="12.12345678901234" required>
+                <input class="form-control" name="lat" id="lat" onchange="latFill()" value="<%= Res.getCordinate().getLatitude() %>" required>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-group">
                 <label>Longitudine:</label>          
-                <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  placeholder="12.12345678901234" required>
+                <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  value="<%= Res.getCordinate().getLongitude() %>" required>
             </div>
         </div>
     </div>

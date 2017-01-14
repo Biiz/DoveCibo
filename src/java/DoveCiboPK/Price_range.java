@@ -11,20 +11,20 @@ package DoveCiboPK;
  */
 public class Price_range {
 
-    private Integer id;
+    private Integer id_restaurant;
 
     private Double min_value;
     private Double max_value;
 
-    public Price_range(Integer id, Double min_value, Double max_value) {
-        this.id = id;
+    public Price_range(Integer id_restaurant, Double min_value, Double max_value) {
+        this.id_restaurant = id_restaurant;
 
         this.min_value = min_value;
         this.max_value = max_value;
     }
 
-    public Price_range(Integer id) {
-        this.id = id;
+    public Price_range(Integer id_restaurant) {
+        this.id_restaurant = id_restaurant;
     }
 
     public Double getMax_value() {
@@ -35,12 +35,12 @@ public class Price_range {
         return min_value;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_restaurant() {
+        return id_restaurant;
     }
 
-    protected void setId(Integer id) {
-        this.id = id;
+    protected void setId_restaurant(Integer id_restaurant) {
+        this.id_restaurant = id_restaurant;
     }
 
     protected void setMax_value(Double max_value) {

@@ -38,12 +38,6 @@ public class NewMain {
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         System.out.println("ERROE2");
                     
-                    if( ! new DB_Manager().setOrariPerRistorante(rest))
-                          System.out.println("ERROE3");
-                    
-                    if( ! new DB_Manager().cercaPriceRange_perId(rest.getPrice_range()))
-                        System.out.println("ERROE4");
-                    
                     if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         System.out.println("ERROE5");
 
@@ -56,7 +50,7 @@ public class NewMain {
                     System.out.println("ID r " + rest.getId());
                     System.out.println("nik ow " + rest.getOwners().get(0).getNickname());
                     System.out.println("nik cr " + rest.getCreator().getNickname());
-                    System.out.println("end m mar " + rest.getDay_hours().getEndM());
+                    //System.out.println("end m mar " + rest.getDay_hours().getEndM());
                    System.out.println("coordinate " + rest.getCordinate().getAdrers());
                 }
                 

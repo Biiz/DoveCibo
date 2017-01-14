@@ -80,13 +80,13 @@
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%= rest.getId()%>'">View/Edit</button>
+                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%=rest.getId()%>'">View/Edit</button>
                                 </div>
                             </td>
                             <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= rest.getGlobal_value() %> </b></td>
                             <td> posizione in classiffica </td>
                             <td><%= rest.getN_reviews() %></td>
-                            <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1) %>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
+                            <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1)%> <%=rest.getCordinate().getNumero()%>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
                             <td>                                                
                                 <%
                                     int size = rest.getCusines().size();

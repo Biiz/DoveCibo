@@ -24,7 +24,7 @@
             <div class="alert alert-success " role="alert">
                 
                 <div id="tagline">
-                    <h1>Ristorante inserito con successo</h1>
+                    <h1>Ristorante modificato con successo</h1>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>
@@ -33,6 +33,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-success btn-lg pull-right" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-home"></span> Torna alla home</button>
+                        <form action="VisualizzaRistorantiUtente2" method="post">
+                            <div class="row text-center">
+                                <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-eye-open"></span> i tuoi ristoranti</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

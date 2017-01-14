@@ -33,14 +33,9 @@ public class ProvaGetRistorante {
                     
                     if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         System.out.println("ERROE2");
-                    System.out.println("id ho"+ rest.getDay_hours().getId());
+                    System.out.println("id ho"+ rest.getDay_hours().getId_restaurant());
                     
                     
-                    if( ! new DB_Manager().setOrariPerRistorante(rest))
-                          System.out.println("ERROE3");
-                    
-                    if( ! new DB_Manager().cercaPriceRange_perId(rest.getPrice_range()))
-                        System.out.println("ERROE4");
                     
                     if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         System.out.println("ERROE5");
@@ -54,7 +49,7 @@ public class ProvaGetRistorante {
                     System.out.println("ID o " + rest.getOwners().size());
                     
                     System.out.println("nik cr " + rest.getCreator().getNickname());
-                    System.out.println("end m mar " + rest.getDay_hours().getEndM());
+                    //System.out.println("end m mar " + rest.getDay_hours().getEndM());
                     System.out.println("coordinate " + rest.getCordinate().getAdrers());
                     System.out.println("Commento " + rest.getReviews().size());
                 

@@ -60,6 +60,15 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
                     if( ! new DB_Manager().cercaRistorante_perId(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
+                    if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    
+                    if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
+                    
+                    if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
                     if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                
