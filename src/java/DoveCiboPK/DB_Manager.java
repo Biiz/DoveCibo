@@ -602,7 +602,7 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "INSERT INTO replies(id,description, date_creation, id_review, id_owner, date_validation)"
+            query = "INSERT INTO replies(id,description, DATE_CREATION, id_review, id_owner, date_validation)"
                     + "VALUES(DEFAULT,?,DEFAULT,?,?,NULL)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
@@ -615,7 +615,6 @@ public class DB_Manager {
             ResultSet generatedKeys = sp.getGeneratedKeys();
             if (generatedKeys.next()) {
                 rep.setId(generatedKeys.getInt(1));
-                rep.setDate_creation(generatedKeys.getDate("date_creation"));
             }
  
             r = true;
@@ -1675,7 +1674,7 @@ public class DB_Manager {
             ResultSet rs = sp.executeQuery();
             
             while (rs.next()) {
-                ALR.add( new Restaurant(rs.getInt("id")) );
+                ALR.add( new Restaurant(rs.getInt("id_restaurant")) );
             }
             
             
@@ -1809,6 +1808,45 @@ public class DB_Manager {
             return r;
         }
     }   
+    
+    
+    public Boolean setRepli_perRew( Review rew) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT  * FROM REPLIES WHERE ID_REVIEW = ?";
+            sp = con.prepareStatement(query);
+            
+            
+            sp.setInt(1, rew.getId());
+            ResultSet rs = sp.executeQuery();            
+            
+            if (rs.next()) {
+                
+                Replies rep = new Replies(
+                         rs.getInt("id"),  rs.getString("description"), 
+                          rs.getDate("date_creation"),rs.getDate("date_creation"),
+                          new User(rs.getInt("id_validator")));
+                
+                rew.setRepile(rep); 
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+        
+    
     
  
 }

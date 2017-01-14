@@ -6,6 +6,7 @@
 package DoveCiboPK;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author postal
  */
-@WebServlet(name = "ServletNotificheOwner", urlPatterns = {"/ServletNotificheOwner"})
-public class ServletNotificheOwner extends HttpServlet {
+@WebServlet(name = "ServletNotifiche", urlPatterns = {"/ServletNotifiche"})
+public class ServletNotifiche extends HttpServlet {
 
 
     @Override
@@ -40,33 +41,54 @@ public class ServletNotificheOwner extends HttpServlet {
         //User u = new User(2);
         //new DB_Manager().cercaUser_perId(u);
         
-        if (! u.getRole().equals("2")){
+        if (! (u.getRole().equals("2") || u.getRole().equals("3")) ){
             request.setAttribute("error", "accesso negato");
             request.getRequestDispatcher("errore.jsp").forward(request, response);  
         }
         
-        ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
-        
         ArrayList <Notifica> ALN = new ArrayList<Notifica>();
         
-        for(Restaurant rest: ALR) {
-            new DB_Manager().setCommenti_perRistorante(rest);
-            new DB_Manager().cercaRistorante_perId(rest);
+        ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
+        
+        ALN.add( new Notifica("PROVA"+ALR.get(0).getId(),  new Date(0), "nuovaCom", 1));
+        
+        if(u.getRole().equals("2")){
+            for(Restaurant rest: ALR) {
+                new DB_Manager().setCommenti_perRistorante(rest);
+                new DB_Manager().cercaRistorante_perId(rest);
             
-            for(Review rev: rest.getReviews()){
-                new DB_Manager().cercaUser_perId(rev.getCreator());
-                ALN.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
-                        rev.getDate_creation(), "/ServletAggiungiRepile?"+rest.getId()));
+                
+                for(Review rev: rest.getReviews()){
+                    
+                    if(! new DB_Manager().setRepli_perRew(rev))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    
+                    if(rev.getRepile() == null){
+                        new DB_Manager().cercaUser_perId(rev.getCreator());
+                        ALN.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
+                                rev.getDate_creation(),  "nuovaRec", rev.getId()));
+                    }
+                }
+            
+                new DB_Manager().cercaPhotos_perRistorante(rest, 0);
+            
+                for(Photo ph: rest.getPhotos()){
+                    new DB_Manager().cercaUser_perId(ph.getOwner());
+                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph, "nuovaFoto", ph.getId()));
+                }
+            
             }
-            
-            new DB_Manager().cercaPhotos_perRistorante(rest, 0);
-            
-            for(Photo ph: rest.getPhotos()){
-                new DB_Manager().cercaUser_perId(ph.getOwner());
-                ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph.getDate_creation(), "/ServletRisciestaEliminazioneFoto", ph));
-            }
-            
         }
+        
+        if(u.getRole().equals("3")){
+            
+            
+            
+            
+        }        
+        
+         
+                
         
         ALN.sort(new comparatorNotifiche());
         
@@ -74,7 +96,7 @@ public class ServletNotificheOwner extends HttpServlet {
         
         request.setAttribute("notifiche", ALN);
 
-        request.getRequestDispatcher("provaStampa.jsp").forward(request, response);
+        request.getRequestDispatcher("notifiche.jsp").forward(request, response);
             
         
         } catch (SQLException ex) {

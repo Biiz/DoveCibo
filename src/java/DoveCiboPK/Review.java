@@ -43,6 +43,11 @@ public class Review {
     public Review(Integer id) {
         this.id = id;
     }
+
+    public Replies getRepile() {
+        return repile;
+    }
+    
     
     
 

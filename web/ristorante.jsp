@@ -203,7 +203,9 @@
                             <form method="POST" action="ServletUpload" enctype="multipart/form-data" >                           
                                 <input type="hidden" name="idR" value="<%= R.getId() %>">
                                 <input type="hidden" name="idU" value="<%= thisUser.getId() %>">
-                                <input type="file" name="file" id="file" />
+                                <label class="btn btn-default btn-file">
+                                    <input type="file" name="file" id="file" />
+                                </label>
                                 <input class="btn btn-success" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
                             
@@ -411,55 +413,10 @@
                 </div>
                         
                         
-                <%
-                    // DA SISTEMARE PER OGNI OWNER
-                   if(thisUser!=null)
-                   if(R.isOwner((User) session.getAttribute("User"))){   
-                %>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
-
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
-                        <a href="#risposta" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
-                    </div> 
-                </div>
-                <%
-                        
-                    }
-                
-                %>
-                <div id="risposta" class="collapse">
-                    <div class="row">
-                        <div class="col-md-12">    
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="tagline">
-                                        <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Risposta:</b></p>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-
-                                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button style="align-items: left" type="button" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                //RISPOSTA DA FARE UN PO PIU CARINA_______ :   
+                <% if ( rew.getRepile() != null){ %> 
+                <%= rew.getRepile().getDescription() %>
+                <% } %>
 
             </div>
         </div>   
