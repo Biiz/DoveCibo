@@ -18,7 +18,7 @@
                             for (Notifica rest : ALR) {
                         %>
                         
-                        
+                        lol
                         <%= rest.getDescrizione() %>
                         
                         <% } %>

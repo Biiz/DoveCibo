@@ -187,7 +187,9 @@ else if (user.getRole().equals("3")){
             </div>
             <div class="modal-footer">
                 <div class="bottom text-center">
-                    <button class="btn btn-info btn-justified" onclick="window.location.href = 'notifiche.jsp'">Vedi tutte le notifiche</button>
+                    <form method="GET" action="ServletNotifiche" >
+                        <button class="btn btn-info btn-justified" type="submit">Vedi tutte le notifiche</button>
+                    </form>
                 </div>
             </div>
         </div>   

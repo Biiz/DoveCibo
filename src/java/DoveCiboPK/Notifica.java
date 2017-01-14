@@ -14,37 +14,26 @@ import java.sql.Date;
 public class Notifica {
     
     private String descrizione;
-    private String azioneAccetta;
-    private String azioneRifiuta;
     private Date data;
+    private String tipo;
     private Photo foto;
+    private Integer idGen;
 
-    public Notifica(String descrizione, Date data) {
+    public Notifica(String descrizione, Date data, String tipo, Integer idGen) {
         this.descrizione = descrizione;
         this.data = data;
+        this.tipo = tipo;
+        this.idGen = idGen;
+    }
+
+    public Notifica(String descrizione, Photo foto, String tipo, Integer idGen) {
+        this.descrizione = descrizione;
+        this.tipo = tipo;
+        this.foto = foto;
+        this.idGen = idGen;
     }
     
-    public Notifica(String descrizione, Date data, String azioneAccetta) {
-        this.descrizione = descrizione;
-        this.data = data;
-        this.azioneAccetta = azioneAccetta;
-    }
-    
 
-    public Notifica(String descrizione, Date data, String azioneRifiuta, Photo ph) {
-        this.descrizione = descrizione;
-        this.data = data;
-        this.azioneRifiuta = azioneRifiuta;
-        this.foto = ph;
-    }
-
-    public String getAzioneAccetta() {
-        return azioneAccetta;
-    }
-
-    public String getAzioneRifiuta() {
-        return azioneRifiuta;
-    }
 
     public Date getData() {
         return data;
@@ -54,13 +43,6 @@ public class Notifica {
         return descrizione;
     }
 
-    protected void setAzioneAccetta(String azioneAccetta) {
-        this.azioneAccetta = azioneAccetta;
-    }
-
-    protected void setAzioneRifiuta(String azioneRifiuta) {
-        this.azioneRifiuta = azioneRifiuta;
-    }
 
     protected void setData(Date data) {
         this.data = data;
@@ -73,6 +55,18 @@ public class Notifica {
     protected void setFoto(Photo foto) {
         this.foto = foto;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public Integer getIdGen() {
+        return idGen;
+    }
+    
+    
+    
+    
     
         
     

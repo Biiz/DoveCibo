@@ -30,7 +30,7 @@ public class ServletAggiungiRepile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         try {
@@ -42,6 +42,9 @@ public class ServletAggiungiRepile extends HttpServlet {
             //CREATORE
             HttpSession session = request.getSession(false);
             User u = (User) session.getAttribute("User");
+            
+            //User u = new User(2);
+            //new DB_Manager().cercaUser_perId(u);
             
             //RISTORANTE
             Integer idRew = Integer.parseInt(request.getParameter("commento"));
@@ -57,7 +60,7 @@ public class ServletAggiungiRepile extends HttpServlet {
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
             
-            response.sendRedirect("/DoveCiboGit/Notifiche");
+            //response.sendRedirect("/DoveCiboGit/Notifiche");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

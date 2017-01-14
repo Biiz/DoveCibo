@@ -1,3 +1,4 @@
+<%@page import="DoveCiboPK.Notifica"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -33,6 +34,60 @@
     
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
+        
+        <%
+            ArrayList <Notifica> Notifiche = (ArrayList <Notifica>) request.getAttribute("notifiche");
+            %>
+        
+        
+        
+               <div class="modal-dialog modal-lg" >
+            <div class="modal-content colonna2">
+                <div class="modal-body">
+
+                    <p style="color: black; font-size: 28px"><b>NOTIFICHE</b></p>
+                    <!-- effettiva tabella delle notifiche -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
+                                <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <% for (Notifica n : Notifiche) { %>
+                            
+                            <tr class="info">
+                                <td> <%= n.getDescrizione() %></td>
+                                <td>
+                                    
+                                    <% if( n.getTipo().equals("nuovaRec") ){ %>
+                                    <form method="POST" action="ServletAggiungiRepil" >
+                                        <input type="hidden" name="commento" value="<%=n.getIdGen()%>">
+                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> 
+                                        <input type="text" class="form-control" id="descrizione" name="description" pattern=".{1,25}" required>
+                                             
+                                    </form>
+                                    <% } %>
+                                </td>
+                            </tr>
+                            
+                            <% } %>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
         <!-- notifiche per ristoratore -->
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
