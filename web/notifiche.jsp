@@ -50,6 +50,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
                                 <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
                                 <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
                             </tr>
@@ -59,6 +60,7 @@
                             <% for (Notifica n : Notifiche) { %>
                             
                             <tr class="info">
+                                <td> <%= n.getUser().getNickname() %></td>
                                 <td> <%= n.getDescrizione() %></td>
                                 <td>
                                     
@@ -74,6 +76,16 @@
                                     <form method="POST" action="ServletAccettaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
                                         <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta risposta</button> 
+                                             
+                                    </form>
+                                    <% } %>
+                                    
+                                    
+                                    
+                                    <% if( n.getTipo().equals("reclama") ){ %>
+                                    <form method="POST" action="ServletAccettaReclamo" >
+                                        <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta reclamo</button> 
                                              
                                     </form>
                                     <% } %>

@@ -727,8 +727,8 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "INSERT INTO restaurant_owner(id_restaurant, id_owner)"
-                    + "VALUES(?,?)";
+            query = "INSERT INTO restaurant_owner(id_restaurant, id_owner, id_validator)"
+                    + "VALUES(?,?, NULL)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
             sp.setInt(1, id_restourant);
@@ -1668,7 +1668,7 @@ public class DB_Manager {
         ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
         
         try {
-            query = "SELECT  * FROM restaurant_owner WHERE id_owner = ?";
+            query = "SELECT  * FROM restaurant_owner WHERE id_owner = ? AND id_validator is not null";
             sp = con.prepareStatement(query);
             sp.setInt(1, u.getId());         
             ResultSet rs = sp.executeQuery();
@@ -1689,6 +1689,11 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    
+    
+    
+   
     
     
     public Boolean updateRuolo(User u, String ruolo) throws SQLException {
@@ -1911,6 +1916,75 @@ public class DB_Manager {
         }
  
     } 
+
+        
+        
+        
     
+        public Boolean updateResOwn(Integer idRO, User val) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "UPDATE RESTAURANT_OWNER SET ID_VALIDATOR = ? WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, val.getId());
+            sp.setInt(2, idRO);
+            sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }    
+        
+        
+        
+        
+        
+        
+    public Boolean setNotificheReclamo (ArrayList <Notifica> ALN) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+        
+        try {
+            query = "SELECT  * FROM restaurant_owner WHERE  id_validator is null";
+            sp = con.prepareStatement(query);
+       
+            ResultSet rs = sp.executeQuery();
+            
+            while (rs.next()) {
+                Restaurant res = new Restaurant(rs.getInt("id_restaurant"));
+                new DB_Manager().cercaRistorante_perId(res);
+                
+                User u = new User(rs.getInt("id_owner"));
+                new DB_Manager().cercaUser_perId(u);
+  
+                ALN.add( new Notifica("Risciesta reclamo ristorante "+res.getName(), rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
+            }
+            
+            
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+            r=false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }        
  
 }

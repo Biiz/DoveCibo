@@ -84,6 +84,9 @@ public class ServletNotifiche extends HttpServlet {
             if(! new DB_Manager().setNotificheRepil_daConfermare(ALN))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
             
+            if(! new DB_Manager().setNotificheReclamo(ALN))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
+            
             
         }        
         

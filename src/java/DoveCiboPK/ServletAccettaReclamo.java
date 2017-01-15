@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletAccettaRisposta", urlPatterns = {"/ServletAccettaRisposta"})
-public class ServletAccettaaRisposta extends HttpServlet {
+@WebServlet(name = "ServletAccettaReclamo", urlPatterns = {"/ServletAccettaReclamo"})
+public class ServletAccettaReclamo extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -39,10 +39,10 @@ public class ServletAccettaaRisposta extends HttpServlet {
         //CREATORE
         User u = (User) request.getSession(false).getAttribute("User");
             //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("idGen"));            
+            Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
             //INSERIMENTO DB
-            if(! new DB_Manager().updateRepli(idR, u))
+            if(! new DB_Manager().updateResOwn(idRO, u))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
             
             

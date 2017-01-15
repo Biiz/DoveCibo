@@ -35,6 +35,11 @@ public class Notifica {
         this.idGen = idGen;
         this.user = user;
     }
+
+    public User getUser() {
+        return user;
+    }
+
     
 
 
