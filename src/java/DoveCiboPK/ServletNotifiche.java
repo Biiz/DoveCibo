@@ -41,7 +41,7 @@ public class ServletNotifiche extends HttpServlet {
         //User u = new User(2);
         //new DB_Manager().cercaUser_perId(u);
         
-        if (! (u.getRole().equals("2") || u.getRole().equals("3")) ){
+        if (! (u.getRole().equals("2") || u.getRole().equals("1")) ){
             request.setAttribute("error", "accesso negato");
             request.getRequestDispatcher("errore.jsp").forward(request, response);  
         }
@@ -50,7 +50,6 @@ public class ServletNotifiche extends HttpServlet {
         
         ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
         
-        ALN.add( new Notifica("PROVA"+ALR.get(0).getId(),  new Date(0), "nuovaCom", 1));
         
         if(u.getRole().equals("2")){
             for(Restaurant rest: ALR) {
@@ -66,7 +65,7 @@ public class ServletNotifiche extends HttpServlet {
                     if(rev.getRepile() == null){
                         new DB_Manager().cercaUser_perId(rev.getCreator());
                         ALN.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
-                                rev.getDate_creation(),  "nuovaRec", rev.getId()));
+                                rev.getDate_creation(),  "nuovaRec", rev.getId(), rev.getCreator()));
                     }
                 }
             
@@ -74,15 +73,16 @@ public class ServletNotifiche extends HttpServlet {
             
                 for(Photo ph: rest.getPhotos()){
                     new DB_Manager().cercaUser_perId(ph.getOwner());
-                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph, "nuovaFoto", ph.getId()));
+                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                 }
             
             }
         }
         
-        if(u.getRole().equals("3")){
+        if(u.getRole().equals("1")){
             
-            
+            if(! new DB_Manager().setNotificheRepil_daConfermare(ALN))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
             
             
         }        

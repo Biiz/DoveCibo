@@ -65,11 +65,19 @@
                                     <% if( n.getTipo().equals("nuovaRec") ){ %>
                                     <form method="POST" action="ServletAggiungiRepil" >
                                         <input type="hidden" name="commento" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> 
                                         <input type="text" class="form-control" id="descrizione" name="description" pattern=".{1,25}" required>
+                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button>                                              
+                                    </form>
+                                    <% } %>
+                                    
+                                    <% if( n.getTipo().equals("confermaRep") ){ %>
+                                    <form method="POST" action="ServletAccettaRisposta" >
+                                        <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta risposta</button> 
                                              
                                     </form>
                                     <% } %>
+                                    
                                 </td>
                             </tr>
                             

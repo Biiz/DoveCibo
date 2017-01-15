@@ -595,7 +595,7 @@ public class DB_Manager {
         }
     }
  
-    public Boolean inserisciRisposta(Replies rep, Integer idOwner, Integer idRew) throws SQLException {
+    public Boolean inserisciRisposta(Replies rep, Integer idRew) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -608,7 +608,7 @@ public class DB_Manager {
  
             sp.setString(1, rep.getDescription());
             sp.setInt(2, idRew);
-            sp.setInt(3, idOwner);
+            sp.setInt(3, rep.getOwner().getId());
  
             sp.executeUpdate();
  
@@ -1742,7 +1742,7 @@ public class DB_Manager {
     } 
     
  
-    public Boolean updatePhotoVal(Replies rep, User ad) throws SQLException {
+    public Boolean updatePhotoVal(Photo rep, User ad) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1770,7 +1770,7 @@ public class DB_Manager {
     
     
     
-    public Boolean inserisciRepile(Integer idRew, Replies rep, User own) throws SQLException {
+    public Boolean inserisciRepile(Integer idRew, Replies rep) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1788,7 +1788,7 @@ public class DB_Manager {
             
             
             sp.setString(1, rep.getDescription());
-            sp.setInt(2, own.getId());
+            sp.setInt(2, rep.getOwner().getId());
             sp.setInt(3, idRew);
 
             sp.executeUpdate();
@@ -1817,7 +1817,7 @@ public class DB_Manager {
         Boolean r = true;
  
         try {
-            query = "SELECT  * FROM REPLIES WHERE ID_REVIEW = ?";
+            query = "SELECT  * FROM REPLIES WHERE ID_REVIEW = ? AND ID_VALIDATOR IS NOT NULL";
             sp = con.prepareStatement(query);
             
             
@@ -1829,7 +1829,8 @@ public class DB_Manager {
                 Replies rep = new Replies(
                          rs.getInt("id"),  rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
-                          new User(rs.getInt("id_validator")));
+                          new User(rs.getInt("id_validator")),
+                          new User(rs.getInt("id_owner")));
                 
                 rew.setRepile(rep); 
             }
@@ -1846,7 +1847,70 @@ public class DB_Manager {
         }
     }
         
+    public Boolean setNotificheRepil_daConfermare( ArrayList <Notifica> ALN ) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT  * FROM REPLIES WHERE ID_VALIDATOR IS NULL";
+            sp = con.prepareStatement(query);
+
+            ResultSet rs = sp.executeQuery();            
+            
+            while (rs.next()) {
+                
+                Replies rep = new Replies(
+                         rs.getInt("id"),  rs.getString("description"), 
+                          rs.getDate("date_creation"),rs.getDate("date_creation"),
+                          new User(rs.getInt("id_validator")),
+                          new User(rs.getInt("id_owner"))  );
+                
+                ALN.add( new Notifica("Nuova replica da confermare: "+rep.getDescription(), 
+                        rep.getDate_creation(), 
+                        "confermaRep", rep.getId(), rep.getOwner()));
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }    
     
+    
+    
+    
+        public Boolean updateRepli(Integer idRep, User val) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "UPDATE REPLIES SET ID_VALIDATOR = ? , DATE_VALIDATION = DEFAULT WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, val.getId());
+            sp.setInt(2, idRep);
+            sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    } 
     
  
 }

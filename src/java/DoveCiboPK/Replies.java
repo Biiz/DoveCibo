@@ -18,17 +18,19 @@ public class Replies {
     private Date date_creation;
     private Date date_validation;
     private User validator;
+    private User owner;
 
     public Replies(String description) {
         this.description = description;
     }
 
-    public Replies(Integer id, String description, Date date_creation, Date date_validation, User validator) {
+    public Replies(Integer id, String description, Date date_creation, Date date_validation, User validator, User owner) {
         this.id = id;
         this.description = description;
         this.date_creation = date_creation;
         this.date_validation = date_validation;
         this.validator = validator;
+        this.owner = owner;
     }
 
     public Date getDate_creation() {
@@ -55,4 +57,10 @@ public class Replies {
         this.date_creation = date_creation;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    
+    
 }

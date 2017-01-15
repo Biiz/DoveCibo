@@ -18,19 +18,22 @@ public class Notifica {
     private String tipo;
     private Photo foto;
     private Integer idGen;
+    private User user; 
 
-    public Notifica(String descrizione, Date data, String tipo, Integer idGen) {
+    public Notifica(String descrizione, Date data, String tipo, Integer idGen, User user) {
         this.descrizione = descrizione;
         this.data = data;
         this.tipo = tipo;
         this.idGen = idGen;
+        this.user = user;
     }
 
-    public Notifica(String descrizione, Photo foto, String tipo, Integer idGen) {
+    public Notifica(String descrizione, Photo foto, String tipo, Integer idGen, User user) {
         this.descrizione = descrizione;
         this.tipo = tipo;
         this.foto = foto;
         this.idGen = idGen;
+        this.user = user;
     }
     
 

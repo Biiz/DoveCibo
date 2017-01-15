@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletReclamaRistorante", urlPatterns = {"/ServletReclamaRistorante"})
-public class ServletReclamaRistorante extends HttpServlet {
+@WebServlet(name = "ServletAccettaRisposta", urlPatterns = {"/ServletAccettaRisposta"})
+public class ServletAccettaaRisposta extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -39,20 +39,14 @@ public class ServletReclamaRistorante extends HttpServlet {
         //CREATORE
         User u = (User) request.getSession(false).getAttribute("User");
             //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("ristorante"));            
+            Integer idR = Integer.parseInt(request.getParameter("idGen"));            
             
             //INSERIMENTO DB
-            if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
+            if(! new DB_Manager().updateRepli(idR, u))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
             
-            //CAMBIA RUOLO
-            new DB_Manager().updateRuolo(u, "2");
-            u.setRole("2");
             
-            request.getSession(false).invalidate();
-            request.getSession(true).setAttribute("User", u);
-            
-            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
+            response.sendRedirect("/DoveCiboGit/ServletNotifiche");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

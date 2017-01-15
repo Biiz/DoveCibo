@@ -50,17 +50,17 @@ public class ServletAggiungiRepile extends HttpServlet {
             Integer idRew = Integer.parseInt(request.getParameter("commento"));
             
             //CREO REP
-            Replies rep = new Replies(null, description, null, null, null);
+            Replies rep = new Replies(null, description, null, null, null, u);
             
 
             
             
             //INSERIMENTO DB
-            if(! new DB_Manager().inserisciRisposta(rep, u.getId(), idRew))
+            if(! new DB_Manager().inserisciRisposta(rep, idRew))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
             
-            //response.sendRedirect("/DoveCiboGit/Notifiche");
+            response.sendRedirect("/DoveCiboGit/ServletNotifiche");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
