@@ -1,6 +1,3 @@
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,45 +16,28 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
 public class QR_generator {
 
-    public QR_generator(String text, Integer ID) {
+    Restaurant rest;
 
-        // get QR stream from text using defaults
-        ByteArrayOutputStream stream = QRCode.from(text).stream();
+    public QR_generator(Restaurant rest) {
+        this.rest = rest;
+    }
 
-        // override the image type to be JPG
-        QRCode.from(text).to(ImageType.JPG).stream();
+    public String qr_Gen() {
+        String qrText = rest.RestDescriptionToText();
 
-        // override image size to be 250x250
-        QRCode.from(text).withSize(250, 250).stream();
-        try {
+        //stringa che il QR mostrerà
+        String dataToQR = qrText;
 
-            Path currentRelativePath = Paths.get("");
-            String s_path = currentRelativePath.toAbsolutePath().toString();
-            System.out.println("Current relative path is: " + s_path);
-            FileOutputStream fout;
-            if(s_path.contains("\\")) {
-                fout = new FileOutputStream(new File(s_path + "\\web\\img\\QR_Rest_" + ID + ".JPG"));
-            }
-            else{
-                //il QR viene scritto nella directory standard
-                fout = new FileOutputStream(new File(s_path));}
-            if(s_path.contains("//")) {
-                fout = new FileOutputStream(new File(s_path + "//web//img//QR_Rest_" + ID + ".JPG"));
-            }
-            else{fout = new FileOutputStream(new File(s_path));}
-            fout.write(stream.toByteArray());
-            fout.flush();
-            fout.close();
+        ByteArrayOutputStream out = QRCode.from(dataToQR).to(ImageType.PNG).stream();
+        Base64.Encoder encoder = Base64.getEncoder();
+        String qrCode = encoder.encodeToString(out.toByteArray());
 
-        } catch (FileNotFoundException e) {
-            // Do Logging
-        } catch (IOException e) {
-            // Do Logging
-        }
+        return qrCode;
     }
 }

@@ -74,7 +74,9 @@
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
-            DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante"); %>
+            DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
+            String qrCode = (String) request.getAttribute("qrCode");
+        %>
         
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
@@ -115,7 +117,10 @@
                                                 %>
 
                                             </b></li>
-                                        <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span> <b>QRcode conentente le seguenti informazioni: Nome, indirizzo, orari di apertura</b></li>
+                                        <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
+                                            <b>QRcode:</b>
+                                            <img alt="Embedded Image" src="data:image/png;base64,<%= qrCode %>" />
+                                        </li>
 
                                     </ul>
 

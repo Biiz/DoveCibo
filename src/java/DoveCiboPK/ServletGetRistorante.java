@@ -64,9 +64,14 @@ public class ServletGetRistorante extends HttpServlet {
             }    
         }else{
             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-        }           
+        }    
+            //creo l'oggetto QR
+            QR_generator qr = new QR_generator(rest);
+            //ottengo la stringa descrittiva da inserire nel QR
+            String qrCode = qr.qr_Gen();
             
             request.setAttribute("ristorante", rest);
+            request.setAttribute("qrCode", qrCode);
             request.getRequestDispatcher("ristorante.jsp").forward(request, response);
 
         } catch (Exception ex) {

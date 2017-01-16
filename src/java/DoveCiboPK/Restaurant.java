@@ -156,5 +156,23 @@ public class Restaurant {
         this.cordinate = c;
         this.day_hours = dh;
     }
+    
+    
+    public String RestDescriptionToText(){
+        //ottengo la stringa degli orari di apertura
+        String hours_description = this.day_hours.DayHoursDescriptionToText();
+        //Stringa descrittiva del ristorante, mostrata nel QR
+        String description =
+                  "Nome: " + this.getName()
+                + " - Indirizzo: " + this.cordinate.getAdrers()
+                + ", " + this.cordinate.getNumero()
+                + ", " + this.cordinate.getCity()
+                + ", " + this.cordinate.getNazione()
+                + hours_description;
+        
+        return description;
+    }
 
 }
+
+

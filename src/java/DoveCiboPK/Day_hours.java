@@ -5,7 +5,6 @@ package DoveCiboPK;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author stefano
@@ -22,7 +21,7 @@ public class Day_hours {
     private Integer end_H_P;
     private Integer end_M_P;
 
-    public Day_hours(Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M,Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
+    public Day_hours(Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M, Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
         this.start_H_M = start_H_M;
         this.start_M_M = start_M_M;
         this.end_H_M = end_H_M;
@@ -33,7 +32,7 @@ public class Day_hours {
         this.end_M_P = end_M_P;
     }
 
-    public Day_hours(Integer id_restaurant, Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M,Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
+    public Day_hours(Integer id_restaurant, Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M, Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
         this.id_restaurant = id_restaurant;
         this.start_H_M = start_H_M;
         this.start_M_M = start_M_M;
@@ -44,13 +43,10 @@ public class Day_hours {
         this.end_H_P = end_H_P;
         this.end_M_P = end_M_P;
     }
-    
-    
 
     public Day_hours(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
     }
-    
 
     public Integer getStart_H_M() {
         return start_H_M;
@@ -91,36 +87,50 @@ public class Day_hours {
     protected void setId_restaurant(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
     }
-    
-    protected void  setStart_H_M(Integer start_H_M) {
-        this.start_H_M=start_H_M;
+
+    protected void setStart_H_M(Integer start_H_M) {
+        this.start_H_M = start_H_M;
     }
 
-    protected void  setStart_M_M(Integer start_M_M) {
-        this.start_M_M=start_M_M;
+    protected void setStart_M_M(Integer start_M_M) {
+        this.start_M_M = start_M_M;
     }
 
-    protected void  setEnd_H_M(Integer end_H_M) {
-        this.end_H_M=end_H_M;
+    protected void setEnd_H_M(Integer end_H_M) {
+        this.end_H_M = end_H_M;
     }
 
-    protected void  setEnd_M_M(Integer end_M_M) {
-        this.end_M_M=end_M_M;
+    protected void setEnd_M_M(Integer end_M_M) {
+        this.end_M_M = end_M_M;
     }
 
-    protected void  setStart_H_P(Integer start_H_P) {
-        this.start_H_P=start_H_P;
+    protected void setStart_H_P(Integer start_H_P) {
+        this.start_H_P = start_H_P;
     }
 
-    protected void  setStart_M_P(Integer start_M_P) {
-        this.start_M_P=start_M_P;
+    protected void setStart_M_P(Integer start_M_P) {
+        this.start_M_P = start_M_P;
     }
 
-    protected void  setEnd_H_P(Integer end_H_P) {
-        this.end_H_P=end_H_P;
+    protected void setEnd_H_P(Integer end_H_P) {
+        this.end_H_P = end_H_P;
     }
 
     protected void setEnd_M_P(Integer end_M_P) {
         this.end_M_P = end_M_P;
+    }
+
+    public String DayHoursDescriptionToText() {
+        //Stringa descrittiva dell'orario, mostrata nel QR
+        String description = 
+                  " - Orari Pranzo: "
+                + "da " + this.start_H_M + ":" + this.start_M_M
+                + " a " + this.end_H_M + ":" + this.end_M_M
+                + " - Orari Cena: "
+                + "da " + this.start_H_P + ":" + this.start_M_P
+                + " a " + this.end_H_P + ":" + this.end_M_P;
+
+        return description;
+        
     }
 }
