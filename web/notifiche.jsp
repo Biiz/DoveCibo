@@ -85,11 +85,11 @@
                                     <% if( n.getTipo().equals("reclama") ){ %>
                                     <form method="POST" action="ServletAccettaReclamo" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta reclamo</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta reclamo</button>       
                                     </form>
                                     <form method="POST" action="ServletRifiutaReclamo" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta reclamo</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta reclamo</button>       
                                     </form>
                                     <% } %>
                                     

@@ -32,9 +32,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form method="GET" action="ServletNotifiche" >
-                            <button class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon-home" type="submit"></span> Torna alle notifiche</button>
+                            <button class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon-tags" type="submit"></span> Torna alle notifiche</button>
                         </form>
-                        <button class="btn btn-sm btn-default" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-backward"></span> Torna alla home</button>
+                        <button class="btn btn-sm btn-default" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-home"></span> Torna alla home</button>
                     </div>
                 </div>
             </div>
