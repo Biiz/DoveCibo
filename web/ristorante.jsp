@@ -135,20 +135,11 @@
                                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                                     <li data-target="#myCarousel" data-slide-to="1"></li>
                                     <li data-target="#myCarousel" data-slide-to="2"></li>
-                                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                                    <li data-target="#myCarousel" data-slide-to="4"></li>
-                                    <li data-target="#myCarousel" data-slide-to="5"></li>
-                                    <li data-target="#myCarousel" data-slide-to="6"></li>
-
                                 </ol>
 
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
                                     <div class="item active">
-                                        <img src="img/img (1).jpeg" alt="">
-                                    </div>
-
-                                    <div class="item">
                                         <img src="img/img (1).jpg" alt="">
                                     </div>
 
@@ -157,15 +148,6 @@
                                     </div>
                                     <div class="item">
                                         <img src="img/img (3).jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/img (4).jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/img (5).jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/img (6).jpg" alt="">
                                     </div>
                                 </div>
 
