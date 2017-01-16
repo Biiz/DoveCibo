@@ -165,7 +165,7 @@ public class Restaurant {
         String description =
                   "Nome: " + this.getName()
                 + " - Indirizzo: " + this.cordinate.getAdrers()
-                + ", " + this.cordinate.getNumero()
+                + " " + this.cordinate.getNumero()
                 + ", " + this.cordinate.getCity()
                 + ", " + this.cordinate.getNazione()
                 + hours_description;
