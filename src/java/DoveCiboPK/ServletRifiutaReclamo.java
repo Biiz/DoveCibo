@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletReclamaRistorante", urlPatterns = {"/ServletReclamaRistorante"})
-public class ServletReclamaRistorante extends HttpServlet {
+@WebServlet(name = "ServletRifiutaReclamo", urlPatterns = {"/ServletRifiutaReclamo"})
+public class ServletRifiutaReclamo extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -34,18 +34,14 @@ public class ServletReclamaRistorante extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-
-
-        //CREATORE
-        User u = (User) request.getSession(false).getAttribute("User");
             //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("ristorante"));            
+            Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
             //INSERIMENTO DB
-            if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
+            if(! new DB_Manager().rifiutaReclamo(idRO))
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+
+            response.sendRedirect("/DoveCiboGit/reclamoRifiutato.jsp");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

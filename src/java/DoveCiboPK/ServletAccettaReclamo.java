@@ -38,15 +38,20 @@ public class ServletAccettaReclamo extends HttpServlet {
 
         //CREATORE
         User u = (User) request.getSession(false).getAttribute("User");
+        User user = new User (-1, "","","","","", "");
             //RISTORANTE
             Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
             //INSERIMENTO DB
             if(! new DB_Manager().updateResOwn(idRO, u))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+            if(! new DB_Manager().selectOwn(idRO, u, user))
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
             
+            //CAMBIA RUOLO
+            if(! new DB_Manager().updateRuolo(user));
             
-            response.sendRedirect("/DoveCiboGit/ServletNotifiche");
+            response.sendRedirect("/DoveCiboGit/reclamoAccettato.jsp");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

@@ -1690,13 +1690,7 @@ public class DB_Manager {
         }
     }
     
-    
-    
-    
-   
-    
-    
-    public Boolean updateRuolo(User u, String ruolo) throws SQLException {
+    public Boolean updateRuolo(User u) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1704,7 +1698,7 @@ public class DB_Manager {
         try {
             query = "UPDATE USERS SET ROLE = ? WHERE ID = ?";
             sp = con.prepareStatement(query);
-            sp.setString(1, ruolo);
+            sp.setString(1, "2");
             sp.setInt(2, u.getId());
             sp.executeUpdate();
             r = true;
@@ -1917,9 +1911,6 @@ public class DB_Manager {
  
     } 
 
-        
-        
-        
     
         public Boolean updateResOwn(Integer idRO, User val) throws SQLException {
  
@@ -1944,12 +1935,66 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
-    }    
+    }  
         
-        
-        
-        
-        
+        public Boolean selectOwn(Integer idRO, User val, User user) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "SELECT id_owner FROM RESTAURANT_OWNER WHERE ID_VALIDATOR = ? AND ID = ?";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, val.getId());
+            sp.setInt(2, idRO);
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                user.setId(rs.getInt("id_owner"));
+            }
+            
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }  
+    
+    public Boolean rifiutaReclamo(Integer idRO) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "DELETE FROM RESTAURANT_OWNER WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, idRO);
+            
+            sp.executeUpdate();
+            
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }
         
     public Boolean setNotificheReclamo (ArrayList <Notifica> ALN) throws SQLException {
  
@@ -1958,7 +2003,7 @@ public class DB_Manager {
         Boolean r = true;
         
         try {
-            query = "SELECT  * FROM restaurant_owner WHERE  id_validator is null";
+            query = "SELECT * FROM restaurant_owner WHERE  id_validator is null";
             sp = con.prepareStatement(query);
        
             ResultSet rs = sp.executeQuery();
@@ -1970,7 +2015,7 @@ public class DB_Manager {
                 User u = new User(rs.getInt("id_owner"));
                 new DB_Manager().cercaUser_perId(u);
   
-                ALN.add( new Notifica("Risciesta reclamo ristorante "+res.getName(), rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
+                ALN.add( new Notifica("Richiesta di reclamo per il ristorante: "+"<b>"+res.getName()+"</b>", rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
             }
             
             
