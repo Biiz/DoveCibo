@@ -165,7 +165,7 @@
                     </div>
 
                     <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
+                    Descrizione:
                     <div class="row">
                         <div class="col-md-12">
                             <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%= R.getDescription()%></p>                                    
@@ -196,11 +196,10 @@
                                 <input class="btn btn-success" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
                             
-                            <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO%>
-                            <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
-
-                            <% if(thisUser!=null)
+                            <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO
+                               if(thisUser!=null)
                                if(!R.isOwner(thisUser)){ %>
+                            <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
                             <form method="POST" action="ServletReclamaRistorante" >
                                 <input type="hidden" name="ristorante" value="<%=R.getId()%>">
                                 <button type="submit" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
@@ -372,7 +371,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-9">
-                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b>-<%=rew.getCreator().getLike()%></p>
+                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
                         <div id="tagline">
                             <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                         </div>
@@ -393,18 +392,78 @@
                         
                     </form>
                         
-                        
-                        
-                        
                     </div>
                 </div>
-                        
-                        
-                //RISPOSTA DA FARE UN PO PIU CARINA_______ :   
-                <% if ( rew.getRepile() != null){ %> 
-                <%= rew.getRepile().getDescription() %>
-                <% } %>
+                  
+                
+                <%
+                   if(thisUser!=null && R.isOwner(thisUser) && ((rew.getRepile() != null && rew.getRepile().getOwner().getId() != thisUser.getId()) || rew.getRepile() == null)){   
+                %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
 
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+
+                        <a href="#risposta" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
+                    </div> 
+                </div>
+                <div id="risposta" class="collapse">
+                    <div class="row">
+                        <div class="col-md-12">    
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="tagline">
+                                        <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Risposta:</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <form method="POST" action="ServletAggiungiRepile">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" id="comment" name="descrizione"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <input type="hidden" name="ristorante" value="<%= R.getId() %>">
+                                        <input type="hidden" name="commento" value="<%= rew.getId() %>">
+                                        <button style="align-items: left" type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+                <%   
+                    }else{
+                %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
+
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                    </div> 
+                </div>
+                <%
+                   }
+                %>
+                <% if ( rew.getRepile() != null){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                        Risposta:
+                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=rew.getRepile().getOwner().getNickname()%>: <%= rew.getRepile().getDescription() %></p>  
+
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                    </div> 
+                </div>
+                <% }%>
             </div>
         </div>   
     </div>

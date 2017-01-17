@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletAggiungiRepil", urlPatterns = {"/ServletAggiungiRepil"})
+@WebServlet(name = "ServletAggiungiRepile", urlPatterns = {"/ServletAggiungiRepile"})
 public class ServletAggiungiRepile extends HttpServlet {
 
     /**
@@ -35,7 +35,7 @@ public class ServletAggiungiRepile extends HttpServlet {
         
         try {
 
-            String description = request.getParameter("description");
+            String description = request.getParameter("descrizione");
             
             //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
 
@@ -46,21 +46,20 @@ public class ServletAggiungiRepile extends HttpServlet {
             //User u = new User(2);
             //new DB_Manager().cercaUser_perId(u);
             
-            //RISTORANTE
+            //COMMENTO
             Integer idRew = Integer.parseInt(request.getParameter("commento"));
+            //RISTORANETE
+            Integer idRes = Integer.parseInt(request.getParameter("ristorante"));
             
             //CREO REP
             Replies rep = new Replies(null, description, null, null, null, u);
-            
-
-            
             
             //INSERIMENTO DB
             if(! new DB_Manager().inserisciRisposta(rep, idRew))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
             
-            response.sendRedirect("/DoveCiboGit/ServletNotifiche");
+            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

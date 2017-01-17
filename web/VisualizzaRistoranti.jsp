@@ -76,11 +76,11 @@
                             <td>
                                 <!-- bottone SUBMIT che contiene il nome del ristorante -->
                                 <div class="bottom text-center">
-                                    <b><%=rest.getName().substring(0, 1).toUpperCase() + rest.getName().substring(1)%></b>
+                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style="color: blue"><%= rest.getName().substring(0, 1).toUpperCase()+rest.getName().substring(1) %></a></b>
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%=rest.getId()%>'">View/Edit</button>
+                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%=rest.getId()%>'">Edit</button>
                                 </div>
                             </td>
                             <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= rest.getGlobal_value() %> </b></td>

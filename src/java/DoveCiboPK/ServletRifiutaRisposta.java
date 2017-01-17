@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletAccettaaRisposta", urlPatterns = {"/ServletAccettaaRisposta"})
-public class ServletAccettaaRisposta extends HttpServlet {
+@WebServlet(name = "ServletRifiutaRisposta", urlPatterns = {"/ServletRifiutaRisposta"})
+public class ServletRifiutaRisposta extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -34,27 +34,14 @@ public class ServletAccettaaRisposta extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-
-
-        //CREATORE
-        User u = (User) request.getSession(false).getAttribute("User");
-        User user = new User (-1, "","","","","", "");
             //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("idGen"));            
+            Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
             //INSERIMENTO DB
-            if(! new DB_Manager().updateRepli(idR, u))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            if(! new DB_Manager().findUserRepli(idR, u, user))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            if(! new DB_Manager().deleteRepli(user)){
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            }
-            
-            
-            response.sendRedirect("/DoveCiboGit/rispostaAccettata.jsp");
+            if(! new DB_Manager().rifiutaRisposta(idRO))
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+
+            response.sendRedirect("/DoveCiboGit/rispostaRifiutata.jsp");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

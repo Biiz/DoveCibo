@@ -602,8 +602,8 @@ public class DB_Manager {
         Boolean r = null;
  
         try {
-            query = "INSERT INTO replies(id,description, DATE_CREATION, id_review, id_owner, date_validation)"
-                    + "VALUES(DEFAULT,?,DEFAULT,?,?,NULL)";
+            query = "INSERT INTO replies(id,description, DATE_CREATION, id_review, id_owner, date_validation, id_validator)"
+                    + "VALUES(DEFAULT,?,DEFAULT,?,?,NULL, NULL)";
             sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
  
             sp.setString(1, rep.getDescription());
@@ -611,11 +611,6 @@ public class DB_Manager {
             sp.setInt(3, rep.getOwner().getId());
  
             sp.executeUpdate();
- 
-            ResultSet generatedKeys = sp.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                rep.setId(generatedKeys.getInt(1));
-            }
  
             r = true;
         } catch (SQLException e) {
@@ -1494,6 +1489,8 @@ public class DB_Manager {
             ResultSet rs = sp.executeQuery();            
             
             while (rs.next()) {
+                User user = new User(rs.getInt("ID_CREATOR"));
+                new DB_Manager().cercaUser_perId(user);
                 
                 Review rew = new Review(
                         rs.getInt("ID"), 
@@ -1506,7 +1503,7 @@ public class DB_Manager {
                         rs.getString("DESCRIPTION"), 
                         rs.getDate("DATE_CREATION"), 
                         rs.getInt("LOVE"), 
-                        new User (rs.getInt("ID_CREATOR")) );
+                        user );
                 
                 
                 res.addReviews(rew); 
@@ -1806,17 +1803,16 @@ public class DB_Manager {
             con.close();
             return r;
         }
-    }   
+    }
     
-    
-    public Boolean setRepli_perRew( Review rew) throws SQLException {
+    public Boolean setRepli_perRew(Review rew) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = true;
  
         try {
-            query = "SELECT  * FROM REPLIES WHERE ID_REVIEW = ? AND ID_VALIDATOR IS NOT NULL";
+            query = "SELECT * FROM REPLIES WHERE ID_REVIEW = ? AND ID_VALIDATOR IS NOT NULL";
             sp = con.prepareStatement(query);
             
             
@@ -1824,16 +1820,18 @@ public class DB_Manager {
             ResultSet rs = sp.executeQuery();            
             
             if (rs.next()) {
+                User user = new User(rs.getInt("id_owner"));
+                new DB_Manager().cercaUser_perId(user);
                 
                 Replies rep = new Replies(
                          rs.getInt("id"),  rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
                           new User(rs.getInt("id_validator")),
-                          new User(rs.getInt("id_owner")));
+                          user);
                 
                 rew.setRepile(rep); 
             }
- 
+            r=true;
         } catch (SQLException e) {
             this.errore = e.toString();
             System.out.println(errore);
@@ -1845,46 +1843,6 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-        
-    public Boolean setNotificheRepil_daConfermare( ArrayList <Notifica> ALN ) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = true;
- 
-        try {
-            query = "SELECT  * FROM REPLIES WHERE ID_VALIDATOR IS NULL";
-            sp = con.prepareStatement(query);
-
-            ResultSet rs = sp.executeQuery();            
-            
-            while (rs.next()) {
-                
-                Replies rep = new Replies(
-                         rs.getInt("id"),  rs.getString("description"), 
-                          rs.getDate("date_creation"),rs.getDate("date_creation"),
-                          new User(rs.getInt("id_validator")),
-                          new User(rs.getInt("id_owner"))  );
-                
-                ALN.add( new Notifica("Nuova replica da confermare: "+rep.getDescription(), 
-                        rep.getDate_creation(), 
-                        "confermaRep", rep.getId(), rep.getOwner()));
-            }
- 
-        } catch (SQLException e) {
-            this.errore = e.toString();
-            System.out.println(errore);
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }    
-    
-    
-    
     
         public Boolean updateRepli(Integer idRep, User val) throws SQLException {
  
@@ -1897,6 +1855,89 @@ public class DB_Manager {
             sp.setInt(1, val.getId());
             sp.setInt(2, idRep);
             sp.executeUpdate();
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    } 
+        
+        public Boolean findUserRepli(Integer idRep, User val, User user) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "SELECT id_owner FROM REPLIES WHERE ID_VALIDATOR = ? AND id=?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, val.getId());
+            sp.setInt(2, idRep);
+            
+            
+            ResultSet rs = sp.executeQuery();
+            if (rs.next()) {
+                user.setId(rs.getInt("id_owner"));
+            }
+            
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    } 
+        
+    public Boolean deleteRepli(User user) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner=?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, user.getId());
+            
+            sp.executeUpdate();
+            
+            r = true;
+        } catch (SQLException e) {
+            System.out.println("Possibile causa: " + e.getMessage());
+            errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }
+    
+    public Boolean rifiutaRisposta(Integer id) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+        try {
+            query = "DELETE FROM REPLIES WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            sp.setInt(1, id);
+            
+            sp.executeUpdate();
+            
             r = true;
         } catch (SQLException e) {
             System.out.println("Possibile causa: " + e.getMessage());
@@ -2030,6 +2071,46 @@ public class DB_Manager {
             return r;
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
-    }        
+    }
+    
+    public Boolean setNotificheRepil_daConfermare( ArrayList <Notifica> ALN ) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT  * FROM REPLIES WHERE ID_VALIDATOR IS NULL";
+            sp = con.prepareStatement(query);
+
+            ResultSet rs = sp.executeQuery();            
+            
+            while (rs.next()) {
+                
+                User user = new User(rs.getInt("id_owner"));
+                new DB_Manager().cercaUser_perId(user);
+                
+                Replies rep = new Replies(
+                          rs.getInt("id"),  rs.getString("description"), 
+                          rs.getDate("date_creation"),rs.getDate("date_creation"),
+                          new User(rs.getInt("id_validator")),
+                          user);
+                
+                ALN.add( new Notifica("Nuova replica da confermare: "+rep.getDescription(), 
+                        rep.getDate_creation(), 
+                        "confermaRep", rep.getId(), rep.getOwner()));
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
  
 }

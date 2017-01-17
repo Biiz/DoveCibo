@@ -73,14 +73,16 @@
                                     <% } %>
                                     
                                     <% if( n.getTipo().equals("confermaRep") ){ %>
-                                    <form method="POST" action="ServletAccettaRisposta" >
+                                    <form method="POST" action="ServletAccettaaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta risposta</button> 
-                                             
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta risposta</button>       
                                     </form>
+                                    <form method="POST" action="ServletRifiutaRisposta" >
+                                        <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta risposta</button>       
+                                    </form>
+                                    
                                     <% } %>
-                                    
-                                    
                                     
                                     <% if( n.getTipo().equals("reclama") ){ %>
                                     <form method="POST" action="ServletAccettaReclamo" >
@@ -98,142 +100,6 @@
                             
                             <% } %>
                             
-                        </tbody>
-                    </table>
-                </div>
-            </div>   
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        <!-- notifiche per ristoratore -->
-        <div class="modal-dialog modal-lg" >
-            <div class="modal-content colonna2">
-                <div class="modal-body">
-
-                    <p style="color: black; font-size: 28px"><b>Notifiche per ristoratore</b></p>
-                    <!-- effettiva tabella delle notifiche -->
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
-                                <th><p style="color: black; font-size: 20px"><b>Operazione compiuta</b></p></th>
-                                <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="info">
-                                <td>Johny</td>
-                                <td>Ha caricato una foto</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="active">
-                                <td>Johny</td>
-                                <td>Ha scritto una recensione</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="active">
-                                <td>Johny</td>
-                                <td>Ha scritto una recensione</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="active">
-                                <td>Johny</td>
-                                <td>Ha scritto una recensione</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="info">
-                                <td>Johny</td>
-                                <td>Ha caricato una foto</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button> <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>   
-        </div>
-
-        <!-- notifiche per amministratore -->
-        <div class="modal-dialog modal-lg" >
-            <div class="modal-content colonna2">
-                <div class="modal-body">
-
-                    <p style="color: black; font-size: 28px"><b>Notifiche per amministratore</b></p>
-                    <!-- effettiva tabella delle notifiche -->
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
-                                <th><p style="color: black; font-size: 20px"><b>Operazione compiuta</b></p></th>
-                                <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="info">
-                                <td>Johny</td>
-                                <td>Ha caricato una foto</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button>
-                                    <button style="align-items: left" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> No</button>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Convalida recensione</button>
-                                    <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="active">
-                                <td>Johny</td>
-                                <td>Ha scritto un commento</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button>
-                                    <button style="align-items: left" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> No</button>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Convalida recensione</button>
-                                    <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="info">
-                                <td>Johny</td>
-                                <td>Ha caricato una foto</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button>
-                                    <button style="align-items: left" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> No</button>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Convalida recensione</button>
-                                    <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="warning">
-                                <td>Johny</td>
-                                <td>Vuole rimuovere una foto</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button>
-                                    <button style="align-items: left" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> No</button>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Convalida recensione</button>
-                                    <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
-                            <tr class="info">
-                                <td>Johny</td>
-                                <td>Ha scritto un commento</td>
-                                <td>
-                                    <button style="align-items: left" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button>
-                                    <button style="align-items: left" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> No</button>
-                                    <button style="align-items: left" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Convalida recensione</button>
-                                    <button style="align-items: left" type="button" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rimuozione foto</button> 
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
