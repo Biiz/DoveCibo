@@ -59,7 +59,7 @@ public class ServletNotifiche extends HttpServlet {
                 
                 for(Review rev: rest.getReviews()){
                     
-                    if(!new DB_Manager().setRepli_perRew(rev))
+                    if(!new DB_Manager().setRepli(rev))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
                     if(rev.getRepile() == null){

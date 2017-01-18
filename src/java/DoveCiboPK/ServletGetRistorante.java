@@ -1,6 +1,7 @@
 package DoveCiboPK;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,10 @@ public class ServletGetRistorante extends HttpServlet {
 
         //PIGLIARE ID RISTORANTE
         Integer idR = Integer.parseInt( request.getParameter("idR") );
-        Restaurant rest = new Restaurant(idR);
+        ArrayList <String> risposta = new ArrayList <String>();
+        ArrayList <Replies> replies = new ArrayList <Replies> ();
         
+        Restaurant rest = new Restaurant(idR);
         DB_Manager dbm = new DB_Manager();
         if( new DB_Manager().cercaRistorante_perId(rest)){
             if(!new DB_Manager().cercaOwners_perRistoranti(rest))
@@ -54,12 +57,22 @@ public class ServletGetRistorante extends HttpServlet {
 
             if( ! new DB_Manager().cercaPhotos_perRistorante(rest, 0))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-
+            
+            if(request.getSession(false).getAttribute("User") != null){
+                
+                User user = (User) request.getSession(false).getAttribute("User");
+                if( !new DB_Manager().checkUserIsRisto(user, risposta))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                
+            }else{
+                risposta.add("no");
+            }
+            
             for (Review rew : rest.getReviews()) {                        
                 if (! new DB_Manager().cercaUser_perId(rew.getCreator()))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
-                if(! new DB_Manager().setRepli_perRew(rew))
+                if(! new DB_Manager().setRepli_perRew(rew, replies))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }    
         }else{
@@ -72,6 +85,9 @@ public class ServletGetRistorante extends HttpServlet {
             
             request.setAttribute("ristorante", rest);
             request.setAttribute("qrCode", qrCode);
+            request.setAttribute("rispostaUserIsOwner", risposta);
+            request.setAttribute("repliesOwner", replies);
+            
             request.getRequestDispatcher("ristorante.jsp").forward(request, response);
 
         } catch (Exception ex) {

@@ -882,6 +882,37 @@ public class DB_Manager {
         }
     }
  
+    public Boolean checkUserIsRisto(User u, ArrayList <String> risposta) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT * FROM restaurant_owner WHERE id_owner = ? AND id_validator IS NOT NULL";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, u.getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                risposta.add("yes");
+            } else {
+                risposta.add("no");
+            }
+            r = true;
+ 
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
     public Boolean cercaCuisine_perId_Restaurant(Restaurant res, List list) throws SQLException {
         
         PreparedStatement sp = null;
@@ -1805,7 +1836,46 @@ public class DB_Manager {
         }
     }
     
-    public Boolean setRepli_perRew(Review rew) throws SQLException {
+    public Boolean setRepli_perRew(Review rew, ArrayList <Replies> replies) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT * FROM REPLIES WHERE ID_REVIEW = ? AND ID_VALIDATOR IS NOT NULL";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, rew.getId());
+            
+            ResultSet rs = sp.executeQuery();            
+            
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id_owner"));
+                new DB_Manager().cercaUser_perId(user);
+                
+                replies.add(new Replies(
+                          rs.getInt("id"), rs.getString("description"), 
+                          rs.getDate("date_creation"),rs.getDate("date_creation"),
+                          new User(rs.getInt("id_validator")),
+                          user,
+                          rs.getInt("id_review"))); 
+            }
+            r=true;
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public Boolean setRepli(Review rew) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1824,10 +1894,11 @@ public class DB_Manager {
                 new DB_Manager().cercaUser_perId(user);
                 
                 Replies rep = new Replies(
-                         rs.getInt("id"),  rs.getString("description"), 
+                          rs.getInt("id"),  rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
                           new User(rs.getInt("id_validator")),
-                          user);
+                          user,
+                          rs.getInt("id_review"));
                 
                 rew.setRepile(rep); 
             }
@@ -1843,6 +1914,10 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    
+    
+    
     
         public Boolean updateRepli(Integer idRep, User val) throws SQLException {
  
@@ -2094,9 +2169,10 @@ public class DB_Manager {
                           rs.getInt("id"),  rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
                           new User(rs.getInt("id_validator")),
-                          user);
+                          user,
+                          rs.getInt("id_review"));
                 
-                ALN.add( new Notifica("Nuova replica da confermare: "+rep.getDescription(), 
+                ALN.add(new Notifica("Nuova replica da confermare: "+rep.getDescription(), 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }

@@ -52,7 +52,7 @@ public class ServletAggiungiRepile extends HttpServlet {
             Integer idRes = Integer.parseInt(request.getParameter("ristorante"));
             
             //CREO REP
-            Replies rep = new Replies(null, description, null, null, null, u);
+            Replies rep = new Replies(null, description, null, null, null, u, idRew);
             
             //INSERIMENTO DB
             if(! new DB_Manager().inserisciRisposta(rep, idRew))

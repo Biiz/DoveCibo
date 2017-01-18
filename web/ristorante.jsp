@@ -2,6 +2,7 @@
 <%@page import="DoveCiboPK.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DoveCiboPK.Review"%>
+<%@page import="java.lang.Iterable"%>
 <%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
 <%@page import="DoveCiboPK.Cusine"%>
 <%@page import="DoveCiboPK.Restaurant"%>
@@ -75,6 +76,8 @@
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
+            ArrayList <String> risposta = (ArrayList <String>) request.getAttribute("rispostaUserIsOwner");
+            ArrayList <DoveCiboPK.Replies> replies = (ArrayList <DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
         %>
         
@@ -364,7 +367,11 @@
             }
         %>
 
-    <% for (Review rew : R.getReviews()) {%>
+    <% 
+    int count = 0;    
+    for (Review rew : R.getReviews()) {
+        count ++;
+    %>
     
     <div class="modal-dialog modal-lg" >
         <div class="modal-content colonna2">
@@ -397,7 +404,7 @@
                   
                 
                 <%
-                   if(thisUser!=null && R.isOwner(thisUser) && ((rew.getRepile() != null && rew.getRepile().getOwner().getId() != thisUser.getId()) || rew.getRepile() == null)){   
+                    if(thisUser!=null && R.isOwner(thisUser) && risposta.contains("yes")){
                 %>
                 <div class="row">
                     <div class="col-md-12">
@@ -405,10 +412,10 @@
 
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
-                        <a href="#risposta" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
+                        <a href="#risposta<%=count%>" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
                     </div> 
                 </div>
-                <div id="risposta" class="collapse">
+                <div id="risposta<%=count%>" class="collapse">
                     <div class="row">
                         <div class="col-md-12">    
 
@@ -427,7 +434,6 @@
                                         <textarea class="form-control" rows="5" id="comment" name="descrizione"></textarea>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div class="row">
@@ -453,17 +459,25 @@
                 </div>
                 <%
                    }
+
+                   if (!replies.isEmpty()){
                 %>
-                <% if ( rew.getRepile() != null){ %>
+                Risposte:
+                <%
+                        for(int i = 0; i < replies.size() ;i++){
+                           DoveCiboPK.Replies re = (DoveCiboPK.Replies) replies.get(i);
+                           if(rew.getId() == re.getIdReview()){
+                %>
+                
                 <div class="row">
                     <div class="col-md-12">
-                        Risposta:
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=rew.getRepile().getOwner().getNickname()%>: <%= rew.getRepile().getDescription() %></p>  
-
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-                    </div> 
+                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=re.getOwner().getNickname()%>: <%= re.getDescription() %></p>  
+                     </div> 
                 </div>
-                <% }%>
+                <%          }
+                        }
+                    }
+                %>
             </div>
         </div>   
     </div>

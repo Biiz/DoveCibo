@@ -136,7 +136,6 @@ public class Restaurant {
     
     
     public Boolean isOwner(User user){
-        
         for (User uf : owners) {
             if(uf.getId() == user.getId()) return true;
         }

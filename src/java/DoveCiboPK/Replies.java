@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Replies {
 
     private Integer id;
+    private Integer idReview;
     private String description;
     private Date date_creation;
     private Date date_validation;
@@ -24,13 +25,14 @@ public class Replies {
         this.description = description;
     }
 
-    public Replies(Integer id, String description, Date date_creation, Date date_validation, User validator, User owner) {
+    public Replies(Integer id, String description, Date date_creation, Date date_validation, User validator, User owner, Integer idReview) {
         this.id = id;
         this.description = description;
         this.date_creation = date_creation;
         this.date_validation = date_validation;
         this.validator = validator;
         this.owner = owner;
+        this.idReview = idReview;
     }
 
     public Date getDate_creation() {
@@ -48,7 +50,11 @@ public class Replies {
     public Integer getId() {
         return id;
     }
-
+    
+    public Integer getIdReview() {
+        return idReview;
+    }
+    
     protected void setId(Integer id) {
         this.id = id;
     }
