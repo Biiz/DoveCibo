@@ -60,8 +60,8 @@
                             <% for (Notifica n : Notifiche) { %>
                             
                             <tr class="info">
-                                <td> <%= n.getUser().getNickname() %></td>
-                                <td> <%= n.getDescrizione() %></td>
+                                <td style="vertical-align: middle;"> <%= n.getUser().getNickname() %></td>
+                                <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
                                 <td>
                                     
                                     <% if( n.getTipo().equals("nuovaRec") ){ %>
