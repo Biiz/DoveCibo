@@ -65,9 +65,7 @@ public class ServletAggiungiRepile extends HttpServlet {
             }else{
                 if(! new DB_Manager().inserisciRisposta(rep, idRew))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
-
-            
-                response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);
+                response.sendRedirect("rispostaInviataSuccesso.jsp");
             }
         
         } catch (SQLException ex) {

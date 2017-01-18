@@ -1504,7 +1504,7 @@ public class DB_Manager {
     
     
 
-    public Boolean setCommenti_perRistorante( Restaurant res) throws SQLException {
+    public Boolean setCommenti_perRistorante(Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1535,8 +1535,6 @@ public class DB_Manager {
                         rs.getDate("DATE_CREATION"), 
                         rs.getInt("LOVE"), 
                         user );
-                
-                
                 res.addReviews(rew); 
             }
  
@@ -2164,7 +2162,11 @@ public class DB_Manager {
                 
                 User user = new User(rs.getInt("id_owner"));
                 new DB_Manager().cercaUser_perId(user);
-                
+                Review rev = new Review();
+                rev.setId(rs.getInt("id_review"));
+                new DB_Manager().setReviewPerId(rev);
+                Restaurant rest = new Restaurant(rev.getLike());
+                new DB_Manager().cercaRistorante_perId(rest);
                 Replies rep = new Replies(
                           rs.getInt("id"),  rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
@@ -2172,7 +2174,7 @@ public class DB_Manager {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("Nuova replica da confermare: "+rep.getDescription(), 
+                ALN.add(new Notifica("Ristorante <b>"+rest.getName()+"</b> presenta una nuova replica: <b>"+rep.getDescription()+"</b> fatta al commento: <b>"+rev.getDescription()+"</b> dall'utente <b>"+rev.getCreator().getNickname()+"</b>", 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
@@ -2188,6 +2190,46 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    
+    public Boolean setReviewPerId(Review rev) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT * FROM reviews WHERE ID = ?";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, rev.getId());
+            
+            ResultSet rs = sp.executeQuery();            
+            
+            if (rs.next()) {
+                User user = new User(rs.getInt("id_creator"));
+                new DB_Manager().cercaUser_perId(user);
+                
+                rev.setCreator(user);
+                rev.setDecription(rs.getString("description"));
+                rev.setLike(rs.getInt("id_restaurant"));
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
     
     public Boolean checkReplies(Replies rep, Integer idRew, ArrayList <String> check ) throws SQLException {
  

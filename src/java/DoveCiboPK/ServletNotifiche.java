@@ -48,6 +48,8 @@ public class ServletNotifiche extends HttpServlet {
         
         ArrayList <Notifica> ALN = new ArrayList<Notifica>();
         
+        ArrayList <Integer> id = new ArrayList<Integer>();
+        
         ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
         
         
@@ -64,8 +66,9 @@ public class ServletNotifiche extends HttpServlet {
                     
                     if(rev.getRepile() == null){
                         new DB_Manager().cercaUser_perId(rev.getCreator());
-                        ALN.add(new Notifica(rev.getCreator().getNickname()+" ha commentato il ristorante "+rest.getName()+": "+rev.getDescription(), 
-                                rev.getDate_creation(),  "nuovaRec", rev.getId(), rev.getCreator()));
+                        id.add(rest.getId());
+                        ALN.add(new Notifica("ha commentato il ristorante <b>"+rest.getName()+"</b>: "+rev.getDescription(), 
+                                rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                     }
                 }
             
@@ -90,14 +93,10 @@ public class ServletNotifiche extends HttpServlet {
             
         }        
         
-         
-                
-        
         ALN.sort(new comparatorNotifiche());
         
-        
-        
         request.setAttribute("notifiche", ALN);
+        request.setAttribute("id_ristoranti", id);
 
         request.getRequestDispatcher("notifiche.jsp").forward(request, response);
             

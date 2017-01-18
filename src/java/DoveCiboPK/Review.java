@@ -39,6 +39,10 @@ public class Review {
         this.like = like;
         this.creator = creator;
     }
+    
+    public Review() {
+        
+    }
 
     public Review(Integer id) {
         this.id = id;
@@ -100,6 +104,17 @@ public class Review {
         return date_creation;
     }
     
+    protected void setCreator(User creator) {
+        this.creator = creator;
+    }
+    
+    protected void setDecription(String description) {
+        this.description = description;
+    }
+    
+    protected void setLike(Integer like) {
+        this.like = like;
+    }
     
 
     protected void setId(Integer id) {

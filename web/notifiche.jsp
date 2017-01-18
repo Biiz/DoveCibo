@@ -37,11 +37,10 @@
         
         <%
             ArrayList <Notifica> Notifiche = (ArrayList <Notifica>) request.getAttribute("notifiche");
-            %>
+            ArrayList <Integer> id = (ArrayList <Integer>) request.getAttribute("id_ristoranti");
+        %>
         
-        
-        
-               <div class="modal-dialog modal-lg" >
+            <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
 
@@ -57,20 +56,23 @@
                         </thead>
                         <tbody>
                             
-                            <% for (Notifica n : Notifiche) { %>
+                            <% 
+                                int index = 0;
+                                for (Notifica n : Notifiche) { %>
                             
                             <tr class="info">
-                                <td style="vertical-align: middle;"> <%= n.getUser().getNickname() %></td>
+                                <td style="vertical-align: middle;"> <b><%= n.getUser().getNickname() %></b></td>
                                 <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
                                 <td>
                                     
                                     <% if( n.getTipo().equals("nuovaRec") ){ %>
-                                    <form method="POST" action="ServletAggiungiRepil" >
+                                    <form method="POST" action="ServletAggiungiRepile" >
+                                        <input type="hidden" name="ristorante" value="<%= id.get(index) %>">
                                         <input type="hidden" name="commento" value="<%=n.getIdGen()%>">
-                                        <input type="text" class="form-control" id="descrizione" name="description" pattern=".{1,25}" required>
+                                        <input type="text" class="form-control" id="descrizione" name="descrizione" pattern=".{1,25}" required>
                                         <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button>                                              
                                     </form>
-                                    <% } %>
+                                    <%   index++; }%>
                                     
                                     <% if( n.getTipo().equals("confermaRep") ){ %>
                                     <form method="POST" action="ServletAccettaaRisposta" >
@@ -98,7 +100,9 @@
                                 </td>
                             </tr>
                             
-                            <% } %>
+                            <%
+                                } 
+                            %>
                             
                         </tbody>
                     </table>
