@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -36,10 +38,18 @@ public class ServletUpload extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-
-               
+        String strPath1 = request.getServletContext().getRealPath("");
+        Path path = Paths.get(strPath1).getParent().getParent();
+        String strPath = path.toString()+"\\web\\immaginiRistoranti";      
+        
+        //create directory if it doesn't exist
+        File directory = new File(strPath);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+        
         MultipartRequest m = new MultipartRequest(request,
-                                            getServletContext().getRealPath("")+File.separator+"immaginiRistoranti",
+                                            strPath,
                                             10*1024*1024,
                                             "ISO-8859-1",
                                             new DefaultFileRenamePolicy());
