@@ -7,6 +7,7 @@ package DoveCiboPK;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,12 +55,20 @@ public class ServletAggiungiRepile extends HttpServlet {
             //CREO REP
             Replies rep = new Replies(null, description, null, null, null, u, idRew);
             
+            ArrayList <String> check = new ArrayList <String> ();
             //INSERIMENTO DB
-            if(! new DB_Manager().inserisciRisposta(rep, idRew))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
+            if(! new DB_Manager().checkReplies(rep, idRew, check))
+                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            
+            if(check.contains("yes")){
+                request.getRequestDispatcher("repRifiutato.jsp").forward(request, response);
+            }else{
+                if(! new DB_Manager().inserisciRisposta(rep, idRew))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
             
-            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);
+                response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);
+            }
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

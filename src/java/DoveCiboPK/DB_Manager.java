@@ -2148,7 +2148,7 @@ public class DB_Manager {
         }
     }
     
-    public Boolean setNotificheRepil_daConfermare( ArrayList <Notifica> ALN ) throws SQLException {
+    public Boolean setNotificheRepil_daConfermare(ArrayList <Notifica> ALN ) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -2177,6 +2177,40 @@ public class DB_Manager {
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
  
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public Boolean checkReplies(Replies rep, Integer idRew, ArrayList <String> check ) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT * FROM REPLIES WHERE ID_VALIDATOR IS NOT NULL AND id_review = ? AND id_owner=?";
+            sp = con.prepareStatement(query);
+        
+            sp.setInt(1, idRew);
+            sp.setInt(2, rep.getOwner().getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                check.add("yes");
+            }else{
+                check.add("no");
+            }
+            
+            r = true;
         } catch (SQLException e) {
             this.errore = e.toString();
             System.out.println(errore);

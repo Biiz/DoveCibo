@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/modificheEffettuate.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante_modificato_successo.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletAggiungiRepile.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/repRifiutato.jsp</file>
             <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletNotifiche.java</file>
             <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletReclamaRistorante.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
             <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
         </group>
     </open-files>
