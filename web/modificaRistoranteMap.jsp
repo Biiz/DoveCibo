@@ -85,14 +85,14 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Latitudine:</label>          
-                <input class="form-control" name="lat" id="lat" onchange="latFill()" placeholder="<%= Res.getCordinate().getLatitude() %>" required>
+                <input class="form-control" name="lat" id="lat" onchange="latFill()" placeholder="<%= Res.getCordinate().getLatitude() %>" required disabled>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-group">
                 <label>Longitudine:</label>          
-                <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  placeholder="<%= Res.getCordinate().getLongitude() %>" required>
+                <input  class="form-control" name="lng" id="lng" onchange="lngFill()"  placeholder="<%= Res.getCordinate().getLongitude() %>" required disabled>
             </div>
         </div>
     </div>
