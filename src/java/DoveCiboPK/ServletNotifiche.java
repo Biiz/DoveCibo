@@ -67,7 +67,9 @@ public class ServletNotifiche extends HttpServlet {
                     if(rev.getRepile() == null){
                         new DB_Manager().cercaUser_perId(rev.getCreator());
                         id.add(rest.getId());
-                        ALN.add(new Notifica("ha commentato il ristorante <b>"+rest.getName()+"</b>: "+rev.getDescription(), 
+                        ALN.add(new Notifica("<p>COMMETO</p>"+
+                                             "<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
+                                             "<p>commento: <b>"+rev.getDescription()+"</b></p>", 
                                 rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                     }
                 }

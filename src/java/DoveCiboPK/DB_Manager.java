@@ -2130,7 +2130,9 @@ public class DB_Manager {
                 User u = new User(rs.getInt("id_owner"));
                 new DB_Manager().cercaUser_perId(u);
   
-                ALN.add( new Notifica("Richiesta di reclamo per il ristorante: "+"<b>"+res.getName()+"</b>", rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
+                ALN.add( new Notifica("<p>RECLAMO</p>"+
+                                      "<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+res.getId()+" '>"+res.getName()+"</a></b></p>", 
+                                        rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
             }
             
             
@@ -2177,7 +2179,8 @@ public class DB_Manager {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
+                ALN.add(new Notifica("<p>RISPOSTA COMMENTO</p>"+
+                                     "<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
                                      "<p>replica: <b>"+rep.getDescription()+"</b></p>"+
                                      "<p>commento: <b>"+rev.getDescription()+"</b></p>"+
                                      "<p>autore commento: <b>"+rev.getCreator().getNickname()+"</b></p>", 

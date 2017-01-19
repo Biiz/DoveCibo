@@ -43,7 +43,7 @@ public class ServletAggiungiCommento extends HttpServlet {
             String name = request.getParameter("name");
             String description = request.getParameter("description");
             //verifico che i campi non siano vuoti
-            if (name != null && description != null) {
+            if (name == null && description == null) {
                 request.setAttribute("error", "campi risposta non correttamente compilati");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
 
