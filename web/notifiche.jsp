@@ -63,7 +63,7 @@
                             <tr class="info">
                                 <td style="vertical-align: middle;"> <b><%= n.getUser().getNickname() %></b></td>
                                 <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
-                                <td>
+                                <td style="vertical-align: middle;">
                                     
                                     <% if( n.getTipo().equals("nuovaRec") ){ %>
                                     <form method="POST" action="ServletAggiungiRepile" >

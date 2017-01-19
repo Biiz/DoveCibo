@@ -76,7 +76,7 @@
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
-            ArrayList <String> risposta = (ArrayList <String>) request.getAttribute("rispostaUserIsOwner");
+            String risposta []= (String[]) request.getAttribute("rispostaUserIsOwner");
             ArrayList <DoveCiboPK.Replies> replies = (ArrayList <DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
         %>
@@ -404,7 +404,7 @@
                   
                 
                 <%
-                    if(thisUser!=null && R.isOwner(thisUser) && risposta.contains("yes")){
+                    if(thisUser!=null && R.isOwner(thisUser) && risposta[0].equals("yes")){
                 %>
                 <div class="row">
                     <div class="col-md-12">

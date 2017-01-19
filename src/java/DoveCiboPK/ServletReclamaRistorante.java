@@ -45,7 +45,7 @@ public class ServletReclamaRistorante extends HttpServlet {
             if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
-            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
+            response.sendRedirect("confermaReclamo.jsp");
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

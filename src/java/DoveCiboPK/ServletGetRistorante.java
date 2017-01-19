@@ -23,7 +23,7 @@ public class ServletGetRistorante extends HttpServlet {
 
         //PIGLIARE ID RISTORANTE
         Integer idR = Integer.parseInt( request.getParameter("idR") );
-        ArrayList <String> risposta = new ArrayList <String>();
+        String risposta []= new String[1];
         ArrayList <Replies> replies = new ArrayList <Replies> ();
         
         Restaurant rest = new Restaurant(idR);
@@ -61,11 +61,11 @@ public class ServletGetRistorante extends HttpServlet {
             if(request.getSession(false).getAttribute("User") != null){
                 
                 User user = (User) request.getSession(false).getAttribute("User");
-                if( !new DB_Manager().checkUserIsRisto(user, risposta))
+                if( !new DB_Manager().checkUserIsRisto(rest, user, risposta))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
             }else{
-                risposta.add("no");
+                risposta[0] = "no";
             }
             
             for (Review rew : rest.getReviews()) {                        

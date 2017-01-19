@@ -80,7 +80,7 @@ public class DB_Manager {
         
         try {
             
-            query = "SELECT id_restaurant FROM restaurant_owner WHERE id_owner = ?";
+            query = "SELECT id_restaurant FROM restaurant_owner WHERE id_owner = ? AND ID_VALIDATOR IS NOT NULL";
             sp = con.prepareStatement(query);
             
             sp.setInt(1, u.getId());
@@ -882,24 +882,25 @@ public class DB_Manager {
         }
     }
  
-    public Boolean checkUserIsRisto(User u, ArrayList <String> risposta) throws SQLException {
+    public Boolean checkUserIsRisto(Restaurant res, User user, String risposta[]) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
  
         try {
-            query = "SELECT * FROM restaurant_owner WHERE id_owner = ? AND id_validator IS NOT NULL";
+            query = "SELECT * FROM restaurant_owner WHERE id_restaurant = ? AND id_owner = ? AND id_validator IS NOT NULL";
             sp = con.prepareStatement(query);
  
-            sp.setInt(1, u.getId());
+            sp.setInt(1, res.getId());
+            sp.setInt(2, user.getId());
             
             ResultSet rs = sp.executeQuery();
             
             if (rs.next()) {
-                risposta.add("yes");
+                risposta[0]= "yes";
             } else {
-                risposta.add("no");
+                risposta[0]= "no";
             }
             r = true;
  
@@ -2165,8 +2166,10 @@ public class DB_Manager {
                 Review rev = new Review();
                 rev.setId(rs.getInt("id_review"));
                 new DB_Manager().setReviewPerId(rev);
+                
                 Restaurant rest = new Restaurant(rev.getLike());
                 new DB_Manager().cercaRistorante_perId(rest);
+                
                 Replies rep = new Replies(
                           rs.getInt("id"),  rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
@@ -2174,7 +2177,10 @@ public class DB_Manager {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("Ristorante <b>"+rest.getName()+"</b> presenta una nuova replica: <b>"+rep.getDescription()+"</b> fatta al commento: <b>"+rev.getDescription()+"</b> dall'utente <b>"+rev.getCreator().getNickname()+"</b>", 
+                ALN.add(new Notifica("<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
+                                     "<p>replica: <b>"+rep.getDescription()+"</b></p>"+
+                                     "<p>commento: <b>"+rev.getDescription()+"</b></p>"+
+                                     "<p>autore commento: <b>"+rev.getCreator().getNickname()+"</b></p>", 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }

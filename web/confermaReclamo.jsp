@@ -24,12 +24,11 @@
             <div class="alert alert-success " role="alert">
                 <!-- riceve l'attributo dalla servletRegistrazione-->
                 <div id="tagline">
-                    <h1>Errore inserimento risposta</h1>
-                    <h2>non e' possibile inserire la risposta al commento in quanto hai gia' risposto al commento</h2>
+                    <h1>Conferma di reclamo</h1>
+                    <h2>la richiesta di diventare proprietario del ristorante e' stata presa in carico dall'amministratore</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>
-
                 <!-- 1° row contenente i bottoni-->
                 <div class="row">
                     <div class="col-md-12">
