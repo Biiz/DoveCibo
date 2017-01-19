@@ -3,11 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletNotifiche.java</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/web/CercaRistorantiHome.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/home.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -74,9 +74,6 @@
                             lng: position.coords.longitude
                         };
                         
-                        alert(pos.lat+"-----"+pos.lng);
-                        
-                        
                         //RENVO VISIBILI IFRIME
                         document.getElementById("elencoValore").style.display = 'block';
                         document.getElementById("elencoCategoria").style.display = 'block';
