@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletAggiungiRepile.java</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/web/repRifiutato.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletNotifiche.java</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/web/notifiche.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/web/rispostaInviataSuccesso.jsp</file>
-            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
+            <file>file:/home/postal/DoveCiboGit/web/ElencoRistorantiHome.jsp</file>
+            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/CercaRistorantiHome.java</file>
+            <file>file:/home/postal/DoveCiboGit/web/home.jsp</file>
+            <file>file:/home/postal/DoveCiboGit/web/CercaRistorantiHome.jsp</file>
+            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorantiHomeValue.java</file>
+            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorantiHomeCucine.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2264,5 +2264,104 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    
+    
+    
+    
+    public Boolean ricercaRistorantiPerClassificaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, Integer numeroR) throws SQLException {
+
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+        
+
+        try {  
+            
+            
+            System.out.println("q ok----------------------------");
+            
+            query = "SELECT  R.* FROM restaurants AS R, COORDINATES AS C "
+                    + "WHERE R.ID = C.ID_RESTAURANT "
+                    + "ORDER BY ((C.LATITUDE - ?) * (C.LATITUDE - ?) + (C.LONGITUDE - ?) * (C.LONGITUDE - ?)) DESC";
+            
+            
+            
+            sp = con.prepareStatement(query);
+            
+            System.out.println("q ok");
+
+            sp.setFloat(1, coo.getLatitude());
+            sp.setFloat(2, coo.getLatitude());            
+            sp.setFloat(3, coo.getLongitude());
+            sp.setFloat(4, coo.getLongitude()); 
+            
+
+
+            ResultSet rs = sp.executeQuery();
+
+            for (int i=0; rs.next() && i<numeroR; i++) {
+                Restaurant res = new Restaurant(rs.getInt("id"));
+
+                                System.out.println("pciot");
+                ALR.add(res);
+            }
+
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(e.toString());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }   
+    
+    
+    public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, Integer cucina) throws SQLException {
+
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+        
+
+        try {  
+            query = "SELECT  R.* FROM restaurants AS R, COORDINATES AS C, RESTAURANT_CUISINE AS RC "
+                    + "WHERE R.ID=C.ID_RESTAURANT AND R.ID=RC.ID_RESTAURANT AND RC.ID_CUISINE = ?"
+                    + "ORDER BY ((C.LATITUDE - ?) * (C.LATITUDE - ?) + (C.LONGITUDE - ?) * (C.LONGITUDE - ?)) DESC";
+            
+            
+            
+            sp = con.prepareStatement(query);
+            
+            System.out.println("q ok");
+
+            sp.setInt(1, cucina);
+            sp.setFloat(2, coo.getLatitude());
+            sp.setFloat(3, coo.getLatitude());            
+            sp.setFloat(4, coo.getLongitude());
+            sp.setFloat(5, coo.getLongitude());            
+
+
+            ResultSet rs = sp.executeQuery();
+
+            if (rs.next()) {
+                ALR.add( new Restaurant(rs.getInt("id")) );
+
+                                System.out.println("pciot");
+            }
+
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }  
  
 }

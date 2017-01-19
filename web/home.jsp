@@ -51,6 +51,63 @@
                 <div class="col-md-3"></div>
             </div>
             <br>
+            
+            //RISTORANTI PER VICINANZA ORDINATI PER VALUE
+            <iframe src="" id="elencoValore" style="width: 100%; height:400px; " ></iframe>
+            
+            
+            //RISTORANTI PER VICINANZA UNO PER CATEGORIA
+            <iframe src="" id="elencoCategoria" style="width: 100%; height:400px; " ></iframe>
+            
+            <script>
+               
+               
+                 //RENDO INVISBILI IFRIME
+                 document.getElementById("elencoValore").style.display = 'none';
+                 document.getElementById("elencoCategoria").style.display = 'none';
+                 
+                 
+                 if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        
+                        alert(pos.lat+"-----"+pos.lng);
+                        
+                        
+                        //RENVO VISIBILI IFRIME
+                        document.getElementById("elencoValore").style.display = 'block';
+                        document.getElementById("elencoCategoria").style.display = 'block';
+                        
+                        document.getElementById("elencoValore").src ="ServletGetRistorantiHomeValue?lat="+pos.lat+"&lng="+pos.lng;
+                        
+                        document.getElementById("elencoCategoria").src ="ServletGetRistorantiHomeCucine?lat="+pos.lat+"&lng="+pos.lng;
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    map.setCenter(pos);
+                    }, function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                 // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+               
+                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+                    }
+               
+               
+                
+            </script>
+            
+            
             <div class="row">
 
                 <div class="col-md-3"></div>
