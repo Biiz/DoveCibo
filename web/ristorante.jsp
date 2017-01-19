@@ -233,7 +233,7 @@
                                                 <p>Titolo commento</p>
                                                 <input type="text" class="form-control" rows="1" id="comment" name="name" pattern=".{1,25}" required>
                                                 <p>Descrizione commento</p>
-                                                <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
+                                                <textarea class="form-control" rows="5" id="comment" name="description" required></textarea>
                                             </div>
                                         </div>
 

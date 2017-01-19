@@ -32,7 +32,7 @@ public class ServletAggiungiCommento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
 
             Integer global_v = Integer.parseInt(request.getParameter("global_value"));
@@ -42,53 +42,58 @@ public class ServletAggiungiCommento extends HttpServlet {
             Integer atmospere = Integer.parseInt(request.getParameter("atmospere"));
             String name = request.getParameter("name");
             String description = request.getParameter("description");
-            
-            //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
+            //verifico che i campi non siano vuoti
+            if (name != null && description != null) {
+                request.setAttribute("error", "campi risposta non correttamente compilati");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);
 
-            //CREATORE
-            HttpSession session = request.getSession(false);
-            User u = (User) session.getAttribute("User");
-            
-            //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("ristorante"));
-            Restaurant res = new Restaurant(idR);
- 
-            if(! new DB_Manager().cercaRistorante_perId(res))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
-            
-            //CREO REW
-            Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null,0, u);
-            
-            
-            //RIMPOSTA GLOBALVALUE DEL RISTORANTE
-            //C = NUMERO COMMENTI RISTORANTE
-            //GV = GLOBAL VALUE DEL RISTORANTE
-            //NEW GV = ((GV*C)+REW.GV)/(C+1)
-            //UPDATE GV RIS
-            
-            Float newGV =
-                    ((float)(res.getN_reviews()*res.getGlobal_value()+global_v))
-                    /
-                    ((float)(res.getN_reviews()+1));
-            
-            if(! new DB_Manager().updateRate(res, newGV))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
-            
-            
-            //INSERIMENTO DB
-            if(! new DB_Manager().inserisciReview(rew, idR))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
+            } else {
 
-            if (!new DB_Manager().increaseReviewRestaurant(new Restaurant(idR)))
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);
-        
+                //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
+                //CREATORE
+                HttpSession session = request.getSession(false);
+                User u = (User) session.getAttribute("User");
+
+                //RISTORANTE
+                Integer idR = Integer.parseInt(request.getParameter("ristorante"));
+                Restaurant res = new Restaurant(idR);
+
+                if (!new DB_Manager().cercaRistorante_perId(res)) {
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
+
+                //CREO REW
+                Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, 0, u);
+
+                //RIMPOSTA GLOBALVALUE DEL RISTORANTE
+                //C = NUMERO COMMENTI RISTORANTE
+                //GV = GLOBAL VALUE DEL RISTORANTE
+                //NEW GV = ((GV*C)+REW.GV)/(C+1)
+                //UPDATE GV RIS
+                Float newGV
+                        = ((float) (res.getN_reviews() * res.getGlobal_value() + global_v))
+                        / ((float) (res.getN_reviews() + 1));
+
+                if (!new DB_Manager().updateRate(res, newGV)) {
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
+
+                //INSERIMENTO DB
+                if (!new DB_Manager().inserisciReview(rew, idR)) {
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
+
+                if (!new DB_Manager().increaseReviewRestaurant(new Restaurant(idR))) {
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
+
+                response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR=" + idR);
+            }
+
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
 
     }
 

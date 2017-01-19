@@ -70,13 +70,13 @@ public class ServletUpload extends HttpServlet {
             String base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(
                     Paths.get(path_name)));
 
-            System.out.println("\n\nlunghezza: " + base64.length());
+            //System.out.println("\n\nlunghezza: " + base64.length());
 
             if (!new DB_Manager().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
         } catch (Exception ex) {
-            request.setAttribute("error", "file troppo grande");
+            request.setAttribute("error", "nessun file selezionato");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
 
         }
