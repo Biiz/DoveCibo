@@ -53,7 +53,7 @@ public class ServletUpload extends HttpServlet {
             m = new MultipartRequest(
                     request,
                     strPath,
-                    10 * 1024 * 1024,
+                    30 * 1024 * 1024,
                     "ISO-8859-1",
                     new DefaultFileRenamePolicy());
             //String encoded = Base64.encode(FileUtils.readFileToByteArray(m.getFile(strPath)));
@@ -67,8 +67,8 @@ public class ServletUpload extends HttpServlet {
             String filename = m.getFilesystemName(name);
             System.out.println("nome file caricato: " + filename);
             String path_name = strPath + File.separator + m.getFilesystemName(name);
-            String base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(
-                    Paths.get(path_name)));
+           // String base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(
+            //        Paths.get(path_name)));
 
             //System.out.println("\n\nlunghezza: " + base64.length());
 
