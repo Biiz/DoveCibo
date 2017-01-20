@@ -17,23 +17,25 @@ public class ServletGetRistorantiHomeCucine extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
 
+            Float lat = Float.parseFloat( request.getParameter("lat") );
+            Float lng = Float.parseFloat( request.getParameter("lng") );
+            
             
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
-            Coordinate coo = new Coordinate(1f, 1f, null, null, null, null);
+            Coordinate coo = new Coordinate(lat,lng, null, null, null, null);
             
+            System.out.println(request.getParameter("cucina"));
             
-            
-            for(int i=1; i<7; i++){
-                if(! new DB_Manager().ricercaRistorantiPerCucinaEVicinanza(ALR, coo, i )){
+                if(! new DB_Manager().ricercaRistorantiPerCucinaEVicinanza(ALR, coo, request.getParameter("cucina"), 10 )){
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }     
-            }    
-                
+  
+            System.out.println(request.getParameter("cucina"));    
                 
                 
                 for(Restaurant rest : ALR){                      
@@ -62,7 +64,10 @@ public class ServletGetRistorantiHomeCucine extends HttpServlet {
             
             if( ! ALR.isEmpty()){
                 request.setAttribute("listaRistoranti", ALR);
-                request.getRequestDispatcher("ElencoRistorantiHome.jsp").forward(request, response);
+                request.getRequestDispatcher("CercaRistorantiHome.jsp").forward(request, response);
+            }else{
+                    request.setAttribute("error", "errore: nessun ristorante trovato per questa ricerca");
+                    request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
             
         } catch (Exception ex) {

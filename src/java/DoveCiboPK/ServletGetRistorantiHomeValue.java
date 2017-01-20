@@ -17,7 +17,7 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
 
@@ -29,7 +29,7 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             Coordinate coo = new Coordinate(lat,lng, null, null, null, null);
             
-            if( new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, 7 )){
+            if( new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, 10 )){
                 for(Restaurant rest : ALR){                      
                     
                     if( ! new DB_Manager().cercaRistorante_perId(rest))
@@ -56,7 +56,7 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
             }
             
             request.setAttribute("listaRistoranti", ALR);
-            request.getRequestDispatcher("ElencoRistorantiHome.jsp").forward(request, response);
+            request.getRequestDispatcher("CercaRistorantiHome.jsp").forward(request, response);
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);

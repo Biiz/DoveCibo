@@ -2329,7 +2329,7 @@ public class DB_Manager {
     }   
     
     
-    public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, Integer cucina) throws SQLException {
+    public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, String cucina, Integer numeroR) throws SQLException {
 
         PreparedStatement sp = null;
         String query = null;
@@ -2337,8 +2337,8 @@ public class DB_Manager {
         
 
         try {  
-            query = "SELECT  R.* FROM restaurants AS R, COORDINATES AS C, RESTAURANT_CUISINE AS RC "
-                    + "WHERE R.ID=C.ID_RESTAURANT AND R.ID=RC.ID_RESTAURANT AND RC.ID_CUISINE = ?"
+            query = "SELECT  * FROM CUISINES as CU, COORDINATES AS C, RESTAURANT_CUISINE AS RC, RESTAURANTS AS R "
+                    +"WHERE CU.ID=RC.ID_CUISINE AND R.ID=RC.ID_RESTAURANT AND R.ID=C.ID_RESTAURANT AND CU.NAME like ? "
                     + "ORDER BY ((C.LATITUDE - ?) * (C.LATITUDE - ?) + (C.LONGITUDE - ?) * (C.LONGITUDE - ?)) DESC";
             
             
@@ -2347,7 +2347,7 @@ public class DB_Manager {
             
             System.out.println("q ok");
 
-            sp.setInt(1, cucina);
+            sp.setString(1, cucina);
             sp.setFloat(2, coo.getLatitude());
             sp.setFloat(3, coo.getLatitude());            
             sp.setFloat(4, coo.getLongitude());
@@ -2356,7 +2356,7 @@ public class DB_Manager {
 
             ResultSet rs = sp.executeQuery();
 
-            if (rs.next()) {
+            for (int i=0; rs.next() && i<numeroR; i++) {
                 ALR.add( new Restaurant(rs.getInt("id")) );
 
                                 System.out.println("pciot");
