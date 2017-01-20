@@ -40,7 +40,7 @@ public class ServletUpload extends HttpServlet {
 
         String strPath1 = request.getServletContext().getRealPath("");
         Path path = Paths.get(strPath1).getParent().getParent();
-        String strPath = path.toString() + "\\web\\immaginiRistoranti";
+        String strPath = path.toString() + File.separator+"web"+File.separator+"immaginiRistoranti";
 
         //create directory if it doesn't exist
         File directory = new File(strPath);

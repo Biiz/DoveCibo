@@ -31,7 +31,7 @@ public class UploadServlet extends HttpServlet {
 
         String strPath1 = getServletContext().getRealPath("");
         Path path = Paths.get(strPath1).getParent().getParent();
-        filePath = path.toString() + "\\web\\immaginiRistoranti";
+        filePath = path.toString() + File.separator+"web"+File.separator+"immaginiRistoranti";
         System.out.println("\n############# path: " + filePath);
     }
 
