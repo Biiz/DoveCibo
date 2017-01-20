@@ -352,7 +352,7 @@
                         
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
-                        <!-- 9° row: caricamento foto-->
+                        <!-- 9° row: caricamento foto
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="btn btn-info btn-group-justified btn-file">
@@ -361,7 +361,7 @@
                             </div>
                         </div>
 
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>-->
 
                         <!-- 10° row: bottoni-->
                         <div class="row">
