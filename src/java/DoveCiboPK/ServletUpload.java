@@ -75,6 +75,7 @@ public class ServletUpload extends HttpServlet {
             if (!new DB_Manager().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
+            response.sendRedirect("/DoveCiboGit/foto_caricata_con_successo.jsp");
         } catch (Exception ex) {
             request.setAttribute("error", "nessun file selezionato");
             request.getRequestDispatcher("errore.jsp").forward(request, response);

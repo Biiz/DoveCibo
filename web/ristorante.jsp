@@ -6,6 +6,7 @@
 <%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
 <%@page import="DoveCiboPK.Cusine"%>
 <%@page import="DoveCiboPK.Restaurant"%>
+<%@page import="DoveCiboPK.Photo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-        
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
         <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
@@ -21,7 +22,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+
         <style>
             .btn-like {
                 padding: 14px 24px;
@@ -71,16 +72,17 @@
             }
         </style>
     </head>
-    
+
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
-            String risposta []= (String[]) request.getAttribute("rispostaUserIsOwner");
-            ArrayList <DoveCiboPK.Replies> replies = (ArrayList <DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
+            String risposta[] = (String[]) request.getAttribute("rispostaUserIsOwner");
+            ArrayList<DoveCiboPK.Replies> replies = (ArrayList<DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
+            ArrayList<Photo> R_photos = R.getPhotos();
         %>
-        
+
         <div class="modal-dialog modal-lg">
             <div class="modal-content colonna2" >
                 <div class="modal-body">
@@ -89,40 +91,40 @@
                             <div id="tagline">
                                 <p style="color: black; font-size: 28px"><b><%=R.getName().substring(0, 1).toUpperCase() + R.getName().substring(1)%></b></p>
                             </div>
-                             <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <ul>
-                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%= R.getCordinate().getAdrers().substring(0, 1).toUpperCase()+R.getCordinate().getAdrers().substring(1) %> <%=R.getCordinate().getNumero()%>, <%= R.getCordinate().getCity().substring(0, 1).toUpperCase()+R.getCordinate().getCity().substring(1) %>, <%= R.getCordinate().getNazione().substring(0, 1).toUpperCase()+R.getCordinate().getNazione().substring(1)%></b></li>
+                                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%= R.getCordinate().getAdrers().substring(0, 1).toUpperCase() + R.getCordinate().getAdrers().substring(1)%> <%=R.getCordinate().getNumero()%>, <%= R.getCordinate().getCity().substring(0, 1).toUpperCase() + R.getCordinate().getCity().substring(1)%>, <%= R.getCordinate().getNazione().substring(0, 1).toUpperCase() + R.getCordinate().getNazione().substring(1)%></b></li>
                                         <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value()%> - <%=R.getPrice_range().getMax_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value()%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
                                         <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Pranzo: da <%=R.getDay_hours().getStart_H_M()%>:<%=R.getDay_hours().getStart_M_M()%> a <%=R.getDay_hours().getEnd_H_M()%>:<%=R.getDay_hours().getEnd_M_M()%></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Cena: da <%=R.getDay_hours().getStart_H_P()%>:<%=R.getDay_hours().getStart_M_P()%> a <%=R.getDay_hours().getEnd_H_P()%>:<%=R.getDay_hours().getEnd_M_P()%></b></li>
-                                        
-                                        
+
+
                                         <li><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <b>
 
                                                 <%
                                                     int size = R.getCusines().size();
-                                                    for(Cusine c : R.getCusines()){
-                                                        if(size > 1){
+                                                    for (Cusine c : R.getCusines()) {
+                                                        if (size > 1) {
                                                 %>
-                                                        <%=c.getName()+", "%>
+                                                <%=c.getName() + ", "%>
                                                 <%
-                                                        }else{
+                                                } else {
                                                 %>
-                                                            <%=c.getName()%>
+                                                <%=c.getName()%>
                                                 <%
                                                         }
-                                                        size-=1;
+                                                        size -= 1;
                                                     }
                                                 %>
 
                                             </b></li>
                                         <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
                                             <b>QRcode:</b>
-                                            <img alt="Embedded Image" src="data:image/png;base64,<%= qrCode %>" />
+                                            <img alt="Embedded Image" src="data:image/png;base64,<%= qrCode%>" />
                                         </li>
 
                                     </ul>
@@ -136,22 +138,34 @@
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        <% if (R_photos.size() > 1) {
+                                            for (int i = 1; i < R_photos.size(); i++) {%>
+                                    <li data-target="#myCarousel" data-slide-to="<%= i%>"></li>
+                                        <% }
+                                        }%>
                                 </ol>
-
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
+                                    <% if (R_photos.size() == 0) { %>
                                     <div class="item active">
-                                        <img src="img/img (1).jpg" alt="">
+                                        <img src="img/empty_img.jpg">
+                                    </div>
+                                    <% } else {
+                                        for (int i = 0; i < R_photos.size(); i++) {
+                                            if (i == 0) {%>
+                                    <div class="item active">
+                                        <img src="immaginiRistoranti/<%= R_photos.get(i).getPath()%>">
+                                    </div>
+                                    <% } else {%>
+                                    <div class="item">
+                                        <img src="immaginiRistoranti/<%= R_photos.get(i).getPath()%>">
                                     </div>
 
-                                    <div class="item">
-                                        <img src="img/img (2).jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/img (3).jpg" alt="">
-                                    </div>
+
+                                    <% }
+                                            }
+                                        }%>
+
                                 </div>
 
                                 <!-- Left and right controls -->
@@ -181,7 +195,7 @@
         </div>
         <%
             User thisUser = (User) session.getAttribute("User");
-            if(thisUser!=null && (thisUser.getRole().equals("2") || thisUser.getRole().equals("3"))){
+            if (thisUser != null && (thisUser.getRole().equals("2") || thisUser.getRole().equals("3"))) {
         %>
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
@@ -189,25 +203,25 @@
                     <div class="row">
 
                         <div class="col-md-12 text-center">
-                            
+
                             <form method="POST" action="ServletUpload" enctype="multipart/form-data" >                           
-                                <input type="hidden" name="idR" value="<%= R.getId() %>">
-                                <input type="hidden" name="idU" value="<%= thisUser.getId() %>">
+                                <input type="hidden" name="idR" value="<%= R.getId()%>">
+                                <input type="hidden" name="idU" value="<%= thisUser.getId()%>">
                                 <label class="btn btn-default btn-file">
                                     <input type="file" name="file" id="file" />
                                 </label>
                                 <input class="btn btn-success" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
-                            
+
                             <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO
-                               if(thisUser!=null)
-                               if(!R.isOwner(thisUser)){ %>
+                                if (thisUser != null)
+                                    if (!R.isOwner(thisUser)) {%>
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
                             <form method="POST" action="ServletReclamaRistorante" >
                                 <input type="hidden" name="ristorante" value="<%=R.getId()%>">
                                 <button type="submit" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
                             </form>
-                             <% } %>
+                            <% }%>
                         </div> 
                     </div>
 
@@ -352,7 +366,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <button style="align-items: left" type="submit"  class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -367,122 +381,122 @@
             }
         %>
 
-    <% 
-    int count = 0;    
-    for (Review rew : R.getReviews()) {
-        count ++;
-    %>
-    
-    <div class="modal-dialog modal-lg" >
-        <div class="modal-content colonna2">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-9">
-                        <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
-                        <div id="tagline">
-                            <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        
-                        
-                    <form method="POST" action="ServletAggiungiLike" >    
-                        <input type="hidden" name="ristorante" value="<%= R.getId() %>">
-                        <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId() %>">
-                       <input type="hidden" name="commento" value="<%= rew.getId() %>">
-                       
-                       <% if(thisUser != null){ %>
-                        <button style="" type="submit" class="btn-like btn-default">
-                            <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike() %> </span>
-                        </button>
-                        <% } %>
-                        
-                    </form>
-                        
-                    </div>
-                </div>
-                  
-                
-                <%
-                    if(thisUser!=null && R.isOwner(thisUser) && risposta[0].equals("yes")){
-                %>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
+        <%
+            int count = 0;
+            for (Review rew : R.getReviews()) {
+                count++;
+        %>
 
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
-                        <a href="#risposta<%=count%>" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
-                    </div> 
-                </div>
-                <div id="risposta<%=count%>" class="collapse">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content colonna2">
+                <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">    
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="tagline">
-                                        <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Risposta:</b></p>
-                                    </div>
-                                </div>
-
+                        <div class="col-md-9">
+                            <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
+                            <div id="tagline">
+                                <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                             </div>
-                            <form method="POST" action="ServletAggiungiRepile">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="5" id="comment" name="descrizione"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="col-md-3">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                        <input type="hidden" name="ristorante" value="<%= R.getId() %>">
-                                        <input type="hidden" name="commento" value="<%= rew.getId() %>">
-                                        <button style="align-items: left" type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-                                </div>
-                            </div>
+
+                            <form method="POST" action="ServletAggiungiLike" >    
+                                <input type="hidden" name="ristorante" value="<%= R.getId()%>">
+                                <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId()%>">
+                                <input type="hidden" name="commento" value="<%= rew.getId()%>">
+
+                                <% if (thisUser != null) {%>
+                                <button style="" type="submit" class="btn-like btn-default">
+                                    <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike()%> </span>
+                                </button>
+                                <% } %>
+
                             </form>
+
                         </div>
                     </div>
-                </div> 
-                <%   
-                    }else{
-                %>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
 
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+
+                    <%
+                        if (thisUser != null && R.isOwner(thisUser) && risposta[0].equals("yes")) {
+                    %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
+
+                            <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+
+                            <a href="#risposta<%=count%>" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
+                        </div> 
+                    </div>
+                    <div id="risposta<%=count%>" class="collapse">
+                        <div class="row">
+                            <div class="col-md-12">    
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tagline">
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Risposta:</b></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <form method="POST" action="ServletAggiungiRepile">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="5" id="comment" name="descrizione"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" name="ristorante" value="<%= R.getId()%>">
+                                            <input type="hidden" name="commento" value="<%= rew.getId()%>">
+                                            <button style="align-items: left" type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div> 
-                </div>
-                <%
-                   }
+                    <%
+                    } else {
+                    %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
 
-                   if (!replies.isEmpty()){
-                %>
-                Risposte:
-                <%
-                        for(int i = 0; i < replies.size() ;i++){
-                           DoveCiboPK.Replies re = (DoveCiboPK.Replies) replies.get(i);
-                           if(rew.getId() == re.getIdReview()){
-                %>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=re.getOwner().getNickname()%>: <%= re.getDescription() %></p>  
-                     </div> 
-                </div>
-                <%          }
+                            <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                        </div> 
+                    </div>
+                    <%
                         }
-                    }
-                %>
-            </div>
-        </div>   
-    </div>
 
-    <% }%>   
+                        if (!replies.isEmpty()) {
+                    %>
+                    Risposte:
+                    <%
+                        for (int i = 0; i < replies.size(); i++) {
+                            DoveCiboPK.Replies re = (DoveCiboPK.Replies) replies.get(i);
+                            if (rew.getId() == re.getIdReview()) {
+                    %>
 
-</body>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=re.getOwner().getNickname()%>: <%= re.getDescription()%></p>  
+                        </div> 
+                    </div>
+                    <%          }
+                            }
+                        }
+                    %>
+                </div>
+            </div>   
+        </div>
+
+        <% }%>   
+
+    </body>
 </html>
