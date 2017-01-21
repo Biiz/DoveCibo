@@ -34,10 +34,15 @@ public class Notifica {
         this.foto = foto;
         this.idGen = idGen;
         this.user = user;
+        this.data = foto.getDate_creation();
     }
 
     public User getUser() {
         return user;
+    }
+
+    public Photo getFoto() {
+        return foto;
     }
 
     

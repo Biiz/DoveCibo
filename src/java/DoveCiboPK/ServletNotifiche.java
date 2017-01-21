@@ -74,11 +74,12 @@ public class ServletNotifiche extends HttpServlet {
                     }
                 }
             
-                new DB_Manager().cercaPhotos_perRistorante(rest, 0);
+                new DB_Manager().cercaPhotos_perRistorante(rest, 2);
             
+                
                 for(Photo ph: rest.getPhotos()){
                     new DB_Manager().cercaUser_perId(ph.getOwner());
-                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto", ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                 }
             
             }
@@ -91,6 +92,16 @@ public class ServletNotifiche extends HttpServlet {
             
             if(! new DB_Manager().setNotificheReclamo(ALN))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
+            
+            ArrayList <Photo> ARP = new ArrayList<Photo>();
+            
+            if(! new DB_Manager().cercaPhotos(ARP, 1))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response); 
+            
+            for(Photo ph: ARP){
+                    new DB_Manager().cercaUser_perId(ph.getOwner());
+                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto",ph, "invalidaFoto", ph.getId(), ph.getOwner()));
+            }
             
             
         }        

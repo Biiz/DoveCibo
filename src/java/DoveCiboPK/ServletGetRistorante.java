@@ -66,6 +66,10 @@ public class ServletGetRistorante extends HttpServlet {
                 if (!new DB_Manager().cercaPhotos_perRistorante(rest, 2)) {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
+                
+                if (!new DB_Manager().cercaPhotos_perRistorante(rest, 1)) {
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                }
 
                 if (request.getSession(false).getAttribute("User") != null) {
 
