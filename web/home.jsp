@@ -120,8 +120,7 @@
                 document.getElementById("StatsNearby").style.display = 'block';
             }
         </script>
-
-
+ 
         <div class="container">
 
             

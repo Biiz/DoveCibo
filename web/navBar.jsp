@@ -114,6 +114,39 @@ else if (user.getRole().equals("3")){
 </div><!-- fine navBar -->
 <%
         }
+%>
+
+
+<div class="modal fade" id="notifiche" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <iframe class="embed-responsive-item" src="ServletNotificheBar?idU=<%= user.getId() %>"></iframe>
+                        </div>
+                    
+                    </div>
+                </div>   
+            </div>
+            <div class="modal-footer">
+                <div class="bottom text-center">
+                    <form method="GET" action="ServletNotifiche" >
+                        <button class="btn btn-info btn-justified" type="submit">Vedi tutte le notifiche</button>
+                    </form>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div> <!-- fine modal notifiche -->
+
+
+
+<%
 }
 %>
 
@@ -164,34 +197,4 @@ else if (user.getRole().equals("3")){
 </div> <!-- fine modal accedi -->
 
 <!-- Modal notifiche-->
-<div class="modal fade" id="notifiche" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="bottom">
-                            <p style="color: black; font-size: 18px"><b>Notifiche recenti:</b></p>
-                            <hr align=?left? size=?1? width=?300? style="border-top-color: #e5e5e5;" noshade>
-                            John ha caricato una foto
-                            <hr align=?left? size=?1? width=?300? style="border-top-color: #e5e5e5;" noshade>
-                            John reclama un ristorante
-                            <hr align=?left? size=?1? width=?300? style="border-top-color: #e5e5e5;" noshade>
-                            John chiede l'eliminazione di una foto 
-                        </div>
-                    </div>
-                </div>   
-            </div>
-            <div class="modal-footer">
-                <div class="bottom text-center">
-                    <form method="GET" action="ServletNotifiche" >
-                        <button class="btn btn-info btn-justified" type="submit">Vedi tutte le notifiche</button>
-                    </form>
-                </div>
-            </div>
-        </div>   
-    </div>
-</div> <!-- fine modal notifiche -->
+
