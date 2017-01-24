@@ -159,8 +159,7 @@
                 </div> 
                 <div class="col-md-3"></div>
             </div>
-            
-            <br>
+          
             <!-- Pannello di ricerca per Tipologia cucina e vicinanza -->
             <div class="row" id="TypeNearby" style="display: none;">
                 <div class="col-md-3"></div>
@@ -221,7 +220,7 @@
                 <div class="col-md-3"></div>
             </div>
             
-            <br>
+            
             <!-- Pannello di ricerca per vicinanza e classifica -->
             <div class="row" id="StatsNearby" style="display: none;">
                 <div class="col-md-3"></div>
