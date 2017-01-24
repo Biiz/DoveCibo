@@ -45,7 +45,6 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     map.setCenter(pos);
-<<<<<<< HEAD
                     
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
@@ -73,34 +72,7 @@
                     var address = document.getElementById("indirizzo").value;       
                     geocoder = new google.maps.Geocoder();
                     geocoder.geocode({'address': address}, function (results, status) {
-=======
-                }, function () {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
 
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-            }
-
-
-            function genCooGeo() {
-
-                document.getElementById("inlat").value = pos.lat;
-                document.getElementById("inlng").value = pos.lng;
-            }
-
-            function genCooInd() {
-                var address = document.getElementById("indirizzo").value;
-                geocoder = new google.maps.Geocoder();
-                geocoder.geocode({'address': address}, function (results, status) {
->>>>>>> b64010e0802cddd8f69dbd3428d5cc2da6b79895
                     if (status == 'OK') {
                         document.getElementById("inlat").value = results[0].geometry.location.lat();
                         document.getElementById("inlng").value = results[0].geometry.location.lng();
@@ -271,14 +243,10 @@
                         </div>
                     </div>
                     <form action="ServletGetRistorantiHomeValue" method="post">
-<<<<<<< HEAD
-                            
-=======
                         <div class="row">
                             <br>
                             <div class="col-md-6">
                                 <label>Latitudine:</label>
->>>>>>> b64010e0802cddd8f69dbd3428d5cc2da6b79895
                                 <input type="text" id="inlat2" name="lat" class="form-control" placeholder="lat" required>
                             </div>
                             <div class="col-md-6">
