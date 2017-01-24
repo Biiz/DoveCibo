@@ -43,6 +43,10 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
+            ArrayList <Integer> classifica = new ArrayList<Integer>();
+            if( ! new DB_Manager().classificaRisto(classifica))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            
             request.getSession(false).invalidate();
             HttpSession session = request.getSession(true);
             session.setAttribute("User", u);
@@ -79,6 +83,7 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
             }
             
             request.setAttribute("RistorantiProprietario", ALR);
+            request.setAttribute("classifica", classifica);
             request.getRequestDispatcher("VisualizzaRistoranti.jsp").forward(request, response);
             
         } catch (Exception ex) {

@@ -71,6 +71,7 @@
                     <tbody style="background-color: white;">
                         <%                            
                            ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("RistorantiProprietario");
+                           ArrayList <Integer> classifica = (ArrayList <Integer>) request.getAttribute("classifica");
                            for (Restaurant rest : ALR) {
                         %>
                         <tr>
@@ -86,7 +87,7 @@
                             </td>
                             <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
                             <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>
-                            <td> posizione in classiffica </td>
+                            <td> <%= classifica.indexOf(rest.getId())+1 %> </td>
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1)%> <%=rest.getCordinate().getNumero()%>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
                             <td>                                                
@@ -119,7 +120,8 @@
                     });
 
                     $('#DataTable').DataTable({
-                        responsive: true
+                        responsive: true,
+                        "order": [[2, "asc"]]
                     });
                     
                     $(document).ready(function () {
