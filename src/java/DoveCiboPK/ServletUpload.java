@@ -40,7 +40,7 @@ public class ServletUpload extends HttpServlet {
 
         String strPath1 = request.getServletContext().getRealPath("");
         Path path = Paths.get(strPath1).getParent().getParent();
-        String strPath = path.toString() + "\\web\\immaginiRistoranti";
+        String strPath = path.toString() + File.separator+"web"+File.separator+"immaginiRistoranti";
 
         //create directory if it doesn't exist
         File directory = new File(strPath);
@@ -53,7 +53,7 @@ public class ServletUpload extends HttpServlet {
             m = new MultipartRequest(
                     request,
                     strPath,
-                    10 * 1024 * 1024,
+                    30 * 1024 * 1024,
                     "ISO-8859-1",
                     new DefaultFileRenamePolicy());
             //String encoded = Base64.encode(FileUtils.readFileToByteArray(m.getFile(strPath)));
@@ -67,14 +67,15 @@ public class ServletUpload extends HttpServlet {
             String filename = m.getFilesystemName(name);
             System.out.println("nome file caricato: " + filename);
             String path_name = strPath + File.separator + m.getFilesystemName(name);
-            String base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(
-                    Paths.get(path_name)));
+           // String base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(
+            //        Paths.get(path_name)));
 
             //System.out.println("\n\nlunghezza: " + base64.length());
 
             if (!new DB_Manager().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
+            response.sendRedirect("/DoveCiboGit/foto_caricata_con_successo.jsp");
         } catch (Exception ex) {
             request.setAttribute("error", "nessun file selezionato");
             request.getRequestDispatcher("errore.jsp").forward(request, response);

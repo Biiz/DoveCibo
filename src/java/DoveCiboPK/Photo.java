@@ -90,4 +90,7 @@ public class Photo {
     public User getOwner() {
         return owner;
     }
+    
+    
+    
 }

@@ -97,6 +97,27 @@
                                     </form>
                                     <% } %>
                                     
+                                    
+                                    <% if( n.getTipo().equals("nuovaFoto") ){ %>
+                                    <form method="POST" action="ServletModificaFoto" >
+                                        <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
+                                        <input type="hidden" name="val" value="1">
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Richiesta cancellazione foto </button>       
+                                    </form>
+                                        
+                                        <img src="immaginiRistoranti/<%= n.getFoto().getPath() %>" width=50 height=50 >
+                                    <% } %>
+                                    
+                                    <% if( n.getTipo().equals("invalidaFoto") ){ %>
+                                    <form method="POST" action="ServletModificaFoto" >
+                                        <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
+                                        <input type="hidden" name="val" value="0">
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cancella foto </button>       
+                                    </form>
+                                        
+                                        <img src="immaginiRistoranti/<%= n.getFoto().getPath() %>"  width=50 height=50 >
+                                    <% } %>
+                                    
                                 </td>
                             </tr>
                             

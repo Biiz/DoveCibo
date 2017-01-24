@@ -1247,6 +1247,50 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    
+    
+    
+        public Boolean cercaPhotos(ArrayList <Photo> ALP, Integer val) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT  * FROM photos WHERE validation = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, val);
+ 
+            ResultSet rs = sp.executeQuery();
+ 
+            while (rs.next()) {
+                ALP.add(new Photo(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getString("path"),
+                        new User(rs.getInt("id_owner")),
+                        rs.getInt("validation"),
+                        rs.getDate("date_creation")
+                ));
+ 
+            }
+            r = true;
+ 
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
        
     public Boolean tuttiRistoranti(ArrayList <Restaurant> ALR) throws SQLException {
  
@@ -1836,7 +1880,7 @@ public class DB_Manager {
  
     }     
     
-    public Boolean updatePhotoVal(Photo ph, Integer val) throws SQLException {
+    public Boolean updatePhotoVal(Integer idPh, Integer val) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1845,7 +1889,7 @@ public class DB_Manager {
             query = "UPDATE PHOTOS SET VALIDATION = ? WHERE ID = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, val);
-            sp.setInt(2, ph.getId());
+            sp.setInt(2, idPh);
             sp.executeUpdate();
             r = true;
         } catch (SQLException e) {
@@ -1861,31 +1905,6 @@ public class DB_Manager {
  
     } 
     
- 
-    public Boolean updatePhotoVal(Photo rep, User ad) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
-        try {
-            query = "UPDATE PHOTOS SET ID_VALIDATOR = ? , DATE_VALIDATION = DEFAULT WHERE ID = ?";
-            sp = con.prepareStatement(query);
-            sp.setInt(1, ad.getId());
-            sp.setInt(2, rep.getId());
-            sp.executeUpdate();
-            r = true;
-        } catch (SQLException e) {
-            System.out.println("Possibile causa: " + e.getMessage());
-            errore = e.toString();
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
- 
-    } 
     
     
     

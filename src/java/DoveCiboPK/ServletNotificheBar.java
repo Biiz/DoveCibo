@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author postal
  */
-@WebServlet(name = "ServletNotifiche", urlPatterns = {"/ServletNotifiche"})
-public class ServletNotifiche extends HttpServlet {
+@WebServlet(name = "ServletNotificheBar", urlPatterns = {"/ServletNotificheBar"})
+public class ServletNotificheBar extends HttpServlet {
 
 
     @Override
@@ -34,9 +34,11 @@ public class ServletNotifiche extends HttpServlet {
         try {
 
              
-        //CREATORE
-        HttpSession session = request.getSession(false);
-        User u = (User) session.getAttribute("User");       
+        //USER
+        User u = new User( Integer.parseInt(request.getParameter("idU")) );
+        
+        if(!new DB_Manager().cercaUser_perId(u))
+            request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);        
         
         //User u = new User(2);
         //new DB_Manager().cercaUser_perId(u);
@@ -111,7 +113,7 @@ public class ServletNotifiche extends HttpServlet {
         request.setAttribute("notifiche", ALN);
         request.setAttribute("id_ristoranti", id);
 
-        request.getRequestDispatcher("notifiche.jsp").forward(request, response);
+        request.getRequestDispatcher("notificheBar.jsp").forward(request, response);
             
         
         } catch (SQLException ex) {
