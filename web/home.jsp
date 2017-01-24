@@ -264,6 +264,6 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br>
             </body>
             </html>
