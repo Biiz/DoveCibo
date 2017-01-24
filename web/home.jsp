@@ -48,6 +48,7 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     map.setCenter(pos);
+                    
                     }, function() {
                         handleLocationError(true, infoWindow, map.getCenter());
                     });
@@ -221,7 +222,6 @@
                             </div>
                     
                     <form action="ServletGetRistorantiHomeValue" method="post">
-                            
                             
                                 <input type="text" id="inlat2" name="lat" class="form-control" placeholder="lat" required>
 

@@ -1,6 +1,6 @@
-<%@page import="java.math.BigDecimal"%>
 <%@page import="DoveCiboPK.*"%>
 <%@page import="java.util.HashSet"%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -81,6 +81,7 @@
                     </tfoot>
                     <tbody style="background-color: white;">
                         <%  ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("listaRistoranti");
+                            Coordinate mieCoor = (Coordinate) request.getAttribute("mieCoordinate");
                             ArrayList <Integer> classifica = (ArrayList <Integer>) request.getAttribute("classifica");
                             for (Restaurant rest : ALR) {
                         %>
@@ -96,8 +97,8 @@
                                 </div>
                             </td>
                             <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
-                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>                           
-                            <td> <%= classifica.indexOf(rest.getId())+1 %></td>
+                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>
+                            <td> <%= classifica.indexOf(rest.getId())+1 %> </td>
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getPrice_range().getMin_value() %></td>
                             <td><%= rest.getPrice_range().getMax_value() %></td>
@@ -130,7 +131,7 @@
                     $(document).ready(function () {
                         $('#DataTable').DataTable();
                     });
-
+                    
                     $('#DataTable').DataTable({
                         responsive: true,
                         "order": [[2, "asc"]]
@@ -149,12 +150,37 @@
           var map;
 
           function initMap() {
-                var uluru = {lat: 43, lng: 12};
+                var uluru = {lat: <%= mieCoor.getLatitude() %> , lng: <%= mieCoor.getLongitude() %>};
                 map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 5,
+                    zoom: 13,
                     center: uluru
                 });
-            
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: "MIA POSIZIONE"
+                });
+                
+                function pinSymbol(color) {
+                    return {
+                        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+                        fillColor: color,
+                        fillOpacity: 1,
+                        strokeColor: '#000',
+                        strokeWeight: 2,
+                        scale: 1,
+                   };
+                }
+                
+                
+                var marker = new google.maps.Marker({
+                  position: {lat:<%= mieCoor.getLatitude() %>,lng:<%= mieCoor.getLongitude() %>},
+                  map: map,
+                  icon: pinSymbol("#FCC602")
+                });
+
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
 
 
             <% for(Restaurant rest : ALR){ %>
@@ -209,9 +235,11 @@
                     $(this).html('<input type="text" placeholder="' + title + '.. " />');
                 });
 
+               
+                
                 // DataTable
                 var table = $('#DataTable').DataTable();
-
+                
                 // Apply the search
                 table.columns().every(function () {
                     var that = this;
@@ -222,6 +250,8 @@
                         }
                     } );
                 } );
+                
+                
                 
                 
             } );

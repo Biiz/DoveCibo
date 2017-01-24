@@ -7,6 +7,7 @@ package DoveCiboPK;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,28 +57,12 @@ public class ServletAggiungiCommento extends HttpServlet {
 
                 //RISTORANTE
                 Integer idR = Integer.parseInt(request.getParameter("ristorante"));
-                Restaurant res = new Restaurant(idR);
-
-                if (!new DB_Manager().cercaRistorante_perId(res)) {
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
+                
 
                 //CREO REW
                 Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, 0, u);
 
-                //RIMPOSTA GLOBALVALUE DEL RISTORANTE
-                //C = NUMERO COMMENTI RISTORANTE
-                //GV = GLOBAL VALUE DEL RISTORANTE
-                //NEW GV = ((GV*C)+REW.GV)/(C+1)
-                //UPDATE GV RIS
-                Float newGV
-                        = ((float) (res.getN_reviews() * res.getGlobal_value() + global_v))
-                        / ((float) (res.getN_reviews() + 1));
-
-                if (!new DB_Manager().updateRate(res, newGV)) {
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }
-
+               
                 //INSERIMENTO DB
                 if (!new DB_Manager().inserisciReview(rew, idR)) {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
@@ -86,7 +71,29 @@ public class ServletAggiungiCommento extends HttpServlet {
                 if (!new DB_Manager().increaseReviewRestaurant(new Restaurant(idR))) {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
-
+                
+                
+                Restaurant res = new Restaurant (idR);
+                if (!new DB_Manager().cercaRistorante_perId(res)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                
+                Double reviews_value [] = new Double [1];
+                    if (!new DB_Manager().countReviews(res, reviews_value)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                    double newGV = ((((global_v + food + service + value_for_money + atmospere)/5) + res.getGlobal_value().intValue() + reviews_value[0])/3.0);
+                    
+                if(newGV <= 5){
+                    if (!new DB_Manager().updateRate(res, newGV)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                }else{
+                    if (!new DB_Manager().updateRate(res, 5)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                }
+                
                 response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR=" + idR);
             }
 

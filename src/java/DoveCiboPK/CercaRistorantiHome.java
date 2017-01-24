@@ -119,11 +119,17 @@ public class CercaRistorantiHome extends HttpServlet {
                
                      if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                     
+                                         
                     ALR.add(rest);
                 }
-
+            
+            ArrayList <Integer> classifica = new ArrayList<Integer>();
+            if( ! new DB_Manager().classificaRisto(classifica))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            
+                
             request.setAttribute("listaRistoranti", ALR);
+            request.setAttribute("classifica", classifica);
             request.getRequestDispatcher("CercaRistorantiHome.jsp").forward(request, response);
             
             

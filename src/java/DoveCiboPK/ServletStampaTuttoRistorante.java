@@ -76,13 +76,6 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
-            /** riga da inserire quando si fa la vera relazione tra proprietario e ristorante
-            //INSERISCI RELAZIONE RESTAURANT_OWNER
-            if (!(new DB_Manager().inserisciRelazioneOwnerRestaurant(restaurant.getId(), u.getId()))) {
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            }            
-            **/
-            
             //INSERISCI PRICERANGE
             if (!(new DB_Manager()).inserisciPrice_range(priceRange)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);

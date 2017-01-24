@@ -61,9 +61,15 @@ public class ServletGetRistorantiHomeCucine extends HttpServlet {
                      
                      
                 }
+                
+                ArrayList <Integer> classifica = new ArrayList<Integer>();
+                if( ! new DB_Manager().classificaRisto(classifica))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                
             
             if( ! ALR.isEmpty()){
                 request.setAttribute("listaRistoranti", ALR);
+                request.setAttribute("classifica", classifica);
                 request.getRequestDispatcher("CercaRistorantiHome.jsp").forward(request, response);
             }else{
                     request.setAttribute("error", "errore: nessun ristorante trovato per questa ricerca");

@@ -156,6 +156,61 @@ public class DB_Manager {
             return r;
         }
     }
+    
+    public Boolean classificaRisto(ArrayList <Integer> classifica) throws SQLException {
+        Boolean r = true;
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        ArrayList <Integer> ristoId = new ArrayList <Integer>();
+        ArrayList <Double> ristoValue = new ArrayList <Double>();
+        try {
+            query = "SELECT id, global_value FROM restaurants";
+            sp = con.prepareStatement(query);
+            
+            ResultSet rs = sp.executeQuery();
+            
+            while (rs.next()) {
+                ristoId.add(rs.getInt("id"));
+                ristoValue.add(rs.getDouble("global_value"));
+            }
+            
+            for(int i = 0; i < ristoValue.size();i++){
+                for(int j = 0; j < ristoValue.size()-1; j++){
+                    if(ristoValue.get(j) < ristoValue.get(j+1)){
+                        
+                        double val = ristoValue.get(j);
+                        ristoValue.remove(j);
+                        ristoValue.add(j, ristoValue.get(j+1));
+                        ristoValue.remove(j+1);
+                        ristoValue.add(j+1, val);
+                        
+                        int var = ristoId.get(j);
+                        ristoId.remove(j);
+                        ristoId.add(j, ristoId.get(j+1));
+                        ristoId.remove(j+1);
+                        ristoId.add(j+1, var);
+   
+                    }
+                        
+                }
+            }
+            
+            for(int i = 0;i < ristoId.size() ;i++){
+                classifica.add(i, ristoId.get(i));
+            }
+            
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+        }
+    }
+    
+    
+    
    
    
     public void niknameEsistente_login (User u) throws SQLException {
@@ -493,6 +548,45 @@ public class DB_Manager {
         }
  
     }
+    
+    
+    public Boolean cercaTuttiRes(ArrayList <Restaurant> RES) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+ 
+        try {
+            query = "SELECT * FROM restaurants";
+            sp = con.prepareStatement(query);
+ 
+ 
+            ResultSet rs = sp.executeQuery();
+ 
+            while (rs.next()) {
+                Restaurant res = new Restaurant (rs.getInt("id"));
+                
+                RES.add(res);
+            }
+            
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+ 
+    }
+    
+    
+    
+    
+    
+    
+    
  
 /////INSERT    
     public Boolean inserisciRistorante(Restaurant res) throws SQLException {
@@ -1660,7 +1754,7 @@ public class DB_Manager {
     }
     
     
-    public Boolean updateRate(Restaurant res, Float newGV) throws SQLException {
+    public Boolean updateRate(Restaurant res, double newGV) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -1668,7 +1762,7 @@ public class DB_Manager {
         try {
             query = "UPDATE RESTAURANTS SET GLOBAL_VALUE = ? WHERE ID = ?";
             sp = con.prepareStatement(query);
-            sp.setFloat(1, newGV);
+            sp.setDouble(1, newGV);
             sp.setInt(2, res.getId());
             sp.executeUpdate();
             r = true;
@@ -1873,6 +1967,204 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    public Boolean countReviews(Restaurant res, Double reviews_value[]) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+        int  count_reviews_res = 0;
+        int gv= 0;
+        int food= 0;
+        int atm= 0;
+        int serv= 0;
+        int money= 0;
+        int count = 0;
+        try {
+            
+            query = "SELECT SUM(global_value) AS s1, SUM(food) AS s2, SUM(service) AS s3, SUM (atmosphere) AS s4, SUM (value_for_money) AS s5, COUNT(*) AS count "+
+                    "FROM reviews "+
+                    "WHERE id_restaurant = ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            
+            ResultSet rs = sp.executeQuery();            
+           
+            if (rs.next()) {
+                
+                gv = rs.getInt("s1");
+                food= rs.getInt("s2");
+                serv= rs.getInt("s3");
+                atm= rs.getInt("s4");
+                money = rs.getInt("s5");
+                
+                count = rs.getInt("count");
+                reviews_value[0] = ((gv/count) + (food/count)+ (serv/count)+(atm/count)+(money/count))/5.0;
+            }
+            r=true;
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    public Boolean countLike(Restaurant res, Double like_value[]) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        PreparedStatement sp2 = null;
+        String query = null;
+        String query2 = null;
+        Boolean r = true;
+        double sum_love_res = 0.0;
+        double sum_love = 0.0;
+        try {
+            query = "SELECT SUM(love) AS sum_love_res "+
+                    "FROM reviews "+
+                    "WHERE id_restaurant = ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            
+            ResultSet rs = sp.executeQuery();            
+            
+            query2 = "SELECT SUM(love) AS sum_love "+
+                     "FROM reviews ";
+            
+            sp2 = con.prepareStatement(query2);
+            
+            ResultSet rs2 = sp2.executeQuery();            
+            
+            if (rs2.next() && rs.next()) {
+                sum_love_res = rs.getDouble("sum_love_res");
+                sum_love = rs2.getDouble("sum_love");
+                if(sum_love_res == 0){
+                    like_value[0] = 0.0;
+                }else{
+                    like_value[0]= sum_love_res/sum_love ;
+                }
+            }
+            r=true;
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    public Boolean countLike2(Restaurant res, ArrayList <Double> like_value) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        PreparedStatement sp2 = null;
+        String query = null;
+        String query2 = null;
+        Boolean r = true;
+        double sum_love_res = 0.0;
+        double sum_love = 0.0;
+        try {
+            query = "SELECT SUM(love) AS sum_love_res "+
+                    "FROM reviews "+
+                    "WHERE id_restaurant = ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            
+            ResultSet rs = sp.executeQuery();            
+            
+            query2 = "SELECT SUM(love) AS sum_love "+
+                     "FROM reviews ";
+            
+            sp2 = con.prepareStatement(query2);
+            
+            ResultSet rs2 = sp2.executeQuery();            
+            
+            if (rs2.next() && rs.next()) {
+                sum_love_res = rs.getDouble("sum_love_res");
+                sum_love = rs2.getDouble("sum_love");
+                if(sum_love_res == 0){
+                    like_value.add(0.0);
+                }else{
+                    like_value.add(sum_love_res/sum_love);
+                }
+            }
+            r=true;
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    public Boolean countReviews2 (Restaurant res, ArrayList <Double> reviews_value) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        PreparedStatement sp2 = null;
+        String query = null;
+        String query2 = null;
+        Boolean r = true;
+        double count_reviews_res = 0.0;
+        double count_reviews = 0.0;
+        try {
+            
+            query = "SELECT COUNT(*) AS count_reviews_res "+
+                    "FROM reviews "+
+                    "WHERE id_restaurant = ? ";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            
+            ResultSet rs = sp.executeQuery();            
+            
+            query2 = "SELECT COUNT(*) AS count_reviews "+
+                     "FROM reviews ";
+            
+            sp2 = con.prepareStatement(query2);
+            
+            ResultSet rs2 = sp2.executeQuery();
+            if (rs2.next() && rs.next()) {
+                count_reviews_res = rs.getDouble("count_reviews_res");
+                count_reviews = rs2.getDouble("count_reviews");
+                if(count_reviews_res == 0){
+                    reviews_value.add(0.0);
+                }else{
+                    reviews_value.add(count_reviews_res/count_reviews);
+                }
+            }
+            r=true;
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
+    
+    
+    
     
     public Boolean setRepli(Review rew) throws SQLException {
  
@@ -2278,44 +2570,76 @@ public class DB_Manager {
     
     
     
-    public Boolean ricercaRistorantiPerClassificaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, Integer numeroR) throws SQLException {
+    public Boolean ricercaRistorantiPerClassificaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon) throws SQLException {
 
         PreparedStatement sp = null;
         String query = null;
         Boolean r = true;
+        double ristLat = 0.0;
+        double ristLon = 0.0;
+        Integer idRes = null;
         
-
-        try {  
+        try {
             
-            
-            System.out.println("q ok----------------------------");
-            
-            query = "SELECT  R.* FROM restaurants AS R, COORDINATES AS C "
-                    + "WHERE R.ID = C.ID_RESTAURANT "
-                    + "ORDER BY ((C.LATITUDE - ?) * (C.LATITUDE - ?) + (C.LONGITUDE - ?) * (C.LONGITUDE - ?)) DESC";
-            
-            
+            query = "SELECT C.latitude, C.longitude, R.id "
+                    +"FROM restaurants AS R, COORDINATES AS C "
+                    +"WHERE R.ID = C.ID_RESTAURANT ";
             
             sp = con.prepareStatement(query);
-            
-            System.out.println("q ok");
-
-            sp.setFloat(1, coo.getLatitude());
-            sp.setFloat(2, coo.getLatitude());            
-            sp.setFloat(3, coo.getLongitude());
-            sp.setFloat(4, coo.getLongitude()); 
-            
-
 
             ResultSet rs = sp.executeQuery();
+            
+            while(rs.next()){
+                ristLat = rs.getDouble("latitude");
+                ristLon = rs.getDouble("longitude");
+                idRes = rs.getInt("id");
+                if((coo.getLongitude()+rangeLon > 0 && coo.getLongitude()-rangeLon>0 && coo.getLatitude()+rangeLat>0 && coo.getLatitude()-rangeLat>0) || (coo.getLongitude()+rangeLon < 0 && coo.getLongitude()-rangeLon<0 && coo.getLatitude()+rangeLat<0 && coo.getLatitude()-rangeLat<0) ){
+                    if(ristLon > coo.getLongitude()-rangeLon && ristLon < coo.getLongitude()+rangeLon && ristLat > coo.getLatitude()-rangeLat && ristLat < coo.getLatitude()+rangeLat){
 
-            for (int i=0; rs.next() && i<numeroR; i++) {
-                Restaurant res = new Restaurant(rs.getInt("id"));
+                        String query2 = null;
+                        PreparedStatement sp2 = null;
 
-                                System.out.println("pciot");
-                ALR.add(res);
+                        query2 = "SELECT R.* "
+                                +"FROM restaurants AS R, COORDINATES AS C "
+                                +"WHERE R.ID = C.ID_RESTAURANT AND R.id = ?";
+
+                        sp2 = con.prepareStatement(query2);
+                        
+                        sp2.setInt(1, idRes);
+
+                        ResultSet rs2 = sp2.executeQuery();
+
+                        if(rs2.next()){
+                            Restaurant res = new Restaurant(rs2.getInt("id"));
+                            ALR.add(res);
+                        }
+
+                    }
+                }else if ((coo.getLongitude()+rangeLon < 0 && coo.getLongitude()-rangeLon<0 && coo.getLatitude()+rangeLat>0 && coo.getLatitude()-rangeLat>0) || (coo.getLongitude()+rangeLon > 0 && coo.getLongitude()-rangeLon > 0 && coo.getLatitude()+rangeLat<0 && coo.getLatitude()-rangeLat<0)){
+                    if(ristLon > coo.getLongitude()-rangeLon && ristLon < coo.getLongitude()+rangeLon && ristLat > coo.getLatitude()-rangeLat && ristLat < coo.getLatitude()+rangeLat){
+
+                        String query2 = null;
+                        PreparedStatement sp2 = null;
+
+                        query2 = "SELECT R.* "
+                                +"FROM restaurants AS R, COORDINATES AS C "
+                                +"WHERE R.ID = C.ID_RESTAURANT AND R.id = ?";
+
+                        sp2 = con.prepareStatement(query2);
+                        
+                        sp2.setInt(1, idRes);
+
+                        ResultSet rs2 = sp2.executeQuery();
+
+                        if(rs2.next()){
+                            Restaurant res = new Restaurant(rs2.getInt("id"));
+                            ALR.add(res);
+                        }
+
+                    }
+                }
             }
-
+            
         } catch (SQLException e) {
             this.errore = e.toString();
             System.out.println(e.toString());

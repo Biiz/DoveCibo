@@ -7,6 +7,7 @@ package DoveCiboPK;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,13 +45,19 @@ public class ServletAggiungiLike extends HttpServlet {
             //RISTORANTE
             Integer idRes =Integer.parseInt(request.getParameter("ristorante"));
             
-            if (!new DB_Manager().increaseLikeUser(new User(idUR)))
+            Restaurant res = new Restaurant(idRes);
+            
+            if (!new DB_Manager().cercaRistorante_perId(res))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            
+            
+            
+             if (!new DB_Manager().increaseLikeUser(new User(idUR)))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
         
              if (!new DB_Manager().increaseLikeReview(new Review(idRew)))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-
-             
+            
              response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);
              
         } catch (SQLException ex) {

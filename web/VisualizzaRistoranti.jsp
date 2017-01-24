@@ -1,5 +1,6 @@
 <%@page import="DoveCiboPK.*"%>
 <%@page import="java.util.Iterator"%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -83,7 +84,8 @@
                                     <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%=rest.getId()%>'">Edit</button>
                                 </div>
                             </td>
-                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= rest.getGlobal_value() %> </b></td>
+                            <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
+                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>
                             <td> posizione in classiffica </td>
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1)%> <%=rest.getCordinate().getNumero()%>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>

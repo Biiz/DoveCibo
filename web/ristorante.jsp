@@ -1,3 +1,4 @@
+<%@page import="java.math.BigDecimal"%>
 <%@page import="java.sql.Date"%>
 <%@page import="DoveCiboPK.User"%>
 <%@page import="java.util.ArrayList"%>
@@ -94,7 +95,8 @@
                                     <ul>
                                         <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <b><%= R.getCordinate().getAdrers().substring(0, 1).toUpperCase()+R.getCordinate().getAdrers().substring(1) %> <%=R.getCordinate().getNumero()%>, <%= R.getCordinate().getCity().substring(0, 1).toUpperCase()+R.getCordinate().getCity().substring(1) %>, <%= R.getCordinate().getNazione().substring(0, 1).toUpperCase()+R.getCordinate().getNazione().substring(1)%></b></li>
                                         <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value()%> - <%=R.getPrice_range().getMax_value()%></b></li>
-                                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=R.getGlobal_value()%></b></li>
+                                        <%  BigDecimal roundfinalPrice = new BigDecimal(R.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
+                                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=roundfinalPrice%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
                                         <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Pranzo: da <%=R.getDay_hours().getStart_H_M()%>:<%=R.getDay_hours().getStart_M_M()%> a <%=R.getDay_hours().getEnd_H_M()%>:<%=R.getDay_hours().getEnd_M_M()%></b></li>

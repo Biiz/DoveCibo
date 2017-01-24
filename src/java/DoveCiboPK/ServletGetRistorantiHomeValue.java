@@ -27,9 +27,16 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
             
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
-            Coordinate coo = new Coordinate(lat,lng, null, null, null, null);
+            ArrayList <Integer> classifica = new ArrayList<Integer>();
+            if( ! new DB_Manager().classificaRisto(classifica))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
-            if( new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, 10 )){
+            
+            Coordinate coo = new Coordinate(lat,lng, null, null, null, null);
+            double rangeLat = 0.05;
+            double rangeLon = 0.1;
+            
+            if( new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, rangeLat, rangeLon)){
                 for(Restaurant rest : ALR){                      
                     
                     if( ! new DB_Manager().cercaRistorante_perId(rest))
@@ -51,12 +58,16 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                                
                 }
+                
             }else{
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
             request.setAttribute("listaRistoranti", ALR);
-            request.getRequestDispatcher("CercaRistorantiHome.jsp").forward(request, response);
+            request.setAttribute("mieCoordinate", coo);
+            request.setAttribute("classifica", classifica);
+            
+            request.getRequestDispatcher("cercaRistoHomeValue.jsp").forward(request, response);
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
