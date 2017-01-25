@@ -186,6 +186,56 @@ public class DB_Manager {
     
     
     
+    public Boolean classificaRistoCitta(Integer ristoId, ArrayList <Integer> classifica) throws SQLException {
+        Boolean r = true;
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        PreparedStatement sp2 = null;
+        String query2 = null;
+        
+        try {
+            
+            query ="SELECT DISTINCT city "
+                   +"FROM coordinates";
+            sp = con.prepareStatement(query);
+            
+            ResultSet rs = sp.executeQuery();
+            
+            
+            while (rs.next()) {
+                ArrayList <Integer> classificaCitta = new ArrayList <Integer>();
+                
+                query2 ="SELECT R.id, R.global_value "
+                        +"FROM coordinates AS C, restaurants AS R "
+                        +"WHERE R.id = C.id_restaurant AND C.city like ? "
+                        +"ORDER BY (R.global_value) DESC";
+                sp2 = con.prepareStatement(query2);
+                
+                sp2.setString(1, rs.getString("city"));
+                
+                ResultSet rs2 = sp2.executeQuery();
+            
+                while (rs2.next()) {
+                    classificaCitta.add(rs2.getInt("id"));
+                    if(ristoId == rs2.getInt("id")){
+                        classifica.add(classificaCitta.indexOf(rs2.getInt("id")));
+                    }
+                }
+                
+                
+            }
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+        }
+    }
+    
+    
+    
    
    
     public void niknameEsistente_login (User u) throws SQLException {

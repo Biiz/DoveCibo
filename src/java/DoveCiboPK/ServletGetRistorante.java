@@ -94,12 +94,23 @@ public class ServletGetRistorante extends HttpServlet {
             } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
+            
+            ArrayList <Integer> classifica = new ArrayList <Integer> ();
+            
+            if (!new DB_Manager().classificaRistoCitta(idR, classifica)) {
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            }
+            
+            
+            
+            
             //creo l'oggetto QR
             QR_generator qr = new QR_generator(rest);
             //ottengo la stringa descrittiva da inserire nel QR
             String qrCode = qr.qr_Gen();
 
             request.setAttribute("ristorante", rest);
+            request.setAttribute("classificaCity", classifica);
             request.setAttribute("qrCode", qrCode);
             request.setAttribute("rispostaUserIsOwner", risposta);
             request.setAttribute("repliesOwner", replies);

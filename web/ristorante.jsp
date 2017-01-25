@@ -78,6 +78,7 @@
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
+            ArrayList <Integer> classificaCity = (ArrayList <Integer>) request.getAttribute("classificaCity");
             String risposta[] = (String[]) request.getAttribute("rispostaUserIsOwner");
             ArrayList<DoveCiboPK.Replies> replies = (ArrayList<DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
@@ -100,7 +101,7 @@
                                             <%  BigDecimal roundfinalPrice = new BigDecimal(R.getGlobal_value()).setScale(1, BigDecimal.ROUND_HALF_UP);%>
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=roundfinalPrice%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
-                                        <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b>Posizione in classifica per città</b></li>
+                                        <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b><%= classificaCity.get(0)+1 %></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Pranzo: da <%=R.getDay_hours().getStart_H_M()%>:<%=R.getDay_hours().getStart_M_M()%> a <%=R.getDay_hours().getEnd_H_M()%>:<%=R.getDay_hours().getEnd_M_M()%></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Cena: da <%=R.getDay_hours().getStart_H_P()%>:<%=R.getDay_hours().getStart_M_P()%> a <%=R.getDay_hours().getEnd_H_P()%>:<%=R.getDay_hours().getEnd_M_P()%></b></li>
 
