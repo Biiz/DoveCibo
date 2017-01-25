@@ -34,14 +34,26 @@ public class ServletRifiutaReclamo extends HttpServlet {
             throws ServletException, IOException {
         
         try {
+            
+            
             //RISTORANTE
             Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
+            //CREATORE
+            Restaurant R = (Restaurant) request.getSession(false).getAttribute("ristorante"); 
+            User u = (User) request.getSession(false).getAttribute("User");
+            
+            //FILTRO USER
+            if(! u.getRole().equals("1") ){
+                request.setAttribute("error", "Zona protetta!");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);                    
+            }else{  
             //INSERIMENTO DB
             if(! new DB_Manager().rifiutaReclamo(idRO))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
 
             response.sendRedirect("/DoveCiboGit/reclamoRifiutato.jsp");
+            }
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

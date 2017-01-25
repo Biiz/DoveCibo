@@ -1697,7 +1697,7 @@ public class DB_Manager {
         Boolean r = true;
  
         try {
-            query = "SELECT * FROM RESTAURANT_OWNER WHERE ID_RESTAURANT = ? ";
+            query = "SELECT * FROM RESTAURANT_OWNER WHERE ID_RESTAURANT = ? AND ID_VALIDATOR IS NOT NULL";
             sp = con.prepareStatement(query);
             
             sp.setInt(1, res.getId());
@@ -2715,5 +2715,36 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }  
+    
+    
+        public Boolean isOwners_perRistoranti(User user, Restaurant res) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = false;
+ 
+        try {
+            query = "SELECT * FROM RESTAURANT_OWNER WHERE ID_RESTAURANT = ? AND ID_VALIDATOR IS NOT NULL AND ID_OWNER = ?";
+            sp = con.prepareStatement(query);
+            
+            sp.setInt(1, res.getId());
+            sp.setInt(2, user.getId());
+            ResultSet rs = sp.executeQuery();            
+            
+            if (rs.next()) {          
+                r = true;
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }  
+    
  
 }

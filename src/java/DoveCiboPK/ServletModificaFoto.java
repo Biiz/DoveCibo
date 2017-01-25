@@ -46,18 +46,18 @@ public class ServletModificaFoto extends HttpServlet {
             if((!u.getRole().equals("1")) && (val==2 || val==0)){
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
-            }
-            
-            if((!u.getRole().equals("2")) && (val==1)){               //CONTROLLA OWNWER!!! DA FARE
+            }else if((!u.getRole().equals("2")) && (val==1)){               //CONTROLLA OWNWER!!! DA FARE
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
-            }
+            }else{
             
             //INSERIMENTO DB
             if(! new DB_Manager().updatePhotoVal(idF, val))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
             //response.sendRedirect("confermaReclamo.jsp");
+            
+            }
         
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());

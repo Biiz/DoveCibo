@@ -29,6 +29,12 @@ public class ServletModificaRistorante extends HttpServlet {
             Restaurant R = (Restaurant) request.getSession(false).getAttribute("ristorante"); 
             User u = (User) request.getSession(false).getAttribute("User");
             
+            //FILTRO USER
+            if(! new DB_Manager().isOwners_perRistoranti(u, R)){
+                request.setAttribute("error", "Zona protetta!");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);                    
+            }else{ 
+            
             // ORARI       
             Day_hours dh = new Day_hours(
                     Integer.parseInt(request.getParameter("StMh")),
@@ -113,6 +119,8 @@ public class ServletModificaRistorante extends HttpServlet {
             }
             
             response.sendRedirect("/DoveCiboGit/ristorante_modificato_successo.jsp");
+            
+            }
             
         } catch (Exception ex) {
 

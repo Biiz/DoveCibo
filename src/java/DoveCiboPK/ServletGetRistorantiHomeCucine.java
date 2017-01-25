@@ -57,6 +57,14 @@ public class ServletGetRistorantiHomeCucine extends HttpServlet {
                
                      if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                     
+                    if (!new DB_Manager().cercaPhotos_perRistorante(rest, 2)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                
+                    if (!new DB_Manager().cercaPhotos_perRistorante(rest, 1)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
                                
                      
                      

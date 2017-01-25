@@ -117,8 +117,17 @@ public class CercaRistorantiHome extends HttpServlet {
                     if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                
-                     if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                    if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                     
+                     
+                    if (!new DB_Manager().cercaPhotos_perRistorante(rest, 2)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
+                
+                    if (!new DB_Manager().cercaPhotos_perRistorante(rest, 1)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
                                          
                     ALR.add(rest);
                 }
