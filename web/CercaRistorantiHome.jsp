@@ -126,7 +126,7 @@
                                     <img id="immagine" src="
                                         <% if (rest.getPhotos().size() != 0) {%>
                                         immaginiRistoranti/<%= rest.getPhotos().get(0).getPath()%><% } else{%>
-                                        img/empty_img.jpg <% } %>
+                                        img/empty_img.png <% } %>
                                     "/>
                                     
                                 </div>
