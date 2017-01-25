@@ -52,7 +52,7 @@
                         <tr style="background-color: rgba(198, 239, 255, 1);">
                             <th>NOME</th>
                             <th>VALUTAZIONE</th>
-                            <th>CLASSIFICA</th>
+                            <th>RANK</th>
                             <th>REVIEWS</th>
                             <th>INDIRIZZO</th>
                             <th>CUCINE</th>
@@ -62,7 +62,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Valutazione</th>
-                            <th>Classifica</th>
+                            <th>Rank</th>
                             <th>Review</th>
                             <th>Indirizzo</th>
                             <th>Cucine</th>
