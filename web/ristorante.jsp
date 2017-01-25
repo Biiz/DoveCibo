@@ -78,7 +78,7 @@
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
-            ArrayList <Integer> classificaCity = (ArrayList <Integer>) request.getAttribute("classificaCity");
+            ArrayList<Integer> classificaCity = (ArrayList<Integer>) request.getAttribute("classificaCity");
             String risposta[] = (String[]) request.getAttribute("rispostaUserIsOwner");
             ArrayList<DoveCiboPK.Replies> replies = (ArrayList<DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
@@ -101,7 +101,7 @@
                                             <%  BigDecimal roundfinalPrice = new BigDecimal(R.getGlobal_value()).setScale(1, BigDecimal.ROUND_HALF_UP);%>
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=roundfinalPrice%></b></li>
                                         <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
-                                        <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b><%= classificaCity.get(0)+1 %></b></li>
+                                        <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b><%= classificaCity.get(0) + 1%></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Pranzo: da <%=R.getDay_hours().getStart_H_M()%>:<%=R.getDay_hours().getStart_M_M()%> a <%=R.getDay_hours().getEnd_H_M()%>:<%=R.getDay_hours().getEnd_M_M()%></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Cena: da <%=R.getDay_hours().getStart_H_P()%>:<%=R.getDay_hours().getStart_M_P()%> a <%=R.getDay_hours().getEnd_H_P()%>:<%=R.getDay_hours().getEnd_M_P()%></b></li>
 
@@ -220,10 +220,11 @@
                                 <input class="btn btn-success btn-lg" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
                         </div>
+
+                        <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO
+                            if (thisUser != null)
+                                if (!R.isOwner(thisUser)) {%>
                         <div class="col-md-4 bottom-align-text">
-                            <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO
-                                if (thisUser != null)
-                                    if (!R.isOwner(thisUser)) {%>
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
                         </div>
                         <div class="col-md-2 bottom-align-text">    
@@ -231,8 +232,9 @@
                                 <input type="hidden" name="ristorante" value="<%=R.getId()%>">
                                 <button type="submit" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Reclama</button> 
                             </form>
+                        </div>
                             <% }%>
-                        </div> 
+                        
                     </div>
 
                     <div id="diversi" class="collapse">
@@ -300,202 +302,202 @@
                                                 <label for="star5"> 5 &ensp;stelle</label>
                                             </fieldset>
 
-                                       
-                                    
 
 
-                                    <div id="tagline">
-                                        <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Servizio</b></p>
+
+
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Servizio</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="service" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="service" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="service" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="service" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="service" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle </label>
+                                            </fieldset>
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Qualità/Prezzo</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="value_for_money" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="value_for_money" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="value_for_money" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="value_for_money" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="value_for_money" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                            <div id="tagline">
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Atmosfera:</b></p>
+                                            </div>
+
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star1" name="atmospere" value="1" />
+                                                <label for="star1"> 1 &ensp;</label>
+                                                <input type="radio" id="star2" name="atmospere" value="2" />
+                                                <label for="star2"> 2 &ensp;</label>
+                                                <input type="radio" id="star3" name="atmospere" checked="checked" value="3" />
+                                                <label for="star3"> 3 &ensp;</label>
+                                                <input type="radio" id="star4" name="atmospere" value="4" />
+                                                <label for="star4"> 4 &ensp;</label>
+                                                <input type="radio" id="star5" name="atmospere" value="5" />
+                                                <label for="star5"> 5 &ensp;stelle</label>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>                                   
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button style="align-items: left" type="submit"  class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
+
+                                        </div>
                                     </div>
-
-                                    <fieldset class="rating">
-                                        <input type="radio" id="star1" name="service" value="1" />
-                                        <label for="star1"> 1 &ensp;</label>
-                                        <input type="radio" id="star2" name="service" value="2" />
-                                        <label for="star2"> 2 &ensp;</label>
-                                        <input type="radio" id="star3" name="service" checked="checked" value="3" />
-                                        <label for="star3"> 3 &ensp;</label>
-                                        <input type="radio" id="star4" name="service" value="4" />
-                                        <label for="star4"> 4 &ensp;</label>
-                                        <input type="radio" id="star5" name="service" value="5" />
-                                        <label for="star5"> 5 &ensp;stelle </label>
-                                    </fieldset>
-
                                 </div>
-
-
-                                <div class="col-md-6">
-                                    <div id="tagline">
-                                        <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Qualità/Prezzo</b></p>
-                                    </div>
-
-                                    <fieldset class="rating">
-                                        <input type="radio" id="star1" name="value_for_money" value="1" />
-                                        <label for="star1"> 1 &ensp;</label>
-                                        <input type="radio" id="star2" name="value_for_money" value="2" />
-                                        <label for="star2"> 2 &ensp;</label>
-                                        <input type="radio" id="star3" name="value_for_money" checked="checked" value="3" />
-                                        <label for="star3"> 3 &ensp;</label>
-                                        <input type="radio" id="star4" name="value_for_money" value="4" />
-                                        <label for="star4"> 4 &ensp;</label>
-                                        <input type="radio" id="star5" name="value_for_money" value="5" />
-                                        <label for="star5"> 5 &ensp;stelle</label>
-                                    </fieldset>
-
-                                    <div id="tagline">
-                                        <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Atmosfera:</b></p>
-                                    </div>
-
-                                    <fieldset class="rating">
-                                        <input type="radio" id="star1" name="atmospere" value="1" />
-                                        <label for="star1"> 1 &ensp;</label>
-                                        <input type="radio" id="star2" name="atmospere" value="2" />
-                                        <label for="star2"> 2 &ensp;</label>
-                                        <input type="radio" id="star3" name="atmospere" checked="checked" value="3" />
-                                        <label for="star3"> 3 &ensp;</label>
-                                        <input type="radio" id="star4" name="atmospere" value="4" />
-                                        <label for="star4"> 4 &ensp;</label>
-                                        <input type="radio" id="star5" name="atmospere" value="5" />
-                                        <label for="star5"> 5 &ensp;stelle</label>
-                                    </fieldset>
-
-                                </div>
-                        </div>                                   
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button style="align-items: left" type="submit"  class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    </form>
-                </div>
+
+                </div>                     
             </div>
+        </div> 
+        <%
+            }
+        %>
 
-        </div>                     
-    </div>
-</div> 
-<%
-    }
-%>
+        <%
+            int count = 0;
+            for (Review rew : R.getReviews()) {
+                count++;
+        %>
 
-<%
-    int count = 0;
-    for (Review rew : R.getReviews()) {
-        count++;
-%>
-
-<div class="modal-dialog modal-lg" >
-    <div class="modal-content colonna2">
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-9">
-                    <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
-                    <div id="tagline">
-                        <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-
-
-                    <form method="POST" action="ServletAggiungiLike" >    
-                        <input type="hidden" name="ristorante" value="<%= R.getId()%>">
-                        <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId()%>">
-                        <input type="hidden" name="commento" value="<%= rew.getId()%>">
-
-                        <% if (thisUser != null) {%>
-                        <button style="" type="submit" class="btn-like btn-default">
-                            <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike()%> </span>
-                        </button>
-                        <% } %>
-
-                    </form>
-
-                </div>
-            </div>
-
-
-            <%
-                if (thisUser != null && R.isOwner(thisUser) && risposta[0].equals("yes")) {
-            %>
-            <div class="row">
-                <div class="col-md-12">
-                    <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
-
-                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
-                    <a href="#risposta<%=count%>" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
-                </div> 
-            </div>
-            <div id="risposta<%=count%>" class="collapse">
-                <div class="row">
-                    <div class="col-md-12">    
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="tagline">
-                                    <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Risposta:</b></p>
-                                </div>
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content colonna2">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
+                            <div id="tagline">
+                                <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                             </div>
+                        </div>
+                        <div class="col-md-3">
+
+
+                            <form method="POST" action="ServletAggiungiLike" >    
+                                <input type="hidden" name="ristorante" value="<%= R.getId()%>">
+                                <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId()%>">
+                                <input type="hidden" name="commento" value="<%= rew.getId()%>">
+
+                                <% if (thisUser != null) {%>
+                                <button style="" type="submit" class="btn-like btn-default">
+                                    <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike()%> </span>
+                                </button>
+                                <% } %>
+
+                            </form>
 
                         </div>
-                        <form method="POST" action="ServletAggiungiRepile">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="5" id="comment" name="descrizione"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="hidden" name="ristorante" value="<%= R.getId()%>">
-                                    <input type="hidden" name="commento" value="<%= rew.getId()%>">
-                                    <button style="align-items: left" type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
-                                </div>
-                            </div>
-                        </form>
                     </div>
+
+
+                    <%
+                        if (thisUser != null && R.isOwner(thisUser) && risposta[0].equals("yes")) {
+                    %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
+
+                            <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+
+                            <a href="#risposta<%=count%>" class="btn btn-info pull-right" data-toggle="collapse" ><span class="glyphicon glyphicon-edit"></span> Rispondi</a>
+                        </div> 
+                    </div>
+                    <div id="risposta<%=count%>" class="collapse">
+                        <div class="row">
+                            <div class="col-md-12">    
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="tagline">
+                                            <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Risposta:</b></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <form method="POST" action="ServletAggiungiRepile">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="5" id="comment" name="descrizione"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" name="ristorante" value="<%= R.getId()%>">
+                                            <input type="hidden" name="commento" value="<%= rew.getId()%>">
+                                            <button style="align-items: left" type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Ok</button> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                    <%
+                    } else {
+                    %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
+
+                            <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                        </div> 
+                    </div>
+                    <%
+                        }
+
+                        if (!replies.isEmpty()) {
+                    %>
+                    Risposte:
+                    <%
+                        for (int i = 0; i < replies.size(); i++) {
+                            DoveCiboPK.Replies re = (DoveCiboPK.Replies) replies.get(i);
+                            if (rew.getId() == re.getIdReview()) {
+                    %>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=re.getOwner().getNickname()%>: <%= re.getDescription()%></p>  
+                        </div> 
+                    </div>
+                    <%          }
+                            }
+                        }
+                    %>
                 </div>
-            </div> 
-            <%
-            } else {
-            %>
-            <div class="row">
-                <div class="col-md-12">
-                    <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"><%= rew.getDescription()%></p>  
-
-                    <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-                </div> 
-            </div>
-            <%
-                }
-
-                if (!replies.isEmpty()) {
-            %>
-            Risposte:
-            <%
-                for (int i = 0; i < replies.size(); i++) {
-                    DoveCiboPK.Replies re = (DoveCiboPK.Replies) replies.get(i);
-                    if (rew.getId() == re.getIdReview()) {
-            %>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%=re.getOwner().getNickname()%>: <%= re.getDescription()%></p>  
-                </div> 
-            </div>
-            <%          }
-                    }
-                }
-            %>
+            </div>   
         </div>
-    </div>   
-</div>
 
-<% }%>   
+        <% }%>   
 
-</body>
+    </body>
 </html>
