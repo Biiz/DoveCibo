@@ -39,6 +39,14 @@ public class ServletAccettaReclamo extends HttpServlet {
         //CREATORE
         User u = (User) request.getSession(false).getAttribute("User");
         User user = new User (-1, "","","","","", "");
+        
+        
+        //FILTRO USER
+        if(!u.getRole().equals("1")){
+            request.setAttribute("error", "Zona protetta!");
+            request.getRequestDispatcher("errore.jsp").forward(request, response);                
+        }
+        
             //RISTORANTE
             Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             

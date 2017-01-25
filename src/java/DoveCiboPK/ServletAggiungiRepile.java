@@ -44,6 +44,8 @@ public class ServletAggiungiRepile extends HttpServlet {
             HttpSession session = request.getSession(false);
             User u = (User) session.getAttribute("User");
             
+
+            
             //User u = new User(2);
             //new DB_Manager().cercaUser_perId(u);
             
@@ -51,6 +53,14 @@ public class ServletAggiungiRepile extends HttpServlet {
             Integer idRew = Integer.parseInt(request.getParameter("commento"));
             //RISTORANETE
             Integer idRes = Integer.parseInt(request.getParameter("ristorante"));
+            
+            //FILTRO USER
+            
+            if(! new DB_Manager().isOwners_perRistoranti(u, new Restaurant(idRes))){
+                request.setAttribute("error", "Zona protetta!");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);                    
+            }else{            
+            
             
             //CREO REP
             Replies rep = new Replies(null, description, null, null, null, u, idRew);
@@ -66,6 +76,7 @@ public class ServletAggiungiRepile extends HttpServlet {
                 if(! new DB_Manager().inserisciRisposta(rep, idRew))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
                 response.sendRedirect("rispostaInviataSuccesso.jsp");
+            }
             }
         
         } catch (SQLException ex) {

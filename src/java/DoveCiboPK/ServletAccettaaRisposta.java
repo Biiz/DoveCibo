@@ -39,6 +39,13 @@ public class ServletAccettaaRisposta extends HttpServlet {
         //CREATORE
         User u = (User) request.getSession(false).getAttribute("User");
         User user = new User (-1, "","","","","", "");
+        
+        //FILTRO USER
+        if(!u.getRole().equals("1")){
+            request.setAttribute("error", "Zona protetta!");
+            request.getRequestDispatcher("errore.jsp").forward(request, response);                
+        }else{
+        
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("idGen"));            
             
@@ -55,7 +62,7 @@ public class ServletAccettaaRisposta extends HttpServlet {
             
             
             response.sendRedirect("/DoveCiboGit/rispostaAccettata.jsp");
-        
+        }
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
