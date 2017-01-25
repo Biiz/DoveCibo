@@ -2485,6 +2485,44 @@ public class DB_Manager {
         }
     }
     
+    public Boolean setNotificheReclamoNoLink (ArrayList <Notifica> ALN) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+        try {
+            query = "SELECT * FROM restaurant_owner WHERE  id_validator is null";
+            sp = con.prepareStatement(query);
+       
+            ResultSet rs = sp.executeQuery();
+            
+            while (rs.next()) {
+                Restaurant res = new Restaurant(rs.getInt("id_restaurant"));
+                new DB_Manager().cercaRistorante_perId(res);
+                
+                User u = new User(rs.getInt("id_owner"));
+                new DB_Manager().cercaUser_perId(u);
+  
+                ALN.add( new Notifica("<p>RECLAMO</p>"+
+                                      "<p>ristorante: <b>"+res.getName()+"</b></p>", 
+                                        rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
+                
+            }
+            
+            
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            System.out.println("accesso fallito");
+            System.out.println("Possibile causa: " + e.getMessage());
+            r=false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
     public Boolean setNotificheRepil_daConfermare(ArrayList <Notifica> ALN ) throws SQLException {
  
         PreparedStatement sp = null;
@@ -2517,9 +2555,9 @@ public class DB_Manager {
                 
                 ALN.add(new Notifica("<p>RISPOSTA COMMENTO</p>"+
                                      "<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
-                                     "<p>replica: <b>"+rep.getDescription()+"</b></p>"+
                                      "<p>commento: <b>"+rev.getDescription()+"</b></p>"+
-                                     "<p>autore commento: <b>"+rev.getCreator().getNickname()+"</b></p>", 
+                                     "<p>autore commento: <b>"+rev.getCreator().getNickname()+"</b></p>"+
+                                     "<p>risposta_ristoratore: <b>"+rep.getDescription()+"</b></p>", 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
@@ -2535,6 +2573,56 @@ public class DB_Manager {
             //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
+    
+    public Boolean setNotificheRepil_daConfermareNoLink(ArrayList <Notifica> ALN ) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = true;
+        try {
+            query = "SELECT  * FROM REPLIES WHERE ID_VALIDATOR IS NULL";
+            sp = con.prepareStatement(query);
+
+            ResultSet rs = sp.executeQuery();            
+            
+            while (rs.next()) {
+                
+                User user = new User(rs.getInt("id_owner"));
+                new DB_Manager().cercaUser_perId(user);
+                Review rev = new Review();
+                rev.setId(rs.getInt("id_review"));
+                new DB_Manager().setReviewPerId(rev);
+                
+                Restaurant rest = new Restaurant(rev.getLike());
+                new DB_Manager().cercaRistorante_perId(rest);
+                
+                Replies rep = new Replies(
+                          rs.getInt("id"),  rs.getString("description"), 
+                          rs.getDate("date_creation"),rs.getDate("date_creation"),
+                          new User(rs.getInt("id_validator")),
+                          user,
+                          rs.getInt("id_review"));
+                
+                ALN.add(new Notifica("<p>RISPOSTA COMMENTO</p>"+
+                                     "<p>Ristorante: <b>"+rest.getName()+"</b></p>", 
+                        rep.getDate_creation(), 
+                        "confermaRep", rep.getId(), rep.getOwner()));
+                
+            }
+ 
+        } catch (SQLException e) {
+            this.errore = e.toString();
+            System.out.println(errore);
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
+    
     
     
     public Boolean setReviewPerId(Review rev) throws SQLException {

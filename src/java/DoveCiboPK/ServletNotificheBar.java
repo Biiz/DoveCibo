@@ -35,7 +35,7 @@ public class ServletNotificheBar extends HttpServlet {
 
              
         //USER
-        User u = new User( Integer.parseInt(request.getParameter("idU")) );
+        User u = new User(Integer.parseInt(request.getParameter("idU")));
         
         if(!new DB_Manager().cercaUser_perId(u))
             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);        
@@ -49,6 +49,7 @@ public class ServletNotificheBar extends HttpServlet {
         }
         
         ArrayList <Notifica> ALN = new ArrayList<Notifica>();
+        ArrayList <Notifica> notifica = new ArrayList<Notifica>();
         
         ArrayList <Integer> id = new ArrayList<Integer>();
         
@@ -70,8 +71,7 @@ public class ServletNotificheBar extends HttpServlet {
                         new DB_Manager().cercaUser_perId(rev.getCreator());
                         id.add(rest.getId());
                         ALN.add(new Notifica("<p>COMMETO</p>"+
-                                             "<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
-                                             "<p>commento: <b>"+rev.getDescription()+"</b></p>", 
+                                             "<p>ristorante: <b>"+rest.getName()+"</b></p>", 
                                 rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                     }
                 }
@@ -89,10 +89,10 @@ public class ServletNotificheBar extends HttpServlet {
         
         if(u.getRole().equals("1")){
             
-            if(! new DB_Manager().setNotificheRepil_daConfermare(ALN))
+            if(! new DB_Manager().setNotificheRepil_daConfermareNoLink(ALN))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
             
-            if(! new DB_Manager().setNotificheReclamo(ALN))
+            if(! new DB_Manager().setNotificheReclamoNoLink(ALN))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
             
             ArrayList <Photo> ARP = new ArrayList<Photo>();
@@ -110,7 +110,11 @@ public class ServletNotificheBar extends HttpServlet {
         
         ALN.sort(new comparatorNotifiche());
         
-        request.setAttribute("notifiche", ALN);
+        for(int i = 0; i < 5 ;i++){
+            notifica.add(ALN.get(i));
+        }
+        
+        request.setAttribute("notifiche", notifica);
         request.setAttribute("id_ristoranti", id);
 
         request.getRequestDispatcher("notificheBar.jsp").forward(request, response);
