@@ -53,10 +53,10 @@
             }
 
             #myCarousel img {
-                min-width: 600px;
+                /*min-width: 400px;*/
                 max-width: 600px;
                 height: auto;
-                max-height: 400px;
+                max-height: 300px;
                 margin: auto;
             }
 

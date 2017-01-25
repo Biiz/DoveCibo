@@ -37,12 +37,12 @@
                 box-sizing: border-box;
             }
 
-            #map {
-                height: 400px;
+            #map { 
+               height: 400px;
                 width: 100%;
             }
             #cont{
-                height:150px;
+                height:100px;
                 width:200px;
                 position:relative;
             }
@@ -51,7 +51,7 @@
                 position:absolute;
                 left:0;
                 top:0;
-                height:150px;
+                height:100px;
                 width:200px;
             }
             #testo{

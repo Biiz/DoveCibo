@@ -86,7 +86,7 @@
                                 </div>
                             </td>
                             <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
-                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>
+                            <td><%= roundfinalPrice %></td>
                             <td> <%= classifica.indexOf(rest.getId())+1 %> </td>
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1)%> <%=rest.getCordinate().getNumero()%>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
