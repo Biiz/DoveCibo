@@ -23,19 +23,21 @@ public class ServletGetRistorantiHomeCucine extends HttpServlet {
 
             Float lat = Float.parseFloat( request.getParameter("lat") );
             Float lng = Float.parseFloat( request.getParameter("lng") );
-            
-            
+            String cucina = request.getParameter("cucina").toString().toLowerCase();
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
+            ArrayList <Integer> classifica = new ArrayList<Integer>();
+            if( ! new DB_Manager().classificaRisto(classifica))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            
             Coordinate coo = new Coordinate(lat,lng, null, null, null, null);
+            double rangeLat = 0.05;
+            double rangeLon = 0.1;
             
-            System.out.println(request.getParameter("cucina"));
             
-                if(! new DB_Manager().ricercaRistorantiPerCucinaEVicinanza(ALR, coo, request.getParameter("cucina"), 10 )){
+                if(! new DB_Manager().ricercaRistorantiPerCucinaEVicinanza(ALR, coo, rangeLat, rangeLon, cucina)){
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                }     
-  
-            System.out.println(request.getParameter("cucina"));    
+                }  
                 
                 
                 for(Restaurant rest : ALR){                      
@@ -57,24 +59,15 @@ public class ServletGetRistorantiHomeCucine extends HttpServlet {
                
                      if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                               
-                     
                      
                 }
-                
-                ArrayList <Integer> classifica = new ArrayList<Integer>();
-                if( ! new DB_Manager().classificaRisto(classifica))
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                
             
-            if( ! ALR.isEmpty()){
+            
                 request.setAttribute("listaRistoranti", ALR);
+                request.setAttribute("mieCoordinate", coo);
                 request.setAttribute("classifica", classifica);
-                request.getRequestDispatcher("CercaRistorantiHome.jsp").forward(request, response);
-            }else{
-                    request.setAttribute("error", "errore: nessun ristorante trovato per questa ricerca");
-                    request.getRequestDispatcher("errore.jsp").forward(request, response);
-            }
+                
+                request.getRequestDispatcher("cercaRistoHomeValue.jsp").forward(request, response);
             
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());

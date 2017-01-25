@@ -162,42 +162,17 @@ public class DB_Manager {
  
         PreparedStatement sp = null;
         String query = null;
-        ArrayList <Integer> ristoId = new ArrayList <Integer>();
-        ArrayList <Double> ristoValue = new ArrayList <Double>();
+        
         try {
-            query = "SELECT id, global_value FROM restaurants";
+            
+            query = "SELECT id, global_value FROM restaurants ORDER BY (global_value) DESC";
             sp = con.prepareStatement(query);
             
             ResultSet rs = sp.executeQuery();
             
             while (rs.next()) {
-                ristoId.add(rs.getInt("id"));
-                ristoValue.add(rs.getDouble("global_value"));
-            }
-            
-            for(int i = 0; i < ristoValue.size();i++){
-                for(int j = 0; j < ristoValue.size()-1; j++){
-                    if(ristoValue.get(j) < ristoValue.get(j+1)){
-                        
-                        double val = ristoValue.get(j);
-                        ristoValue.remove(j);
-                        ristoValue.add(j, ristoValue.get(j+1));
-                        ristoValue.remove(j+1);
-                        ristoValue.add(j+1, val);
-                        
-                        int var = ristoId.get(j);
-                        ristoId.remove(j);
-                        ristoId.add(j, ristoId.get(j+1));
-                        ristoId.remove(j+1);
-                        ristoId.add(j+1, var);
-   
-                    }
-                        
-                }
-            }
-            
-            for(int i = 0;i < ristoId.size() ;i++){
-                classifica.add(i, ristoId.get(i));
+                classifica.add(rs.getInt("id"));
+                
             }
             
         } catch (SQLException e) {
@@ -2672,39 +2647,80 @@ public class DB_Manager {
     }   
     
     
-    public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, String cucina, Integer numeroR) throws SQLException {
+    public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon, String cucina) throws SQLException {
 
         PreparedStatement sp = null;
         String query = null;
         Boolean r = true;
+        double ristLat = 0.0;
+        double ristLon = 0.0;
+        Integer idRes = null;
         
 
         try {  
-            query = "SELECT  * FROM CUISINES as CU, COORDINATES AS C, RESTAURANT_CUISINE AS RC, RESTAURANTS AS R "
-                    +"WHERE CU.ID=RC.ID_CUISINE AND R.ID=RC.ID_RESTAURANT AND R.ID=C.ID_RESTAURANT AND CU.NAME like ? "
-                    + "ORDER BY ((C.LATITUDE - ?) * (C.LATITUDE - ?) + (C.LONGITUDE - ?) * (C.LONGITUDE - ?)) DESC";
-            
-            
+            query = "SELECT C.latitude, C.longitude, R.id "
+                    +"FROM restaurants AS R, COORDINATES AS C "
+                    +"WHERE R.ID = C.ID_RESTAURANT ";
             
             sp = con.prepareStatement(query);
-            
-            System.out.println("q ok");
-
-            sp.setString(1, cucina);
-            sp.setFloat(2, coo.getLatitude());
-            sp.setFloat(3, coo.getLatitude());            
-            sp.setFloat(4, coo.getLongitude());
-            sp.setFloat(5, coo.getLongitude());            
-
 
             ResultSet rs = sp.executeQuery();
+            
+            while(rs.next()){
+                ristLat = rs.getDouble("latitude");
+                ristLon = rs.getDouble("longitude");
+                idRes = rs.getInt("id");
+                if((coo.getLongitude()+rangeLon > 0 && coo.getLongitude()-rangeLon>0 && coo.getLatitude()+rangeLat>0 && coo.getLatitude()-rangeLat>0) || (coo.getLongitude()+rangeLon < 0 && coo.getLongitude()-rangeLon<0 && coo.getLatitude()+rangeLat<0 && coo.getLatitude()-rangeLat<0) ){
+                    if(ristLon > coo.getLongitude()-rangeLon && ristLon < coo.getLongitude()+rangeLon && ristLat > coo.getLatitude()-rangeLat && ristLat < coo.getLatitude()+rangeLat){
 
-            for (int i=0; rs.next() && i<numeroR; i++) {
-                ALR.add( new Restaurant(rs.getInt("id")) );
+                        String query2 = null;
+                        PreparedStatement sp2 = null;
 
-                                System.out.println("pciot");
+                        query2 ="SELECT R.id_restaurant "
+                               +"FROM cuisines AS C, restaurant_cuisine AS R "
+                               +"WHERE C.name like ? AND C.id = R.id_cuisine";
+
+                        sp2 = con.prepareStatement(query2);
+                        
+                        sp2.setString(1, cucina);
+                        
+                        
+                        ResultSet rs2 = sp2.executeQuery();
+ 
+                        while(rs2.next()){
+                            if(rs2.getInt("id_restaurant") == idRes){
+                                Restaurant res = new Restaurant(rs2.getInt("id_restaurant"));
+                                ALR.add(res);
+                            }
+                        }
+                            
+                    }
+                }else if ((coo.getLongitude()+rangeLon < 0 && coo.getLongitude()-rangeLon<0 && coo.getLatitude()+rangeLat>0 && coo.getLatitude()-rangeLat>0) || (coo.getLongitude()+rangeLon > 0 && coo.getLongitude()-rangeLon > 0 && coo.getLatitude()+rangeLat<0 && coo.getLatitude()-rangeLat<0)){
+                    if(ristLon > coo.getLongitude()-rangeLon && ristLon < coo.getLongitude()+rangeLon && ristLat > coo.getLatitude()-rangeLat && ristLat < coo.getLatitude()+rangeLat){
+
+                        String query2 = null;
+                        PreparedStatement sp2 = null;
+
+                        query2 ="SELECT R.id_restaurant "
+                               +"FROM cuisines AS C, restaurant_cuisine AS R "
+                               +"WHERE C.name like ? AND C.id = R.id_cuisine";
+
+                        sp2 = con.prepareStatement(query2);
+                        
+                        sp2.setString(1, cucina);
+                        
+                        
+                        ResultSet rs2 = sp2.executeQuery();
+ 
+                        while(rs2.next()){
+                            if(rs2.getInt("id_restaurant") == idRes){
+                                Restaurant res = new Restaurant(rs2.getInt("id_restaurant"));
+                                ALR.add(res);
+                            }
+                        }
+                    }
+                }
             }
-
         } catch (SQLException e) {
             this.errore = e.toString();
             r = false;

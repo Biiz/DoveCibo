@@ -152,7 +152,7 @@
           function initMap() {
                 var uluru = {lat: <%= mieCoor.getLatitude() %> , lng: <%= mieCoor.getLongitude() %>};
                 map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 13,
+                    zoom: 12,
                     center: uluru
                 });
 
@@ -211,7 +211,7 @@
             var center = new google.maps.LatLng(lat, lng);
             // using global variable:
             map.panTo(center);
-            map.setZoom(12);
+            map.setZoom(17);
           }
 
 

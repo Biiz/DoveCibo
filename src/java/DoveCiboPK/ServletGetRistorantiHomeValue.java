@@ -36,8 +36,10 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
             double rangeLat = 0.05;
             double rangeLon = 0.1;
             
-            if( new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, rangeLat, rangeLon)){
-                for(Restaurant rest : ALR){                      
+            if( !new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, rangeLat, rangeLon))
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            
+            for(Restaurant rest : ALR){                      
                     
                     if( ! new DB_Manager().cercaRistorante_perId(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
@@ -57,11 +59,8 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
                      if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                                
-                }
-                
-            }else{
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
+            
             
             request.setAttribute("listaRistoranti", ALR);
             request.setAttribute("mieCoordinate", coo);

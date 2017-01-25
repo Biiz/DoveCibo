@@ -185,7 +185,7 @@
             var center = new google.maps.LatLng(lat, lng);
             // using global variable:
             map.panTo(center);
-            map.setZoom(12);
+            map.setZoom(17);
           }
 
 

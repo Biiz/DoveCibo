@@ -84,8 +84,6 @@
             }
 
 
-
-
             function genCooGeo2() {
 
                 document.getElementById("inlat2").value = pos.lat;
@@ -185,11 +183,11 @@
                             <br>
                             <div class="col-md-6">
                                 <label>Latitudine:</label>
-                                <input type="text" id="inlat" name="lat" class="form-control" placeholder="lat" required>
+                                <input type="text" id="inlat" name="lat" class="form-control" placeholder="lat" required readonly="readonly">
                             </div>
                             <div class="col-md-6">
                                 <label>Longitudine:</label>
-                                <input type="text" id="inlng" name="lng" class="form-control" placeholder="lng" required>
+                                <input type="text" id="inlng" name="lng" class="form-control" placeholder="lng" required readonly="readonly">
                             </div>
                         </div>
                         <br>
@@ -246,11 +244,11 @@
                             <br>
                             <div class="col-md-6">
                                 <label>Latitudine:</label>
-                                <input type="text" id="inlat2" name="lat" class="form-control" placeholder="lat" required>
+                                <input type="text" id="inlat2" name="lat" class="form-control" placeholder="lat" required readonly="readonly">
                             </div>
                             <div class="col-md-6">
                                 <label>Longitudine:</label>
-                                <input type="text" id="inlng2" name="lng" class="form-control" placeholder="lng" required>
+                                <input type="text" id="inlng2" name="lng" class="form-control" placeholder="lng" required readonly="readonly">
                             </div>
                         </div>
                         <br>
