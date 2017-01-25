@@ -96,9 +96,13 @@
                                 </div>
                             </td>
                             <% BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
-                            <% if(rest.getPhotos().size() != 0){ %>
-                            <td background="immaginiRistoranti/<%= rest.getPhotos().get(0).getPath() %>"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>                           
-                            <% } %>
+                            
+                            <td background="immaginiRistoranti/
+                                <% if(rest.getPhotos().size() != 0){ %>
+                                <%= rest.getPhotos().get(0).getPath() %>
+                                <% } %>
+                                "><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>                           
+                            
                             <td> <%= classifica.indexOf(rest.getId())+1 %></td>
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getPrice_range().getMin_value() %></td>
