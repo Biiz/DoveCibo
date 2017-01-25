@@ -41,6 +41,29 @@
                 height: 400px;
                 width: 100%;
             }
+            #cont{
+                height:150px;
+                width:200px;
+                position:relative;
+            }
+
+            #immagine{    
+                position:absolute;
+                left:0;
+                top:0;
+                height:150px;
+                width:200px;
+            }
+            #testo{
+                z-index:20;
+                position:absolute;    
+                color:white;
+                font-size:20px;
+                font-weight:bold;
+                text-shadow: 0px 0px 8px #000,0px 0px 12px #000, 0px 0px 16px #000;
+                left:10px;
+                top:5px;
+            }
         </style>
     </head>
 
@@ -59,7 +82,7 @@
                         <tr style="background-color: rgba(198, 239, 255, 1);">
                             <th>NOME</th>
                             <th>VALUTAZIONE</th>
-                            <th>CLASSIFICA</th>
+                            <th>RANK</th>
                             <th>REVIEWS</th>
                             <th>€ MIN</th>
                             <th>€ MAX</th>
@@ -71,7 +94,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Valutazione</th>
-                            <th>Classifica</th>
+                            <th>Rank</th>
                             <th>Review</th>
                             <th>Min</th>
                             <th>Max</th>
@@ -97,14 +120,16 @@
                             </td>
                             <% BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1, BigDecimal.ROUND_HALF_UP);%>
 
-                            <td background="">
-                                <b style="background-color: white;">
-                                    <%= roundfinalPrice%></b>
-                                <img src="
-                                     <% if (rest.getPhotos().size() != 0) {%>
-                                     immaginiRistoranti/<%= rest.getPhotos().get(0).getPath()%>
-                                     "style="width:200px; height:100px;"
-                                     <% } else {%> " <% }%> >
+                            <td>
+                                <div id="cont">
+                                    <p id="testo"> <%= roundfinalPrice%> </p>
+                                    <img id="immagine" src="
+                                        <% if (rest.getPhotos().size() != 0) {%>
+                                        immaginiRistoranti/<%= rest.getPhotos().get(0).getPath()%><% } else{%>
+                                        img/empty_img.jpg <% } %>
+                                    "/>
+                                    
+                                </div>
                             </td>                           
                             <td><%= classifica.indexOf(rest.getId()) + 1%></td>
                             <td><%= rest.getN_reviews()%></td>
