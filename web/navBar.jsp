@@ -118,7 +118,7 @@ else if (user.getRole().equals("3")){
 
 
 <div class="modal fade" id="notifiche" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>

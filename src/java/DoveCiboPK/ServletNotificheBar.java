@@ -109,9 +109,14 @@ public class ServletNotificheBar extends HttpServlet {
         }        
         
         ALN.sort(new comparatorNotifiche());
-        
-        for(int i = 0; i < 5 ;i++){
-            notifica.add(ALN.get(i));
+        if(ALN.size() > 5){
+            for(int i = 0; i < 5 ;i++){
+                notifica.add(ALN.get(i));
+            }
+        }else{
+            for(int i = 0; i < ALN.size() ;i++){
+                notifica.add(ALN.get(i));
+            }
         }
         
         request.setAttribute("notifiche", notifica);
