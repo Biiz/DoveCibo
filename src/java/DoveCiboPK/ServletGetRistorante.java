@@ -24,6 +24,7 @@ public class ServletGetRistorante extends HttpServlet {
             //PIGLIARE ID RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("idR"));
             String risposta[] = new String[1];
+            String risposta1[] = new String[1];
             ArrayList<Replies> replies = new ArrayList<Replies>();
 
             Restaurant rest = new Restaurant(idR);
@@ -77,10 +78,16 @@ public class ServletGetRistorante extends HttpServlet {
                     if (!new DB_Manager().checkUserIsRisto(rest, user, risposta)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
+                    if (!new DB_Manager().checkUserIsRistoNoValidation(rest, user, risposta1)) {
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                    }
 
                 } else {
                     risposta[0] = "no";
+                    risposta1[0] = "no";
                 }
+                
+                
 
                 for (Review rew : rest.getReviews()) {
                     if (!new DB_Manager().cercaUser_perId(rew.getCreator())) {
@@ -113,6 +120,7 @@ public class ServletGetRistorante extends HttpServlet {
             request.setAttribute("classificaCity", classifica);
             request.setAttribute("qrCode", qrCode);
             request.setAttribute("rispostaUserIsOwner", risposta);
+            request.setAttribute("rispostaUserIsOwnerNoValidation", risposta1);
             request.setAttribute("repliesOwner", replies);
 
             request.getRequestDispatcher("ristorante.jsp").forward(request, response);

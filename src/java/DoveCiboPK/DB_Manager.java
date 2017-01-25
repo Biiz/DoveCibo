@@ -1033,6 +1033,38 @@ public class DB_Manager {
         }
     }
     
+    public Boolean checkUserIsRistoNoValidation(Restaurant res, User user, String risposta[]) throws SQLException {
+ 
+        PreparedStatement sp = null;
+        String query = null;
+        Boolean r = null;
+ 
+        try {
+            query = "SELECT * FROM restaurant_owner WHERE id_restaurant = ? AND id_owner = ?";
+            sp = con.prepareStatement(query);
+ 
+            sp.setInt(1, res.getId());
+            sp.setInt(2, user.getId());
+            
+            ResultSet rs = sp.executeQuery();
+            
+            if (rs.next()) {
+                risposta[0]= "yes";
+            } else {
+                risposta[0]= "no";
+            }
+            r = true;
+ 
+        } catch (SQLException e) {
+            r = false;
+        } finally {
+            sp.close();
+            con.close();
+            return r;
+            //response.setHeader("Refresh", "5; URL=index.jsp");
+        }
+    }
+    
     public Boolean cercaCuisine_perId_Restaurant(Restaurant res, List list) throws SQLException {
         
         PreparedStatement sp = null;

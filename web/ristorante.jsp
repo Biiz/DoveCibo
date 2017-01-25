@@ -80,6 +80,7 @@
             DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
             ArrayList<Integer> classificaCity = (ArrayList<Integer>) request.getAttribute("classificaCity");
             String risposta[] = (String[]) request.getAttribute("rispostaUserIsOwner");
+            String risposta1[] = (String[]) request.getAttribute("rispostaUserIsOwnerNoValidation");
             ArrayList<DoveCiboPK.Replies> replies = (ArrayList<DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
             ArrayList<Photo> R_photos = R.getPhotos();
@@ -221,9 +222,8 @@
                             </form>
                         </div>
 
-                        <% Date d = new Date(10); // CONTROLLO ULTIMO COMMENTO
-                            if (thisUser != null)
-                                if (!R.isOwner(thisUser)) {%>
+                        <% Date d = new Date(10); 
+                           if (!risposta1[0].equals("yes")) {%>
                         <div class="col-md-4 bottom-align-text">
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
                         </div>
@@ -406,7 +406,7 @@
                                 <input type="hidden" name="userCommento" value="<%= rew.getCreator().getId()%>">
                                 <input type="hidden" name="commento" value="<%= rew.getId()%>">
 
-                                <% if (thisUser != null) {%>
+                                <% if (thisUser != null && !thisUser.getRole().equals("1")) {%>
                                 <button style="" type="submit" class="btn-like btn-default">
                                     <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike()%> </span>
                                 </button>
