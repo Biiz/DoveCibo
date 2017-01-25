@@ -151,7 +151,7 @@
                                 <div class="carousel-inner" role="listbox">
                                     <% if (R_photos.size() == 0) { %>
                                     <div class="item active">
-                                        <img src="img/empty_img.jpg">
+                                        <img src="img/empty_img.png">
                                     </div>
                                     <% } else {
                                         for (int i = 0; i < R_photos.size(); i++) {
