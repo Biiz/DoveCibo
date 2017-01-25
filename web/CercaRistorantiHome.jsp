@@ -42,8 +42,8 @@
                 width: 100%;
             }
             #cont{
-                height:100px;
-                width:200px;
+                height:75px;
+                width:150px;
                 position:relative;
             }
 
@@ -51,8 +51,8 @@
                 position:absolute;
                 left:0;
                 top:0;
-                height:100px;
-                width:200px;
+                height:75px;
+                width:150px;
             }
             #testo{
                 z-index:20;
