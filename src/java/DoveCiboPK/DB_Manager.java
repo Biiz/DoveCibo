@@ -2285,7 +2285,7 @@ public class DB_Manager {
         String query = null;
         Boolean r = null;
         try {
-            query = "SELECT id_owner FROM REPLIES WHERE ID_VALIDATOR = ? AND id=?";
+            query = "SELECT id_owner FROM REPLIES WHERE ID_VALIDATOR = ? AND id = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, val.getId());
             sp.setInt(2, idRep);
@@ -2310,15 +2310,16 @@ public class DB_Manager {
  
     } 
         
-    public Boolean deleteRepli(User user) throws SQLException {
+    public Boolean deleteRepli(User user, Integer idR) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
         try {
-            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner=?";
+            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner = ? AND id = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, user.getId());
+            sp.setInt(2, idR);
             
             sp.executeUpdate();
             
