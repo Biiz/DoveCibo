@@ -12,7 +12,7 @@
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-        
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
         <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
@@ -22,7 +22,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <style>
             body {
                 background-image: url("img/img (7)b.jpg");
@@ -36,14 +36,14 @@
                 padding: 3px;
                 box-sizing: border-box;
             }
-            
-      #map {
-        height: 400px;
-        width: 100%;
-       }
+
+            #map {
+                height: 400px;
+                width: 100%;
+            }
         </style>
     </head>
-    
+
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
 
@@ -80,55 +80,58 @@
                         </tr>
                     </tfoot>
                     <tbody style="background-color: white;">
-                        <%  ArrayList <Restaurant> ALR = (ArrayList <Restaurant>) request.getAttribute("listaRistoranti");
-                            ArrayList <Integer> classifica = (ArrayList <Integer>) request.getAttribute("classifica");
+                        <%  ArrayList<Restaurant> ALR = (ArrayList<Restaurant>) request.getAttribute("listaRistoranti");
+                            ArrayList<Integer> classifica = (ArrayList<Integer>) request.getAttribute("classifica");
                             for (Restaurant rest : ALR) {
                         %>
                         <tr>
                             <td>
                                 <!-- bottone SUBMIT che contiene il nome del ristorante -->
                                 <div class="bottom text-center">
-                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style="color: blue"><%= rest.getName().substring(0, 1).toUpperCase()+rest.getName().substring(1) %></a></b>
+                                    <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId()%> ' style="color: blue"><%= rest.getName().substring(0, 1).toUpperCase() + rest.getName().substring(1)%></a></b>
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-sm btn-justified" onclick="moveToLocation(<%= rest.getCordinate().getLatitude() %>,<%= rest.getCordinate().getLongitude() %>)">mappa</button>
+                                    <button class="btn btn-info btn-sm btn-justified" onclick="moveToLocation(<%= rest.getCordinate().getLatitude()%>,<%= rest.getCordinate().getLongitude()%>)">mappa</button>
                                 </div>
                             </td>
-                            <% BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
-                            
-                            <td background="immaginiRistoranti/
-                                <% if(rest.getPhotos().size() != 0){ %>
-                                <%= rest.getPhotos().get(0).getPath() %>
-                                <% } %>
-                                "><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>                           
-                            
-                            <td> <%= classifica.indexOf(rest.getId())+1 %></td>
-                            <td><%= rest.getN_reviews() %></td>
-                            <td><%= rest.getPrice_range().getMin_value() %></td>
-                            <td><%= rest.getPrice_range().getMax_value() %></td>
-                            <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase()+rest.getCordinate().getAdrers().substring(1) %> <%=rest.getCordinate().getNumero()%>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase()+rest.getCordinate().getCity().substring(1) %>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase()+rest.getCordinate().getNazione().substring(1)%></td>
+                            <% BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1, BigDecimal.ROUND_HALF_UP);%>
+
+                            <td background="">
+                                <b style="background-color: white;">
+                                    <%= roundfinalPrice%></b>
+                                <img src="
+                                     <% if (rest.getPhotos().size() != 0) {%>
+                                     immaginiRistoranti/<%= rest.getPhotos().get(0).getPath()%>
+                                     "style="width:200px; height:100px;"
+                                     <% } else {%> " <% }%> >
+                            </td>                           
+                            <td><%= classifica.indexOf(rest.getId()) + 1%></td>
+                            <td><%= rest.getN_reviews()%></td>
+                            <td><%= rest.getPrice_range().getMin_value()%></td>
+                            <td><%= rest.getPrice_range().getMax_value()%></td>
+                            <td><%= rest.getCordinate().getAdrers().substring(0, 1).toUpperCase() + rest.getCordinate().getAdrers().substring(1)%> <%=rest.getCordinate().getNumero()%>, <%= rest.getCordinate().getCity().substring(0, 1).toUpperCase() + rest.getCordinate().getCity().substring(1)%>, <%= rest.getCordinate().getNazione().substring(0, 1).toUpperCase() + rest.getCordinate().getNazione().substring(1)%></td>
                             <td>                                                
                                 <%
                                     int size = rest.getCusines().size();
-                                    for(Cusine c : rest.getCusines()){
-                                        if(size > 1){
+                                    for (Cusine c : rest.getCusines()) {
+                                        if (size > 1) {
                                 %>
-                                        <%=c.getName()+", "%>
+                                <%=c.getName() + ", "%>
                                 <%
-                                        }else{
+                                } else {
                                 %>
-                                            <%=c.getName()%>
+                                <%=c.getName()%>
                                 <%
                                         }
-                                        size-=1;
+                                        size -= 1;
                                     }
                                 %>
                             </td>
                         </tr>
-                    <%
-                        }
-                    %>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
 
@@ -143,69 +146,69 @@
                     });
                 </script>
 
-          
-                    
-                    
-<!--MAPPPA-->
-
-    <div id="map" class="row">
-
-    
-        <script>
-          var map;
-
-          function initMap() {
-                var uluru = {lat: 43, lng: 12};
-                map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 5,
-                    center: uluru
-                });
-            
-
-
-            <% for(Restaurant rest : ALR){ %>
-            var infowindow<%= rest.getId() %> = new google.maps.InfoWindow({
-                content: "  <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId() %> ' style='color: blue'> <%= rest.getName() %></a></b>"
-            });
-            <%  } %>
-
-
-            <% for(Restaurant rest : ALR){ %>
-              var marker<%= rest.getId() %> = new google.maps.Marker({
-                  position: {lat:<%= rest.getCordinate().getLatitude() %>,lng:<%= rest.getCordinate().getLongitude() %>},
-              map: map
-            });
-            <%  } %>
-
-
-            <% for(Restaurant rest : ALR){ %>
-            marker<%= rest.getId() %>.addListener('click', function() {
-                infowindow<%= rest.getId() %>.open(map, marker<%= rest.getId() %>);
-            });
-            <%  } %>
-          }
 
 
 
-          function moveToLocation(lat, lng){
-            var center = new google.maps.LatLng(lat, lng);
-            // using global variable:
-            map.panTo(center);
-            map.setZoom(17);
-          }
+                <!--MAPPPA-->
+
+                <div id="map" class="row">
 
 
-        </script>
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI&callback=initMap">
-        </script>
+                    <script>
+                        var map;
 
-    </div>
-  </div>
+                        function initMap() {
+                            var uluru = {lat: 43, lng: 12};
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 5,
+                                center: uluru
+                            });
+
+
+
+                        <% for (Restaurant rest : ALR) {%>
+                            var infowindow<%= rest.getId()%> = new google.maps.InfoWindow({
+                                content: "  <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= rest.getId()%> ' style='color: blue'> <%= rest.getName()%></a></b>"
+                            });
+                        <%  } %>
+
+
+                        <% for (Restaurant rest : ALR) {%>
+                            var marker<%= rest.getId()%> = new google.maps.Marker({
+                                position: {lat:<%= rest.getCordinate().getLatitude()%>, lng:<%= rest.getCordinate().getLongitude()%>},
+                                map: map
+                            });
+                        <%  } %>
+
+
+                        <% for (Restaurant rest : ALR) {%>
+                            marker<%= rest.getId()%>.addListener('click', function () {
+                                infowindow<%= rest.getId()%>.open(map, marker<%= rest.getId()%>);
+                            });
+                        <%  }%>
+                        }
+
+
+
+                        function moveToLocation(lat, lng) {
+                            var center = new google.maps.LatLng(lat, lng);
+                            // using global variable:
+                            map.panTo(center);
+                            map.setZoom(12);
+                        }
+
+
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI&callback=initMap">
+                    </script>
+
+                </div>
+            </div>
         </div>
-<!--FINE MAPPA-->
-                    
-                    
+        <!--FINE MAPPA-->
+
+
 
         <script>
             $(document).ready(function () {
@@ -224,13 +227,13 @@
 
                     $('input', this.footer()).on('keyup change', function () {
                         if (that.search() !== this.value) {
-                            that.search( this.value ).draw();
+                            that.search(this.value).draw();
                         }
-                    } );
-                } );
-                
-                
-            } );
-          </script>
+                    });
+                });
+
+
+            });
+        </script>
     </body>
 </html>
