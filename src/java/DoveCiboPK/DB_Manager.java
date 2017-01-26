@@ -1,10 +1,5 @@
 package DoveCiboPK;
- 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,16 +14,14 @@ import java.util.List;
  * @author stefano
  */
 public class DB_Manager {
- 
     Connection con;
-    final String DRIVER = "org.apache.derby.jdbc.ClientDriver"; //Nome del driver
-    final String DB_NAME = "jdbc:derby://localhost:1527/Dovecibo"; //Nome del database completo di percorso
-    final String DB_USER = "asd"; // Nome utente
-    final String DB_PASSWORD = "asd"; //Password
+    final String DRIVER = "org.postgresql.Driver"; //Nome del driver
+    final String DB_NAME = "jdbc:postgresql://localhost:5432/postgres"; //Nome del database completo di percorso
+    final String DB_USER = "postgres"; // Nome utente
+    final String DB_PASSWORD = "postgres"; //Password
     private String errore = "";
  
     public DB_Manager() throws SQLException {
- 
         try {
             Class.forName(DRIVER); //Carica il driver
             con = DriverManager.getConnection(DB_NAME, DB_USER, DB_PASSWORD);  //Effettua la connessione al database
@@ -45,7 +38,7 @@ public class DB_Manager {
     }
     
     public boolean SetIdRestaurant(User u, List<Integer> id_restaurant) throws SQLException {
- 
+        
         PreparedStatement sp = null;
         String query = null;
         
