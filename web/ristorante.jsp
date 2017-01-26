@@ -216,7 +216,7 @@
                                 <input type="hidden" name="idR" value="<%= R.getId()%>">
                                 <input type="hidden" name="idU" value="<%= thisUser.getId()%>">
                                 <label class="btn btn-default btn-file">
-                                    <input type="file" name="file" id="file" />
+                                    <input type="file" name="file" id="file" accept="image/x-png,image/jpeg"/>
                                 </label>
                                 <input class="btn btn-success btn-lg" type="submit" value="Upload" name="upload" id="upload" />
                             </form>
