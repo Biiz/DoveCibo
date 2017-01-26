@@ -3,35 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletAccettaaRisposta.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletAccettaReclamo.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/DataBase/sql_db_aggiornato.txt</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorantiHomeValue.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletRifiutaReclamo.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetTuttiRistoranti.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/ristorante.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletRegistrazione.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/autocompletamento.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/web/notificheBar.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/CercaRistorantiHome.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/notifiche.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletModificaFoto.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletNotificheBar.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/navBar.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Riempi.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletLogin.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorantiHomeCucine.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletRifiutaRisposta.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletReclamaRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/home.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletGetAutoC.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/Notifica.java</file>
-            <file>file:/home/postal/DoveCiboGit/web/CercaRistorantiHome.jsp</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletAggiungiRepile.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/ServletModificaRistorante.java</file>
-            <file>file:/home/postal/DoveCiboGit/src/java/DoveCiboPK/SendEmail_Attivazione.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletGetRistorante.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletAccettaaRisposta.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/notifiche.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/ServletNotifiche.java</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/web/ristorante.jsp</file>
+            <file>file:/Users/michael/Desktop/DoveCiboGit/src/java/DoveCiboPK/DB_Manager.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2342,16 +2342,15 @@ public class DB_Manager {
  
     } 
         
-    public Boolean deleteRepli(User user, Integer idR) throws SQLException {
+    public Boolean deleteRepli(User user) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
         try {
-            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner = ? AND id = ?";
+            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, user.getId());
-            sp.setInt(2, idR);
             
             sp.executeUpdate();
             
