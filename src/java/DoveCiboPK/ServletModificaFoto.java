@@ -52,10 +52,15 @@ public class ServletModificaFoto extends HttpServlet {
             }else{
             
             //INSERIMENTO DB
-            if(! new DB_Manager().updatePhotoVal(idF, val))
+            if(! new DB_Manager().updatePhotoVal(idF, val, u))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            //response.sendRedirect("confermaReclamo.jsp");
+                 if(u.getRole().equals("1") && val == 0){
+                    response.sendRedirect("confermaDeletePhoto.jsp");
+                 }else if (!u.getRole().equals("1") && val == 1){
+                     response.sendRedirect("confermaSegnalazionePhoto.jsp");
+                 }else if (u.getRole().equals("1") && val == 2){
+                     response.sendRedirect("cancellaNotificaPhoto.jsp");
+                 }
             
             }
         

@@ -25,6 +25,13 @@
             h1 {
                 /* text-shadow: 5px 5px 13px black; */
             }
+            iframe {
+                background-color: transparent;
+                border-radius: 15px;
+                border-style: inset;
+                border-color: transparent;
+                border-image: initial;
+            }
         </style>
     </head>
     <body>
@@ -144,7 +151,7 @@
             <br>
             <!-- Pannello di ricerca generale -->
             <div class="row" id="General">
-                <iframe src="ServletGetAutoC" height="300" width="800"></iframe>
+                <iframe src="ServletGetAutoC" height="300" width="800" allowtransparency="true"></iframe>
             </div>
           
             <!-- Pannello di ricerca per Tipologia cucina e vicinanza -->
