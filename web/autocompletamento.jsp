@@ -23,10 +23,7 @@
         
         <style>
             body {
-                background-image: url('img/img (1)big.jpeg');
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
+                background:none transparent;
             }
             h1 {
                 /* text-shadow: 5px 5px 13px black; */
