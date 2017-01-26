@@ -62,13 +62,18 @@
         }
         </style>
         
+        <%
+        ArrayList<String> auto = (ArrayList<String>) request.getAttribute("auto");    
+        %>
+        
         <script>
             $(function() {
               var availableTags = [
-                "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++",
-                "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
-                "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl",
-                "PHP", "Python", "Ruby", "Scala", "Scheme"
+                  
+                <% for(String a: auto){ %>
+                       "<%= a %>" ,     
+                <% } %>
+                    
               ];
 
               $(".autocomplete").autocomplete({
@@ -78,14 +83,13 @@
         </script>
     </head>
     
-    <body style="padding-top: 70px;">
-        <%@ include file="navBar.jsp" %>
+    <body>
         <div class="container">
-            <div class="row" style="margin-top: 25%;">
+            <div class="row">
 
                 <div class="col-md-3"></div>
-                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
-                    <form action="CercaRistorantiHome" method="post">
+                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;" >
+                    <form action="CercaRistorantiHome" method="post" target="_blank">
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
                         <div class="form-group ui-widget">
                             <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
@@ -100,6 +104,5 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
 </html>

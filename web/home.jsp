@@ -144,18 +144,7 @@
             <br>
             <!-- Pannello di ricerca generale -->
             <div class="row" id="General">
-                <div class="col-md-3"></div>
-                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
-                    <form action="CercaRistorantiHome" method="post">
-                        <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
-                        <div class="input-group input-group-lg" style="padding-bottom: 5%; ">
-                            <input type="text" name="go" class="form-control" placeholder="Cerca un ristorante" required>
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="submit">Go!</button> 
-                        </div> 
-                    </form>                                 
-                </div> 
-                <div class="col-md-3"></div>
+                <iframe src="ServletGetAutoC" height="300" width="800"></iframe>
             </div>
           
             <!-- Pannello di ricerca per Tipologia cucina e vicinanza -->
