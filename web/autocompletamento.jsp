@@ -1,6 +1,8 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="DoveCiboPK.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -60,7 +62,7 @@
         </style>
         
         <%
-        ArrayList<String> auto = (ArrayList<String>) request.getAttribute("auto");    
+        HashSet<String> auto = (HashSet<String>) request.getAttribute("auto");    
         %>
         
         <script>
@@ -90,7 +92,7 @@
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
                         <div class="form-group ui-widget">
                             <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
-                                <input type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
+                                <input pattern=".{3,}" type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
                                 <span class="input-group-btn">
                                     <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
                                     <button class="btn btn-success" type="submit">Go!</button> 

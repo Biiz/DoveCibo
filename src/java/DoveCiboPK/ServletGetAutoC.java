@@ -2,6 +2,7 @@ package DoveCiboPK;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class ServletGetAutoC extends HttpServlet {
         try {
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
-            ArrayList <String> auto = new ArrayList<String>();
+            HashSet <String> auto = new HashSet<String>();
             
             if( new DB_Manager().tuttiRistoranti(ALR)){
                 for(Restaurant rest : ALR){
