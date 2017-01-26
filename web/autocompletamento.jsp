@@ -1,6 +1,8 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="DoveCiboPK.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -23,10 +25,7 @@
         
         <style>
             body {
-                background-image: url('img/img (1)big.jpeg');
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
+                background:none transparent;
             }
             h1 {
                 /* text-shadow: 5px 5px 13px black; */
@@ -62,13 +61,18 @@
         }
         </style>
         
+        <%
+        HashSet<String> auto = (HashSet<String>) request.getAttribute("auto");    
+        %>
+        
         <script>
             $(function() {
               var availableTags = [
-                "ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++",
-                "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
-                "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl",
-                "PHP", "Python", "Ruby", "Scala", "Scheme"
+                  
+                <% for(String a: auto){ %>
+                       "<%= a %>" ,     
+                <% } %>
+                    
               ];
 
               $(".autocomplete").autocomplete({
@@ -78,21 +82,33 @@
         </script>
     </head>
     
-    <body style="padding-top: 70px;">
-        <%@ include file="navBar.jsp" %>
+    <body>
         <div class="container">
-            <div class="row" style="margin-top: 25%;">
+            <div class="row">
 
                 <div class="col-md-3"></div>
-                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
-                    <form action="CercaRistorantiHome" method="post">
+                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;" >
+                    <form id="formCercaRisto" action="CercaRistorantiHome" method="post" target="_blank">
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
                         <div class="form-group ui-widget">
                             <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
-                                <input type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
+                                <input id="input_form" pattern=".{3,}" type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
                                 <span class="input-group-btn">
                                     <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
-                                    <button class="btn btn-success" type="submit">Go!</button> 
+                                    <button class="btn btn-success" type="submit" onclick="allerta()" id="btn_submit">Go!</button>
+                                    <script>
+                                        function allerta(){
+                                            if(document.getElementById('input_form').value != ''
+                                                && document.getElementById('input_form').value.length >=3){
+                                                document.getElementById('formCercaRisto').submit();
+                                                setTimeout(function() {
+                                                    //così dopo 250ms la finestra viene chiusa
+                                                    parent.window.close();
+                                                }, 250);
+                                                
+                                            }
+                                        }
+                                    </script>
                             </div> 
                         </div>
                     </form>                                 
@@ -100,6 +116,5 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </body>
 </html>

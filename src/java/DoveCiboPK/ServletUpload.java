@@ -53,12 +53,13 @@ public class ServletUpload extends HttpServlet {
             m = new MultipartRequest(
                     request,
                     strPath,
-                    30 * 1024 * 1024,
+                    1 * 1024 * 1024,
                     "ISO-8859-1",
-                    new DefaultFileRenamePolicy());
+                    new DefaultFileRenamePolicy()) ;
             //String encoded = Base64.encode(FileUtils.readFileToByteArray(m.getFile(strPath)));
             //String encoded = Base64.getEncoder().withoutPadding().encodeToString(FileUtil‌​s.readFileToByteArra‌​y(strPath));
-
+            
+            
             Integer idR = Integer.parseInt(m.getParameter("idR"));
             Integer idU = Integer.parseInt(m.getParameter("idU"));
 
@@ -73,11 +74,13 @@ public class ServletUpload extends HttpServlet {
             //System.out.println("\n\nlunghezza: " + base64.length());
 
             if (!new DB_Manager().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                request.setAttribute("error", "Errore connessione database");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
             response.sendRedirect("/DoveCiboGit/foto_caricata_con_successo.jsp");
-        } catch (Exception ex) {
-            request.setAttribute("error", "nessun file selezionato");
+            
+        } catch (IOException|SQLException ex) {
+            request.setAttribute("error", "Errore caricamento file");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
 
         }

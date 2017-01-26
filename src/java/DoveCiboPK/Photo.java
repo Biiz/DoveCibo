@@ -13,6 +13,7 @@ public class Photo {
     private String path;
     private User owner;
     private Integer validation;
+    private Integer id_Restaurant;
     private Date date_creation;
 
     public Photo(Integer id, String name, String description, String path, User owner, Integer validation) {
@@ -24,7 +25,7 @@ public class Photo {
         this.validation = validation;
     }
 
-    public Photo(Integer id, String name, String description, String path, User owner, Integer validation, Date date_creation) {
+    public Photo(Integer id, String name, String description, String path, User owner, Integer validation, Date date_creation, Integer id_Restaurant) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -32,6 +33,7 @@ public class Photo {
         this.owner = owner;
         this.validation = validation;
         this.date_creation = date_creation;
+        this.id_Restaurant = id_Restaurant;
     }
 
     public Date getDate_creation() {
@@ -45,6 +47,10 @@ public class Photo {
 
     protected void setId(Integer id) {
         this.id = id;
+    }
+    
+    protected void setId_Restaurant(Integer id_Restaurant) {
+        this.id_Restaurant = id_Restaurant;
     }
 
     protected void setDescription(String description) {
@@ -81,6 +87,10 @@ public class Photo {
 
     public Integer getValidation() {
         return validation;
+    }
+    
+    public Integer getId_Restaurant() {
+        return id_Restaurant;
     }
 
     public void setValidation(Integer validation) {

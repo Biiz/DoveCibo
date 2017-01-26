@@ -79,7 +79,14 @@ public class ServletNotifiche extends HttpServlet {
                 
                 for(Photo ph: rest.getPhotos()){
                     new DB_Manager().cercaUser_perId(ph.getOwner());
-                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                    if(!ph.getOwner().getRole().equals("1")){
+                        ALN.add( new Notifica("<p>NEW PHOTO</p> "
+                                             +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                    }else{
+                        ALN.add( new Notifica("<p>RIFIUTO DELETE PHOTO</p> "
+                                             +"<p>l'<b>amministratore</b> del sito non ritiene che la foto sia impropria per il ristorante</p> "
+                                             +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                    }
                 }
             
             }
@@ -100,7 +107,10 @@ public class ServletNotifiche extends HttpServlet {
             
             for(Photo ph: ARP){
                     new DB_Manager().cercaUser_perId(ph.getOwner());
-                    ALN.add( new Notifica(ph.getOwner().getNickname()+" ha aggiunto una foto",ph, "invalidaFoto", ph.getId(), ph.getOwner()));
+                    Restaurant res = new Restaurant (ph.getId_Restaurant());
+                    new DB_Manager().cercaRistorante_perId(res);
+                    ALN.add( new Notifica("<p>SEGNALAZIONE PHOTO<p> "
+                                         +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+res.getId()+" '>"+res.getName()+"</a></b></p>",ph, "invalidaFoto", ph.getId(), ph.getOwner()));
             }
             
             

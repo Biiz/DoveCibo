@@ -56,7 +56,7 @@ public class ServletAccettaaRisposta extends HttpServlet {
             if(! new DB_Manager().findUserRepli(idR, u, user))
                  request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
-            if(! new DB_Manager().deleteRepli(user, idR)){
+            if(! new DB_Manager().deleteRepli(user)){
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             

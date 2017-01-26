@@ -1279,7 +1279,8 @@ public class DB_Manager {
                         rs.getString("path"),
                         new User(rs.getInt("id_owner")),
                         rs.getInt("validation"),
-                        rs.getDate("date_creation")
+                        rs.getDate("date_creation"),
+                        rs.getInt("id_restaurant")
                 ));
  
             }
@@ -1323,7 +1324,8 @@ public class DB_Manager {
                         rs.getString("path"),
                         new User(rs.getInt("id_owner")),
                         rs.getInt("validation"),
-                        rs.getDate("date_creation")
+                        rs.getDate("date_creation"),
+                        rs.getInt("id_restaurant")
                 ));
  
             }
@@ -1930,16 +1932,17 @@ public class DB_Manager {
  
     }     
     
-    public Boolean updatePhotoVal(Integer idPh, Integer val) throws SQLException {
+    public Boolean updatePhotoVal(Integer idPh, Integer val, User u) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
         try {
-            query = "UPDATE PHOTOS SET VALIDATION = ? WHERE ID = ?";
+            query = "UPDATE PHOTOS SET VALIDATION = ?, ID_OWNER = ? WHERE ID = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, val);
-            sp.setInt(2, idPh);
+            sp.setInt(2, u.getId());
+            sp.setInt(3, idPh);
             sp.executeUpdate();
             r = true;
         } catch (SQLException e) {
@@ -2335,16 +2338,15 @@ public class DB_Manager {
  
     } 
         
-    public Boolean deleteRepli(User user, Integer idR) throws SQLException {
+    public Boolean deleteRepli(User user) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
         try {
-            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner = ? AND id = ?";
+            query = "DELETE FROM REPLIES WHERE ID_VALIDATOR IS NULL AND id_owner = ?";
             sp = con.prepareStatement(query);
             sp.setInt(1, user.getId());
-            sp.setInt(2, idR);
             
             sp.executeUpdate();
             
