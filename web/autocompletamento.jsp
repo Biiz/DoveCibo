@@ -88,14 +88,27 @@
 
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;" >
-                    <form action="CercaRistorantiHome" method="post" target="_blank">
+                    <form id="formCercaRisto" action="CercaRistorantiHome" method="post" target="_blank">
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
                         <div class="form-group ui-widget">
                             <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
-                                <input pattern=".{3,}" type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
+                                <input id="input_form" pattern=".{3,}" type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
                                 <span class="input-group-btn">
                                     <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
-                                    <button class="btn btn-success" type="submit">Go!</button> 
+                                    <button class="btn btn-success" type="submit" onclick="allerta()" id="btn_submit">Go!</button>
+                                    <script>
+                                        function allerta(){
+                                            if(document.getElementById('input_form').value != ''
+                                                && document.getElementById('input_form').value.length >=3){
+                                                document.getElementById('formCercaRisto').submit();
+                                                setTimeout(function() {
+                                                    //così dopo 250ms la finestra viene chiusa
+                                                    parent.window.close();
+                                                }, 250);
+                                                
+                                            }
+                                        }
+                                    </script>
                             </div> 
                         </div>
                     </form>                                 

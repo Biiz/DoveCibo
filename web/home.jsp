@@ -151,7 +151,7 @@
             <br>
             <!-- Pannello di ricerca generale -->
             <div class="row" id="General">
-                <iframe src="ServletGetAutoC" height="300" width="800" allowtransparency="true"></iframe>
+                <iframe src="ServletGetAutoC" height="300" width="800" allowtransparency="true" id="iframe"></iframe>
             </div>
           
             <!-- Pannello di ricerca per Tipologia cucina e vicinanza -->
@@ -258,6 +258,9 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
+            
+            
+            
             <br><br>
             </body>
             </html>
