@@ -1,16 +1,10 @@
 package DoveCiboPK;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author stefano
  */
 public class Day_hours {
-
     private Integer id_restaurant;
     private Integer start_H_M;
     private Integer start_M_M;

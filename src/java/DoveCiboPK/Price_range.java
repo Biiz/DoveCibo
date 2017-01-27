@@ -1,24 +1,16 @@
 package DoveCiboPK;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author stefano
  */
 public class Price_range {
-
     private Integer id_restaurant;
-
     private Double min_value;
     private Double max_value;
 
     public Price_range(Integer id_restaurant, Double min_value, Double max_value) {
         this.id_restaurant = id_restaurant;
-
         this.min_value = min_value;
         this.max_value = max_value;
     }

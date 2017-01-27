@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DoveCiboPK;
 
 import java.sql.Date;
@@ -12,7 +7,6 @@ import java.sql.Date;
  * @author postal
  */
 public class Notifica {
-    
     private String descrizione;
     private Date data;
     private String tipo;
