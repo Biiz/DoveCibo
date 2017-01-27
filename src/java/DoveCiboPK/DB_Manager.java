@@ -44,35 +44,6 @@ public class DB_Manager {
         return errore;
     }
     
-    public boolean SetIdRestaurant(User u, List<Integer> id_restaurant) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        
-        try {
-            
-            query = "SELECT id FROM restaurants WHERE id_creator = ?";
-            sp = con.prepareStatement(query);
-            
-            sp.setInt(1, u.getId());
-            
-            ResultSet rs = sp.executeQuery();
-            
-            while(rs.next()){
-                id_restaurant.add(rs.getInt(1));
-            }
-            
-            return true;
-        } catch (SQLException e) {
-            this.errore = e.toString();
-            return false;
-        } finally {
-            sp.close();
-            con.close();
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
     public boolean SetIdRestaurant2(User u, List<Integer> id_restaurant) throws SQLException {
  
         PreparedStatement sp = null;
@@ -98,10 +69,9 @@ public class DB_Manager {
         } finally {
             sp.close();
             con.close();
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
- 
+    
     public Boolean inserisciAccount(User u) throws SQLException {
  
         PreparedStatement sp = null;
@@ -126,10 +96,9 @@ public class DB_Manager {
         } finally {
             sp.close();
             con.close();
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
- 
+   
     public Boolean niknameEsistente(String nik) throws SQLException {
         Boolean r = false;
  
@@ -149,7 +118,7 @@ public class DB_Manager {
             }
  
         } catch (SQLException e) {
-            // r = false;
+            
         } finally {
             sp.close();
             con.close();
@@ -234,35 +203,6 @@ public class DB_Manager {
         }
     }
     
-    
-    
-   
-   
-    public void niknameEsistente_login (User u) throws SQLException {
-        PreparedStatement sp = null;
-        String query = null;
-       
-        try {
-            query = "SELECT name, surname FROM users WHERE nickname LIKE ? ";
-            sp = con.prepareStatement(query);
-           
-            sp.setString(1, u.getNickname());
-           
-            ResultSet rs = sp.executeQuery();
-           
-            if(rs.next()){
-                u.setName(rs.getString("name"));          
-                u.setSurname(rs.getString("surname"));
-            }
- 
-        } catch (SQLException e) {
-            // r = false;
-        } finally {
-            sp.close();
-            con.close();
-        }
-    }
-   
     public boolean CheckProfilo (User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -350,7 +290,7 @@ public class DB_Manager {
             return r;
         }
     }
- 
+
     public Boolean modificaAccount(User u, String string) throws SQLException {
  
         PreparedStatement sp = null;
@@ -377,7 +317,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -412,7 +351,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -439,7 +377,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -468,7 +405,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -501,7 +437,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -531,7 +466,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -569,11 +503,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
-    
+
     
     public Boolean cercaTuttiRes(ArrayList <Restaurant> RES) throws SQLException {
  
@@ -601,19 +534,12 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
     
     
     
-    
-    
-    
-    
- 
-/////INSERT    
     public Boolean inserisciRistorante(Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
@@ -647,7 +573,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -774,36 +699,7 @@ public class DB_Manager {
             return r;
         }
     }
-    
-    public Boolean checkNavBar_restaurant(User u) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
- 
-        try {
-            query = "SELECT * FROM restaurants WHERE id_creator = ?";
-            sp = con.prepareStatement(query);
- 
-            sp.setInt(1, u.getId());
- 
-            ResultSet rs = sp.executeQuery();
-            
-            if (rs.next()) {
-                u.setName(rs.getString("name"));
-            }
- 
-            return true;
-        } catch (SQLException e) {
-            this.errore = e.toString();
-            return false;
-        } finally {
-            sp.close();
-            con.close();
-        }
-    }
- 
-
- 
+   
     public Boolean inserisciRelazioneCuisinesRestaurant(Integer id_restourant, Integer id_cuisine) throws SQLException {
  
         PreparedStatement sp = null;
@@ -830,10 +726,7 @@ public class DB_Manager {
             return r;
         }
     }
-    
-    
-    
-    
+
     public Boolean inserisciRelazioneOwnerRestaurant(Integer id_restourant, Integer id_owner) throws SQLException {
  
         PreparedStatement sp = null;
@@ -860,7 +753,7 @@ public class DB_Manager {
             return r;
         }
     }
- 
+
     public Boolean inserisciPhoto(Photo p, Integer id_restourant) throws SQLException {
  
         PreparedStatement sp = null;
@@ -938,7 +831,6 @@ public class DB_Manager {
  
             sp.setInt(8, id_restaurant);
             sp.setInt(9, rew.getCreator().getId());
-            //sp.setInt(10, rew.getPhoto().getId());
  
             sp.executeUpdate();
  
@@ -958,7 +850,6 @@ public class DB_Manager {
         }
     }
  
-//////SELECT
     public Boolean cercaRistorante_perId(Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
@@ -997,7 +888,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
  
@@ -1029,10 +919,9 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
+ 
     public Boolean checkUserIsRistoNoValidation(Restaurant res, User user, String risposta[]) throws SQLException {
  
         PreparedStatement sp = null;
@@ -1061,101 +950,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
-    public Boolean cercaCuisine_perId_Restaurant(Restaurant res, List list) throws SQLException {
-        
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
- 
-        try {
-            query = "SELECT id_cuisine FROM restaurant_cuisine WHERE id_restaurant = ?";
-            sp = con.prepareStatement(query);
- 
-            sp.setInt(1, res.getId());
-            
-            ResultSet rs = sp.executeQuery();
-            
-            while (rs.next()) {
-                list.add(rs.getInt(1));
-            } 
-            r = true;
- 
-        } catch (SQLException e) {
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
-    public Boolean cercaCuisine(Integer id_cuisine, List list) throws SQLException {
-        
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
- 
-        try {
-             
-                query = "SELECT name FROM cuisines WHERE id = ?";
-               
-                sp = con.prepareStatement(query);
-            
-                sp.setInt(1, id_cuisine);
-                
-                ResultSet rs = sp.executeQuery();
-                
-                while (rs.next()) {
-                    list.add(rs.getString(1));
-                } 
-
-            r = true;
- 
-        } catch (SQLException e) {
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
-    public Boolean cercaCoordinate_perID_Restaurant(Restaurant res, String string[]) throws SQLException {
-        
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
- 
-        try {
-            query = "SELECT address, city FROM coordinates WHERE id_restaurant = ?";
-            sp = con.prepareStatement(query);
- 
-            sp.setInt(1, res.getId());
-            
-            ResultSet rs = sp.executeQuery();
-            
-            if (rs.next()) {
-                string[0] = rs.getString(1);
-                string[1] = rs.getString(2);
-            } 
-            r = true;
- 
-        } catch (SQLException e) {
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
     
     public Boolean cercaPriceRangeId(Price_range price) throws SQLException {
         
@@ -1183,7 +979,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -1229,37 +1024,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
- 
-    public Boolean cercaPriceRange_perRange(Price_range pr) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
- 
-        try {
-            query = "SELECT  * FROM price_ranges WHERE max_value = ? AND min_value = ?";
-            sp = con.prepareStatement(query);
- 
-            sp.setDouble(1, pr.getMax_value());
-            sp.setDouble(2, pr.getMin_value());
- 
-            ResultSet rs = sp.executeQuery();
- 
-            if (rs.next()) {
-                pr.setId_restaurant(rs.getInt("id_restaurant"));
-            }
-            r = true;
- 
-        } catch (SQLException e) {
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
  
@@ -1302,12 +1066,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
-    
-    
     
         public Boolean cercaPhotos(ArrayList <Photo> ALP, Integer val) throws SQLException {
  
@@ -1347,10 +1107,9 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-       
+      
     public Boolean tuttiRistoranti(ArrayList <Restaurant> ALR) throws SQLException {
  
         PreparedStatement sp = null;
@@ -1386,7 +1145,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
    
@@ -1429,7 +1187,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -1474,7 +1231,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -1577,7 +1333,7 @@ public class DB_Manager {
             con.close();
         }
     }
-      
+    
     public Boolean SetResForCuisine (String cuis, ArrayList <Integer> id_cu) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -1626,10 +1382,6 @@ public class DB_Manager {
             con.close();
         }
     }
-    
-    
-    
-//NEW POSTAL
 
     public Boolean cercaCusines_perRistoranye(Restaurant res) throws SQLException {
  
@@ -1666,42 +1418,9 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
-    
-    
-    
-    
-    public Integer contaPhoto() throws SQLException {
- 
-        Statement sp = null;
-        String query = null;
- 
-        try {
-                  
-            query = "SELECT COUNT(*) as n FROM PHOTOS ";
-            sp = con.createStatement();
-            ResultSet rs = sp.executeQuery(query);
-            rs.next();
-            return rs.getInt("n");
-            
-        } catch (SQLException e) {
-
-            System.out.println("Possibile causa: " + e.getMessage());
-            return -1;
-            
-        } finally {
-            sp.close();
-            con.close();
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }        
-    
-    
-    
-
     public Boolean setCommenti_perRistorante(Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
@@ -1744,7 +1463,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -1776,12 +1494,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }    
-    
-    
-    
     
     public Boolean increaseLikeReview(Review rew) throws SQLException {
  
@@ -1802,7 +1516,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -1826,12 +1539,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }   
     
-
     public Boolean increaseReviewRestaurant(Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
@@ -1851,11 +1562,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
-    
+  
     
     public Boolean updateRate(Restaurant res, double newGV) throws SQLException {
  
@@ -1877,12 +1587,9 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }   
-    
-    
     
     public ArrayList <Restaurant> cercaRistoranti_perOwner(User u) throws SQLException {
  
@@ -1910,7 +1617,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return ALR;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -1934,7 +1640,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }     
@@ -1960,53 +1665,9 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     } 
-    
-    
-    
-    
-    
-    public Boolean inserisciRepile(Integer idRew, Replies rep) throws SQLException {
- 
-        PreparedStatement sp = null;
-        String query = null;
-        Boolean r = null;
- 
-        try {
-            query = "INSERT INTO REPILES(id,"
-                    + "description,"
-                    + "id_owner,"
-                    + "id_review,"
-                    + "VALUES(DEFAULT,?,?,?)";
-            sp = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
- 
-            System.out.println("SQL OK");
-            
-            
-            sp.setString(1, rep.getDescription());
-            sp.setInt(2, rep.getOwner().getId());
-            sp.setInt(3, idRew);
-
-            sp.executeUpdate();
- 
-            ResultSet generatedKeys = sp.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                rep.setId(generatedKeys.getInt(1));
-            }
- 
-            r = true;
-        } catch (SQLException e) {
-            System.out.println("Possibile causa: " + e.getMessage());
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-        }
-    }
     
     public Boolean setRepli_perRew(Review rew, ArrayList <Replies> replies) throws SQLException {
  
@@ -2043,7 +1704,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -2090,160 +1750,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
-    public Boolean countLike(Restaurant res, Double like_value[]) throws SQLException {
- 
-        PreparedStatement sp = null;
-        PreparedStatement sp2 = null;
-        String query = null;
-        String query2 = null;
-        Boolean r = true;
-        double sum_love_res = 0.0;
-        double sum_love = 0.0;
-        try {
-            query = "SELECT SUM(love) AS sum_love_res "+
-                    "FROM reviews "+
-                    "WHERE id_restaurant = ? ";
-            sp = con.prepareStatement(query);
-            
-            sp.setInt(1, res.getId());
-            
-            ResultSet rs = sp.executeQuery();            
-            
-            query2 = "SELECT SUM(love) AS sum_love "+
-                     "FROM reviews ";
-            
-            sp2 = con.prepareStatement(query2);
-            
-            ResultSet rs2 = sp2.executeQuery();            
-            
-            if (rs2.next() && rs.next()) {
-                sum_love_res = rs.getDouble("sum_love_res");
-                sum_love = rs2.getDouble("sum_love");
-                if(sum_love_res == 0){
-                    like_value[0] = 0.0;
-                }else{
-                    like_value[0]= sum_love_res/sum_love ;
-                }
-            }
-            r=true;
-        } catch (SQLException e) {
-            this.errore = e.toString();
-            System.out.println(errore);
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
-    
-    public Boolean countLike2(Restaurant res, ArrayList <Double> like_value) throws SQLException {
- 
-        PreparedStatement sp = null;
-        PreparedStatement sp2 = null;
-        String query = null;
-        String query2 = null;
-        Boolean r = true;
-        double sum_love_res = 0.0;
-        double sum_love = 0.0;
-        try {
-            query = "SELECT SUM(love) AS sum_love_res "+
-                    "FROM reviews "+
-                    "WHERE id_restaurant = ? ";
-            sp = con.prepareStatement(query);
-            
-            sp.setInt(1, res.getId());
-            
-            ResultSet rs = sp.executeQuery();            
-            
-            query2 = "SELECT SUM(love) AS sum_love "+
-                     "FROM reviews ";
-            
-            sp2 = con.prepareStatement(query2);
-            
-            ResultSet rs2 = sp2.executeQuery();            
-            
-            if (rs2.next() && rs.next()) {
-                sum_love_res = rs.getDouble("sum_love_res");
-                sum_love = rs2.getDouble("sum_love");
-                if(sum_love_res == 0){
-                    like_value.add(0.0);
-                }else{
-                    like_value.add(sum_love_res/sum_love);
-                }
-            }
-            r=true;
-        } catch (SQLException e) {
-            this.errore = e.toString();
-            System.out.println(errore);
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
-    
-    public Boolean countReviews2 (Restaurant res, ArrayList <Double> reviews_value) throws SQLException {
- 
-        PreparedStatement sp = null;
-        PreparedStatement sp2 = null;
-        String query = null;
-        String query2 = null;
-        Boolean r = true;
-        double count_reviews_res = 0.0;
-        double count_reviews = 0.0;
-        try {
-            
-            query = "SELECT COUNT(*) AS count_reviews_res "+
-                    "FROM reviews "+
-                    "WHERE id_restaurant = ? ";
-            sp = con.prepareStatement(query);
-            
-            sp.setInt(1, res.getId());
-            
-            ResultSet rs = sp.executeQuery();            
-            
-            query2 = "SELECT COUNT(*) AS count_reviews "+
-                     "FROM reviews ";
-            
-            sp2 = con.prepareStatement(query2);
-            
-            ResultSet rs2 = sp2.executeQuery();
-            if (rs2.next() && rs.next()) {
-                count_reviews_res = rs.getDouble("count_reviews_res");
-                count_reviews = rs2.getDouble("count_reviews");
-                if(count_reviews_res == 0){
-                    reviews_value.add(0.0);
-                }else{
-                    reviews_value.add(count_reviews_res/count_reviews);
-                }
-            }
-            r=true;
-        } catch (SQLException e) {
-            this.errore = e.toString();
-            System.out.println(errore);
-            r = false;
-        } finally {
-            sp.close();
-            con.close();
-            return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
-        }
-    }
-    
-    
-    
-    
-    
     
     public Boolean setRepli(Review rew) throws SQLException {
  
@@ -2281,15 +1789,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
-    
-    
-    
-    
-        public Boolean updateRepli(Integer idRep, User val) throws SQLException {
+    public Boolean updateRepli(Integer idRep, User val) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -2309,12 +1812,11 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     } 
-        
-        public Boolean findUserRepli(Integer idRep, User val, User user) throws SQLException {
+       
+    public Boolean findUserRepli(Integer idRep, User val, User user) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -2340,11 +1842,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     } 
-        
+    
     public Boolean deleteRepli(User user) throws SQLException {
  
         PreparedStatement sp = null;
@@ -2366,7 +1867,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
@@ -2392,13 +1892,11 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     } 
 
-    
-        public Boolean updateResOwn(Integer idRO, User val) throws SQLException {
+    public Boolean updateResOwn(Integer idRO, User val) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -2418,11 +1916,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }  
-        
+    
         public Boolean selectOwn(Integer idRO, User val, User user) throws SQLException {
  
         PreparedStatement sp = null;
@@ -2450,11 +1947,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }  
-    
+   
     public Boolean rifiutaReclamo(Integer idRO) throws SQLException {
  
         PreparedStatement sp = null;
@@ -2477,11 +1973,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
  
     }
-        
+      
     public Boolean setNotificheReclamo (ArrayList <Notifica> ALN) throws SQLException {
  
         PreparedStatement sp = null;
@@ -2516,7 +2011,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -2554,7 +2048,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -2605,7 +2098,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
     
@@ -2653,12 +2145,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
-    
-    
     
     public Boolean setReviewPerId(Review rev) throws SQLException {
  
@@ -2691,13 +2179,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
-    
-    
-    
     
     public Boolean checkReplies(Replies rep, Integer idRew, ArrayList <String> check ) throws SQLException {
  
@@ -2729,13 +2212,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }
-    
-    
-    
-    
     
     public Boolean ricercaRistorantiPerClassificaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon) throws SQLException {
 
@@ -2815,10 +2293,8 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }   
-    
     
     public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon, String cucina) throws SQLException {
 
@@ -2901,12 +2377,10 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }  
     
-    
-        public Boolean isOwners_perRistoranti(User user, Restaurant res) throws SQLException {
+    public Boolean isOwners_perRistoranti(User user, Restaurant res) throws SQLException {
  
         PreparedStatement sp = null;
         String query = null;
@@ -2931,9 +2405,6 @@ public class DB_Manager {
             sp.close();
             con.close();
             return r;
-            //response.setHeader("Refresh", "5; URL=index.jsp");
         }
     }  
-    
- 
 }
