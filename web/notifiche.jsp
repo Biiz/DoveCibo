@@ -19,7 +19,7 @@
 
         <style>
             body {
-                background-image: url("img/img (7)b.jpg");
+                background-image: url("Sfondi/img (7)b.jpg");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
@@ -105,7 +105,7 @@
                                         <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Segnala la photo </button>       
                                     </form>
                                         
-                                        <img src="immaginiRistoranti/<%= n.getFoto().getPath() %>" width=50 height=50 >
+                                        <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
                                     <% } %>
                                     
                                     <% if( n.getTipo().equals("invalidaFoto") ){ %>
@@ -120,7 +120,7 @@
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cancella notifica </button>       
                                     </form>
                                         
-                                        <img src="immaginiRistoranti/<%= n.getFoto().getPath() %>"  width=50 height=50 >
+                                        <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>"  width=50 height=50 >
                                     <% } %>
                                     
                                 </td>

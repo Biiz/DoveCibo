@@ -17,7 +17,7 @@
 
         <style>
             body {
-                background-image: url('img/img (1)big.jpeg');
+                background-image: url('Sfondi/img (1)big.jpeg');
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;

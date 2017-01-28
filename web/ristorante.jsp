@@ -61,7 +61,7 @@
             }
 
             body {
-                background-image: url("img/img (7)b.jpg");
+                background-image: url("Sfondi/img (7)b.jpg");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
@@ -152,17 +152,17 @@
                                 <div class="carousel-inner" role="listbox">
                                     <% if (R_photos.size() == 0) { %>
                                     <div class="item active">
-                                        <img src="img/empty_img.png">
+                                        <img src="Sfondi/empty_img.png">
                                     </div>
                                     <% } else {
                                         for (int i = 0; i < R_photos.size(); i++) {
                                             if (i == 0) {%>
                                     <div class="item active">
-                                        <img src="immaginiRistoranti/<%= R_photos.get(i).getPath()%>">
+                                        <img src="ImmaginiCaricate/<%= R_photos.get(i).getPath()%>">
                                     </div>
                                     <% } else {%>
                                     <div class="item">
-                                        <img src="immaginiRistoranti/<%= R_photos.get(i).getPath()%>">
+                                        <img src="ImmaginiCaricate/<%= R_photos.get(i).getPath()%>">
                                     </div>
 
 

@@ -25,7 +25,7 @@
 
         <style>
             body {
-                background-image: url("img/img (7)b.jpg");
+                background-image: url("Sfondi/img (7)b.jpg");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
@@ -125,8 +125,8 @@
                                     <p id="testo"> <%= roundfinalPrice%> </p>
                                     <img id="immagine" src="
                                         <% if (rest.getPhotos().size() != 0) {%>
-                                        immaginiRistoranti/<%= rest.getPhotos().get(0).getPath()%><% } else{%>
-                                        img/empty_img.png <% } %>
+                                        ImmaginiCaricate/<%= rest.getPhotos().get(0).getPath()%><% } else{%>
+                                        Sfondi/empty_img.png <% } %>
                                     "/>
                                     
                                 </div>

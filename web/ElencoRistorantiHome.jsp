@@ -25,7 +25,7 @@
         
         <style>
             body {
-                background-image: url("img/img (7)b.jpg");
+                background-image: url("Sfondi/img (7)b.jpg");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
@@ -90,7 +90,7 @@
                                 </div>
                             </td>
                             <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>
-                            <td background="img/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>
+                            <td background="Sfondi/img (1)low.jpg"><b style="background-color: white;"> <%= roundfinalPrice %> </b></td>
                             <td> posizione in classiffica </td>
                             <td><%= rest.getN_reviews() %></td>
                             <td><%= rest.getPrice_range().getMin_value() %></td>

@@ -24,7 +24,7 @@
                 border-radius: 5px;
             }
             body {
-                background-image: url("img/img (7)b.jpg");
+                background-image: url("Sfondi/img (7)b.jpg");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
