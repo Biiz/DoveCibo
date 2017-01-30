@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletAggiungiLike", urlPatterns = {"/ServletAggiungiLike"})
 public class ServletAggiungiLike extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -24,42 +23,32 @@ public class ServletAggiungiLike extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         try {
-
-            System.out.println("OK!!!!!!!!!!!!!!!!");
-            
-            
+            System.out.println("OK");
+                        
             //REVIEW
             Integer idRew =Integer.parseInt(request.getParameter("commento"));
             //USER REVIEW
             Integer idUR =Integer.parseInt(request.getParameter("userCommento"));
             //RISTORANTE
-            Integer idRes =Integer.parseInt(request.getParameter("ristorante"));
-            
+            Integer idRes =Integer.parseInt(request.getParameter("ristorante"));            
             Restaurant res = new Restaurant(idRes);
             
             if (!new DB_Manager().cercaRistorante_perId(res))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            
-            
-             if (!new DB_Manager().increaseLikeUser(new User(idUR)))
+
+            if (!new DB_Manager().increaseLikeUser(new User(idUR)))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
         
-             if (!new DB_Manager().increaseLikeReview(new Review(idRew)))
+            if (!new DB_Manager().increaseLikeReview(new Review(idRew)))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
-             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);
-             
+            response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);            
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -70,6 +59,5 @@ public class ServletAggiungiLike extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

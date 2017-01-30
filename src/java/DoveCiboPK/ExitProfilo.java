@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ExitProfilo", urlPatterns = {"/ExitProfilo"})
 public class ExitProfilo extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -23,19 +22,14 @@ public class ExitProfilo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.getSession(false).invalidate();
             response.sendRedirect("/DoveCiboGit/home.jsp");
-            
-
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-
     }
 
     /**
@@ -46,6 +40,5 @@ public class ExitProfilo extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

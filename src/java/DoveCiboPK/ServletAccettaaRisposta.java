@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletAccettaaRisposta", urlPatterns = {"/ServletAccettaaRisposta"})
 public class ServletAccettaaRisposta extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -24,45 +23,36 @@ public class ServletAccettaaRisposta extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            //CREATORE
+            User u = (User) request.getSession(false).getAttribute("User");
+            User user = new User (-1, "","","","","", "");
 
+            //FILTRO USER
+            if(!u.getRole().equals("1")) {
+                request.setAttribute("error", "Zona protetta!");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);                
+            } else {
+                //RISTORANTE
+                Integer idR = Integer.parseInt(request.getParameter("idGen"));            
 
-        //CREATORE
-        User u = (User) request.getSession(false).getAttribute("User");
-        User user = new User (-1, "","","","","", "");
-        
-        //FILTRO USER
-        if(!u.getRole().equals("1")){
-            request.setAttribute("error", "Zona protetta!");
-            request.getRequestDispatcher("errore.jsp").forward(request, response);                
-        }else{
-        
-            //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("idGen"));            
-            
-            //INSERIMENTO DB
-            if(! new DB_Manager().updateRepli(idR, u))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            if(! new DB_Manager().findUserRepli(idR, u, user))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            if(! new DB_Manager().deleteRepli(user)){
-                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                //INSERIMENTO DB
+                if (! new DB_Manager().updateRepli(idR, u))
+                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                if (! new DB_Manager().findUserRepli(idR, u, user))
+                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                if (! new DB_Manager().deleteRepli(user))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                response.sendRedirect("/DoveCiboGit/rispostaAccettata.jsp");
             }
-            
-            
-            response.sendRedirect("/DoveCiboGit/rispostaAccettata.jsp");
-        }
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -73,6 +63,5 @@ public class ServletAccettaaRisposta extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

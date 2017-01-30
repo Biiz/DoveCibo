@@ -101,7 +101,7 @@
                                         <li><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <b><%=R.getPrice_range().getMin_value()%> - <%=R.getPrice_range().getMax_value()%></b></li>
                                             <%  BigDecimal roundfinalPrice = new BigDecimal(R.getGlobal_value()).setScale(1, BigDecimal.ROUND_HALF_UP);%>
                                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <b><%=roundfinalPrice%></b></li>
-                                        <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <b><%=R.getWeb_site_url()%></b></li>
+                                        <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <a href="<%=R.getWeb_site_url()%>" target="_blank"><%=R.getWeb_site_url()%></a></li>
                                         <li><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <b><%= classificaCity.get(0) + 1%></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Pranzo: da <%=R.getDay_hours().getStart_H_M()%>:<%=R.getDay_hours().getStart_M_M()%> a <%=R.getDay_hours().getEnd_H_M()%>:<%=R.getDay_hours().getEnd_M_M()%></b></li>
                                         <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <b>Cena: da <%=R.getDay_hours().getStart_H_P()%>:<%=R.getDay_hours().getStart_M_P()%> a <%=R.getDay_hours().getEnd_H_P()%>:<%=R.getDay_hours().getEnd_M_P()%></b></li>

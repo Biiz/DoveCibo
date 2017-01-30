@@ -82,7 +82,7 @@
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%=rest.getId()%>'">Edit</button>
+                                    <button class="btn btn-info btn-justified" onclick="window.location.href='/DoveCiboGit/ServletGetRistoranteProprietario?idR=<%=rest.getId()%>'">Modifica</button>
                                 </div>
                             </td>
                             <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>

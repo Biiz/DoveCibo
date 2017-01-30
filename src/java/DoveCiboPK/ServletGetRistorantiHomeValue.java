@@ -14,65 +14,54 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletGetRistorantiHomeValue", urlPatterns = {"/ServletGetRistorantiHomeValue"})
 public class ServletGetRistorantiHomeValue extends HttpServlet {
-
-
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
-            
             Float lat = Float.parseFloat( request.getParameter("lat") );
             Float lng = Float.parseFloat( request.getParameter("lng") );
             
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             ArrayList <Integer> classifica = new ArrayList<Integer>();
-            if( ! new DB_Manager().classificaRisto(classifica))
+            if ( ! new DB_Manager().classificaRisto(classifica))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
             
             Coordinate coo = new Coordinate(lat,lng, null, null, null, null);
             double rangeLat = 0.05;
             double rangeLon = 0.1;
             
-            if( !new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, rangeLat, rangeLon))
+            if ( !new DB_Manager().ricercaRistorantiPerClassificaEVicinanza(ALR, coo, rangeLat, rangeLon))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
-            for(Restaurant rest : ALR){                      
-                    
-                    if( ! new DB_Manager().cercaRistorante_perId(rest))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    
-                    if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    
-                    if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
-                    
-                    if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+            for (Restaurant rest : ALR) {                                        
+                if( ! new DB_Manager().cercaRistorante_perId(rest))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                    if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-               
-                    if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                    if (!new DB_Manager().cercaPhotos_perRistorante(rest, 2)) {
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    }
-                
-                    if (!new DB_Manager().cercaPhotos_perRistorante(rest, 1)) {
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    }
-                    
+                if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
+
+                if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                if (!new DB_Manager().cercaPhotos_perRistorante(rest, 2))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                               
+                if (!new DB_Manager().cercaPhotos_perRistorante(rest, 1))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);                   
             }
             
             request.setAttribute("listaRistoranti", ALR);
             request.setAttribute("mieCoordinate", coo);
-            request.setAttribute("classifica", classifica);
-            
+            request.setAttribute("classifica", classifica);            
             request.getRequestDispatcher("cercaRistoHomeValue.jsp").forward(request, response);
         } catch (Exception ex) {
             request.setAttribute("error", ex.toString());
@@ -88,5 +77,5 @@ public class ServletGetRistorantiHomeValue extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

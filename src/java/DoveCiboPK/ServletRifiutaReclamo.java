@@ -24,12 +24,8 @@ public class ServletRifiutaReclamo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            
-            
             //RISTORANTE
             Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
@@ -38,23 +34,19 @@ public class ServletRifiutaReclamo extends HttpServlet {
             User u = (User) request.getSession(false).getAttribute("User");
             
             //FILTRO USER
-            if(! u.getRole().equals("1") ){
+            if (! u.getRole().equals("1") ) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
-            }else{  
-            //INSERIMENTO DB
-            if(! new DB_Manager().rifiutaReclamo(idRO))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
-
-            response.sendRedirect("/DoveCiboGit/reclamoRifiutato.jsp");
+            } else {  
+                //INSERIMENTO DB
+                if(! new DB_Manager().rifiutaReclamo(idRO))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+                    response.sendRedirect("/DoveCiboGit/reclamoRifiutato.jsp");
             }
-        
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -65,6 +57,5 @@ public class ServletRifiutaReclamo extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

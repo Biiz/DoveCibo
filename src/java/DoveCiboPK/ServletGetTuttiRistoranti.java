@@ -14,32 +14,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletGetTuttiRistoranti", urlPatterns = {"/ServletGetTuttiRistoranti"})
 public class ServletGetTuttiRistoranti extends HttpServlet {
-
- @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             
-            if( new DB_Manager().tuttiRistoranti(ALR)){
-                for(Restaurant rest : ALR){
-                    if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
+            if ( new DB_Manager().tuttiRistoranti(ALR)) {
+                for (Restaurant rest : ALR){
+                    if ( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
-                    if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
+                    if ( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
                     
-                    if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
+                    if ( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                    if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                    if ( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                
-                     if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                    if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);                    
                 }
-            }else{
+            } else {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
@@ -59,5 +57,5 @@ public class ServletGetTuttiRistoranti extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ServletAggiungiRepile", urlPatterns = {"/ServletAggiungiRepile"})
 public class ServletAggiungiRepile extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -26,60 +25,45 @@ public class ServletAggiungiRepile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
             String description = request.getParameter("descrizione");
-            
-            //Photo photo = new Photo(1); //DA SISTEMARE CON UPLOAD ED INSERIMENTO RIST
 
             //CREATORE
             HttpSession session = request.getSession(false);
             User u = (User) session.getAttribute("User");
             
-
-            
-            //User u = new User(2);
-            //new DB_Manager().cercaUser_perId(u);
-            
             //COMMENTO
             Integer idRew = Integer.parseInt(request.getParameter("commento"));
+            
             //RISTORANETE
             Integer idRes = Integer.parseInt(request.getParameter("ristorante"));
             
             //FILTRO USER
-            
-            if(! new DB_Manager().isOwners_perRistoranti(u, new Restaurant(idRes))){
+            if (! new DB_Manager().isOwners_perRistoranti(u, new Restaurant(idRes))) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
-            }else{            
-            
-            
-            //CREO REP
-            Replies rep = new Replies(null, description, null, null, null, u, idRew);
-            
-            ArrayList <String> check = new ArrayList <String> ();
-            //INSERIMENTO DB
-            if(! new DB_Manager().checkReplies(rep, idRew, check))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            
-            if(check.contains("yes")){
-                request.getRequestDispatcher("repRifiutato.jsp").forward(request, response);
-            }else{
-                if(! new DB_Manager().inserisciRisposta(rep, idRew))
-                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
-                response.sendRedirect("rispostaInviataSuccesso.jsp");
+            } else {            
+                //CREO REP
+                Replies rep = new Replies(null, description, null, null, null, u, idRew);
+                ArrayList <String> check = new ArrayList <String> ();
+                
+                //INSERIMENTO DB
+                if(! new DB_Manager().checkReplies(rep, idRew, check))
+                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+
+                if(check.contains("yes"))
+                    request.getRequestDispatcher("repRifiutato.jsp").forward(request, response);
+                else {
+                    if(! new DB_Manager().inserisciRisposta(rep, idRew))
+                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
+                    response.sendRedirect("rispostaInviataSuccesso.jsp");
+                }
             }
-            }
-        
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -90,6 +74,5 @@ public class ServletAggiungiRepile extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

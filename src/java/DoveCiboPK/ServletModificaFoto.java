@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletModificaFoto", urlPatterns = {"/ServletModificaFoto"})
 public class ServletModificaFoto extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -24,46 +23,36 @@ public class ServletModificaFoto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
-
-        //CREATORE
-        User u = (User) request.getSession(false).getAttribute("User");
+            //CREATORE
+            User u = (User) request.getSession(false).getAttribute("User");
+            
             //RISTORANTE
             Integer idF = Integer.parseInt(request.getParameter("foto"));
             Integer val = Integer.parseInt(request.getParameter("val")); 
-            
-            
-            if((!u.getRole().equals("1")) && (val==2 || val==0)){
+                       
+            if ((!u.getRole().equals("1")) && (val==2 || val==0)) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
-            }else if((!u.getRole().equals("2")) && (val==1)){               //CONTROLLA OWNWER!!! DA FARE
+            } else if ((!u.getRole().equals("2")) && (val==1)) {               //CONTROLLA OWNWER!!! DA FARE
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
-            }else{
-            
-            //INSERIMENTO DB
-            if(! new DB_Manager().updatePhotoVal(idF, val, u))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                 if(u.getRole().equals("1") && val == 0){
-                    response.sendRedirect("confermaDeletePhoto.jsp");
-                 }else if (!u.getRole().equals("1") && val == 1){
-                     response.sendRedirect("confermaSegnalazionePhoto.jsp");
-                 }else if (u.getRole().equals("1") && val == 2){
-                     response.sendRedirect("cancellaNotificaPhoto.jsp");
-                 }
-            
-            }
-        
+            } else {
+                //INSERIMENTO DB
+                if (! new DB_Manager().updatePhotoVal(idF, val, u))
+                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
+                if (u.getRole().equals("1") && val == 0)
+                   response.sendRedirect("confermaDeletePhoto.jsp");
+                else if (!u.getRole().equals("1") && val == 1)
+                    response.sendRedirect("confermaSegnalazionePhoto.jsp");
+                else if (u.getRole().equals("1") && val == 2)
+                    response.sendRedirect("cancellaNotificaPhoto.jsp");           
+            }       
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -74,6 +63,5 @@ public class ServletModificaFoto extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

@@ -15,41 +15,37 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletGetAutoC", urlPatterns = {"/ServletGetAutoC"})
 public class ServletGetAutoC extends HttpServlet {
-
- @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //RICERCA DB
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             HashSet <String> auto = new HashSet<String>();
             
-            if( new DB_Manager().tuttiRistoranti(ALR)){
-                for(Restaurant rest : ALR){
-                    if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
+            if ( new DB_Manager().tuttiRistoranti(ALR)){
+                for (Restaurant rest : ALR){
+                    if ( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
-                    if( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
+                    if ( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
                     
-                    if( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
+                    if ( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                    if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                    if ( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                
-                     if( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                    if ( ! new DB_Manager().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
                      
                     auto.add(rest.getName());
                     auto.add(rest.getCordinate().getAdrers());
                     auto.add(rest.getCordinate().getCity());
                     auto.add(rest.getCordinate().getNazione());
-
                 }
-            }else{
+            } else
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            }
             
             request.setAttribute("auto", auto);
             request.getRequestDispatcher("autocompletamento.jsp").forward(request, response);
@@ -67,5 +63,5 @@ public class ServletGetAutoC extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletRifiutaRisposta", urlPatterns = {"/ServletRifiutaRisposta"})
 public class ServletRifiutaRisposta extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -24,9 +23,7 @@ public class ServletRifiutaRisposta extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //RISTORANTE
             Integer idRO = Integer.parseInt(request.getParameter("idGen"));    
@@ -39,22 +36,17 @@ public class ServletRifiutaRisposta extends HttpServlet {
             if(! u.getRole().equals("1") ){
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
-            }else{  
-            
-            //INSERIMENTO DB
-            if(! new DB_Manager().rifiutaRisposta(idRO))
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
+            } else {  
+                //INSERIMENTO DB
+                if (! new DB_Manager().rifiutaRisposta(idRO))
+                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
 
-            response.sendRedirect("/DoveCiboGit/rispostaRifiutata.jsp");
-            
-            }
-        
+                response.sendRedirect("/DoveCiboGit/rispostaRifiutata.jsp");
+            }    
         } catch (SQLException ex) {
             request.setAttribute("error", ex.toString());
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
-        
-
     }
 
     /**
@@ -65,6 +57,5 @@ public class ServletRifiutaRisposta extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

@@ -20,10 +20,9 @@
         <br><br><br>
         <div class="container">  
             <div class="alert alert-success " role="alert">
-                
                 <div id="tagline">
-                    <h1>Photo cancellata con successo</h1>
-                    <h2>La cancellazione della foto e' andata a buon fine</h2>
+                    <h1>Foto cancellata con successo!</h1>
+                    <h2>La rimozione della foto è andata a buon fine.</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>
@@ -31,8 +30,7 @@
                 <!-- 1° row contenente i bottoni-->
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="btn btn-success btn-lg pull-right" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-home"></span> Torna alla home</button>
-                        
+                        <button class="btn btn-success btn-lg pull-right" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-home"></span>Torna alla Home</button>  
                     </div>
                 </div>
             </div>

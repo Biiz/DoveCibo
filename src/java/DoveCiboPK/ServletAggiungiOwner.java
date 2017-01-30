@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletAggiungiOwner", urlPatterns = {"/ServletAggiungiOwner"})
 public class ServletAggiungiOwner extends HttpServlet {
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -24,11 +23,8 @@ public class ServletAggiungiOwner extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
             //CREATORE
             User user = (User) request.getSession(false).getAttribute("User");
             String NickName = user.getNickname();
@@ -39,8 +35,8 @@ public class ServletAggiungiOwner extends HttpServlet {
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));
             
             //INSERIMENTO DB
-            if(! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()));
-                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
+            if (! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()));
+                request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);        
         } catch (SQLException ex) {
@@ -57,5 +53,5 @@ public class ServletAggiungiOwner extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }
