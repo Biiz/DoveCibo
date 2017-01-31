@@ -26,16 +26,18 @@ public class ServletAggiungiOwner extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //CREATORE
-            User user = (User) request.getSession(false).getAttribute("User");
-            String NickName = user.getNickname();
-            User u = new User(-1, "", "", NickName, "", "", "");
-            new DB_Manager().CheckProfilo(u);
+            User u = (User) request.getSession(false).getAttribute("User");
             
             //RISTORANTE
             Integer idR = Integer.parseInt(request.getParameter("ristorante"));
             
+            //CONTROLLO UTENTE
+            if (u==null) {
+                request.setAttribute("error", "accesso negato");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);  
+            }
             //INSERIMENTO DB
-            if (! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()));
+            else if (! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()));
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
 
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);        

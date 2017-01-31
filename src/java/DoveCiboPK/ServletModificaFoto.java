@@ -32,7 +32,7 @@ public class ServletModificaFoto extends HttpServlet {
             Integer idF = Integer.parseInt(request.getParameter("foto"));
             Integer val = Integer.parseInt(request.getParameter("val")); 
                        
-            if ((!u.getRole().equals("1")) && (val==2 || val==0)) {
+            if ((u==null) || (!u.getRole().equals("1")) && (val==2 || val==0)) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
             } else if ((!u.getRole().equals("2")) && (val==1)) {               //CONTROLLA OWNWER!!! DA FARE

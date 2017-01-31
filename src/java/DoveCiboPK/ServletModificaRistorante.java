@@ -24,7 +24,7 @@ public class ServletModificaRistorante extends HttpServlet {
             User u = (User) request.getSession(false).getAttribute("User");
             
             //FILTRO USER
-            if(! new DB_Manager().isOwners_perRistoranti(u, R)){
+            if((u==null) || ! new DB_Manager().isOwners_perRistoranti(u, R)){
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             }else{ 

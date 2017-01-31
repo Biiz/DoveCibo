@@ -40,7 +40,7 @@ public class ServletAggiungiRepile extends HttpServlet {
             Integer idRes = Integer.parseInt(request.getParameter("ristorante"));
             
             //FILTRO USER
-            if (! new DB_Manager().isOwners_perRistoranti(u, new Restaurant(idRes))) {
+            if ((u==null)||(! new DB_Manager().isOwners_perRistoranti(u, new Restaurant(idRes)))) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             } else {            

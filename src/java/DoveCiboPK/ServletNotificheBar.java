@@ -23,7 +23,7 @@ public class ServletNotificheBar extends HttpServlet {
             if(!new DB_Manager().cercaUser_perId(u))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
         
-            if (! (u.getRole().equals("2") || u.getRole().equals("1")) ) {
+            if ((u==null) ||(! (u.getRole().equals("2") || u.getRole().equals("1"))) ) {
                 request.setAttribute("error", "accesso negato");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);  
             }

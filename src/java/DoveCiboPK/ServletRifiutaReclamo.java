@@ -34,7 +34,7 @@ public class ServletRifiutaReclamo extends HttpServlet {
             User u = (User) request.getSession(false).getAttribute("User");
             
             //FILTRO USER
-            if (! u.getRole().equals("1") ) {
+            if ((u==null) || (! u.getRole().equals("1")) ) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             } else {  

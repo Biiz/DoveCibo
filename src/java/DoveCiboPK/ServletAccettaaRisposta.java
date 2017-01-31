@@ -30,7 +30,7 @@ public class ServletAccettaaRisposta extends HttpServlet {
             User user = new User (-1, "","","","","", "");
 
             //FILTRO USER
-            if(!u.getRole().equals("1")) {
+            if((u==null)||(!u.getRole().equals("1"))) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
             } else {

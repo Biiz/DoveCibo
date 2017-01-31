@@ -23,7 +23,7 @@ public class ServletNotifiche extends HttpServlet {
             HttpSession session = request.getSession(false);
             User u = (User) session.getAttribute("User");
 
-            if (! (u.getRole().equals("2") || u.getRole().equals("1")) ){
+            if ((u==null) || ! (u.getRole().equals("2") || u.getRole().equals("1")) ){
                 request.setAttribute("error", "accesso negato");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);  
             }
@@ -31,7 +31,8 @@ public class ServletNotifiche extends HttpServlet {
             ArrayList <Notifica> ALN = new ArrayList<Notifica>();
             ArrayList <Integer> id = new ArrayList<Integer>();
             ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
-
+ 
+            //NOTIFICHE PER RISTO
             if (u.getRole().equals("2")) {
                 for (Restaurant rest: ALR) {
                     new DB_Manager().setCommenti_perRistorante(rest);
@@ -67,6 +68,7 @@ public class ServletNotifiche extends HttpServlet {
                 }
             }
         
+            //NOTIFICHE ADMIN
             if (u.getRole().equals("1")) {           
                 if (! new DB_Manager().setNotificheRepil_daConfermare(ALN))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
@@ -88,6 +90,7 @@ public class ServletNotifiche extends HttpServlet {
                 } 
             }        
         
+            //ORDINO E MANDO
             ALN.sort(new comparatorNotifiche());
 
             request.setAttribute("notifiche", ALN);

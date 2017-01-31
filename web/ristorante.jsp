@@ -1,3 +1,5 @@
+<%@page import="java.util.concurrent.TimeUnit"%>
+<%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.sql.Date"%>
 <%@page import="DoveCiboPK.User"%>
@@ -222,11 +224,24 @@
                             </form>
                         </div>
 
-                        <% Date d = new Date(10); 
-                           if (!risposta1[0].equals("yes")) {%>
+                        <% if (!risposta1[0].equals("yes")) {%>
+                           
+                        <%  Date gc = new Date( new GregorianCalendar().getTimeInMillis());
+                            Date dCommento = gc;
+                            for(Review rev : R.getReviews()){
+                                if(thisUser == rev.getCreator() && rev.getDate_creation().before(dCommento)){
+                                    dCommento = rev.getDate_creation();
+                                }  
+                            }
+                            Long diff = gc.getTime()-dCommento.getTime();
+                            Long dd = TimeUnit.MILLISECONDS.toDays(diff);
+                            if (dd>1){
+                            %>
                         <div class="col-md-4 bottom-align-text">
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>
                         </div>
+                        <%  }  %>   
+                           
                         <div class="col-md-2 bottom-align-text">    
                             <form method="POST" action="ServletReclamaRistorante" >
                                 <input type="hidden" name="ristorante" value="<%=R.getId()%>">

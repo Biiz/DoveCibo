@@ -28,10 +28,14 @@ public class ServletReclamaRistorante extends HttpServlet {
             //CREATORE
             User u = (User) request.getSession(false).getAttribute("User");
             //RISTORANTE
-            Integer idR = Integer.parseInt(request.getParameter("ristorante"));            
+            Integer idR = Integer.parseInt(request.getParameter("ristorante"));       
             
+            if (u==null) {
+                request.setAttribute("error", "accesso negato");
+                request.getRequestDispatcher("errore.jsp").forward(request, response);  
+            }
             //INSERIMENTO DB
-            if (! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
+            else if (! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
             response.sendRedirect("confermaReclamo.jsp");       

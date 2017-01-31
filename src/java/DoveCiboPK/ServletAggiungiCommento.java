@@ -42,6 +42,11 @@ public class ServletAggiungiCommento extends HttpServlet {
                 //CREATORE
                 HttpSession session = request.getSession(false);
                 User u = (User) session.getAttribute("User");
+                
+                if (u==null) {
+                    request.setAttribute("error", "accesso negato");
+                    request.getRequestDispatcher("errore.jsp").forward(request, response);  
+                }
 
                 //RISTORANTE
                 Integer idR = Integer.parseInt(request.getParameter("ristorante"));
