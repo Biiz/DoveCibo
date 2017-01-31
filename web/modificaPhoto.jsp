@@ -4,27 +4,14 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/modificaPhoto.css" />        
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <style>
-            body {
-                background-image: url("Sfondi/img (7)b.jpg");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-            }
-            .colonna2{
-                background-color: rgba(255, 255, 255, 0.75);
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
-                border-radius: 5px;
-            }
-        </style>
     </head>
 
     <body style="padding-top: 70px;">

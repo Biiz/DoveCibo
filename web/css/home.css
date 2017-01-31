@@ -1,0 +1,22 @@
+/* 
+    Author     : Giacomo Barbieri
+*/
+
+body {
+    background-image: url('Sfondi/img (1)big.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1 {
+    /* text-shadow: 5px 5px 13px black; */
+}
+
+iframe {
+    background-color: transparent;
+    border-radius: 15px;
+    border-style: inset;
+    border-color: transparent;
+    border-image: initial;
+}

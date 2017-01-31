@@ -1,0 +1,21 @@
+/* 
+    Author     : Giacomo Barbieri
+*/
+
+body {
+    background-image: url("Sfondi/img (7)b.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}

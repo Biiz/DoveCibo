@@ -17,6 +17,7 @@
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/ristorante.css" />
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
@@ -25,55 +26,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <style>
-            .btn-like {
-                padding: 14px 24px;
-                border: 0 none;
-                font-weight: 700;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
-
-            .btn-like:focus, .btn-like:active:focus, .btn-like.active:focus {
-                outline: 0 none;
-            }
-
-            .btn-default {
-                background: rgba(255, 255, 255, 0);
-                color: none;
-            }
-
-            .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-                color: #0099ff;
-                background-color: rgba(255, 255, 255, 0);
-            }
-
-            .btn-default:active, .btn-default.active {
-                background: rgba(255, 255, 255, 0);
-                box-shadow: white;
-            }
-
-            #myCarousel img {
-                /*min-width: 400px;*/
-                max-width: 600px;
-                height: auto;
-                max-height: 300px;
-                margin: auto;
-            }
-
-            body {
-                background-image: url("Sfondi/img (7)b.jpg");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-            }
-            .colonna2{
-                background-color: rgba(255, 255, 255, 0.80);
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
-                border-radius: 5px;
-            }
-        </style>
     </head>
 
     <body style="padding-top: 70px;">

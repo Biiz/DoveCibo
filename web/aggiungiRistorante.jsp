@@ -7,97 +7,17 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./bootstrap-slider/bootstrap-slider.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/aggiungiRistorante.css" />
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
         <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
+        <script> $("#ex2").slider(); </script>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <style>
-            .colonna2{
-                background-color: rgba(255, 255, 255, 0.80);
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
-                border-radius: 5px;
-            }
-            body {
-                background-image: url("Sfondi/img (7)b.jpg");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-                color: #000000;
-            }
-
-            .funkyradio div {
-                clear: both;
-                /*margin: 0 50px;*/
-                overflow: hidden;
-            }
-            .funkyradio label {
-                /*min-width: 400px;*/
-                width: 100%;
-                border-radius: 3px;
-                border: 1px solid #808080;
-                font-weight: normal;
-            }
-            .funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty {
-                display: none;
-            }
-            .funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty ~ label {
-                position: relative;
-                line-height: 2.2em;
-                text-indent: 3.25em;
-
-                cursor: pointer;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            .funkyradio input[type="radio"]:empty ~ label:before, .funkyradio input[type="checkbox"]:empty ~ label:before {
-                position: absolute;
-                display: block;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                content:'';
-                width: 2.5em;
-                background: #D1D3D4;
-                border-radius: 3px 0 0 3px;
-            }
-            .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-                content:'\2714';
-                text-indent: .9em;
-                color: #C2C2C2;
-            }
-            .funkyradio input[type="radio"]:hover:not(:checked) ~ label, .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-                color: #888;
-            }
-            .funkyradio input[type="radio"]:checked ~ label:before, .funkyradio input[type="checkbox"]:checked ~ label:before {
-                content:'\2714';
-                text-indent: .9em;
-                color: #333;
-                background-color: #ccc;
-            }
-            .funkyradio input[type="radio"]:checked ~ label, .funkyradio input[type="checkbox"]:checked ~ label {
-                color: #000000;
-                background-color: #ccf2ff;
-            }
-            .funkyradio input[type="radio"]:focus ~ label:before, .funkyradio input[type="checkbox"]:focus ~ label:before {
-                box-shadow: 0 0 0 3px #999;
-            }
-            .funkyradio-info input[type="radio"]:checked ~ label:before, .funkyradio-info input[type="checkbox"]:checked ~ label:before {
-                color: #fff;
-                background-color: #5bc0de;
-                padding-top: 3px;
-                padding-bottom: 3px;
-            }
-        </style>
-
-        <script> $("#ex2").slider(); </script>
     </head>
     
     <body style="padding-top: 70px;">
@@ -239,11 +159,11 @@
                         <!-- 5° row-->
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="comment">Orari di apertura Pranzo:</label>
+                                <label for="comment">Orari di apertura a pranzo:</label>
                                 <br>
 
                                 <div class="col-md-3">
-                                    <label for="sel1"> Da, ore:</label>
+                                    <label for="sel1">Dalle ore</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="StMh">
@@ -255,7 +175,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="sel1">minuti:</label>
+                                    <label for="sel1">minuti</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="StMm">
@@ -267,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="sel1">A ore:</label>
+                                    <label for="sel1">Alle ore</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="FtMh">
@@ -279,7 +199,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="sel1">minuti:</label>
+                                    <label for="sel1">minuti</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="FtMm">
@@ -296,11 +216,11 @@
                         <!-- 5° row-->
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="comment">Orari di apertura Cena</label>
+                                <label for="comment">Orari di apertura a cena:</label>
                                 <br>
 
                                 <div class="col-md-3">
-                                    <label for="sel1"> Da, ore:</label>
+                                    <label for="sel1"> Dalle ore</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="StPh">
@@ -312,7 +232,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="sel1">minuti:</label>
+                                    <label for="sel1">minuti</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="StPm">
@@ -324,7 +244,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="sel1">A ore:</label>
+                                    <label for="sel1">Alle ore</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="FtPh">
@@ -335,7 +255,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="sel1">minuti:</label>
+                                    <label for="sel1">minuti</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                         <select class="form-control" id="sel1" name="FtPm">

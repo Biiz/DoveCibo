@@ -8,31 +8,13 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-
+        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/home.css" />
+        
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
         <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <style>
-            body {
-                background-image: url('Sfondi/img (1)big.jpeg');
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-            }
-            h1 {
-                /* text-shadow: 5px 5px 13px black; */
-            }
-            iframe {
-                background-color: transparent;
-                border-radius: 15px;
-                border-style: inset;
-                border-color: transparent;
-                border-image: initial;
-            }
-        </style>
     </head>
     <body>
         <%@ include file="navBar.jsp" %>
@@ -123,7 +105,7 @@
             <div class="row" style="margin-top: 15%;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
-                    <h2 style="color: black; font-size: 30px;">Scegli tipologia di ricerca</h2>
+                    <h2 style="color: black; font-size: 30px;">Scegli la tipologia di ricerca</h2>
                     <div class="row">
                         <div class="col-md-12">
                         <button class="btn btn-default" onClick="showGeneral()">Generale</button>
@@ -163,7 +145,7 @@
                     <p class="text-center"><b>Oppure</b></p>
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo()" >Genera coordinate Geolocalizzate</button>
+                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo()" >Genera coordinate geolocalizzate</button>
                         </div>
                     </div>
                     <form action="ServletGetRistorantiHomeCucine" method="post">
@@ -223,7 +205,7 @@
                     <p class="text-center"><b>Oppure</b></p>
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo2()" >Genera coordinate Geolocalizzate</button>
+                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo2()" >Genera coordinate geolocalizzate</button>
                         </div>
                     </div>
                     <form action="ServletGetRistorantiHomeValue" method="post">

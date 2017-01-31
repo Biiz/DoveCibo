@@ -8,6 +8,7 @@
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">        
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/cercaRistoranti.css" />
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
@@ -18,74 +19,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <style>
-            html { 
-                overflow-wrap: break-word;
-                word-break: break-word; /* old webkit */
-            }
-            body {
-                background-image: url("Sfondi/img (7)b.jpg");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-            }
-            .product .img-responsive {
-                margin: 0 auto;
-            }
-            /* centered columns styles */
-            .row-centered {
-                text-align:center;
-            }
-            .col-centered {
-                display:inline-block;
-                float:none;
-                /* reset the text-align */
-                text-align:left;
-                /* inline-block space fix */
-                margin-right:-4px;
-            }
-            .col-fixed {
-                /* custom width */
-                width:320px;
-            }
-            .col-min {
-                /* custom min width */
-                min-width:320px;
-            }
-            .col-max {
-                /* custom max width */
-                max-width:320px;
-            }
-            .colonna2{
-                background-color: rgba(255, 255, 255, 0.80);
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
-                border-radius: 5px;
-            }
-            .colonna1{
-                max-width: 70%;
-                margin-bottom: 25px;
-            }
-            div.polaroid {
-                text-align: center;
-            }
-            div.polaroid:hover{
-                box-shadow: 0px 0px 20px 0 rgba(255, 255, 255, 1);
-                overflow: visible;
-                z-index: auto;
-                -webkit-margin-before: 0;
-                -webkit-margin-after: 0;
-                -webkit-margin-start: 0;
-                -webkit-margin-end: 10px;
-            }
-            div.container {
-                padding: 10px;
-            }
-            #no-rounded{
-                border-bottom-right-radius: 0px;
-                border-bottom-left-radius: 0px;
-            }
-        </style>
     </head>
     
     <body style="padding-top: 70px;">
