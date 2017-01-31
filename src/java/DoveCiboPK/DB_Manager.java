@@ -16,7 +16,7 @@ import java.util.List;
 public class DB_Manager {
     Connection con;
     final String DRIVER = "org.postgresql.Driver"; //Nome del driver
-    final String DB_NAME = "jdbc:postgresql://localhost:5432/postgres"; //Nome del database completo di percorso
+    final String DB_NAME = "jdbc:postgresql://localhost:5432/DoveCibo"; //Nome del database completo di percorso
     final String DB_USER = "postgres"; // Nome utente
     final String DB_PASSWORD = "postgres"; //Password
     private String errore = "";

@@ -150,6 +150,13 @@ INSERT INTO CUISINES (ID, NAME) VALUES (4,'disco restaurant');
 INSERT INTO CUISINES (ID, NAME) VALUES (5,'straniera');
 INSERT INTO CUISINES (ID, NAME) VALUES (6,'altro');
 
-INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'admin_name', 'admin_sur', 'admin', 'admin@admin.admin', 'admin', '1', 0);
-INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'risto_name', 'risto_sur', 'risto', 'risto@risto.risto', 'risto', '3', 0);
-INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'user_name', 'user_sur', 'user', 'user@user.user', 'user', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Admin', 'Admin', 'Admin', 'admin@admin.admin', 'admin', '1', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Stefano', 'Postal', 'Postal', 'postal@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Giorgio', 'Alberti', 'Alberti', 'alberti@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Giacomo', 'Barbieri', 'Barbieri', 'barbieri@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Claudio', 'Bizzotto', 'Bizzotto', 'bizzotto@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Michael', 'Dolanzi', 'Dolanzi', 'dolanzi@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Andrea', 'Nardelli', 'Nardelli', 'nardelli@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Valentino', 'Miori', 'Miori', 'miori@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Alessandro', 'Sentelli', 'Sentelli', 'sentelli@user.user', 'password', '3', 0);
+INSERT INTO users(id,name,surname,nickname,email,password,role,LOVE) VALUES(DEFAULT, 'Mario', 'Rossi', 'Rossi', 'rossi@user.user', 'password', '3', 0);
