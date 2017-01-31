@@ -49,19 +49,15 @@ public class ServletUpload extends HttpServlet {
                     1 * 1024 * 1024,
                     "ISO-8859-1",
                     new DefaultFileRenamePolicy());
-            //String encoded = Base64.encode(FileUtils.readFileToByteArray(m.getFile(strPath)));
-            //String encoded = Base64.getEncoder().withoutPadding().encodeToString(FileUtil‌​s.readFileToByteArra‌​y(strPath));
             
             Integer idR = Integer.parseInt(m.getParameter("idR"));
             Integer idU = Integer.parseInt(m.getParameter("idU"));
-
+            //metodi di Oreally per ottenere le caratteristiche del files
             Enumeration files = m.getFileNames();
             String name = (String) files.nextElement();
             String filename = m.getFilesystemName(name);
             System.out.println("nome file caricato: " + filename);
             String path_name = strPath + File.separator + m.getFilesystemName(name);
-            //String base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(Paths.get(path_name)));
-            //System.out.println("\n\nlunghezza: " + base64.length());
 
             if (!new DB_Manager().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
                 request.setAttribute("error", "Errore connessione database");
