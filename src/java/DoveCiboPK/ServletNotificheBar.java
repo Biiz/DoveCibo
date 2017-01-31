@@ -1,5 +1,13 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_GestioneUser;
+import database.DB_Replies;
+import database.DB_RestaurantOwner;
+import database.DB_Reviews;
+import database.DB_RestaurantPhoto;
+import database.DB_Notifica;
+import database.DB_GestioneRestaurant;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +28,7 @@ public class ServletNotificheBar extends HttpServlet {
         try {
             //USER
             User u = new User(Integer.parseInt(request.getParameter("idU")));
-            if(!new DB_Manager().cercaUser_perId(u))
+            if(!new DB_GestioneUser().cercaUser_perId(u))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
         
             if ((u==null) ||(! (u.getRole().equals("2") || u.getRole().equals("1"))) ) {
@@ -31,19 +39,19 @@ public class ServletNotificheBar extends HttpServlet {
             ArrayList <Notifica> ALN = new ArrayList<Notifica>();
             ArrayList <Notifica> notifica = new ArrayList<Notifica>();
             ArrayList <Integer> id = new ArrayList<Integer>();
-            ArrayList <Restaurant> ALR = new DB_Manager().cercaRistoranti_perOwner(u);
+            ArrayList <Restaurant> ALR = new DB_RestaurantOwner().cercaRistoranti_perOwner(u);
             
             if(u.getRole().equals("2")) {
                 for(Restaurant rest: ALR) {
-                    new DB_Manager().setCommenti_perRistorante(rest);
-                    new DB_Manager().cercaRistorante_perId(rest);
+                    new DB_Reviews().setCommenti_perRistorante(rest);
+                    new DB_GestioneRestaurant().cercaRistorante_perId(rest);
 
                     for (Review rev: rest.getReviews()) {
-                        if (!new DB_Manager().setRepli(rev))
+                        if (!new DB_Replies().setRepli(rev))
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
                         if (rev.getRepile() == null) {
-                            new DB_Manager().cercaUser_perId(rev.getCreator());
+                            new DB_GestioneUser().cercaUser_perId(rev.getCreator());
                             id.add(rest.getId());
                             ALN.add(new Notifica("<p>COMMETO</p>"+
                                                  "<p>ristorante: <b>"+rest.getName()+"</b></p>", 
@@ -51,9 +59,9 @@ public class ServletNotificheBar extends HttpServlet {
                         }
                     }
 
-                    new DB_Manager().cercaPhotos_perRistorante(rest, 2);
+                    new DB_RestaurantPhoto().cercaPhotos_perRistorante(rest, 2);
                     for (Photo ph: rest.getPhotos()) {
-                        new DB_Manager().cercaUser_perId(ph.getOwner());
+                        new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         if (!ph.getOwner().getRole().equals("1")) {
                             ALN.add( new Notifica("<p>NEW PHOTO</p> "
                                                  +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
@@ -67,21 +75,21 @@ public class ServletNotificheBar extends HttpServlet {
             }
         
             if (u.getRole().equals("1")) {
-                if (! new DB_Manager().setNotificheRepil_daConfermareNoLink(ALN))
+                if (! new DB_Notifica().setNotificheRepil_daConfermareNoLink(ALN))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);            
 
-                if (! new DB_Manager().setNotificheReclamoNoLink(ALN))
+                if (! new DB_Notifica().setNotificheReclamoNoLink(ALN))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
 
                 ArrayList <Photo> ARP = new ArrayList<Photo>();
 
-                if (! new DB_Manager().cercaPhotos(ARP, 1))
+                if (! new DB_RestaurantPhoto().cercaPhotos(ARP, 1))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response); 
 
                 for (Photo ph: ARP){
-                        new DB_Manager().cercaUser_perId(ph.getOwner());
+                        new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         Restaurant res = new Restaurant (ph.getId_Restaurant());
-                        new DB_Manager().cercaRistorante_perId(res);
+                        new DB_GestioneRestaurant().cercaRistorante_perId(res);
                         ALN.add( new Notifica("<p>SEGNALAZIONE PHOTO<p> "
                                              +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+res.getId()+" '>"+res.getName()+"</a></b></p>",ph, "invalidaFoto", ph.getId(), ph.getOwner()));
                 }

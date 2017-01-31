@@ -45,11 +45,11 @@ public class Photo {
         this.id = id;
     }
 
-    protected void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     
-    protected void setId_Restaurant(Integer id_Restaurant) {
+    public void setId_Restaurant(Integer id_Restaurant) {
         this.id_Restaurant = id_Restaurant;
     }
 
@@ -57,15 +57,15 @@ public class Photo {
         this.description = description;
     }
 
-    protected void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    protected void setOwner(User owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 
-    protected void setPath(String phat) {
+    public void setPath(String phat) {
         this.path = path;
     }
 

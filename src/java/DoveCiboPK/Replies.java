@@ -49,11 +49,11 @@ public class Replies {
         return idReview;
     }
     
-    protected void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    protected void setDate_creation(Date date_creation) {
+    public void setDate_creation(Date date_creation) {
         this.date_creation = date_creation;
     }
 

@@ -56,6 +56,50 @@
         <servlet-name>ServletModificaRistorante</servlet-name>
         <servlet-class>DoveCiboPK.ServletModificaRistorante</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DB_GestioneUser</servlet-name>
+        <servlet-class>database.DB_GestioneUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_RestaurantOwner</servlet-name>
+        <servlet-class>database.DB_RestaurantOwner</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_RestaurantPhoto</servlet-name>
+        <servlet-class>database.DB_RestaurantPhoto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_GestioneRestaurant</servlet-name>
+        <servlet-class>database.DB_GestioneRestaurant</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_Notifiche</servlet-name>
+        <servlet-class>database.DB_Notifiche</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_Notifica</servlet-name>
+        <servlet-class>database.DB_Notifica</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_Reviews</servlet-name>
+        <servlet-class>database.DB_Reviews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_Replies</servlet-name>
+        <servlet-class>database.DB_Replies</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_OrariRestaurant</servlet-name>
+        <servlet-class>database.DB_OrariRestaurant</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_CuisineRestaurant</servlet-name>
+        <servlet-class>database.DB_CuisineRestaurant</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DB_PriceRestaurant</servlet-name>
+        <servlet-class>database.DB_PriceRestaurant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>testSession</servlet-name>
         <url-pattern>/testSession</url-pattern>
@@ -111,6 +155,50 @@
     <servlet-mapping>
         <servlet-name>ServletModificaRistorante</servlet-name>
         <url-pattern>/ServletModificaRistorante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_GestioneUser</servlet-name>
+        <url-pattern>/DB_GestioneUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_RestaurantOwner</servlet-name>
+        <url-pattern>/DB_RestaurantOwner</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_RestaurantPhoto</servlet-name>
+        <url-pattern>/DB_RestaurantPhoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_GestioneRestaurant</servlet-name>
+        <url-pattern>/DB_GestioneRestaurant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_Notifiche</servlet-name>
+        <url-pattern>/DB_Notifiche</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_Notifica</servlet-name>
+        <url-pattern>/DB_Notifica</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_Reviews</servlet-name>
+        <url-pattern>/DB_Reviews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_Replies</servlet-name>
+        <url-pattern>/DB_Replies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_OrariRestaurant</servlet-name>
+        <url-pattern>/DB_OrariRestaurant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_CuisineRestaurant</servlet-name>
+        <url-pattern>/DB_CuisineRestaurant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DB_PriceRestaurant</servlet-name>
+        <url-pattern>/DB_PriceRestaurant</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

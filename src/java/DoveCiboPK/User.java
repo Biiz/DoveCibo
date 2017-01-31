@@ -28,11 +28,11 @@ public class User {
         this.role = role;
     }
 
-    protected void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    protected void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -41,27 +41,27 @@ public class User {
         this.password = password;
     }
 
-    protected void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    protected void setNickname(String nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    protected void setSurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
     
-    protected void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    protected void setRole(String role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    protected void setLike(Integer like) {
+    public void setLike(Integer like) {
         this.like = like;
     }
     

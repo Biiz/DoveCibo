@@ -1,11 +1,17 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_OrariRestaurant;
+import database.DB_GestioneRestaurant;
+import database.DB_PriceRestaurant;
+import database.DB_CuisineRestaurant;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import database.DB_Coordinate;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -63,7 +69,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
 
 
             //INSERISCI RISTORANTE
-            if (new DB_Manager().inserisciRistorante(restaurant)) {
+            if (new DB_GestioneRestaurant().inserisciRistorante(restaurant)) {
                 coordinate.setId_resturant(restaurant.getId());
                 dh.setId_restaurant(restaurant.getId());
                 priceRange.setId_restaurant(restaurant.getId());
@@ -72,17 +78,17 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             }
             
             //INSERISCI PRICERANGE
-            if (!(new DB_Manager()).inserisciPrice_range(priceRange)) {
+            if (!(new DB_PriceRestaurant()).inserisciPrice_range(priceRange)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
             //INSERISCI COORDINATE
-            if (!(new DB_Manager().inserisciCoordinate(coordinate))) {
+            if (!(new DB_Coordinate().inserisciCoordinate(coordinate))) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
             //INSERISCI ORARI
-            if (!new DB_Manager().inserisciOrario(dh)) {
+            if (!new DB_OrariRestaurant().inserisciOrario(dh)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
                 
@@ -100,7 +106,7 @@ public class ServletStampaTuttoRistorante extends HttpServlet {
             //ciclo l'array
             for (int i = 1; i < 7; i++) {
                 if (cucine_arr_string[i] != null) {
-                    if (!new DB_Manager().inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i)) {
+                    if (!new DB_CuisineRestaurant().inserisciRelazioneCuisinesRestaurant(restaurant.getId(), i)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
                 }

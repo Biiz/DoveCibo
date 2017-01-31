@@ -1,5 +1,6 @@
 package DoveCiboPK;
 
+import database.DB_GestioneUser;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,12 +37,12 @@ public class UserUpdate extends HttpServlet {
                 User user = (User) session.getAttribute("User");
                 String nickName = user.getNickname();
                 User u1 = new User(-1,"","",nickName,"","","");
-                if (!(new DB_Manager()).CheckProfilo(u1))
+                if (!(new DB_GestioneUser()).CheckProfilo(u1))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
                 //PRECONDIZIONI DB
                 if(!u1.getEmail().equals(email)) {
-                    if ((new DB_Manager()).emailEsistente(email)) {
+                    if ((new DB_GestioneUser()).emailEsistente(email)) {
                         request.setAttribute("error", "Attenzione, l'email inserita non è valida!");
                         request.getRequestDispatcher("errore.jsp").forward(request, response);
                     }
@@ -54,9 +55,9 @@ public class UserUpdate extends HttpServlet {
                 u.setNickname(nickName);
                 u.setPassword(password);
 
-                if ((new DB_Manager()).modificaAccount(u, nickName)) {
+                if ((new DB_GestioneUser()).modificaAccount(u, nickName)) {
                     new SendEmail_Modifica_Profilo(name, surname, email, nickName, password);
-                    if (!(new DB_Manager()).CheckProfilo(u))
+                    if (!(new DB_GestioneUser()).CheckProfilo(u))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
                     session.invalidate();

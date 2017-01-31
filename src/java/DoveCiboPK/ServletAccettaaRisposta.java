@@ -1,5 +1,8 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_GestioneUser;
+import database.DB_Replies;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -38,13 +41,13 @@ public class ServletAccettaaRisposta extends HttpServlet {
                 Integer idR = Integer.parseInt(request.getParameter("idGen"));            
 
                 //INSERIMENTO DB
-                if (! new DB_Manager().updateRepli(idR, u))
+                if (! new DB_Replies().updateRepli(idR, u))
                      request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (! new DB_Manager().findUserRepli(idR, u, user))
+                if (! new DB_GestioneUser().findUserRepli(idR, u, user))
                      request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (! new DB_Manager().deleteRepli(user))
+                if (! new DB_Replies().deleteRepli(user))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
                 response.sendRedirect("/DoveCiboGit/rispostaAccettata.jsp");

@@ -1,5 +1,6 @@
 package DoveCiboPK;
 
+import database.DB_Notifica;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -39,7 +40,7 @@ public class ServletRifiutaReclamo extends HttpServlet {
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             } else {  
                 //INSERIMENTO DB
-                if(! new DB_Manager().rifiutaReclamo(idRO))
+                if(! new DB_Notifica().rifiutaReclamo(idRO))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
                     response.sendRedirect("/DoveCiboGit/reclamoRifiutato.jsp");
             }

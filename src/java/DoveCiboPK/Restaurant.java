@@ -40,15 +40,15 @@ public class Restaurant {
 
     }
 
-    protected void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    protected void addOwner(User owner) {
+    public void addOwner(User owner) {
         this.owners.add(owner);
     }
 
-    protected void setN_reviews(Integer n_reviews) {
+    public void setN_reviews(Integer n_reviews) {
         this.n_reviews = n_reviews;
     }
 
@@ -118,7 +118,7 @@ public class Restaurant {
         return reviews;
     }
 
-    protected void setPhoto(Photo photo) {
+    public void setPhoto(Photo photo) {
         this.photos.add(photo);
     }
 
@@ -138,7 +138,7 @@ public class Restaurant {
     
     
 
-    protected void setAltro(String description, Float global_value, 
+    public void setAltro(String description, Float global_value, 
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c, Day_hours dh) {
         this.description = description;
         this.global_value = global_value;

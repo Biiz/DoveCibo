@@ -1,5 +1,9 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_Reviews;
+import database.DB_GestioneRestaurant;
+import database.DB_RestaurantPhoto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -46,15 +50,15 @@ public class Riempi {
         
         ArrayList <Restaurant> ALRes = new ArrayList();
         
-        new DB_Manager().cercaTuttiRes(ALRes);
+        new DB_GestioneRestaurant().cercaTuttiRes(ALRes);
         
         for (Restaurant res : ALRes) {
             for (Review rev : ALRev) {
-                new DB_Manager().inserisciReview(rev, res.getId());
+                new DB_Reviews().inserisciReview(rev, res.getId());
             }
             for (Photo ph : ALPh) {
                 if(ph.getOwner().getId() % 5 == 0)
-                    new DB_Manager().inserisciPhoto(ph, res.getId());
+                    new DB_RestaurantPhoto().inserisciPhoto(ph, res.getId());
             }
         }
         

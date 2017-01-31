@@ -1,5 +1,6 @@
 package DoveCiboPK;
 
+import database.DB_GestioneUser;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,10 +27,10 @@ public class ServletRecuperoCredenziali extends HttpServlet {
         try {
             String email = request.getParameter("email");
            
-            if ((new DB_Manager()).emailEsistente(email)) {
+            if ((new DB_GestioneUser()).emailEsistente(email)) {
                 User u = new User (-1,"","","",email,"","");
             
-                if(!(new DB_Manager()).CheckEmail(u))
+                if(!(new DB_GestioneUser()).CheckEmail(u))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
                 new SendEmail_Recupero_credenziali(u.getName(), u.getSurname(), u.getEmail(), u.getNickname(), u.getPassword());

@@ -51,15 +51,15 @@ public class Notifica {
     }
 
 
-    protected void setData(Date data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
-    protected void setDescrizione(String descrizione) {
+    public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
 
-    protected void setFoto(Photo foto) {
+    public void setFoto(Photo foto) {
         this.foto = foto;
     }
 

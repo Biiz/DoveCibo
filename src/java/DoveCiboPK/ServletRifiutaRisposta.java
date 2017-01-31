@@ -1,6 +1,7 @@
 package DoveCiboPK;
 
 import java.io.IOException;
+import database.DB_Notifica;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +39,7 @@ public class ServletRifiutaRisposta extends HttpServlet {
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             } else {  
                 //INSERIMENTO DB
-                if (! new DB_Manager().rifiutaRisposta(idRO))
+                if (! new DB_Notifica().rifiutaRisposta(idRO))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
 
                 response.sendRedirect("/DoveCiboGit/rispostaRifiutata.jsp");

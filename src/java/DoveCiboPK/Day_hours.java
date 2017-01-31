@@ -78,39 +78,39 @@ public class Day_hours {
         return end_M_P;
     }
 
-    protected void setId_restaurant(Integer id_restaurant) {
+    public void setId_restaurant(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
     }
 
-    protected void setStart_H_M(Integer start_H_M) {
+    public void setStart_H_M(Integer start_H_M) {
         this.start_H_M = start_H_M;
     }
 
-    protected void setStart_M_M(Integer start_M_M) {
+    public void setStart_M_M(Integer start_M_M) {
         this.start_M_M = start_M_M;
     }
 
-    protected void setEnd_H_M(Integer end_H_M) {
+    public void setEnd_H_M(Integer end_H_M) {
         this.end_H_M = end_H_M;
     }
 
-    protected void setEnd_M_M(Integer end_M_M) {
+    public void setEnd_M_M(Integer end_M_M) {
         this.end_M_M = end_M_M;
     }
 
-    protected void setStart_H_P(Integer start_H_P) {
+    public void setStart_H_P(Integer start_H_P) {
         this.start_H_P = start_H_P;
     }
 
-    protected void setStart_M_P(Integer start_M_P) {
+    public void setStart_M_P(Integer start_M_P) {
         this.start_M_P = start_M_P;
     }
 
-    protected void setEnd_H_P(Integer end_H_P) {
+    public void setEnd_H_P(Integer end_H_P) {
         this.end_H_P = end_H_P;
     }
 
-    protected void setEnd_M_P(Integer end_M_P) {
+    public void setEnd_M_P(Integer end_M_P) {
         this.end_M_P = end_M_P;
     }
 

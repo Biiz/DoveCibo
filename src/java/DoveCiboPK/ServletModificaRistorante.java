@@ -1,9 +1,16 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_RestaurantOwner;
+import database.DB_GestioneRestaurant;
+import database.DB_OrariRestaurant;
+import database.DB_PriceRestaurant;
+import database.DB_CuisineRestaurant;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import database.DB_Coordinate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +31,7 @@ public class ServletModificaRistorante extends HttpServlet {
             User u = (User) request.getSession(false).getAttribute("User");
             
             //FILTRO USER
-            if((u==null) || ! new DB_Manager().isOwners_perRistoranti(u, R)){
+            if((u==null) || ! new DB_RestaurantOwner().isOwners_perRistoranti(u, R)){
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             }else{ 
@@ -42,7 +49,7 @@ public class ServletModificaRistorante extends HttpServlet {
             
             //UPDATE ORARI
             dh.setId_restaurant(R.getId());
-            if (!new DB_Manager().updateOrario(dh)) {
+            if (!new DB_OrariRestaurant().updateOrario(dh)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
@@ -53,7 +60,7 @@ public class ServletModificaRistorante extends HttpServlet {
             
             //UPDATE PRICE RANGE 
             priceRange.setId_restaurant(R.getId());
-            if (!new DB_Manager().updatePriceRange(priceRange)) {
+            if (!new DB_PriceRestaurant().updatePriceRange(priceRange)) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
@@ -68,7 +75,7 @@ public class ServletModificaRistorante extends HttpServlet {
             
             //UPDATE COORDINATE
             coordinate.setId_resturant(R.getId());
-            if (!(new DB_Manager().updateCoordinate(coordinate))) {
+            if (!(new DB_Coordinate().updateCoordinate(coordinate))) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
@@ -84,7 +91,7 @@ public class ServletModificaRistorante extends HttpServlet {
                     null);
             
             //UPDATE NAME, LINK, DESCRIPTION
-            if (!(new DB_Manager().updateRestaurant(restaurant))) {
+            if (!(new DB_GestioneRestaurant().updateRestaurant(restaurant))) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
@@ -98,14 +105,14 @@ public class ServletModificaRistorante extends HttpServlet {
             cucine_arr_string[6] = request.getParameter("cb6");
             
             //REMOVE CUISINE
-            if (!new DB_Manager().removeCuisine(R.getId())) {
+            if (!new DB_CuisineRestaurant().removeCuisine(R.getId())) {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
             
             //UPDATE CUISINE
             for (int i = 1; i < 7; i++) {
                 if (cucine_arr_string[i] != null) {
-                    if (!new DB_Manager().inserisciRelazioneCuisinesRestaurant(R.getId(), i)) {
+                    if (!new DB_CuisineRestaurant().inserisciRelazioneCuisinesRestaurant(R.getId(), i)) {
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     }
                 }

@@ -65,31 +65,31 @@ public class Coordinate {
         return id_resturant;
     }
 
-    protected void setId_resturant(Integer id_resturant) {
+    public void setId_resturant(Integer id_resturant) {
         this.id_resturant = id_resturant;
     }
 
-    protected void setAdrers(String adrers) {
+    public void setAdrers(String adrers) {
         this.adrers = adrers;
     }
     
-    protected void setNumero(Integer numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
     
-    protected void setCity(String city) {
+    public void setCity(String city) {
         this.city = city;
     }
     
-    protected void setNazione(String nazione) {
+    public void setNazione(String nazione) {
         this.nazione = nazione;
     }
 
-    protected void setLatitude(Float latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
-    protected void setLongitude(Float longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
     

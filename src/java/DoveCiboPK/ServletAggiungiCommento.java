@@ -1,7 +1,10 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_GestioneRestaurant;
 import java.io.IOException;
 import java.sql.SQLException;
+import database.DB_Reviews;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,27 +58,27 @@ public class ServletAggiungiCommento extends HttpServlet {
                 Review rew = new Review(null, global_v, food, service, value_for_money, atmospere, name, description, null, 0, u);
                
                 //INSERIMENTO DB
-                if (!new DB_Manager().inserisciReview(rew, idR))
+                if (!new DB_Reviews().inserisciReview(rew, idR))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().increaseReviewRestaurant(new Restaurant(idR)))
+                if (!new DB_Reviews().increaseReviewRestaurant(new Restaurant(idR)))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);                
                 
                 Restaurant res = new Restaurant (idR);
-                if (!new DB_Manager().cercaRistorante_perId(res))
+                if (!new DB_GestioneRestaurant().cercaRistorante_perId(res))
                    request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
                 Double reviews_value [] = new Double [1];
-                if (!new DB_Manager().countReviews(res, reviews_value))
+                if (!new DB_Reviews().countReviews(res, reviews_value))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
                 double newGV = ((((global_v + food + service + value_for_money + atmospere)/5) + res.getGlobal_value().intValue() + reviews_value[0])/3.0);
                     
                 if (newGV <= 5) {
-                    if (!new DB_Manager().updateRate(res, newGV))
+                    if (!new DB_GestioneRestaurant().updateRate(res, newGV))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 } else {
-                    if (!new DB_Manager().updateRate(res, 5))
+                    if (!new DB_GestioneRestaurant().updateRate(res, 5))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
                 

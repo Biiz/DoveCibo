@@ -1,6 +1,13 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_GestioneUser;
+import database.DB_GestioneRestaurant;
+import database.DB_OrariRestaurant;
+import database.DB_Coordinate;
+import database.DB_CuisineRestaurant;
 import java.io.IOException;
+import database.DB_PriceRestaurant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.servlet.ServletException;
@@ -22,21 +29,21 @@ public class ServletGetAutoC extends HttpServlet {
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             HashSet <String> auto = new HashSet<String>();
             
-            if ( new DB_Manager().tuttiRistoranti(ALR)){
+            if ( new DB_GestioneRestaurant().tuttiRistoranti(ALR)){
                 for (Restaurant rest : ALR){
-                    if ( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
+                    if ( ! new DB_GestioneUser().cercaUser_perId(rest.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
-                    if ( ! new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
+                    if ( ! new DB_OrariRestaurant().cercaDay_hours_perId(rest.getDay_hours()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
                     
-                    if ( ! new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
+                    if ( ! new DB_PriceRestaurant().cercaPriceRangeId(rest.getPrice_range()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                    if ( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                    if ( ! new DB_Coordinate().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                
-                    if ( ! new DB_Manager().cercaCusines_perRistoranye(rest))
+                    if ( ! new DB_CuisineRestaurant().cercaCusines_perRistoranye(rest))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
                      
                     auto.add(rest.getName());

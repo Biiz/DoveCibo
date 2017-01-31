@@ -98,20 +98,20 @@ public class Review {
         return date_creation;
     }
     
-    protected void setCreator(User creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
     
-    protected void setDecription(String description) {
+    public void setDecription(String description) {
         this.description = description;
     }
     
-    protected void setLike(Integer like) {
+    public void setLike(Integer like) {
         this.like = like;
     }
     
 
-    protected void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

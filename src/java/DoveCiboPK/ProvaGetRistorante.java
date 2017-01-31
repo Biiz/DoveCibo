@@ -1,5 +1,11 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_Reviews;
+import database.DB_RestaurantOwner;
+import database.DB_GestioneRestaurant;
+import database.DB_Coordinate;
+import database.DB_GestioneUser;
 import java.sql.SQLException;
 
 /**
@@ -23,22 +29,22 @@ public class ProvaGetRistorante {
         
         DB_Manager dbm = new DB_Manager();
             
-            if( new DB_Manager().cercaRistorante_perId(rest)){
+            if( new DB_GestioneRestaurant().cercaRistorante_perId(rest)){
 
                     
-                    if( ! new DB_Manager().cercaUser_perId(rest.getCreator()))
+                    if( ! new DB_GestioneUser().cercaUser_perId(rest.getCreator()))
                         System.out.println("ERROE2");
                     System.out.println("id ho"+ rest.getDay_hours().getId_restaurant());
                     
                     
                     
-                    if( ! new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                    if( ! new DB_Coordinate().cercaCoordinate_perId(rest.getCordinate()))
                         System.out.println("ERROE5");
                     
-                    if( ! new DB_Manager().setCommenti_perRistorante(rest))
+                    if( ! new DB_Reviews().setCommenti_perRistorante(rest))
                         System.out.println("ERROE6");
                     
-                    new DB_Manager().cercaOwners_perRistoranti(rest);
+                    new DB_RestaurantOwner().cercaOwners_perRistoranti(rest);
 
                     System.out.println("ID r " + rest.getId());
                     System.out.println("ID o " + rest.getOwners().size());

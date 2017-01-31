@@ -1,5 +1,7 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_RestaurantPhoto;
 import java.io.IOException;
 import java.io.File;
 import java.sql.SQLException;
@@ -59,7 +61,7 @@ public class ServletUpload extends HttpServlet {
             System.out.println("nome file caricato: " + filename);
             String path_name = strPath + File.separator + m.getFilesystemName(name);
 
-            if (!new DB_Manager().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
+            if (!new DB_RestaurantPhoto().inserisciPhoto(new Photo(null, "", "", filename, new User(idU), 0), idR)) {
                 request.setAttribute("error", "Errore connessione database");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }

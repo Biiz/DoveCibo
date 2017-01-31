@@ -1,5 +1,6 @@
 package DoveCiboPK;
 
+import database.DB_GestioneUser;
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.ServletException;
@@ -41,7 +42,7 @@ public class ServletLogin extends HttpServlet {
 
             //RICERCA DB
             User u = new User(nickname, password);           
-            if ((new DB_Manager()).accedi(u)) {               
+            if ((new DB_GestioneUser()).accedi(u)) {               
                 if (u.getId() == null) {
                     request.setAttribute("error", "Nome o password incorretti");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);

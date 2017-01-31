@@ -1,5 +1,6 @@
 package DoveCiboPK;
 
+import database.DB_RestaurantOwner;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ public class ServletReclamaRistorante extends HttpServlet {
                 request.getRequestDispatcher("errore.jsp").forward(request, response);  
             }
             //INSERIMENTO DB
-            else if (! new DB_Manager().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
+            else if (! new DB_RestaurantOwner().inserisciRelazioneOwnerRestaurant(idR, u.getId()))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
             response.sendRedirect("confermaReclamo.jsp");       

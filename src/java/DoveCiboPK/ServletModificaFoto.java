@@ -1,5 +1,7 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_RestaurantPhoto;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -40,7 +42,7 @@ public class ServletModificaFoto extends HttpServlet {
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                
             } else {
                 //INSERIMENTO DB
-                if (! new DB_Manager().updatePhotoVal(idF, val, u))
+                if (! new DB_RestaurantPhoto().updatePhotoVal(idF, val, u))
                      request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 if (u.getRole().equals("1") && val == 0)
                    response.sendRedirect("confermaDeletePhoto.jsp");

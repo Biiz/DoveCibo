@@ -1,5 +1,8 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_GestioneUser;
+import database.DB_RestaurantOwner;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -39,13 +42,13 @@ public class ServletAccettaReclamo extends HttpServlet {
             Integer idRO = Integer.parseInt(request.getParameter("idGen"));            
             
             //INSERIMENTO DB
-            if (! new DB_Manager().updateResOwn(idRO, u))
+            if (! new DB_RestaurantOwner().updateResOwn(idRO, u))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
-            if (! new DB_Manager().selectOwn(idRO, u, user))
+            if (! new DB_RestaurantOwner().selectOwn(idRO, u, user))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);     
             
             //CAMBIA RUOLO
-            if (! new DB_Manager().updateRuolo(user));
+            if (! new DB_GestioneUser().updateRuolo(user));
             
             response.sendRedirect("/DoveCiboGit/reclamoAccettato.jsp");            
         } catch (SQLException ex) {

@@ -1,5 +1,8 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_RestaurantOwner;
+import database.DB_Replies;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,7 +43,7 @@ public class ServletAggiungiRepile extends HttpServlet {
             Integer idRes = Integer.parseInt(request.getParameter("ristorante"));
             
             //FILTRO USER
-            if ((u==null)||(! new DB_Manager().isOwners_perRistoranti(u, new Restaurant(idRes)))) {
+            if ((u==null)||(! new DB_RestaurantOwner().isOwners_perRistoranti(u, new Restaurant(idRes)))) {
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);                    
             } else {            
@@ -49,13 +52,13 @@ public class ServletAggiungiRepile extends HttpServlet {
                 ArrayList <String> check = new ArrayList <String> ();
                 
                 //INSERIMENTO DB
-                if(! new DB_Manager().checkReplies(rep, idRew, check))
+                if(! new DB_Replies().checkReplies(rep, idRew, check))
                      request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
                 if(check.contains("yes"))
                     request.getRequestDispatcher("repRifiutato.jsp").forward(request, response);
                 else {
-                    if(! new DB_Manager().inserisciRisposta(rep, idRew))
+                    if(! new DB_Replies().inserisciRisposta(rep, idRew))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);          
                     response.sendRedirect("rispostaInviataSuccesso.jsp");
                 }

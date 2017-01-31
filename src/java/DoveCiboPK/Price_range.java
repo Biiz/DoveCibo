@@ -31,15 +31,15 @@ public class Price_range {
         return id_restaurant;
     }
 
-    protected void setId_restaurant(Integer id_restaurant) {
+    public void setId_restaurant(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
     }
 
-    protected void setMax_value(Double max_value) {
+    public void setMax_value(Double max_value) {
         this.max_value = max_value;
     }
 
-    protected void setMin_value(Double min_value) {
+    public void setMin_value(Double min_value) {
         this.min_value = min_value;
     }
 

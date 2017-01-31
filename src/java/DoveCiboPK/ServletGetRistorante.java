@@ -1,6 +1,17 @@
 package DoveCiboPK;
 
+import database.DB_Manager;
+import database.DB_GestioneUser;
+import database.DB_GestioneRestaurant;
+import database.DB_RestaurantOwner;
+import database.DB_PriceRestaurant;
+import database.DB_CuisineRestaurant;
+import database.DB_Coordinate;
+import database.DB_OrariRestaurant;
+import database.DB_RestaurantPhoto;
 import java.io.IOException;
+import database.DB_Replies;
+import database.DB_Reviews;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,45 +36,45 @@ public class ServletGetRistorante extends HttpServlet {
 
             Restaurant rest = new Restaurant(idR);
             DB_Manager dbm = new DB_Manager();
-            if (new DB_Manager().cercaRistorante_perId(rest)) {
-                if (!new DB_Manager().cercaOwners_perRistoranti(rest))
+            if (new DB_GestioneRestaurant().cercaRistorante_perId(rest)) {
+                if (!new DB_RestaurantOwner().cercaOwners_perRistoranti(rest))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
                 for (User u : rest.getOwners()) {
-                    if (!new DB_Manager().cercaUser_perId(u))
+                    if (!new DB_GestioneUser().cercaUser_perId(u))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
 
-                if (!new DB_Manager().cercaUser_perId(rest.getCreator()))
+                if (!new DB_GestioneUser().cercaUser_perId(rest.getCreator()))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().cercaDay_hours_perId(rest.getDay_hours()))
+                if (!new DB_OrariRestaurant().cercaDay_hours_perId(rest.getDay_hours()))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().cercaPriceRangeId(rest.getPrice_range()))
+                if (!new DB_PriceRestaurant().cercaPriceRangeId(rest.getPrice_range()))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().cercaCoordinate_perId(rest.getCordinate()))
+                if (!new DB_Coordinate().cercaCoordinate_perId(rest.getCordinate()))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().setCommenti_perRistorante(rest))
+                if (!new DB_Reviews().setCommenti_perRistorante(rest))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().cercaCusines_perRistoranye(rest))
+                if (!new DB_CuisineRestaurant().cercaCusines_perRistoranye(rest))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                if (!new DB_Manager().cercaPhotos_perRistorante(rest, 2))
+                if (!new DB_RestaurantPhoto().cercaPhotos_perRistorante(rest, 2))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 
-                if (!new DB_Manager().cercaPhotos_perRistorante(rest, 1))
+                if (!new DB_RestaurantPhoto().cercaPhotos_perRistorante(rest, 1))
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
                 if (request.getSession(false).getAttribute("User") != null) {
                     User user = (User) request.getSession(false).getAttribute("User");
-                    if (!new DB_Manager().checkUserIsRisto(rest, user, risposta))
+                    if (!new DB_GestioneUser().checkUserIsRisto(rest, user, risposta))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                     
-                    if (!new DB_Manager().checkUserIsRistoNoValidation(rest, user, risposta1))
+                    if (!new DB_GestioneUser().checkUserIsRistoNoValidation(rest, user, risposta1))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 } else {
                     risposta[0] = "no";
@@ -71,17 +82,17 @@ public class ServletGetRistorante extends HttpServlet {
                 }
                 
                 for (Review rew : rest.getReviews()) {
-                    if (!new DB_Manager().cercaUser_perId(rew.getCreator()))
+                    if (!new DB_GestioneUser().cercaUser_perId(rew.getCreator()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                    if (!new DB_Manager().setRepli_perRew(rew, replies))
+                    if (!new DB_Replies().setRepli_perRew(rew, replies))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
             } else
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
             ArrayList <Integer> classifica = new ArrayList <Integer> ();           
-            if (!new DB_Manager().classificaRistoCitta(idR, classifica))
+            if (!new DB_Coordinate().classificaRistoCitta(idR, classifica))
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             
             //Creo l'oggetto QR
