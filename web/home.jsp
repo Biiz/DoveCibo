@@ -139,7 +139,11 @@
             <br>
             <!-- Pannello di ricerca generale -->
             <div class="row" id="General">
-                <iframe src="ServletGetAutoC" height="300" width="800" allowtransparency="true" id="iframe"></iframe>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                <iframe width="100%" src="ServletGetAutoC" height="300" allowtransparency="true" id="iframe"></iframe>
+                </div>
+                <div class="col-md-3"></div>
             </div>
           
             <!-- Pannello di ricerca per Tipologia cucina e vicinanza -->

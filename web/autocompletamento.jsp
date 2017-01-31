@@ -87,7 +87,7 @@
             <div class="row">
 
                 <div class="col-md-3"></div>
-                <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;" >
+                <div class="col-md-4" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;" >
                     <form id="formCercaRisto" action="CercaRistorantiHome" method="post" target="_blank">
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
                         <div class="form-group ui-widget">
@@ -113,7 +113,7 @@
                         </div>
                     </form>                                 
                 </div> 
-                <div class="col-md-3"></div>
+                <div class="col-md-5"></div>
             </div>
         </div>
     </body>
