@@ -1,17 +1,16 @@
 package DoveCiboPK;
 
-import database.DB_Manager;
-import database.DB_OrariRestaurant;
-import database.DB_GestioneRestaurant;
-import database.DB_PriceRestaurant;
+import database.DB_Coordinate;
 import database.DB_CuisineRestaurant;
+import database.DB_GestioneRestaurant;
+import database.DB_OrariRestaurant;
+import database.DB_PriceRestaurant;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import database.DB_Coordinate;
 import javax.servlet.http.HttpSession;
 
 /**

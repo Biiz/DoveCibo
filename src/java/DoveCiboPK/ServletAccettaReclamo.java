@@ -1,6 +1,5 @@
 package DoveCiboPK;
 
-import database.DB_Manager;
 import database.DB_GestioneUser;
 import database.DB_RestaurantOwner;
 import java.io.IOException;

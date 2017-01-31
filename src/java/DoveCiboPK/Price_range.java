@@ -42,5 +42,4 @@ public class Price_range {
     public void setMin_value(Double min_value) {
         this.min_value = min_value;
     }
-
 }

@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/ristoranteMap.css" />
+
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>
 <script>
     var geocoder;
@@ -37,14 +39,6 @@
     }
 </script>
 <script type="text/javascript"> window.onload = function () { initialize(); }; </script>
-
-<style>
-    #map {
-        height: 500px;
-        width: 350px;
-        margin: auto;
-    }
-</style>
 
 <div id="map"></div>
 <div style="margin: 15px;">

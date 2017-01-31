@@ -39,9 +39,6 @@ public class Notifica {
         return foto;
     }
 
-    
-
-
     public Date getData() {
         return data;
     }
@@ -49,7 +46,6 @@ public class Notifica {
     public String getDescrizione() {
         return descrizione;
     }
-
 
     public void setData(Date data) {
         this.data = data;
@@ -70,12 +66,4 @@ public class Notifica {
     public Integer getIdGen() {
         return idGen;
     }
-    
-    
-    
-    
-    
-        
-    
-    
 }

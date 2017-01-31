@@ -1,31 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import DoveCiboPK.Replies;
 import DoveCiboPK.Review;
 import DoveCiboPK.User;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author michael
  */
 public class DB_Replies extends HttpServlet {
-
     private String errore = "";
     DB_Manager connessione;
 
@@ -209,5 +198,4 @@ public class DB_Replies extends HttpServlet {
             return r;
         }
     }
-
 }

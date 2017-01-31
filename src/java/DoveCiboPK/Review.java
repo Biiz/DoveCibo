@@ -34,9 +34,7 @@ public class Review {
         this.creator = creator;
     }
     
-    public Review() {
-        
-    }
+    public Review() { }
 
     public Review(Integer id) {
         this.id = id;
@@ -46,9 +44,6 @@ public class Review {
         return repile;
     }
     
-    
-    
-
     public Integer getId() {
         return id;
     }
@@ -89,7 +84,6 @@ public class Review {
         return value_of_money;
     }
 
-
     public Integer getGlobal_value() {
         return global_value;
     }
@@ -110,13 +104,7 @@ public class Review {
         this.like = like;
     }
     
-
     public void setId(Integer id) {
         this.id = id;
     }
-
-            
-            
-            
-
 }

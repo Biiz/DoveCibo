@@ -40,7 +40,6 @@ public class Photo {
         return date_creation;
     }
     
-
     public Photo(Integer id) {
         this.id = id;
     }
@@ -100,7 +99,4 @@ public class Photo {
     public User getOwner() {
         return owner;
     }
-    
-    
-    
 }

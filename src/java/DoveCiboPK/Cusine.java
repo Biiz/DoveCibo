@@ -19,5 +19,4 @@ public class Cusine {
     public String getName() {
         return name;
     }
-
 }

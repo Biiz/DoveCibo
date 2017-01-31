@@ -65,11 +65,6 @@ public class User {
         this.like = like;
     }
     
-    
-    
-    
-    
-
     public String getEmail() {
         return email;
     }
@@ -102,10 +97,5 @@ public class User {
         return like;
     }
     
-    
-    
-
-    public User() {
-    }
-
+    public User() { }
 }

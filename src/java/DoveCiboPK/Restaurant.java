@@ -37,7 +37,6 @@ public class Restaurant {
         this.price_range = price_range;
         this.day_hours = day_hours;
         reviews = new ArrayList();
-
     }
 
     public void setId(Integer id) {
@@ -68,16 +67,10 @@ public class Restaurant {
         return cusines;
     }
     
-    
-    
-    
     public void addCusine( Cusine c) {
         cusines.add(c);
     }    
     
-    
-    
-
     public void addReviews(Review reviews) {
         this.reviews.add(reviews);
     }
@@ -126,9 +119,6 @@ public class Restaurant {
         return photos;
     }
 
-
-    
-    
     public Boolean isOwner(User user){
         for (User uf : owners) {
             if(uf.getId() == user.getId()) return true;
@@ -136,8 +126,6 @@ public class Restaurant {
         return false;
     }
     
-    
-
     public void setAltro(String description, Float global_value, 
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c, Day_hours dh) {
         this.description = description;
@@ -149,8 +137,7 @@ public class Restaurant {
         this.cordinate = c;
         this.day_hours = dh;
     }
-    
-    
+       
     public String RestDescriptionToText(){
         //ottengo la stringa degli orari di apertura
         String hours_description = this.day_hours.DayHoursDescriptionToText();
@@ -165,7 +152,4 @@ public class Restaurant {
         
         return description;
     }
-
 }
-
-

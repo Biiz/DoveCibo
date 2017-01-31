@@ -3,7 +3,7 @@
 */
 
 body {
-    background-image: url('Sfondi/img (1)big.jpeg');
+    background-image: url('/DoveCiboGit/Sfondi/img (1)big.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

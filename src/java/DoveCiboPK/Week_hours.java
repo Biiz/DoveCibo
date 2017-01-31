@@ -11,11 +11,9 @@ public class Week_hours {
         this.orari = orari;
     }
 
-    public Week_hours() {
-    }
+    public Week_hours() { }
 
     public Day_hours[] getWeek() {
         return orari;
     }
-
 }

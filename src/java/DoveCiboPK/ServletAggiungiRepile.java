@@ -1,8 +1,7 @@
 package DoveCiboPK;
 
-import database.DB_Manager;
-import database.DB_RestaurantOwner;
 import database.DB_Replies;
+import database.DB_RestaurantOwner;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

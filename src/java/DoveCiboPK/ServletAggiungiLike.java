@@ -1,11 +1,10 @@
 package DoveCiboPK;
 
-import database.DB_Manager;
 import database.DB_GestioneRestaurant;
 import database.DB_GestioneUser;
+import database.DB_Reviews;
 import java.io.IOException;
 import java.sql.SQLException;
-import database.DB_Reviews;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

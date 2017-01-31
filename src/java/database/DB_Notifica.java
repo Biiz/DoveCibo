@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import DoveCiboPK.Notifica;
-import database.DB_Reviews;
 import DoveCiboPK.Replies;
 import DoveCiboPK.Restaurant;
 import DoveCiboPK.Review;
@@ -24,7 +18,6 @@ import javax.servlet.http.HttpServlet;
  * @author michael
  */
 public class DB_Notifica extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -241,5 +234,4 @@ public class DB_Notifica extends HttpServlet {
             return r;
         }
     }
-
 }

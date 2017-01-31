@@ -1,9 +1,12 @@
 package DoveCiboPK;
 
-import database.DB_Manager;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import database.DB_RestaurantPhoto;
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import javax.servlet.ServletException;
@@ -11,10 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  *

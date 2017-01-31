@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import DoveCiboPK.Restaurant;
@@ -17,7 +12,6 @@ import javax.servlet.http.HttpServlet;
  * @author michael
  */
 public class DB_GestioneUser extends HttpServlet {
-
     private String errore = "";
     DB_Manager connessione;
 
@@ -373,6 +367,5 @@ public class DB_GestioneUser extends HttpServlet {
             connessione.con.close();
             return r;
         }
-    } 
-    
+    }  
 }

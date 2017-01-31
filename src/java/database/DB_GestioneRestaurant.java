@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import DoveCiboPK.Coordinate;
@@ -25,7 +20,6 @@ import javax.servlet.http.HttpServlet;
  * @author michael
  */
 public class DB_GestioneRestaurant extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +29,7 @@ public class DB_GestioneRestaurant extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   private String errore = "";
+    private String errore = "";
     DB_Manager connessione;
 
     public DB_GestioneRestaurant() throws SQLException {
@@ -419,5 +413,4 @@ public class DB_GestioneRestaurant extends HttpServlet {
             return r;
         }
     } 
-
 }

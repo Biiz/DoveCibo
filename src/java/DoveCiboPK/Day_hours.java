@@ -124,7 +124,6 @@ public class Day_hours {
                 + "da " + this.start_H_P + ":" + this.start_M_P
                 + " a " + this.end_H_P + ":" + this.end_M_P;
 
-        return description;
-        
+        return description;       
     }
 }

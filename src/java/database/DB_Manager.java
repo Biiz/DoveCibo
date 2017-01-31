@@ -26,6 +26,4 @@ public class DB_Manager {
             con.close();
         }
     }
- 
-    
 }

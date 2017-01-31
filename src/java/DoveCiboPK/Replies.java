@@ -60,5 +60,4 @@ public class Replies {
     public User getOwner() {
         return owner;
     }
-
 }

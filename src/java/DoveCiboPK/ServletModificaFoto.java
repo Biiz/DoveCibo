@@ -1,6 +1,5 @@
 package DoveCiboPK;
 
-import database.DB_Manager;
 import database.DB_RestaurantPhoto;
 import java.io.IOException;
 import java.sql.SQLException;
