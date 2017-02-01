@@ -1,4 +1,4 @@
-<%@page import="DoveCiboPK.User"%>
+<%@page import="users.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

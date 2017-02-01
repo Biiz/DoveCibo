@@ -1,3 +1,4 @@
+<%@page import="users.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -19,7 +20,7 @@
         <%
             session = request.getSession(false);
             if(session != null && session.getAttribute("User") != null){
-                DoveCiboPK.User user = (DoveCiboPK.User) session.getAttribute("User");
+                User user = (User) session.getAttribute("User");
         %> 
         
         <form name="loginForm"  action="UserUpdate" method="post">

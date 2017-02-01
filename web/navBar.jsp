@@ -1,3 +1,4 @@
+<%@page import="users.User"%>
 <div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
 
             <!-- bottone menù che compare quando la finestra è piccola-->
@@ -26,7 +27,7 @@
 </div><!-- fine navBar -->
                     <%        
                         }else{
-                        DoveCiboPK.User user = (DoveCiboPK.User) request.getSession(false).getAttribute("User");
+                        User user = (User) request.getSession(false).getAttribute("User");
                                 if (user.getRole().equals("1")) { 
                                         
                                                         %>

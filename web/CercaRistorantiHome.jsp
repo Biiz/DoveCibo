@@ -1,5 +1,6 @@
+<%@page import="restaurants.Cusine"%>
+<%@page import="restaurants.Restaurant"%>
 <%@page import="java.math.BigDecimal"%>
-<%@page import="DoveCiboPK.*"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>

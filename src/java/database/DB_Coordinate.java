@@ -1,6 +1,6 @@
 package database;
 
-import DoveCiboPK.Coordinate;
+import restaurants.Coordinate;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

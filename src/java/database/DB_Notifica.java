@@ -1,10 +1,10 @@
 package database;
 
-import DoveCiboPK.Notifica;
-import DoveCiboPK.Replies;
-import DoveCiboPK.Restaurant;
-import DoveCiboPK.Review;
-import DoveCiboPK.User;
+import notifiche.Notifica;
+import notifiche.Replies;
+import restaurants.Restaurant;
+import restaurant_comments.Review;
+import users.User;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

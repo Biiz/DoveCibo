@@ -1,10 +1,10 @@
 package database;
 
-import DoveCiboPK.Coordinate;
-import DoveCiboPK.Day_hours;
-import DoveCiboPK.Price_range;
-import DoveCiboPK.Restaurant;
-import DoveCiboPK.User;
+import restaurants.Coordinate;
+import restaurants.Day_hours;
+import restaurants.Price_range;
+import restaurants.Restaurant;
+import users.User;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

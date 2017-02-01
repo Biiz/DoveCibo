@@ -1,6 +1,6 @@
 package database;
 
-import DoveCiboPK.Price_range;
+import restaurants.Price_range;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,3 +1,5 @@
+<%@page import="restaurants.Cusine"%>
+<%@page import="restaurants.Restaurant"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -23,7 +25,7 @@
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <%  
-            DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getSession(false).getAttribute("ristorante"); 
+            Restaurant R = (Restaurant) request.getSession(false).getAttribute("ristorante"); 
         %>
         <form name="modifyRestaurantForm"  action="ServletModificaRistorante" method="post">
             <div class="container">
@@ -108,7 +110,7 @@
                         </div>
                         <%
                             ArrayList <String> cucine = new ArrayList<String>();
-                            for(DoveCiboPK.Cusine c : R.getCusines()){
+                            for(Cusine c : R.getCusines()){
                                 cucine.add(c.getName());
                             }
                         %>

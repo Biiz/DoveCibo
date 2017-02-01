@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>UserUpdate</servlet-name>
-        <servlet-class>DoveCiboPK.UserUpdate</servlet-class>
+        <servlet-class>users.UserUpdate</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewMain</servlet-name>
@@ -26,19 +26,19 @@
     </servlet>
     <servlet>
         <servlet-name>ServletGetTuttiRistoranti</servlet-name>
-        <servlet-class>DoveCiboPK.ServletGetTuttiRistoranti</servlet-class>
+        <servlet-class>restaurants.ServletGetTuttiRistoranti</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SendEmail_Modifica_Profilo</servlet-name>
-        <servlet-class>DoveCiboPK.SendEmail_Modifica_Profilo</servlet-class>
+        <servlet-class>emails.SendEmail_Modifica_Profilo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SendEmail_Recupero_credenziali</servlet-name>
-        <servlet-class>DoveCiboPK.SendEmail_Recupero_credenziali</servlet-class>
+        <servlet-class>emails.SendEmail_Recupero_credenziali</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletRecuperoCredenziali</servlet-name>
-        <servlet-class>DoveCiboPK.ServletRecuperoCredenziali</servlet-class>
+        <servlet-class>users.ServletRecuperoCredenziali</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>VisualizzaRistoranti</servlet-name>
@@ -46,15 +46,15 @@
     </servlet>
     <servlet>
         <servlet-name>VisualizzaRistorantiUtente2</servlet-name>
-        <servlet-class>DoveCiboPK.VisualizzaRistorantiUtente2</servlet-class>
+        <servlet-class>restaurants.VisualizzaRistorantiUtente2</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CercaRistorantiHome</servlet-name>
-        <servlet-class>DoveCiboPK.CercaRistorantiHome</servlet-class>
+        <servlet-class>restaurants.CercaRistorantiHome</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletModificaRistorante</servlet-name>
-        <servlet-class>DoveCiboPK.ServletModificaRistorante</servlet-class>
+        <servlet-class>restaurants.ServletModificaRistorante</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DB_GestioneUser</servlet-name>

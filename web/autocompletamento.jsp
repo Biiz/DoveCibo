@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashSet"%>
-<%@page import="DoveCiboPK.User"%>
+<%@page import="users.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 

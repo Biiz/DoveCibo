@@ -1,7 +1,7 @@
 package database;
 
-import DoveCiboPK.Restaurant;
-import DoveCiboPK.User;
+import restaurants.Restaurant;
+import users.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

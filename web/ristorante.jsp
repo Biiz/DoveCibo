@@ -1,15 +1,16 @@
+<%@page import="notifiche.Replies"%>
 <%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.sql.Date"%>
-<%@page import="DoveCiboPK.User"%>
+<%@page import="users.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DoveCiboPK.Review"%>
+<%@page import="restaurant_comments.Review"%>
 <%@page import="java.lang.Iterable"%>
 <%@page import="jdk.nashorn.internal.runtime.RewriteException"%>
-<%@page import="DoveCiboPK.Cusine"%>
-<%@page import="DoveCiboPK.Restaurant"%>
-<%@page import="DoveCiboPK.Photo"%>
+<%@page import="restaurants.Cusine"%>
+<%@page import="restaurants.Restaurant"%>
+<%@page import="restaurant_photos.Photo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -31,11 +32,11 @@
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
         <%  session = request.getSession(false);
-            DoveCiboPK.Restaurant R = (DoveCiboPK.Restaurant) request.getAttribute("ristorante");
+            Restaurant R = (Restaurant) request.getAttribute("ristorante");
             ArrayList<Integer> classificaCity = (ArrayList<Integer>) request.getAttribute("classificaCity");
             String risposta[] = (String[]) request.getAttribute("rispostaUserIsOwner");
             String risposta1[] = (String[]) request.getAttribute("rispostaUserIsOwnerNoValidation");
-            ArrayList<DoveCiboPK.Replies> replies = (ArrayList<DoveCiboPK.Replies>) request.getAttribute("repliesOwner");
+            ArrayList<Replies> replies = (ArrayList<Replies>) request.getAttribute("repliesOwner");
             String qrCode = (String) request.getAttribute("qrCode");
             ArrayList<Photo> R_photos = R.getPhotos();
         %>
@@ -447,7 +448,7 @@
                     Risposte:
                     <%
                         for (int i = 0; i < replies.size(); i++) {
-                            DoveCiboPK.Replies re = (DoveCiboPK.Replies) replies.get(i);
+                            Replies re = (Replies) replies.get(i);
                             if (rew.getId() == re.getIdReview()) {
                     %>
 

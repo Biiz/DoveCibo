@@ -1,6 +1,6 @@
 package database;
 
-import DoveCiboPK.Day_hours;
+import restaurants.Day_hours;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
