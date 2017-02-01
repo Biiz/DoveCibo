@@ -66,7 +66,7 @@
                                 </div>
                                 <br>
                                 <div class="bottom text-center">
-                                    <button class="btn btn-info btn-sm btn-justified" onclick="moveToLocation(<%= rest.getCordinate().getLatitude() %>,<%= rest.getCordinate().getLongitude() %>)">mappa</button>
+                                    <button class="btn btn-info btn-sm btn-justified" onclick="moveToLocation(<%= rest.getCordinate().getLatitude() %>,<%= rest.getCordinate().getLongitude() %>)">Mappa</button>
                                 </div>
                             </td>
                             <%  BigDecimal roundfinalPrice = new BigDecimal(rest.getGlobal_value()).setScale(1,BigDecimal.ROUND_HALF_UP); %>

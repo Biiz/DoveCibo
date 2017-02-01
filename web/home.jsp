@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         <button class="btn btn-default" onClick="showGeneral()">Generale</button>
-                        <button class="btn btn-default" onClick="showTypeNearby()">Posizione e tipologia</button>
+                        <button class="btn btn-default" onClick="showTypeNearby()">Posizione e Tipologia</button>
                         <button class="btn btn-default" onClick="showStatsNearby()">Posizione e Classifica</button> 
                         </div>
                     </div> 
@@ -131,20 +131,20 @@
             <div class="row" id="TypeNearby" style="display: none;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
-                    <h2 style="color: black; font-size: 30px;">Ricerca per tipologia e vicinanza</h2>
+                    <h2 style="color: black; font-size: 30px;">Ricerca per posizione e tipologia</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="input-group input-group-md" style="padding-bottom: 5%; ">
                                 <input type="text"  id="indirizzo" class="form-control" placeholder="Zona" >
                                 <span class="input-group-btn">
-                                    <button class="btn btn-info" onclick="genCooInd()" >Genera coordinate via indirizzo</button>
+                                    <button class="btn btn-info" onclick="genCooInd()" >Genera coordinate</button>
                             </div>
                         </div>
                     </div>
                     <p class="text-center"><b>Oppure</b></p>
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo()" >Genera coordinate geolocalizzate</button>
+                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo()" >Genera coordinate tramite GPS</button>
                         </div>
                     </div>
                     <form action="ServletGetRistorantiHomeCucine" method="post">
@@ -191,20 +191,20 @@
             <div class="row" id="StatsNearby" style="display: none;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;">
-                    <h2 style="color: black; font-size: 30px;">Ricerca per classifica e vicinanza</h2>
+                    <h2 style="color: black; font-size: 30px;">Ricerca per posizione e classifica</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="input-group input-group-md" style="padding-bottom: 5%; ">
                                 <input type="text"  id="indirizzo2" class="form-control" placeholder="Zona" >
                                 <span class="input-group-btn">
-                                    <button class="btn btn-info" onclick="genCooInd2()" >Genera coordinate via indirizzo</button>
+                                    <button class="btn btn-info" onclick="genCooInd2()" >Genera coordinate</button>
                             </div>
                         </div>
                     </div>
                     <p class="text-center"><b>Oppure</b></p>
                     <div class="row">
                         <div class="col-md-12">
-                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo2()" >Genera coordinate geolocalizzate</button>
+                            <button class="btn btn-group-justified btn-info" onclick="genCooGeo2()" >Genera coordinate tramite GPS</button>
                         </div>
                     </div>
                     <form action="ServletGetRistorantiHomeValue" method="post">
@@ -212,11 +212,11 @@
                             <br>
                             <div class="col-md-6">
                                 <label>Latitudine:</label>
-                                <input type="text" id="inlat2" name="lat" class="form-control" placeholder="lat" required readonly="readonly">
+                                <input type="text" id="inlat2" name="lat" class="form-control" placeholder="0.0" required readonly="readonly">
                             </div>
                             <div class="col-md-6">
                                 <label>Longitudine:</label>
-                                <input type="text" id="inlng2" name="lng" class="form-control" placeholder="lng" required readonly="readonly">
+                                <input type="text" id="inlng2" name="lng" class="form-control" placeholder="0.0" required readonly="readonly">
                             </div>
                         </div>
                         <br>

@@ -28,16 +28,15 @@
         <%@ include file="navBar.jsp" %>
         <div class="container">        
             <div class="row row-centered">
-                <br><br>
                 <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr style="background-color: rgba(198, 239, 255, 1);">
                             <th>NOME</th>
                             <th>VALUTAZIONE</th>
                             <th>RANK</th>
-                            <th>REVIEWS</th>
+                            <th>COMMENTI</th>
                             <th>INDIRIZZO</th>
-                            <th>CUCINE</th>
+                            <th>CUCINA</th>
                         </tr>
                     </thead>
                     <tfoot>

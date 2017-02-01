@@ -19,7 +19,7 @@
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
-                    <p style="color: black; font-size: 28px"><b>Gestione Foto</b></p>
+                    <p style="color: black; font-size: 28px"><b>Azione</b></p>
                     <!-- effettiva tabella delle notifiche -->
                     <table class="table">
                         <thead>

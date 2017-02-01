@@ -32,7 +32,7 @@
                             <tr>
                                 <th><p style="color: black; font-size: 20px"><b>Nome utente</b></p></th>
                                 <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
-                                <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
+                                <th><p style="color: black; font-size: 20px"><b>Azione</b></p></th>
                             </tr>
                         </thead>
                         <tbody>                   

@@ -215,7 +215,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div id="tagline">
-                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Inserisci commento</b></p>
+                                                <p style="color: black; font-size: 20px; padding-top: 15px;"><b>Inserisci un commento</b></p>
                                             </div>
                                         </div>
 
@@ -223,10 +223,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Titolo commento</label>
+                                                <label>Titolo</label>
                                                 <input type="text" class="form-control" rows="1" id="comment" name="name" pattern=".{1,25}" required>
                                                 <br>
-                                                <label>Descrizione commento</label>
+                                                <label>Descrizione</label>
                                                 <textarea class="form-control" rows="5" id="comment" name="description" required></textarea>
                                             </div>
                                         </div>
@@ -248,7 +248,7 @@
                                                 <input type="radio" id="star4" name="global_value" value="4" />
                                                 <label for="star4"> 4 &ensp;</label>
                                                 <input type="radio" id="star5" name="global_value" value="5" />
-                                                <label for="star5"> 5 &ensp;stelle</label>
+                                                <label for="star5"> 5 &ensp;Stelle</label>
                                             </fieldset>
 
 
