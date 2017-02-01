@@ -31,21 +31,9 @@ public class ServletGetAutoC extends HttpServlet {
             
             if ( new DB_GestioneRestaurant().tuttiRistoranti(ALR)){
                 for (Restaurant rest : ALR){
-                    if ( ! new DB_GestioneUser().cercaUser_perId(rest.getCreator()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-                    
-                    if ( ! new DB_OrariRestaurant().cercaDay_hours_perId(rest.getDay_hours()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);   
-                    
-                    if ( ! new DB_PriceRestaurant().cercaPriceRangeId(rest.getPrice_range()))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-
                     if ( ! new DB_Coordinate().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                
-                    if ( ! new DB_CuisineRestaurant().cercaCusines_perRistoranye(rest))
-                        request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);  
-                     
                     auto.add(rest.getName());
                     auto.add(rest.getCordinate().getAdrers());
                     auto.add(rest.getCordinate().getCity());

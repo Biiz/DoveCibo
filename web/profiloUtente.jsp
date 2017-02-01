@@ -81,7 +81,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>password:</label>          
-                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{3,255}" title="Inserisci la password!" value="<%=user.getPassword() %>" required>
+                                    <input type="password"  id="password" class="form-control" name="password" pattern=".{8,255}" title="Inserisci la password che sia almeno di 8 caratteri" value="<%=user.getPassword() %>" required>
                                 </div>
                             </div>
                         </div>
