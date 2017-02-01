@@ -60,7 +60,7 @@ else if (user.getRole().equals("2")) {
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 15px;"><span class="glyphicon glyphicon-cutlery"></span> Ristorante <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
+            <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi un ristorante</a></li>
             <li role="separator" class="divider"></li>
             <form action="VisualizzaRistorantiUtente2" method="post">
                 <div class="row text-center">
@@ -93,7 +93,7 @@ else if (user.getRole().equals("3")){
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-right: 15px;"><span class="glyphicon glyphicon-cutlery"></span> Ristorante <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi ristorante</a></li>
+            <li><a href="aggiungiRistorante.jsp"><span class="glyphicon glyphicon-plus"></span> Aggiungi un ristorante</a></li>
         </ul>
     </li>
 <!-- Nome e Cognome dropdown -->

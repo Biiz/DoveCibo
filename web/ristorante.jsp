@@ -82,6 +82,7 @@
                                             </b></li>
                                         <li><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
                                             <b>QRcode:</b>
+                                            <br>
                                             <img alt="Embedded Image" src="data:image/png;base64,<%= qrCode%>" />
                                         </li>
 
@@ -140,7 +141,6 @@
                     </div>
 
                     <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-                    Descrizione:
                     <div class="row">
                         <div class="col-md-12">
                             <p style="color: #333333; font-size: 20px; margin-bottom: 0px; border-bottom: 0px;"> <%= R.getDescription()%></p>                                    
@@ -160,7 +160,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Seleziona e carica una foto, scrivi una recensione oppure reclama la proprietà del ristorante!</h4>
+                            <h4>Seleziona e carica una foto, scrivi una recensione oppure reclama la proprietà del ristorante</h4>
                         </div>
                     </div>
                     <div class="row">

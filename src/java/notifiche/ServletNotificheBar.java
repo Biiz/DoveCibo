@@ -56,8 +56,8 @@ public class ServletNotificheBar extends HttpServlet {
                         if (rev.getRepile() == null) {
                             new DB_GestioneUser().cercaUser_perId(rev.getCreator());
                             id.add(rest.getId());
-                            ALN.add(new Notifica("<p>COMMETO</p>"+
-                                                 "<p>ristorante: <b>"+rest.getName()+"</b></p>", 
+                            ALN.add(new Notifica("<p>COMMENTO</p>"+
+                                                 "<p>Ristorante: <b>"+rest.getName()+"</b></p>", 
                                     rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                         }
                     }
@@ -66,12 +66,12 @@ public class ServletNotificheBar extends HttpServlet {
                     for (Photo ph: rest.getPhotos()) {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         if (!ph.getOwner().getRole().equals("1")) {
-                            ALN.add( new Notifica("<p>NEW PHOTO</p> "
-                                                 +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                            ALN.add( new Notifica("<p>AGGIUNTA NUOVA FOTO</p> "
+                                                 +"<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         } else {
                             ALN.add( new Notifica("<p>RIFIUTO DELETE PHOTO</p> "
-                                                 +"<p>l'<b>amministratore</b> del sito non ha cancellato la foto</p>"
-                                                 +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                                                 +"<p>L'<b>amministratore</b> del sito non ha rimosso la foto segnalata.</p>"
+                                                 +"<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         }
                     }
                 }

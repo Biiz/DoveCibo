@@ -22,7 +22,7 @@
                 <!-- riceve l'attributo dalla servletRegistrazione-->
                 <div id="tagline">
                     <h1>Errore nell'inserimento della risposta</h1>
-                    <h2>Non è stato possibile inserire la tua risposta al commento in quanto hai già risposto al commento</h2>
+                    <h2>Non è stato possibile inserire la tua risposta in quanto hai già risposto al commento</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

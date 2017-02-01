@@ -1,11 +1,7 @@
 package autocompletamento;
 
 import database.DB_Coordinate;
-import database.DB_CuisineRestaurant;
 import database.DB_GestioneRestaurant;
-import database.DB_GestioneUser;
-import database.DB_OrariRestaurant;
-import database.DB_PriceRestaurant;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,7 +25,7 @@ public class ServletGetAutoC extends HttpServlet {
             ArrayList <Restaurant> ALR = new ArrayList<Restaurant>();
             HashSet <String> auto = new HashSet<String>();
             
-            if ( new DB_GestioneRestaurant().tuttiRistoranti(ALR)){
+            if ( new DB_GestioneRestaurant().tuttiRistoranti(ALR)) {
                 for (Restaurant rest : ALR){
                     if ( ! new DB_Coordinate().cercaCoordinate_perId(rest.getCordinate()))
                         request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
@@ -39,9 +35,8 @@ public class ServletGetAutoC extends HttpServlet {
                     auto.add(rest.getCordinate().getCity());
                     auto.add(rest.getCordinate().getNazione());
                 }
-            } else {
+            } else
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
-            }
             
             request.setAttribute("auto", auto);
             request.getRequestDispatcher("autocompletamento.jsp").forward(request, response);

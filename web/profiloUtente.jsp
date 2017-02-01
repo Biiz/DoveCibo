@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>First name:</label>  
+                                    <label>Nome:</label>  
                                     <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=user.getName() %>" required>
                                     <script>
                                         
@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Last name:</label>          
+                                    <label>Cognome:</label>          
                                     <input type="text" id="last_name" class="form-control" name="last_name" pattern=".{3,255}" title="Il tuo cognome" value="<%=user.getSurname() %>" required>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>password:</label>          
+                                    <label>Password:</label>          
                                     <input type="password"  id="password" class="form-control" name="password" pattern=".{8,255}" title="Inserisci la password che sia almeno di 8 caratteri" value="<%=user.getPassword() %>" required>
                                 </div>
                             </div>

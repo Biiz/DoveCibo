@@ -27,7 +27,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
+                    <th><p style="color: black; font-size: 20px"><b>Nome utente</b></p></th>
                     <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
                 </tr>
             </thead>

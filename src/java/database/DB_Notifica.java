@@ -129,11 +129,11 @@ public class DB_Notifica extends HttpServlet {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("<p>RISPOSTA COMMENTO</p>"+
+                ALN.add(new Notifica("<p>RISPOSTA AL COMMENTO</p>"+
                                      "<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
-                                     "<p>commento: <b>"+rev.getDescription()+"</b></p>"+
-                                     "<p>autore commento: <b>"+rev.getCreator().getNickname()+"</b></p>"+
-                                     "<p>risposta_ristoratore: <b>"+rep.getDescription()+"</b></p>", 
+                                     "<p>Commento: <b>"+rev.getDescription()+"</b></p>"+
+                                     "<p>Autore del commento: <b>"+rev.getCreator().getNickname()+"</b></p>"+
+                                     "<p>Risposta del Ristoratore: <b>"+rep.getDescription()+"</b></p>", 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
@@ -175,7 +175,7 @@ public class DB_Notifica extends HttpServlet {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("<p>RISPOSTA COMMENTO</p>"+
+                ALN.add(new Notifica("<p>RISPOSTA AL COMMENTO</p>"+
                                      "<p>Ristorante: <b>"+rest.getName()+"</b></p>", 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));

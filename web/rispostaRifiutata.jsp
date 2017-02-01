@@ -22,7 +22,7 @@
                 
                 <div id="tagline">
                     <h1>Rifiuto risposta</h1>
-                    <h2>conferma di avvenuta rifiuta della risposta</h2>
+                    <h2>Conferma di avvenuta rifiuta della risposta</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

@@ -22,7 +22,7 @@
                 
                 <div id="tagline">
                     <h1>Credenziali inviate con successo</h1>
-                    <h2>Nickname e password ti sono state inviate per email</h2>
+                    <h2>Nickname e password sono stati inviate per email</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

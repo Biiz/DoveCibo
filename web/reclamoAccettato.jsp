@@ -22,7 +22,7 @@
                 
                 <div id="tagline">
                     <h1>Accetta reclamo</h1>
-                    <h2>conferma di reclamo avvenuta con successo</h2>
+                    <h2>Conferma di reclamo avvenuta con successo!</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

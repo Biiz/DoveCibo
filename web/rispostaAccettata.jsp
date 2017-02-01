@@ -22,7 +22,7 @@
                 
                 <div id="tagline">
                     <h1>Accetta risposta</h1>
-                    <h2>conferma di risposta avvenuta con successo</h2>
+                    <h2>Conferma di risposta avvenuta con successo!</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

@@ -28,13 +28,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>First name:</label>          
+                                    <label>Nome:</label>          
                                     <input type="text" class="form-control" name="first_name" placeholder="First name" pattern=".{3,255}" title="Inserisci il nome!" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Last name:</label>          
+                                    <label>Cognome:</label>          
                                     <input type="text" class="form-control" name="last_name" placeholder="Last name" pattern=".{3,255}" title="Inserisci il cognome!" required>
                                 </div>
                             </div>

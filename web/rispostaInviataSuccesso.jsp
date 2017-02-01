@@ -22,7 +22,7 @@
                 
                 <div id="tagline">
                     <h1>Risposta inviata</h1>
-                    <h2>risposta inviata con successo all'amministratore del sito per accettazione</h2>
+                    <h2>Risposta inviata con successo all'amministratore del sito per confermare la sua pubblicazione!</h2>
                 </div>
 
                 <hr align=”left” size=”1″ width=”300″ color=”grey” noshade>

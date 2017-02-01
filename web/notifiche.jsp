@@ -30,7 +30,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
+                                <th><p style="color: black; font-size: 20px"><b>Nome utente</b></p></th>
                                 <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
                                 <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
                             </tr>
@@ -55,22 +55,22 @@
                                     <% if( n.getTipo().equals("confermaRep") ){ %>
                                     <form method="POST" action="ServletAccettaaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta risposta</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Accetta risposta</button>       
                                     </form>
                                     <form method="POST" action="ServletRifiutaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta risposta</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rifiuta risposta</button>       
                                     </form>                                    
                                     <% } %>
                                     
                                     <% if( n.getTipo().equals("reclama") ){ %>
                                     <form method="POST" action="ServletAccettaReclamo" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Accetta reclamo</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Accetta reclamo</button>       
                                     </form>
                                     <form method="POST" action="ServletRifiutaReclamo" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
-                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta reclamo</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rifiuta reclamo</button>       
                                     </form>
                                     <% } %>
                                                                        
@@ -78,7 +78,7 @@
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="1">
-                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Segnala la photo </button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Segnala la foto</button>       
                                     </form>                                       
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
                                     <% } %>
