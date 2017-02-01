@@ -5,7 +5,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/modificaPhoto.css" />        
+        <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/notifica.css" />        
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-    <body style="padding-top: 70px;">
+    <body style="padding-top: 70px;" background="/DoveCiboGit/Sfondi/img (7)b.jpg">
         <%@ include file="navBar.jsp" %>
 
         <div class="modal-dialog modal-lg" >

@@ -2,14 +2,13 @@
     Author     : Giacomo Barbieri
 */
 
-body {
-    background-image: url("/DoveCiboGit/Sfondi/img (7)b.jpg");
+body {        
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
-.colonna2{
+.colonna2 {
     background-color: rgba(255, 255, 255, 0.75);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
     border-radius: 5px;
