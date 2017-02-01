@@ -87,7 +87,7 @@ else if (user.getRole().equals("2")) {
 </div><!-- fine navBar -->
 <%
     }
-else if (user.getRole().equals("3")){
+else if (user.getRole().equals("3")) {
 %>
   <!-- Ristorante dropdown -->
     <li class="dropdown">
@@ -114,9 +114,8 @@ else if (user.getRole().equals("3")){
 </div><!-- fine menù -->
 </div><!-- fine navBar -->
 <%
-        }
+    }
 %>
-
 
 <div class="modal fade" id="notifiche" role="dialog">
     <div class="modal-dialog modal-md">
@@ -129,8 +128,7 @@ else if (user.getRole().equals("3")){
                     <div class="col-md-12">
                         <div class="embed-responsive embed-responsive-4by3">
                             <iframe class="embed-responsive-item" src="ServletNotificheBar?idU=<%= user.getId() %>"></iframe>
-                        </div>
-                    
+                        </div>                    
                     </div>
                 </div>   
             </div>
@@ -145,10 +143,8 @@ else if (user.getRole().equals("3")){
     </div>
 </div> <!-- fine modal notifiche -->
 
-
-
 <%
-}
+    }
 %>
 
 <!-- Modal accedi-->
@@ -181,7 +177,6 @@ else if (user.getRole().equals("3")){
                                     <a href="recupero_credenziali.jsp">Password dimenticata?</a>
                                 </div>
                             </div>
-
                             <button type="reset" class="btn btn-sm btn-warning">Reset</button>
                             <button href="home.jsp" type="submit" class="btn btn-success pull-right">Accedi</button>
                         </form>
@@ -196,6 +191,3 @@ else if (user.getRole().equals("3")){
         </div>   
     </div>
 </div> <!-- fine modal accedi -->
-
-<!-- Modal notifiche-->
-

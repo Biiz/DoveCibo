@@ -28,12 +28,12 @@ public class ServletLogin1 extends HttpServlet {
 
             //PRECONDIZIONI
             if (nickname.isEmpty()) {
-                request.setAttribute("error", "Empty nickname");
+                request.setAttribute("error", "Nickname non inserito");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
 
             if (password.isEmpty()) {
-                request.setAttribute("error", "Empty password");
+                request.setAttribute("error", "Password non inserita");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             }
 
@@ -41,7 +41,7 @@ public class ServletLogin1 extends HttpServlet {
             User u = new User(nickname, password);           
             if ((new DB_GestioneUser()).accedi(u)) {               
                 if (u.getId() == null) {
-                    request.setAttribute("error", "Nome o password incorretti");
+                    request.setAttribute("error", "Nickname e/o password incorretti");
                     request.getRequestDispatcher("errore.jsp").forward(request, response);
                 } else {
                     request.getSession(false).invalidate();                   
