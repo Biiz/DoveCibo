@@ -34,7 +34,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-sm btn-default" onclick="window.location.href = 'home.jsp'" ><span class="glyphicon glyphicon-home"></span> Torna alla Home</button>
-                        
+                        <button class="btn btn-sm btn-info" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Indietro</button>
+                        <!-- script per tornare indietro di pagina nel browser-->
+                        <script>
+                            function goBack() {
+                                location.replace(document.referrer);
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
