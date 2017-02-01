@@ -64,7 +64,7 @@ else if (user.getRole().equals("2")) {
             <li role="separator" class="divider"></li>
             <form action="VisualizzaRistorantiUtente2" method="post">
                 <div class="row text-center">
-                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> i tuoi ristoranti</button></li>
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span>I tuoi ristoranti</button></li>
                 </div>
             </form>
         </ul>
@@ -178,12 +178,12 @@ else if (user.getRole().equals("3")){
                                     </div>
                                 </div>
                                 <div class="help-block text-right">
-                                    <a href="recupero_credenziali.jsp">Password dimenticata ?</a>
+                                    <a href="recupero_credenziali.jsp">Password dimenticata?</a>
                                 </div>
                             </div>
 
-                            <button type="reset" class="btn btn-sm btn-warning">Clear</button>
-                            <button href="home.jsp" type="submit" class="btn btn-success pull-right">Log in</button>
+                            <button type="reset" class="btn btn-sm btn-warning">Reset</button>
+                            <button href="home.jsp" type="submit" class="btn btn-success pull-right">Accedi</button>
                         </form>
                     </div>
                 </div>    

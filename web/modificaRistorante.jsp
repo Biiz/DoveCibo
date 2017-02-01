@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome Ristorante:</label>          
-                                    <input type="text" id="nome_ristorante" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome!" value="<%=R.getName().substring(0, 1).toUpperCase() + R.getName().substring(1)%>" required>
+                                    <input type="text" id="nome_ristorante" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome" value="<%=R.getName().substring(0, 1).toUpperCase() + R.getName().substring(1)%>" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -59,13 +59,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nazione:</label>          
-                                    <input type="text" id="txtNazione" class="form-control" name="txtNazione" pattern=".{3,255}" title="Inserisci la nazione!" value="<%=R.getCordinate().getNazione().substring(0, 1).toUpperCase()+R.getCordinate().getNazione().substring(1)%>" required>
+                                    <input type="text" id="txtNazione" class="form-control" name="txtNazione" pattern=".{3,255}" title="Inserisci la nazione" value="<%=R.getCordinate().getNazione().substring(0, 1).toUpperCase()+R.getCordinate().getNazione().substring(1)%>" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Città:</label>          
-                                    <input type="text" id="txtCity" class="form-control" name="txtCity" pattern=".{3,255}" title="Inserisci la città!" value="<%=R.getCordinate().getCity().substring(0, 1).toUpperCase()+R.getCordinate().getCity().substring(1) %>" required>
+                                    <input type="text" id="txtCity" class="form-control" name="txtCity" pattern=".{3,255}" title="Inserisci la città" value="<%=R.getCordinate().getCity().substring(0, 1).toUpperCase()+R.getCordinate().getCity().substring(1) %>" required>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Civico:</label>          
-                                    <input type="number" id="txtNumero" class="form-control" name="txtNumero" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!" value="<%=R.getCordinate().getNumero()%>" required>
+                                    <input type="number" id="txtNumero" class="form-control" name="txtNumero" placeholder="123" pattern=".{1,255}" min ="1" title="Inserisci il numero civico" value="<%=R.getCordinate().getNumero()%>" required>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="comment">Descrizione:</label>
-                                    <textarea class="form-control" id="descrizione" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante!" required><%=R.getDescription()%></textarea>
+                                    <textarea class="form-control" id="descrizione" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante" required><%=R.getDescription()%></textarea>
                                 </div>
                             </div>
                         </div>

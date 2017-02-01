@@ -32,7 +32,7 @@
                         <button class="btn btn-success btn-lg pull-right" onclick="window.location.href = 'home.jsp'"><span class="glyphicon glyphicon-home"></span> Torna alla home</button>
                         <form action="VisualizzaRistorantiUtente2" method="post">
                             <div class="row text-center">
-                                <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-eye-open"></span> i tuoi ristoranti</button>
+                                <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-eye-open"></span>I tuoi ristoranti</button>
                             </div>
                         </form>
                     </div>

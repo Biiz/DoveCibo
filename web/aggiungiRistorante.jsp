@@ -36,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome Ristorante:</label>          
-                                    <input type="text" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome!" placeholder="Nome Ristorante" required>
+                                    <input type="text" class="form-control" name="nome_ristorante"  pattern=".{3,255}" title="Inserisci il nome" placeholder="Nome Ristorante" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -54,13 +54,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nazione:</label>          
-                                    <input type="text" id="txtNazione" class="form-control" name="nazione" placeholder="Nazione" pattern=".{3,255}" title="Inserisci la nazione!"required>
+                                    <input type="text" id="txtNazione" class="form-control" name="nazione" placeholder="Nazione" pattern=".{3,255}" title="Inserisci la nazione"required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Città:</label>          
-                                    <input type="text" id="txtCity" class="form-control" name="city" placeholder="Città" pattern=".{3,255}" title="Inserisci la città!"required>
+                                    <input type="text" id="txtCity" class="form-control" name="city" placeholder="Città" pattern=".{3,255}" title="Inserisci la città"required>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Civico:</label>          
-                                    <input type="number" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" title="Inserisci il numero civico!"required>
+                                    <input type="number" id="txtNumero" class="form-control" name="numero_civico" placeholder="123" pattern=".{1,255}" min ="1" title="Inserisci il numero civico"required>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="comment">Descrizione:</label>
-                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante!" required></textarea>
+                                    <textarea class="form-control" rows="5" name="descrizione" pattern=".{3,32000}" title="Descrivi il ristorante" required></textarea>
                                 </div>
                             </div>
                         </div>
