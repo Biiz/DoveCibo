@@ -25,17 +25,17 @@ public class Riempi {
 
         ArrayList <Review> ALRev = new ArrayList();
         
-        ALRev.add(new Review(null, 5, 4, 5, 4, 5, "bello", "ho mangiato bene", null, 0, new User(3)));
-        ALRev.add(new Review(null, 4, 5, 3, 3, 4, "discerto", "ho mangiato bene ma la cameriera non è stata gentile", null, 0, new User(4)));
-        ALRev.add(new Review(null, 1, 2, 1, 1, 1, "pessimo", "ho mangiato male", null, 0, new User(5)));
-        ALRev.add(new Review(null, 2, 1, 2, 2, 1, "non ci siamo", "uno schifo", null, 0, new User(6)));
-        ALRev.add(new Review(null, 3, 4, 4, 4, 4, "si può fare di meglio", "cibo discreto, personale gentile", null, 0, new User(7)));
-        ALRev.add(new Review(null, 3, 4, 3, 5, 4, "si e no", "la pizza era buona ma la birra era pessima", null, 0, new User(8)));
-        ALRev.add(new Review(null, 2, 4, 2, 2, 2, "personale scortese", "ho chiesto uno stuzzicadenti e non me lo hanno portato", null, 0, new User(9)));
-        ALRev.add(new Review(null, 3, 4, 2, 3, 4, "attesa lunga", "ho aspettato 30min prima di ordinare", null, 0, new User(10)));
-        ALRev.add(new Review(null, 4, 4, 4, 4, 4, "bello ma..", "ho mangiato bene ma c'era molta gente", null, 0, new User(4)));
-        ALRev.add(new Review(null, 5, 5, 5, 5, 5, "top", "ci vado sempre, consigliatissimo", null, 0, new User(3)));
-        ALRev.add(new Review(null, 1, 1, 1, 1, 1, "peccato", "gli orari sono sbagliati", null, 0, new User(2)));
+        ALRev.add(new Review(null, 5, 5, 5, 5, 5, "Bellisimo!", "Ho mangiato molto bene, il servizio è ottimo e la location è bellissima. Ci torneremo di sicuro!", null, 0, new User(3)));
+        ALRev.add(new Review(null, 4, 5, 3, 3, 4, "Discreto", "Ho mangiato bene ma i camerieri non sono molto gentili e il servizio è stato un po' lento.", null, 0, new User(4)));
+        ALRev.add(new Review(null, 1, 1, 1, 1, 1, "Pessimo!", "Ho mangiato malissimo, servizio molto lento e atmosfera un po' troppo cupa e triste.", null, 0, new User(5)));
+        ALRev.add(new Review(null, 2, 1, 2, 2, 1, "Non ci siamo proprio", "Ristorante terribile! Un vero schifo! Appena pagato il conto siamo scappati di corsa", null, 0, new User(6)));
+        ALRev.add(new Review(null, 3, 4, 4, 4, 4, "Si può fare di meglio...", "Cibo discreto, personale gentile, atmosfera carina. Unica pecca: il volume della musica un po' troppo alto.", null, 0, new User(7)));
+        ALRev.add(new Review(null, 3, 4, 3, 5, 4, "Sì e no", "Buona la pizza ma gli antipasti che abbiamo ordinato erano freddi ed insipidi. Birra decente.", null, 0, new User(8)));
+        ALRev.add(new Review(null, 2, 4, 2, 2, 2, "Personale scortese", "Ad un certo punto della cena ho chiesto un altra bicchiere alla cameriera perchè il mio era sporco, ma non è mai arrivato! Si perdono i clienti così!", null, 0, new User(9)));
+        ALRev.add(new Review(null, 3, 4, 2, 3, 4, "Attesa lunga", "Ho dovuto aspettare 30 minuti prima di ordinare e di nuovo 30 minuti prima di mangiare. Peccato per il ristorante avrebbe del potenziale.", null, 0, new User(10)));
+        ALRev.add(new Review(null, 4, 4, 4, 4, 4, "Bello ma...", "Ho mangiato bene ma c'era davvero troppa gente! I tavoli sono troppo vicini e fare una normale conversazione è impossibile!", null, 0, new User(4)));
+        ALRev.add(new Review(null, 5, 5, 5, 5, 5, "Il miglior ristorante", "Ci vado sempre, consigliatissimo! Atmosfera, servizio, cibo sempre impeccabili! In aggiunta il conto non è mai alto, meglio di così!", null, 0, new User(3)));
+        ALRev.add(new Review(null, 1, 2, 1, 1, 1, "Peccato", "Gli orari sono sbagliati e il link non è più online. Correggete!", null, 0, new User(2)));
         
         ArrayList <Photo> ALPh = new ArrayList();
 
