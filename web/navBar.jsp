@@ -19,7 +19,7 @@
                         if(request.getSession(false) == null || request.getSession(false).getAttribute("User") == null) {
                             %>
                             <!-- registrati -->
-</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati </b></a></li>
+</a><li style="padding-right: 15px;" ><a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati</b></a></li>
 <!-- bottone che puppa la finestrella per accedere-->
 <li><a href="#" data-toggle="modal" data-target="#accedi" style="padding-right: 35px;"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>     
 </ul> 
@@ -64,7 +64,7 @@ else if (user.getRole().equals("2")) {
             <li role="separator" class="divider"></li>
             <form action="VisualizzaRistorantiUtente2" method="post">
                 <div class="row text-center">
-                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span>I tuoi ristoranti</button></li>
+                    <li><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> I tuoi ristoranti</button></li>
                 </div>
             </form>
         </ul>
@@ -190,7 +190,7 @@ else if (user.getRole().equals("3")){
             </div>
             <div class="modal-footer">
                 <div class="bottom text-center">
-                    Prima volta ? <a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati !</b></a>
+                    Prima volta? <a href="aggiungiUtente.jsp"><span class="glyphicon glyphicon-pencil"></span><b> Registrati!</b></a>
                 </div>
             </div>
         </div>   

@@ -22,20 +22,20 @@
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
                     <div class="col-md-6 col-sm-8 col-xs-10">
                         <div id="tagline">
-                            <h1>Register Form</h1>
+                            <h1>Form di registrazione</h1>
                         </div>
                         <!-- 1° row-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome:</label>          
-                                    <input type="text" class="form-control" name="first_name" placeholder="First name" pattern=".{3,255}" title="Inserisci il nome!" required>
+                                    <input type="text" class="form-control" name="first_name" placeholder="Nome" pattern=".{3,255}" title="Inserisci il nome!" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Cognome:</label>          
-                                    <input type="text" class="form-control" name="last_name" placeholder="Last name" pattern=".{3,255}" title="Inserisci il cognome!" required>
+                                    <input type="text" class="form-control" name="last_name" placeholder="Cognome" pattern=".{3,255}" title="Inserisci il cognome!" required>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Terms of use:</label>
+                                    <label>Termini d'uso:</label>
                                     <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
                                         <p><b>Vendo l'anima</b> e rifiuto la salvezza.</p>
                                         <p>Mea culpa e solo mea per dannarme la <b>vida loca.</b></p>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="checkbox pull-right">
-                                    <label><input type="checkbox" id="checkbox" required>Accept Terms and Conditions.</label>
+                                    <label><input type="checkbox" id="checkbox" required>Accetto Termini e Condizioni d'uso</label>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                         <!-- 5° row-->
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Sign in</button>
+                                <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Registrati</button>
                                 <button onclick="window.location.href = 'home.jsp'" type="reset" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
                                 <button type="reset" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancella Campi</button>
                             </div>

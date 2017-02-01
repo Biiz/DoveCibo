@@ -152,11 +152,11 @@
                             <br>
                             <div class="col-md-6">
                                 <label>Latitudine:</label>
-                                <input type="text" id="inlat" name="lat" class="form-control" placeholder="lat" required readonly="readonly">
+                                <input type="text" id="inlat" name="lat" class="form-control" placeholder="12.123" required readonly="readonly">
                             </div>
                             <div class="col-md-6">
                                 <label>Longitudine:</label>
-                                <input type="text" id="inlng" name="lng" class="form-control" placeholder="lng" required readonly="readonly">
+                                <input type="text" id="inlng" name="lng" class="form-control" placeholder="12.123" required readonly="readonly">
                             </div>
                         </div>
                         <br>
@@ -212,11 +212,11 @@
                             <br>
                             <div class="col-md-6">
                                 <label>Latitudine:</label>
-                                <input type="text" id="inlat2" name="lat" class="form-control" placeholder="0.0" required readonly="readonly">
+                                <input type="text" id="inlat2" name="lat" class="form-control" placeholder="12.123" required readonly="readonly">
                             </div>
                             <div class="col-md-6">
                                 <label>Longitudine:</label>
-                                <input type="text" id="inlng2" name="lng" class="form-control" placeholder="0.0" required readonly="readonly">
+                                <input type="text" id="inlng2" name="lng" class="form-control" placeholder="12.123" required readonly="readonly">
                             </div>
                         </div>
                         <br>
