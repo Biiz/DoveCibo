@@ -181,13 +181,13 @@
                         <%  Date gc = new Date( new GregorianCalendar().getTimeInMillis());
                             Date dCommento = new Date(0);
                             for(Review rev : R.getReviews()){
-                                if(thisUser == rev.getCreator() && rev.getDate_creation().after(dCommento)){
+                                if(thisUser.getId() == rev.getCreator().getId() && rev.getDate_creation().after(dCommento)){
                                     dCommento = rev.getDate_creation();
                                 }  
                             }
                             Long diff = gc.getTime()-dCommento.getTime();
                             Long dd = TimeUnit.MILLISECONDS.toDays(diff);
-                            if (dd>1){
+                            if (dd>0){
                             %>
                         <div class="col-md-4 bottom-align-text">
                             <a href="#diversi" class="btn btn-info btn-lg" data-toggle="collapse" ><span class="glyphicon glyphicon-comment"></span> Scrivi una recensione</a>

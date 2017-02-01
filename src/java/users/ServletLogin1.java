@@ -10,8 +10,8 @@ import javax.servlet.http.*;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
-public class ServletLogin extends HttpServlet {
+@WebServlet(name = "ServletLogin1", urlPatterns = {"/ServletLogin1"})
+public class ServletLogin1 extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *

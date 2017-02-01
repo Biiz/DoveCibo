@@ -161,7 +161,7 @@ else if (user.getRole().equals("3")){
             <div class="modal-body">
                 <div class="row" style="">
                     <div class="col-md-12">
-                        <form class="form" action="ServletLogin" method="post">
+                        <form class="form" action="ServletLogin1" method="post">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
