@@ -12,7 +12,8 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      
         <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
-        <script> $("#ex2").slider(); </script>
+        <script type="text/javascript" src="/DoveCiboGit/script/goback_window.js"></script>
+        <script type="text/javascript" src="/DoveCiboGit/script/slider.js"></script>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -287,9 +288,6 @@
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Conferma</button>
                                 <button type="reset" class="btn btn-sm btn-danger" onclick="goBack()"><span class="glyphicon glyphicon-backward"></span> Annulla</button>
-                                
-                                <!-- script per tornare indietro di pagina nel browser-->
-                                <script> function goBack() { window.history.back(); } </script>
                                 <button type="reset" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancella Campi</button>
                             </div>
                         </div>

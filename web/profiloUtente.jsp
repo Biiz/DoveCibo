@@ -37,9 +37,6 @@
                                 <div class="form-group">
                                     <label>Nome:</label>  
                                     <input type="text" id="first_name" class="form-control" name="first_name" pattern=".{3,255}" title="Il tuo nome" value="<%=user.getName() %>" required>
-                                    <script>
-                                        
-                                    </script>
                                 </div>
                             </div>
                             <div class="col-md-6">

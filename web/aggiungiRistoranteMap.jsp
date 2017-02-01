@@ -1,44 +1,8 @@
 <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/ristoranteMap.css" />
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>
-<script>
-    var geocoder;
-    var map;
-    
-    function initialize() {
-        geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(-34.397, 150.644);
-        var mapOptions = {
-            zoom: 8,
-            center: latlng
-        };
-        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    }
-
-    function codeAddress() {
-        var address =
-                document.getElementById('txtVia').value + " , " +
-                document.getElementById('txtNumero').value + " , " +
-                document.getElementById('txtCity').value + " , " +
-                document.getElementById('txtNazione').value;
-        geocoder.geocode({'address': address}, function (results, status) {
-            if (status == 'OK') {
-                map.setCenter(results[0].geometry.location);
-
-                document.getElementById("lat").value = results[0].geometry.location.lat();
-                document.getElementById("lng").value = results[0].geometry.location.lng();
-
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-    }
-</script>
-<script type="text/javascript"> window.onload = function () { initialize(); }; </script>
+<script type="text/javascript" src="/DoveCiboGit/script/aggiungiRistoranteMap.js"></script>
+<script type="text/javascript" src="/DoveCiboGit/script/onload.js"></script>
 
 <div id="map"></div>
 <div style="margin: 15px;">

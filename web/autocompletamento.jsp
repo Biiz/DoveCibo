@@ -17,6 +17,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/DoveCiboGit/script/chiudi_scheda.js"></script>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,19 +57,6 @@
                                 <span class="input-group-btn">
                                     <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
                                     <button class="btn btn-success" type="submit" onclick="allerta()" id="btn_submit">Go!</button>
-                                    <script>
-                                        function allerta(){
-                                            if(document.getElementById('input_form').value != ''
-                                                && document.getElementById('input_form').value.length >=3){
-                                                document.getElementById('formCercaRisto').submit();
-                                                setTimeout(function() {
-                                                    //così dopo 250ms la finestra viene chiusa
-                                                    parent.window.close();
-                                                }, 250);
-                                                
-                                            }
-                                        }
-                                    </script>
                             </div> 
                         </div>
                     </form>                                 

@@ -20,7 +20,10 @@
         <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
         <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI&callback=initMap" async defer></script>
+        <script type="text/javascript" src="/DoveCiboGit/script/datatable2.js"></script>
+        <script type="text/javascript" src="/DoveCiboGit/script/datatable3.js"></script>
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -99,17 +102,6 @@
                     %>
                     </tbody>
                 </table>
-
-                <script>
-                    $(document).ready(function () {
-                        $('#DataTable').DataTable();
-                    });
-
-                    $('#DataTable').DataTable({
-                        responsive: true
-                    });
-                </script>
-
             </div>
         </div>
                     
@@ -164,38 +156,5 @@
 
       
     </script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI&callback=initMap" async defer></script>
-
-
-
-<!--FINE MAPPA-->
-                    
-                    
-
-        <script>
-            $(document).ready(function () {
-                // Setup - add a text input to each footer cell
-                $('#DataTable tfoot th').each(function () {
-                    var title = $(this).text();
-                    $(this).html('<input type="text" placeholder="' + title + '.. " />');
-                });
-
-                // DataTable
-                var table = $('#DataTable').DataTable();
-
-                // Apply the search
-                table.columns().every(function () {
-                    var that = this;
-
-                    $('input', this.footer()).on('keyup change', function () {
-                        if (that.search() !== this.value) {
-                            that
-                                    .search( this.value )
-                                .draw();
-                        }
-                    } );
-                } );
-            } );
-          </script>
     </body>
 </html>
