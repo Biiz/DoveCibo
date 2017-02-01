@@ -179,9 +179,9 @@
                         <% if (!risposta1[0].equals("yes")) {%>
                            
                         <%  Date gc = new Date( new GregorianCalendar().getTimeInMillis());
-                            Date dCommento = gc;
+                            Date dCommento = new Date(0);
                             for(Review rev : R.getReviews()){
-                                if(thisUser == rev.getCreator() && rev.getDate_creation().before(dCommento)){
+                                if(thisUser == rev.getCreator() && rev.getDate_creation().after(dCommento)){
                                     dCommento = rev.getDate_creation();
                                 }  
                             }

@@ -13,7 +13,7 @@ public class DB_Manager {
     final String DRIVER = "org.postgresql.Driver"; //Nome del driver
     final String DB_NAME = "jdbc:postgresql://localhost:5432/DoveCibo"; //Nome del database completo di percorso
     final String DB_USER = "postgres"; // Nome utente
-    final String DB_PASSWORD = "michael93"; //Password
+    final String DB_PASSWORD = "postgres"; //Password
  
     public DB_Manager() throws SQLException {
         try {
