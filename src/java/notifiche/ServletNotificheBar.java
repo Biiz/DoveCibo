@@ -1,11 +1,5 @@
 package notifiche;
 
-import restaurant_photos.Photo;
-import restaurant_comments.Review;
-import notifiche.Notifica;
-import notifiche.comparatorNotifiche;
-import restaurants.Restaurant;
-import users.User;
 import database.DB_GestioneRestaurant;
 import database.DB_GestioneUser;
 import database.DB_Notifica;
@@ -21,6 +15,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import restaurant_comments.Review;
+import restaurant_photos.Photo;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

@@ -1,6 +1,5 @@
 package restaurants;
 
-import users.User;
 import database.DB_Coordinate;
 import database.DB_CuisineRestaurant;
 import database.DB_GestioneRestaurant;
@@ -12,6 +11,7 @@ import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import users.User;
 
 /**
  *

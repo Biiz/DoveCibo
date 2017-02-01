@@ -1,7 +1,5 @@
 package restaurant_comments;
 
-import restaurants.Restaurant;
-import users.User;
 import database.DB_GestioneRestaurant;
 import database.DB_GestioneUser;
 import database.DB_Reviews;
@@ -12,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

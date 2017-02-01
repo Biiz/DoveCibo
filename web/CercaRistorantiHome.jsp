@@ -28,14 +28,9 @@
 
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
-
         <div class="container">
             <div class="row row-centered">
-
-                <h2>Per cercare qualcosa tra i risultati utilizzare l'input di ricerca a destra.</h2>
-                <h2>Per filtrare i risultati, utilizzare gli input sotto ad una colonna.</h2>
                 <br><br>
-
                 <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr style="background-color: rgba(198, 239, 255, 1);">

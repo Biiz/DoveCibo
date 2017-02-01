@@ -1,7 +1,5 @@
 package notifiche;
 
-import restaurants.Restaurant;
-import users.User;
 import database.DB_Notifica;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

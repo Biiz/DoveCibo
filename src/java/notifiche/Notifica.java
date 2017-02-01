@@ -1,8 +1,8 @@
 package notifiche;
 
+import java.sql.Date;
 import restaurant_photos.Photo;
 import users.User;
-import java.sql.Date;
 
 /**
  *

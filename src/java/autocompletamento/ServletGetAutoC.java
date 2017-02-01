@@ -1,6 +1,5 @@
 package autocompletamento;
 
-import restaurants.Restaurant;
 import database.DB_Coordinate;
 import database.DB_CuisineRestaurant;
 import database.DB_GestioneRestaurant;
@@ -15,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import restaurants.Restaurant;
 
 /**
  *

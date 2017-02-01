@@ -1,15 +1,14 @@
 package restaurants;
 
-import restaurant_photos.Photo;
-import restaurant_comments.Review;
-import restaurants.Restaurant;
-import users.User;
 import database.DB_GestioneRestaurant;
 import database.DB_RestaurantPhoto;
 import database.DB_Reviews;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
+import restaurant_comments.Review;
+import restaurant_photos.Photo;
+import users.User;
 
 /**
  *

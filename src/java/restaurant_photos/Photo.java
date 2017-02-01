@@ -1,7 +1,7 @@
 package restaurant_photos;
 
-import users.User;
 import java.sql.Date;
+import users.User;
 
 /**
  *

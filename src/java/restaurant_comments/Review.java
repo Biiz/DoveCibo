@@ -1,8 +1,8 @@
 package restaurant_comments;
 
+import java.sql.Date;
 import notifiche.Replies;
 import users.User;
-import java.sql.Date;
 
 /**
  *

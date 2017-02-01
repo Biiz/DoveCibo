@@ -1,10 +1,5 @@
 package database;
 
-import restaurants.Coordinate;
-import restaurants.Day_hours;
-import restaurants.Price_range;
-import restaurants.Restaurant;
-import users.User;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import restaurants.Coordinate;
+import restaurants.Day_hours;
+import restaurants.Price_range;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

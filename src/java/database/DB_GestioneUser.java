@@ -1,11 +1,11 @@
 package database;
 
-import restaurants.Restaurant;
-import users.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServlet;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

@@ -1,6 +1,5 @@
 package users;
 
-import users.User;
 import database.DB_RestaurantOwner;
 import java.io.IOException;
 import java.sql.SQLException;

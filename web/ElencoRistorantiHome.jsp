@@ -27,10 +27,8 @@
     </head>
     
     <body style="padding-top: 70px;">
-
         <div class="container">
             <div class="row row-centered">
-
                 <table id="DataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr style="background-color: rgba(198, 239, 255, 1);">

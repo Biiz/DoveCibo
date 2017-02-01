@@ -19,42 +19,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
-    <body>
-        
+    <body>        
         <%
             ArrayList <Notifica> Notifiche = (ArrayList <Notifica>) request.getAttribute("notifiche");
             ArrayList <Integer> id = (ArrayList <Integer>) request.getAttribute("id_ristoranti");
         %>
         
+        <p style="color: black; font-size: 28px"><b>NOTIFICHE</b></p>
+        <!-- effettiva tabella delle notifiche -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
+                    <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                    for (Notifica n : Notifiche) { 
+                %>
 
+                <tr class="info">
+                    <td style="vertical-align: middle;"> <b><%= n.getUser().getNickname() %></b></td>
+                    <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
 
-                    <p style="color: black; font-size: 28px"><b>NOTIFICHE</b></p>
-                    <!-- effettiva tabella delle notifiche -->
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th><p style="color: black; font-size: 20px"><b>Nickname</b></p></th>
-                                <th><p style="color: black; font-size: 20px"><b>Descrizione</b></p></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <% 
-                                for (Notifica n : Notifiche) { 
-                            %>
-                            
-                            <tr class="info">
-                                <td style="vertical-align: middle;"> <b><%= n.getUser().getNickname() %></b></td>
-                                <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
-            
-                            </tr>
-                            
-                            <%
-                                } 
-                            %>
-                            
-                        </tbody>
-                    </table>
+                </tr>
 
+                <%
+                    } 
+                %>
+            </tbody>
+        </table>
     </body>
 </html>

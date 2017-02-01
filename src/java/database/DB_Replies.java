@@ -1,14 +1,14 @@
 package database;
 
-import notifiche.Replies;
-import restaurant_comments.Review;
-import users.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServlet;
+import notifiche.Replies;
+import restaurant_comments.Review;
+import users.User;
 
 /**
  *

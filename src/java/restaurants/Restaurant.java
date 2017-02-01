@@ -1,10 +1,10 @@
 package restaurants;
 
-import restaurant_photos.Photo;
-import restaurant_comments.Review;
-import users.User;
 import java.util.ArrayList;
 import java.util.List;
+import restaurant_comments.Review;
+import restaurant_photos.Photo;
+import users.User;
 
 /**
  *

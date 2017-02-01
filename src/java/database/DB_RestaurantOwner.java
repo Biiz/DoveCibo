@@ -1,7 +1,5 @@
 package database;
 
-import restaurants.Restaurant;
-import users.User;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

@@ -20,17 +20,14 @@
     </head>
     
     <body style="padding-top: 70px;" background="/DoveCiboGit/Sfondi/img (7)b.jpg">
-        <%@ include file="navBar.jsp" %>
-        
+        <%@ include file="navBar.jsp" %>      
         <%
             ArrayList <Notifica> Notifiche = (ArrayList <Notifica>) request.getAttribute("notifiche");
             ArrayList <Integer> id = (ArrayList <Integer>) request.getAttribute("id_ristoranti");
-        %>
-        
-            <div class="modal-dialog modal-lg" >
+        %>      
+        <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
-
                     <p style="color: black; font-size: 28px"><b>NOTIFICHE</b></p>
                     <!-- effettiva tabella delle notifiche -->
                     <table class="table">
@@ -41,17 +38,14 @@
                                 <th><p style="color: black; font-size: 20px"><b>Gestione</b></p></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            
+                        <tbody>                   
                             <% 
                                 int index = 0;
-                                for (Notifica n : Notifiche) { %>
-                            
+                                for (Notifica n : Notifiche) { %>                          
                             <tr class="info">
                                 <td style="vertical-align: middle;"> <b><%= n.getUser().getNickname() %></b></td>
                                 <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
-                                <td style="vertical-align: middle;">
-                                    
+                                <td style="vertical-align: middle;">                                  
                                     <% if( n.getTipo().equals("nuovaRec") ){ %>
                                     <form method="POST" action="ServletAggiungiRepile" >
                                         <input type="hidden" name="ristorante" value="<%= id.get(index) %>">
@@ -69,8 +63,7 @@
                                     <form method="POST" action="ServletRifiutaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta risposta</button>       
-                                    </form>
-                                    
+                                    </form>                                    
                                     <% } %>
                                     
                                     <% if( n.getTipo().equals("reclama") ){ %>
@@ -83,15 +76,13 @@
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> rifiuta reclamo</button>       
                                     </form>
                                     <% } %>
-                                    
-                                    
+                                                                       
                                     <% if( n.getTipo().equals("nuovaFoto") ){%>
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="1">
                                         <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Segnala la photo </button>       
-                                    </form>
-                                        
+                                    </form>                                       
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
                                     <% } %>
                                     
@@ -105,18 +96,14 @@
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="2">
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cancella notifica </button>       
-                                    </form>
-                                        
+                                    </form>                                      
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>"  width=50 height=50 >
-                                    <% } %>
-                                    
+                                    <% } %>                                   
                                 </td>
-                            </tr>
-                            
+                            </tr>                           
                             <%
                                 } 
-                            %>
-                            
+                            %>                           
                         </tbody>
                     </table>
                 </div>

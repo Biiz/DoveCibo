@@ -16,11 +16,9 @@
 
     <body style="padding-top: 70px;" background="/DoveCiboGit/Sfondi/img (7)b.jpg">
         <%@ include file="navBar.jsp" %>
-
         <div class="modal-dialog modal-lg" >
             <div class="modal-content colonna2">
                 <div class="modal-body">
-
                     <p style="color: black; font-size: 28px"><b>Gestione Foto</b></p>
                     <!-- effettiva tabella delle notifiche -->
                     <table class="table">
@@ -31,7 +29,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <tr class="info">
                                 <td style="vertical-align: middle;"> quì sta la foto</td>
                                 <td style="vertical-align: middle;"> 
@@ -44,7 +41,6 @@
 
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

@@ -1,7 +1,7 @@
 package users;
 
-import emails.SendEmail_Attivazione;
 import database.DB_GestioneUser;
+import emails.SendEmail_Attivazione;
 import java.io.IOException;
 import java.util.Random;
 import javax.servlet.ServletException;

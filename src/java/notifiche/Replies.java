@@ -1,7 +1,7 @@
 package notifiche;
 
-import users.User;
 import java.sql.Date;
+import users.User;
 
 /**
  *

@@ -1,11 +1,11 @@
 package database;
 
-import restaurants.Price_range;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.http.HttpServlet;
+import restaurants.Price_range;
 
 /**
  *

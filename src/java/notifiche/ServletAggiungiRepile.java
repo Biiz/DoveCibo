@@ -1,7 +1,5 @@
 package notifiche;
 
-import restaurants.Restaurant;
-import users.User;
 import database.DB_Replies;
 import database.DB_RestaurantOwner;
 import java.io.IOException;
@@ -13,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import restaurants.Restaurant;
+import users.User;
 
 /**
  *

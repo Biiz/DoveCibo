@@ -1,11 +1,11 @@
 package database;
 
-import restaurants.Day_hours;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.http.HttpServlet;
+import restaurants.Day_hours;
 
 /**
  *
