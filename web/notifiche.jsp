@@ -19,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
-    <body style="padding-top: 70px;" background="/DoveCiboGit/Sfondi/img (7)b.jpg">
+    <body style="padding-top: 70px;" background="/DoveCiboGit/Sfondi/sfondo.jpg">
         <%@ include file="navBar.jsp" %>      
         <%
             ArrayList <Notifica> Notifiche = (ArrayList <Notifica>) request.getAttribute("notifiche");
