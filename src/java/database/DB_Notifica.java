@@ -129,11 +129,11 @@ public class DB_Notifica extends HttpServlet {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("RISPOSTA AL COMMENTO: " +
+                ALN.add(new Notifica("RISPOSTA AL COMMENTO - " +
                                      "Ristorante: " + rest.getName() +
-                                     ". Commento: " + rev.getDescription( )+
-                                     " Autore del commento: " + rev.getCreator().getNickname()+
-                                     ". Risposta del Ristoratore: " + rep.getDescription(), 
+                                     ". Commento: " + rev.getDescription()+
+                                     "Autore del commento: " + rev.getCreator().getNickname()+
+                                     ".\n Risposta del Ristoratore: " + rep.getDescription(), 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
@@ -175,7 +175,7 @@ public class DB_Notifica extends HttpServlet {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("RISPOSTA AL COMMENTO: " +
+                ALN.add(new Notifica("RISPOSTA AL COMMENTO - " +
                                      "Ristorante: " + rest.getName(), 
                                      rep.getDate_creation(), 
                                      "confermaRep", rep.getId(), rep.getOwner()));

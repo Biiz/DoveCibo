@@ -15,16 +15,12 @@ import users.User;
  * @author postal
  */
 public class Riempi {
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        
-
-        ArrayList <Review> ALRev = new ArrayList();
-        
+        ArrayList <Review> ALRev = new ArrayList();       
         ALRev.add(new Review(null, 5, 5, 5, 5, 5, "Bellisimo!", "Ho mangiato molto bene, il servizio è ottimo e la location è bellissima. Ci torneremo di sicuro!", null, 0, new User(3)));
         ALRev.add(new Review(null, 4, 5, 3, 3, 4, "Discreto", "Ho mangiato bene ma i camerieri non sono molto gentili e il servizio è stato un po' lento.", null, 0, new User(4)));
         ALRev.add(new Review(null, 1, 1, 1, 1, 1, "Pessimo!", "Ho mangiato malissimo, servizio molto lento e atmosfera un po' troppo cupa e triste.", null, 0, new User(5)));
@@ -38,25 +34,18 @@ public class Riempi {
         ALRev.add(new Review(null, 1, 2, 1, 1, 1, "Peccato", "Gli orari sono sbagliati e il link non è più online. Correggete!", null, 0, new User(2)));
         
         ArrayList <Photo> ALPh = new ArrayList();
-
-
-        for(int i =1; i<37; i++){
+        for (int i =1; i<37; i++) {
             String ext = ".jpg";
-            if(i==14 || i==13){
+            if (i==14 || i==13)
                 ext = ".png";
-            }
+            
             ALPh.add(new Photo(null, "ok", null, i+ext, new User((i%9)+2), 2));
         }
         
-        
         ArrayList <Restaurant> ALRes = new ArrayList();
-        
-        
-        
         new DB_GestioneRestaurant().cercaTuttiRes(ALRes);
         
-        for (Restaurant res : ALRes) {
-            
+        for (Restaurant res : ALRes) {           
             new DB_GestioneRestaurant().cercaRistorante_perId(res);
             
             Random random1 = new Random();
@@ -68,13 +57,11 @@ public class Riempi {
             Random random4 = new Random();
             int randomNumber4 = random4.nextInt(36);
             
-            while(randomNumber2==randomNumber1){
+            while(randomNumber2==randomNumber1)
                 randomNumber2 = random2.nextInt(11);
-            }
             
-            while(randomNumber3==randomNumber4){
+            while(randomNumber3==randomNumber4)
                 randomNumber4 = random2.nextInt(11);
-            }
             
             Review rev = ALRev.get(randomNumber1);
             new DB_Reviews().inserisciReview(rev, res.getId());
@@ -88,11 +75,10 @@ public class Riempi {
                     rev.getAtmosphere())/5) + 
                     res.getGlobal_value().intValue()  + 
                     reviews_value[0])/3.0);
-            if (newGV <= 5) {
+            if (newGV <= 5)
                 new DB_GestioneRestaurant().updateRate(res, newGV);
-            }else{
+            else
                 new DB_GestioneRestaurant().updateRate(res, 5);
-            }
                 
             rev = ALRev.get(randomNumber2);
             new DB_Reviews().inserisciReview(rev, res.getId());
@@ -106,20 +92,13 @@ public class Riempi {
                     rev.getAtmosphere())/5) + 
                     res.getGlobal_value().intValue() + 
                     reviews_value[0])/3.0);
-            if (newGV <= 5) {
+            if (newGV <= 5)
                 new DB_GestioneRestaurant().updateRate(res, newGV);
-            }else{
+            else
                 new DB_GestioneRestaurant().updateRate(res, 5);
-            }
-            
-            
-            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber3), res.getId());
-            
-            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber4), res.getId());
-            
+
+            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber3), res.getId());           
+            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber4), res.getId());           
         }
-        
-        
-    }
-    
+    } 
 }
