@@ -65,7 +65,7 @@ public class ServletNotifiche extends HttpServlet {
                             id.add(rest.getId());
                             ALN.add(new Notifica("COMMENTO - " +
                                                  "Ristorante: " + rest.getName() +
-                                                 "\nCommento: " + rev.getDescription(), 
+                                                 " - Commento: " + rev.getDescription(), 
                                                  rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                         }
                     }
@@ -80,7 +80,7 @@ public class ServletNotifiche extends HttpServlet {
                         } else {
                             ALN.add( new Notifica("RIMOZIONE FOTO ANNULLATA - "
                                                  + "L'amministratore del sito non ritiene che la foto sia impropria per il ristorante."
-                                                 + "\nRistorante: " + rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                                                 + " - Ristorante: " + rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         }
                     }
                 }

@@ -164,7 +164,7 @@ public class DB_Notifica extends HttpServlet {
                                      "Ristorante: " + rest.getName() +
                                      ". Commento: " + rev.getDescription()+
                                      "Autore del commento: " + rev.getCreator().getNickname()+
-                                     ".\n Risposta del Ristoratore: " + rep.getDescription(), 
+                                     ". - Risposta del Ristoratore: " + rep.getDescription(), 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
