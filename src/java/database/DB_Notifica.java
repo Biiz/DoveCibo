@@ -53,9 +53,9 @@ public class DB_Notifica extends HttpServlet {
                 User u = new User(rs.getInt("id_owner"));
                 new DB_GestioneUser().cercaUser_perId(u);
   
-                ALN.add( new Notifica("RECLAMO: "+
-                                      "Ristorante: "+res.getName(), 
-                                        rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
+                ALN.add( new Notifica("RECLAMO: " +
+                                      "Ristorante: " + res.getName(), 
+                                      rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
             }
         } catch (SQLException e) {
             System.out.print(e.getMessage());
@@ -86,9 +86,9 @@ public class DB_Notifica extends HttpServlet {
                 User u = new User(rs.getInt("id_owner"));
                 new DB_GestioneUser().cercaUser_perId(u);
   
-                ALN.add( new Notifica("RECLAMO: "+
-                                      "ristorante: "+res.getName(), 
-                                        rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
+                ALN.add( new Notifica("RECLAMO: " + 
+                                      "ristorante: " + res.getName(), 
+                                      rs.getDate("date_creation"), "reclama", rs.getInt("id"), u));
             }
         } catch (SQLException e) {
             System.out.print(e.getMessage());
@@ -129,11 +129,11 @@ public class DB_Notifica extends HttpServlet {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("RISPOSTA AL COMMENTO: "+
-                                     "Ristorante: "+rest.getName()+
-                                     ". Commento: "+rev.getDescription()+
-                                     " Autore del commento: "+rev.getCreator().getNickname()+
-                                     ". Risposta del Ristoratore: "+rep.getDescription(), 
+                ALN.add(new Notifica("RISPOSTA AL COMMENTO: " +
+                                     "Ristorante: " + rest.getName() +
+                                     ". Commento: " + rev.getDescription( )+
+                                     " Autore del commento: " + rev.getCreator().getNickname()+
+                                     ". Risposta del Ristoratore: " + rep.getDescription(), 
                         rep.getDate_creation(), 
                         "confermaRep", rep.getId(), rep.getOwner()));
             }
@@ -169,16 +169,16 @@ public class DB_Notifica extends HttpServlet {
                 new DB_GestioneRestaurant().cercaRistorante_perId(rest);
                 
                 Replies rep = new Replies(
-                          rs.getInt("id"),  rs.getString("description"), 
+                          rs.getInt("id"), rs.getString("description"), 
                           rs.getDate("date_creation"),rs.getDate("date_creation"),
                           new User(rs.getInt("id_validator")),
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("<p>RISPOSTA AL COMMENTO</p>"+
-                                     "<p>Ristorante: <b>"+rest.getName()+"</b></p>", 
-                        rep.getDate_creation(), 
-                        "confermaRep", rep.getId(), rep.getOwner()));
+                ALN.add(new Notifica("<p>RISPOSTA AL COMMENTO</p>" +
+                                     "<p>Ristorante: <b>" + rest.getName() + "</b></p>", 
+                                     rep.getDate_creation(), 
+                                     "confermaRep", rep.getId(), rep.getOwner()));
             }
         } catch (SQLException e) {
             this.errore = e.toString();
