@@ -51,7 +51,7 @@ public class ServletAggiungiLike extends HttpServlet {
             
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idRes);            
         } catch (SQLException ex) {
-            request.setAttribute("error", ex.toString());
+            request.setAttribute("error", "Ops! Si è verificato un errore");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     }

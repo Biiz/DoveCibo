@@ -43,7 +43,7 @@ public class ServletAggiungiOwner extends HttpServlet {
 
             response.sendRedirect("/DoveCiboGit/ServletGetRistorante?idR="+idR);        
         } catch (SQLException ex) {
-            request.setAttribute("error", ex.toString());
+            request.setAttribute("error", "Ops! Si è verificato un errore");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     }

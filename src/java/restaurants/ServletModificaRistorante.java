@@ -32,12 +32,9 @@ public class ServletModificaRistorante extends HttpServlet {
 
             //FILTRO USER
             if ((u == null) || !new DB_RestaurantOwner().isOwners_perRistoranti(u, R)) {
-                System.out.println("dentro if");
                 request.setAttribute("error", "Zona protetta!");
                 request.getRequestDispatcher("errore.jsp").forward(request, response);
             } else {
-                System.out.println("dentro else");
-
                 // ORARI       
                 Day_hours dh = new Day_hours(
                         Integer.parseInt(request.getParameter("StMh")),
@@ -54,18 +51,18 @@ public class ServletModificaRistorante extends HttpServlet {
                 if (!new DB_OrariRestaurant().updateOrario(dh)) {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
-                System.out.println("fine orari");
+                
                 //PRICE RANGE               
                 String pr = request.getParameter("price");
                 String[] partPr = pr.split(",");
                 Price_range priceRange = new Price_range(null, Double.parseDouble(partPr[0]), Double.parseDouble(partPr[1]));
-                System.out.println("fine range");
+                
                 //UPDATE PRICE RANGE 
                 priceRange.setId_restaurant(R.getId());
                 if (!new DB_PriceRestaurant().updatePriceRange(priceRange)) {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
-                System.out.println("coordinate");
+                
                 //COORDINATE
                 Coordinate coordinate = new Coordinate(
                         request.getParameter("lat").isEmpty() ? null : Float.parseFloat(request.getParameter("lat")),
@@ -80,7 +77,7 @@ public class ServletModificaRistorante extends HttpServlet {
                 if (!(new DB_Coordinate().updateCoordinate(coordinate))) {
                     request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                 }
-                System.out.println("restaurant");
+               
                 //RESTAURANT
                 Restaurant restaurant = new Restaurant(
                         R.getId(),
@@ -118,17 +115,9 @@ public class ServletModificaRistorante extends HttpServlet {
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
                         }
                     }
-
                 }
-
             }
-            System.out.println("\n\nfine");
             request.getRequestDispatcher("ristorante_modificato_successo.jsp").forward(request, response);
-        } catch (Exception ex) {
-
-        } finally {
-
-        }
+        } catch (Exception ex) { } finally { }
     }
-
 }

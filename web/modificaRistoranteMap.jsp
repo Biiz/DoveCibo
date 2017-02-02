@@ -9,14 +9,13 @@
     var geocoder;
     var map;
 
-   function initMap(latitudine,longitudine) {
-        geocoder = new google.maps.Geocoder();
-        
+    function initMap(latitudine,longitudine) {
+        geocoder = new google.maps.Geocoder();       
         var uluru = {lat: latitudine, lng: longitudine};
         
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: uluru
+            zoom: 10,
+            center: uluru
         });
         
         var infowindow<%= Res.getId() %> = new google.maps.InfoWindow({
@@ -45,8 +44,7 @@
 
                 document.getElementById("lat").value = results[0].geometry.location.lat();
                 document.getElementById("lng").value = results[0].geometry.location.lng();
-                
-                
+                               
                 var infowindow<%= Res.getId() %> = new google.maps.InfoWindow({
                     content: "  <b><%= Res.getName() %></b>"
                 });
@@ -83,8 +81,7 @@
                 <label>Latitudine:</label>
                 <input class="form-control" name="lat" id="lat" onchange="latFill()" value="<%= Res.getCordinate().getLatitude() %>" required readonly="readonly">
             </div>
-        </div>
-        
+        </div>       
         <div class="col-md-6">
             <div class="form-group">
                 <label>Longitudine:</label>

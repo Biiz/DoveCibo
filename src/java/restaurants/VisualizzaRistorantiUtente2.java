@@ -78,7 +78,7 @@ public class VisualizzaRistorantiUtente2 extends HttpServlet {
             request.setAttribute("classifica", classifica);
             request.getRequestDispatcher("VisualizzaRistoranti.jsp").forward(request, response);
         } catch (Exception ex) {
-            request.setAttribute("error", ex.toString());
+            request.setAttribute("error", "Ops! Si è verificato un errore");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     }

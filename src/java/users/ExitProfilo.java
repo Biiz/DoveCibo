@@ -27,7 +27,7 @@ public class ExitProfilo extends HttpServlet {
             request.getSession(false).invalidate();
             response.sendRedirect("/DoveCiboGit/home.jsp");
         } catch (Exception ex) {
-            request.setAttribute("error", ex.toString());
+            request.setAttribute("error", "Ops! Si è verificato un errore");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     }

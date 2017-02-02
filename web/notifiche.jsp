@@ -48,7 +48,7 @@
                                         <input type="hidden" name="ristorante" value="<%= id.get(index) %>">
                                         <input type="hidden" name="commento" value="<%=n.getIdGen()%>">
                                         <input type="text" class="form-control" id="descrizione" name="descrizione" pattern=".{1,25}" required>
-                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Rispondi alla recensione</button>                                              
+                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rispondi alla recensione</button>                                              
                                     </form>
                                     <%   index++; }%>
                                     
@@ -78,7 +78,7 @@
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="1">
-                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Segnala la foto</button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Segnala foto</button>       
                                     </form>                                       
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
                                     <% } %>
@@ -87,12 +87,12 @@
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="0">
-                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cancella foto </button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Cancella foto</button>       
                                     </form>
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="2">
-                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cancella notifica </button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Cancella notifica</button>       
                                     </form>                                      
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>"  width=50 height=50 >
                                     <% } %>                                   
