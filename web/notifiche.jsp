@@ -48,6 +48,7 @@
                                         <input type="hidden" name="ristorante" value="<%= id.get(index) %>">
                                         <input type="hidden" name="commento" value="<%=n.getIdGen()%>">
                                         <input type="text" class="form-control" id="descrizione" name="descrizione" pattern=".{1,25}" required>
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rispondi alla recensione</button>                                              
                                     </form>
                                     <%   index++; }%>
@@ -55,10 +56,12 @@
                                     <% if( n.getTipo().equals("confermaRep") ){ %>
                                     <form method="POST" action="ServletAccettaaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Accetta risposta</button>       
                                     </form>
                                     <form method="POST" action="ServletRifiutaRisposta" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rifiuta risposta</button>       
                                     </form>                                    
                                     <% } %>
@@ -66,10 +69,12 @@
                                     <% if( n.getTipo().equals("reclama") ){ %>
                                     <form method="POST" action="ServletAccettaReclamo" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Accetta reclamo</button>       
                                     </form>
                                     <form method="POST" action="ServletRifiutaReclamo" >
                                         <input type="hidden" name="idGen" value="<%=n.getIdGen()%>">
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rifiuta reclamo</button>       
                                     </form>
                                     <% } %>
@@ -78,6 +83,7 @@
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="1">
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Segnala foto</button>       
                                     </form>                                       
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
@@ -87,12 +93,14 @@
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="0">
+                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Cancella foto</button>       
                                     </form>
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="2">
-                                        <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Cancella notifica</button>       
+                                        <br>
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true">Accetta foto</span></button>       
                                     </form>                                      
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>"  width=50 height=50 >
                                     <% } %>                                   
