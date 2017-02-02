@@ -16,12 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ServletRecuperoCredenziali", urlPatterns = {"/ServletRecuperoCredenziali"})
 public class ServletRecuperoCredenziali extends HttpServlet {
     /**
-     * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request oggetto di tipo HttpServletRequest contentente tutte le richieste fatte dal client alla servlet
+     * @param response oggetto di tipo HttpServletResponse contenente tutte le risposte inviate dalla servlet al client
+     * @throws ServletException se la richiesta per la POST non puo' essere gestita
+     * @throws IOException se viene rilevato un errore di I/O quando la servlet gestisce la richiesta POST
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
