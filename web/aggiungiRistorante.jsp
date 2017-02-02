@@ -14,7 +14,7 @@
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
         <script type="text/javascript" src="/DoveCiboGit/script/goback_window.js"></script>
         <script type="text/javascript" src="/DoveCiboGit/script/slider.js"></script>
-        <script type="text/javascript" src="/DoveCiboGit/script/slider_price.js"></script>
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -148,7 +148,14 @@
                             <div class="col-md-12 text-center">
                                 <h4><b>Fascia di prezzo:</b></h4>
                                 <div class="row">
-                                    <div class="col-md-12"> <%@include file="aggiungiRistoranteSliderPrice.jsp" %> </div>
+                                    <div class="col-md-12"> 
+                                        <input id="price" name="price" type="text" class="span2" value="" data-slider-min="0" 
+                                        data-slider-max="100" data-slider-step="5" 
+                                        data-slider-value="[20,80]"
+                                        data-slider-ticks="[0, 20, 40, 60, 80, 100]" 
+                                        data-slider-ticks-snap-bounds="30" 
+                                        data-slider-ticks-labels='["€0", "€20", "€40", "€60", "€80", "€100"]'/>
+                                    </div>
                                 </div> 
                             </div>
                         </div>
@@ -272,18 +279,6 @@
                         
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
 
-                        <!-- 9° row: caricamento foto
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="btn btn-info btn-group-justified btn-file">
-                                    <span class="glyphicon glyphicon-upload"></span> Seleziona foto da caricare <input type="file" accept="image/*" style="display: none;">
-                                </label> 
-                            </div>
-                        </div>
-
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>-->
-
-                        <!-- 10° row: bottoni-->
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Conferma</button>
