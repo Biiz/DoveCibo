@@ -57,9 +57,9 @@ public class ServletNotificheBar extends HttpServlet {
                         if (rev.getRepile() == null){
                             new DB_GestioneUser().cercaUser_perId(rev.getCreator());
                             id.add(rest.getId());
-                            ALN.add(new Notifica("COMMENTO: "+
+                            ALN.add(new Notifica("COMMENTO - "+
                                                  "Ristorante: "+rest.getName()+
-                                                 ". Commento: "+rev.getDescription(), 
+                                                 " Commento: "+rev.getDescription(), 
                                     rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                         }
                     }
@@ -69,10 +69,10 @@ public class ServletNotificheBar extends HttpServlet {
                     for (Photo ph: rest.getPhotos()) {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         if (!ph.getOwner().getRole().equals("1")) {
-                            ALN.add( new Notifica("AGGIUNTA NUOVA FOTO "
+                            ALN.add( new Notifica("AGGIUNTA NUOVA FOTO - "
                                                  +"Ristorante: "+rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         } else {
-                            ALN.add( new Notifica("RIMOZIONE FOTO ANNULLATA: "
+                            ALN.add( new Notifica("RIMOZIONE FOTO ANNULLATA - "
                                                  +"L'amministratore del sito non ritiene che la foto sia impropria per il ristorante. "
                                                  +"Ristorante: "+rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         }
@@ -96,8 +96,8 @@ public class ServletNotificheBar extends HttpServlet {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         Restaurant res = new Restaurant (ph.getId_Restaurant());
                         new DB_GestioneRestaurant().cercaRistorante_perId(res);
-                        ALN.add( new Notifica("SEGNALAZIONE PHOTO: "
-                                             +"ristorante: "+res.getName(),ph, "invalidaFoto", ph.getId(), ph.getOwner()));
+                        ALN.add( new Notifica("SEGNALAZIONE FOTO - "
+                                             +"Ristorante: "+res.getName(),ph, "invalidaFoto", ph.getId(), ph.getOwner()));
                 }
             }        
         

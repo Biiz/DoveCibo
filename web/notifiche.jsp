@@ -83,9 +83,9 @@
                                     <form method="POST" action="ServletModificaFoto" >
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="1">
-                                        <br>
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Segnala foto</button>       
-                                    </form>                                       
+                                    </form>
+                                        <br>
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
                                     <% } %>
                                     
@@ -101,7 +101,8 @@
                                         <input type="hidden" name="val" value="2">
                                         <br>
                                         <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true">Accetta foto</span></button>       
-                                    </form>                                      
+                                    </form>
+                                        <br>
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>"  width=50 height=50 >
                                     <% } %>                                   
                                 </td>
