@@ -114,7 +114,7 @@ public class ServletNotificheBar extends HttpServlet {
             request.setAttribute("id_ristoranti", id);
             request.getRequestDispatcher("notificheBar.jsp").forward(request, response);
         } catch (SQLException ex) {
-            request.setAttribute("error", ex.toString());
+            request.setAttribute("error", "Ops! Si è verificato un errore");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     }
