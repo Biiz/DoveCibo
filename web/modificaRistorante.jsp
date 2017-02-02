@@ -16,7 +16,6 @@
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
         <script type="text/javascript" src="/DoveCiboGit/script/goback_window.js"></script>
         <script type="text/javascript" src="/DoveCiboGit/script/slider.js"></script>
-        <script type="text/javascript" src="/DoveCiboGit/script/slider_price.js"></script>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -219,13 +218,12 @@
                             <div class="col-md-12 text-center">
                                 <h4><b>Fascia di prezzo:</b></h4>
                                 <div class="row">
-                                    <input id="price" name="price" type="text" 
-                                        class="span2" value="" data-slider-min="0" 
-                                        data-slider-max="100" data-slider-step="5" 
-                                        data-slider-value="[<%=R.getPrice_range().getMin_value()%>,<%=R.getPrice_range().getMax_value()%>]"
-                                        data-slider-ticks="[0, 20, 40, 60, 80, 100]" 
-                                        data-slider-ticks-snap-bounds="30" 
-                                        data-slider-ticks-labels='["€0", "€20", "€40", "€60", "€80", "€100"]'/> 
+                                    <input id="price" name="price" type="text" class="span2" value="" data-slider-min="0" 
+                                    data-slider-max="100" data-slider-step="5" 
+                                    data-slider-value="[<%=R.getPrice_range().getMin_value()%>,<%=R.getPrice_range().getMax_value()%>]"
+                                    data-slider-ticks="[0, 20, 40, 60, 80, 100]" 
+                                    data-slider-ticks-snap-bounds="30" 
+                                    data-slider-ticks-labels='["€0", "€20", "€40", "€60", "€80", "€100"]'/> 
                                 </div> <!-- fine row cena -->
                             </div>
                         </div>
