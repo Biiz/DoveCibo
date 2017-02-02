@@ -44,8 +44,9 @@ public class ServletNotificheBar extends HttpServlet {
             ArrayList <Integer> id = new ArrayList<Integer>();
             ArrayList <Restaurant> ALR = new DB_RestaurantOwner().cercaRistoranti_perOwner(u);
             
-            if(u.getRole().equals("2")) {
-                for(Restaurant rest: ALR) {
+            //NOTIFICHE PER RISTO
+            if (u.getRole().equals("2")) {
+                for (Restaurant rest: ALR) {
                     new DB_Reviews().setCommenti_perRistorante(rest);
                     new DB_GestioneRestaurant().cercaRistorante_perId(rest);
 
@@ -53,25 +54,27 @@ public class ServletNotificheBar extends HttpServlet {
                         if (!new DB_Replies().setRepli(rev))
                             request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
 
-                        if (rev.getRepile() == null) {
+                        if (rev.getRepile() == null){
                             new DB_GestioneUser().cercaUser_perId(rev.getCreator());
                             id.add(rest.getId());
-                            ALN.add(new Notifica("<p>COMMENTO</p>"+
-                                                 "<p>Ristorante: <b>"+rest.getName()+"</b></p>", 
+                            ALN.add(new Notifica("COMMENTO: "+
+                                                 "Ristorante: "+rest.getName()+
+                                                 ". Commento: "+rev.getDescription(), 
                                     rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                         }
                     }
 
                     new DB_RestaurantPhoto().cercaPhotos_perRistorante(rest, 2);
+
                     for (Photo ph: rest.getPhotos()) {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         if (!ph.getOwner().getRole().equals("1")) {
-                            ALN.add( new Notifica("<p>AGGIUNTA NUOVA FOTO</p> "
-                                                 +"<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                            ALN.add( new Notifica("AGGIUNTA NUOVA FOTO "
+                                                 +"Ristorante: "+rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         } else {
-                            ALN.add( new Notifica("<p>RIFIUTO DELETE PHOTO</p> "
-                                                 +"<p>L'<b>amministratore</b> del sito non ha rimosso la foto segnalata.</p>"
-                                                 +"<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                            ALN.add( new Notifica("RIMOZIONE FOTO ANNULLATA: "
+                                                 +"L'amministratore del sito non ritiene che la foto sia impropria per il ristorante. "
+                                                 +"Ristorante: "+rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         }
                     }
                 }
@@ -93,8 +96,8 @@ public class ServletNotificheBar extends HttpServlet {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         Restaurant res = new Restaurant (ph.getId_Restaurant());
                         new DB_GestioneRestaurant().cercaRistorante_perId(res);
-                        ALN.add( new Notifica("<p>SEGNALAZIONE PHOTO<p> "
-                                             +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+res.getId()+" '>"+res.getName()+"</a></b></p>",ph, "invalidaFoto", ph.getId(), ph.getOwner()));
+                        ALN.add( new Notifica("SEGNALAZIONE PHOTO: "
+                                             +"ristorante: "+res.getName(),ph, "invalidaFoto", ph.getId(), ph.getOwner()));
                 }
             }        
         
