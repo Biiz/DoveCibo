@@ -100,7 +100,7 @@
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="2">
                                         <br>
-                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true">Accetta</span></button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Accetta foto</button>       
                                     </form>
                                         <br>
                                         <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" height=60 >
