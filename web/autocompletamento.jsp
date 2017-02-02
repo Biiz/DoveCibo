@@ -49,14 +49,14 @@
 
                 <div class="col-md-3"></div>
                 <div class="col-md-4" style="background-color: rgba(255, 255, 255, 0.80); border-radius: 5px;" >
-                    <form id="formCercaRisto" action="CercaRistorantiHome" method="post" target="_blank">
+                    <form id="formCercaRisto" action="CercaRistorantiHome" method="post"  target="_parent" >
                         <h1 style="color: black; font-size: 50px; padding-top: 5%; ">Cerca un ristorante</h1>
                         <div class="form-group ui-widget">
                             <div class="input-group input-group-lg ombra" style="padding-bottom: 5%; ">
                                 <input id="input_form" pattern=".{3,}" type="text" name="go" class="form-control autocomplete" placeholder="Cerca un ristorante" required>
                                 <span class="input-group-btn">
                                     <!-- questo bottone submitta la ricerca, per ora linka solo la pagina dei ristoranti -->
-                                    <button class="btn btn-success" type="submit" onclick="allerta()" id="btn_submit">Go!</button>
+                                    <button class="btn btn-success" type="submit" id="btn_submit">Go!</button>
                             </div> 
                         </div>
                     </form>                                 
