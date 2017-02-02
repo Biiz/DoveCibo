@@ -360,7 +360,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-9">
-                            <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%></b></p>
+                            <p style="color: black; font-size: 25px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><b> <%=rew.getCreator().getNickname()%> - <%= rew.getCreator().getLike() %></b></p>
                             <div id="tagline">
                                 <p style="font-size: 25px;"><b><%= rew.getName()%></b></p>
                             </div>
@@ -377,8 +377,9 @@
                                 <button style="" type="submit" class="btn-like btn-default">
                                     <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike()%> </span>
                                 </button>
+                                <% }else{ %>
+                                    <span style="font-size: 25px;" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> <%= rew.getLike()%> </span>
                                 <% } %>
-
                             </form>
 
                         </div>
