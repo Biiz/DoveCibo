@@ -86,7 +86,7 @@
                                         <button style="align-items: left" type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Segnala foto</button>       
                                     </form>
                                         <br>
-                                        <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" width=50 height=50 >
+                                        <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" height=60 >
                                     <% } %>
                                     
                                     <% if( n.getTipo().equals("invalidaFoto") ){ %>
@@ -100,10 +100,10 @@
                                         <input type="hidden" name="foto" value="<%=n.getIdGen()%>">
                                         <input type="hidden" name="val" value="2">
                                         <br>
-                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true">Accetta foto</span></button>       
+                                        <button style="align-items: left" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true">Accetta</span></button>       
                                     </form>
                                         <br>
-                                        <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>"  width=50 height=50 >
+                                        <img src="ImmaginiCaricate/<%= n.getFoto().getPath() %>" height=60 >
                                     <% } %>                                   
                                 </td>
                             </tr>                           
