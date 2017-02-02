@@ -7,7 +7,13 @@ import java.util.Comparator;
  * @author postal
  */
 public class comparatorNotifiche implements Comparator<Notifica>{
-
+    /**
+     * compara notifice per data
+     * 
+     * @param n1
+     * @param n2
+     * @return 
+     */
     @Override
     public int compare(Notifica n1, Notifica n2) {
         Integer r;

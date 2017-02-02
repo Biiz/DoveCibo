@@ -14,6 +14,16 @@ import javax.mail.internet.MimeMessage;
  * @author IO-PC
  */
 public class SendEmail_Modifica_Profilo {
+
+    /**
+     * Invia mail di avvenuta modifica al profilo
+     *
+     * @param name
+     * @param surname
+     * @param email
+     * @param nick
+     * @param psw
+     */
     public SendEmail_Modifica_Profilo(String name, String surname, String email, String nick, String psw) {
         try{
             final String username = "DoveCibo@gmail.com";

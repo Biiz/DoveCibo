@@ -16,10 +16,26 @@ public class Replies {
     private User validator;
     private User owner;
 
+    /**
+     * Costruttore risposta 
+     *
+     * @param description
+     */
     public Replies(String description) {
         this.description = description;
     }
 
+    /**
+     * Costruttore risposta
+     * 
+     * @param id
+     * @param description
+     * @param date_creation
+     * @param date_validation
+     * @param validator
+     * @param owner
+     * @param idReview
+     */
     public Replies(Integer id, String description, Date date_creation, Date date_validation, User validator, User owner, Integer idReview) {
         this.id = id;
         this.description = description;

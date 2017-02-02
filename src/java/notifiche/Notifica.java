@@ -16,6 +16,15 @@ public class Notifica {
     private Integer idGen;
     private User user; 
 
+    /**
+     * Costruttore notifica di recensione
+     *
+     * @param descrizione
+     * @param data
+     * @param tipo
+     * @param idGen
+     * @param user
+     */
     public Notifica(String descrizione, Date data, String tipo, Integer idGen, User user) {
         this.descrizione = descrizione;
         this.data = data;
@@ -24,6 +33,15 @@ public class Notifica {
         this.user = user;
     }
 
+    /**
+     * Costruttore notifica di caricamento foto
+     *
+     * @param descrizione
+     * @param foto
+     * @param tipo
+     * @param idGen
+     * @param user
+     */
     public Notifica(String descrizione, Photo foto, String tipo, Integer idGen, User user) {
         this.descrizione = descrizione;
         this.tipo = tipo;

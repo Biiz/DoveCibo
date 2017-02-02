@@ -14,6 +14,15 @@ import javax.mail.internet.MimeMessage;
  * @author IO-PC
  */
 public class SendEmail_Attivazione {
+
+    /**
+     * Invia mail di avvenuta validazione account
+     *
+     * @param name
+     * @param nick
+     * @param psw
+     * @param email
+     */
     public SendEmail_Attivazione(String name, String nick, String psw, String email) {
         try{
             final String username = "DoveCibo@gmail.com";

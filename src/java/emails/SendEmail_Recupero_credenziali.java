@@ -11,9 +11,19 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 /**
  *
- * @author IO-PC
+ * @author biiz
  */
 public class SendEmail_Recupero_credenziali {
+
+    /**
+     * Invia mail per il recupero delle credenziali
+     *
+     * @param name
+     * @param surname
+     * @param email
+     * @param nick
+     * @param psw
+     */
     public SendEmail_Recupero_credenziali(String name, String surname, String email, String nick, String psw) {
         try{
             final String username = "DoveCibo@gmail.com";

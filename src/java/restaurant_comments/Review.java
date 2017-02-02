@@ -22,6 +22,21 @@ public class Review {
     private User creator;
     private Replies repile;
 
+    /**
+     * Costruttore recensione
+     *
+     * @param id
+     * @param global_value
+     * @param food
+     * @param service
+     * @param value_of_money
+     * @param atmosphere
+     * @param name
+     * @param description
+     * @param date_creation
+     * @param like
+     * @param creator
+     */
     public Review(Integer id, Integer global_value, Integer food, Integer service, Integer value_of_money, Integer atmosphere, String name, String description, Date date_creation, Integer like, User creator) {
         this.id = id;
         this.global_value = global_value;
