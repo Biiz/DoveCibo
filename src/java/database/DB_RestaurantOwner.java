@@ -1,12 +1,10 @@
 package database;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import restaurants.Restaurant;
 import users.User;
@@ -18,13 +16,7 @@ import users.User;
  */
 public class DB_RestaurantOwner extends HttpServlet {
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Gestisce le informazioni sui proprietari di ristoranti nel database
      */
     private String errore = "";
     DB_Manager connessione;

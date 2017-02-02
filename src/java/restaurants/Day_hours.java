@@ -17,7 +17,7 @@ public class Day_hours {
     private Integer end_M_P;
 
     /**
-     * Costruttore data&ora
+     * Costruttore data e ora
      *
      * @param start_H_M
      * @param start_M_M
@@ -40,7 +40,7 @@ public class Day_hours {
     }
 
     /**
-     * Costruttore data&ora
+     * Costruttore data e ora
      *
      * @param id_restaurant
      * @param start_H_M
@@ -65,7 +65,7 @@ public class Day_hours {
     }
 
     /**
-     * Costruttore data&ora
+     * Costruttore data e ora
      *
      * @param id_restaurant
      */
