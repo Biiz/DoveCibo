@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author stefano
  */
-@WebServlet(name = "ServletRegistrazione", urlPatterns = {"/ServletRegistrazione"})
-public class ServletRegistrazione extends HttpServlet {
+@WebServlet(name = "ServletRegistrazione1", urlPatterns = {"/ServletRegistrazione1"})
+public class ServletRegistrazione1 extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *

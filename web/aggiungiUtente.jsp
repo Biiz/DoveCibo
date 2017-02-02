@@ -16,7 +16,7 @@
     
     <body style="padding-top: 70px;">
         <%@ include file="navBar.jsp" %>
-        <form name="loginForm"  action="ServletRegistrazione" method="post">
+        <form name="loginForm"  action="ServletRegistrazione1" method="post">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
