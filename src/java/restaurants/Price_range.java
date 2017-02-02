@@ -9,12 +9,24 @@ public class Price_range {
     private Double min_value;
     private Double max_value;
 
+    /**
+     * Costruttore price range
+     *
+     * @param id_restaurant
+     * @param min_value
+     * @param max_value
+     */
     public Price_range(Integer id_restaurant, Double min_value, Double max_value) {
         this.id_restaurant = id_restaurant;
         this.min_value = min_value;
         this.max_value = max_value;
     }
 
+    /**
+     * Costruttore price range
+     *
+     * @param id_restaurant
+     */
     public Price_range(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
     }

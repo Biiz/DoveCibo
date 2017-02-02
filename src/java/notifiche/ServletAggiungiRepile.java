@@ -21,6 +21,7 @@ import users.User;
 @WebServlet(name = "ServletAggiungiRepile", urlPatterns = {"/ServletAggiungiRepile"})
 public class ServletAggiungiRepile extends HttpServlet {
     /**
+     * 
      *
      * @param request oggetto di tipo HttpServletRequest contentente tutte le richieste fatte dal client alla servlet
      * @param response oggetto di tipo HttpServletResponse contenente tutte le risposte inviate dalla servlet al client

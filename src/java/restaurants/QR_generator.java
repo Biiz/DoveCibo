@@ -12,10 +12,20 @@ import net.glxn.qrgen.image.ImageType;
 public class QR_generator {
     Restaurant rest;
 
+    /**
+     * Costruttore QR code
+     *
+     * @param rest
+     */
     public QR_generator(Restaurant rest) {
         this.rest = rest;
     }
 
+    /**
+     * Ritorna QR code generato
+     *
+     * @return
+     */
     public String qr_Gen() {
         String qrText = rest.RestDescriptionToText();
 

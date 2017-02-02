@@ -17,6 +17,16 @@ public class Photo {
     private Integer id_Restaurant;
     private Date date_creation;
 
+    /**
+     * Costruttore foto
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param path
+     * @param owner
+     * @param validation
+     */
     public Photo(Integer id, String name, String description, String path, User owner, Integer validation) {
         this.id = id;
         this.name = name;
@@ -26,6 +36,18 @@ public class Photo {
         this.validation = validation;
     }
 
+    /**
+     * Costruttore foto
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param path
+     * @param owner
+     * @param validation
+     * @param date_creation
+     * @param id_Restaurant
+     */
     public Photo(Integer id, String name, String description, String path, User owner, Integer validation, Date date_creation, Integer id_Restaurant) {
         this.id = id;
         this.name = name;

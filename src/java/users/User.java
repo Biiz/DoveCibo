@@ -14,10 +14,20 @@ public class User {
     private String role;
     private Integer like;
 
+    /**
+     * Costruttore utente
+     *
+     * @param id
+     */
     public User(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Costruttore utente
+     *
+     * @param id
+     */
     public User(Integer id, String name, String surname, String nickname, String email, String password, String role) {
         this.id = id;
         this.name = name;

@@ -2,6 +2,7 @@ package restaurants;
 
 /**
  *
+ * 
  * @author stefano
  */
 public class Coordinate {
@@ -13,10 +14,25 @@ public class Coordinate {
     private String city;
     private String nazione;
 
+    /**
+     * Costruttore coordinate
+     *
+     * @param id_resturant
+     */
     public Coordinate(Integer id_resturant) {
         this.id_resturant = id_resturant;
     }
 
+    /**
+     * Costruttore coordinate
+     *
+     * @param latitude
+     * @param longitude
+     * @param adrers
+     * @param numero
+     * @param city
+     * @param nazione
+     */
     public Coordinate(Float latitude, Float longitude, String adrers, Integer numero, String city, String nazione) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -26,7 +42,12 @@ public class Coordinate {
         this.nazione = nazione;
     }
 
-    //iniz con solo adress
+    /**
+     * Costruttore coordinate con solo address
+     *
+     * @param id_resturant
+     * @param adrers
+     */
     public Coordinate(Integer id_resturant, String adrers) {
         this.id_resturant = id_resturant;
         this.latitude = 0f; //da calcolare;

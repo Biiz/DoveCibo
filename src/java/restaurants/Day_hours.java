@@ -15,6 +15,18 @@ public class Day_hours {
     private Integer end_H_P;
     private Integer end_M_P;
 
+    /**
+     * Costruttore data&ora
+     *
+     * @param start_H_M
+     * @param start_M_M
+     * @param end_H_M
+     * @param end_M_M
+     * @param start_H_P
+     * @param start_M_P
+     * @param end_H_P
+     * @param end_M_P
+     */
     public Day_hours(Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M, Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
         this.start_H_M = start_H_M;
         this.start_M_M = start_M_M;
@@ -26,6 +38,19 @@ public class Day_hours {
         this.end_M_P = end_M_P;
     }
 
+    /**
+     * Costruttore data&ora
+     *
+     * @param id_restaurant
+     * @param start_H_M
+     * @param start_M_M
+     * @param end_H_M
+     * @param end_M_M
+     * @param start_H_P
+     * @param start_M_P
+     * @param end_H_P
+     * @param end_M_P
+     */
     public Day_hours(Integer id_restaurant, Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M, Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
         this.id_restaurant = id_restaurant;
         this.start_H_M = start_H_M;
@@ -38,6 +63,11 @@ public class Day_hours {
         this.end_M_P = end_M_P;
     }
 
+    /**
+     * Costruttore data&ora
+     *
+     * @param id_restaurant
+     */
     public Day_hours(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
     }
@@ -114,6 +144,11 @@ public class Day_hours {
         this.end_M_P = end_M_P;
     }
 
+    /**
+     * Ritorna stringa di descrizione dell'orario, mostrata nel QR
+     *
+     * @return
+     */
     public String DayHoursDescriptionToText() {
         //Stringa descrittiva dell'orario, mostrata nel QR
         String description = 

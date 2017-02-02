@@ -26,10 +26,27 @@ public class Restaurant {
     private ArrayList<Review> reviews = new ArrayList<Review>();
     private ArrayList<Cusine> cusines = new ArrayList<Cusine>();
 
+    /**
+     * Costruttore ristorante
+     *
+     * @param id
+     */
     public Restaurant(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Costruttore ristorante
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param web_site_url
+     * @param creator
+     * @param cordinate
+     * @param price_range
+     * @param day_hours
+     */
     public Restaurant(Integer id, String name, String description, String web_site_url, User creator, Coordinate cordinate, Price_range price_range, Day_hours day_hours) {
         this.id = id;
         this.name = name;
@@ -129,6 +146,18 @@ public class Restaurant {
         return false;
     }
     
+    /**
+     * Set di piu' dati assieme
+     *
+     * @param description
+     * @param global_value
+     * @param price_range
+     * @param name
+     * @param web_site_url
+     * @param creator
+     * @param c
+     * @param dh
+     */
     public void setAltro(String description, Float global_value, 
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c, Day_hours dh) {
         this.description = description;
@@ -141,6 +170,11 @@ public class Restaurant {
         this.day_hours = dh;
     }
        
+    /**
+     * Ritorna stringa di descrizione di un ristorante
+     *
+     * @return
+     */
     public String RestDescriptionToText(){
         //ottengo la stringa degli orari di apertura
         String hours_description = this.day_hours.DayHoursDescriptionToText();
