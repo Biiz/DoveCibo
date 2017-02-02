@@ -20,7 +20,13 @@ import users.User;
  */
 @WebServlet(name = "ServletStampaTuttoRistorante", urlPatterns = {"/ServletStampaTuttoRistorante"})
 public class ServletStampaTuttoRistorante extends HttpServlet {
-
+    /**
+     *
+     * @param request oggetto di tipo HttpServletRequest contentente tutte le richieste fatte dal client alla servlet
+     * @param response oggetto di tipo HttpServletResponse contenente tutte le risposte inviate dalla servlet al client
+     * @throws ServletException se la richiesta per la POST non puo' essere gestita
+     * @throws IOException se viene rilevato un errore di I/O quando la servlet gestisce la richiesta POST
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

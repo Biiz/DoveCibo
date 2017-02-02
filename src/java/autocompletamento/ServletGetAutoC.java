@@ -14,10 +14,18 @@ import restaurants.Restaurant;
 
 /**
  *
- * @author postal
+ * @author postal 
  */
 @WebServlet(name = "ServletGetAutoC", urlPatterns = {"/ServletGetAutoC"})
 public class ServletGetAutoC extends HttpServlet {
+
+    /**
+     *
+     * @param request oggetto di tipo HttpServletRequest contentente tutte le richieste fatte dal client alla servlet
+     * @param response oggetto di tipo HttpServletResponse contenente tutte le risposte inviate dalla servlet al client
+     * @throws ServletException se la richiesta per la GET non puo' essere gestita
+     * @throws IOException se viene rilevato un errore di I/O quando la servlet gestisce la richiesta GET
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
