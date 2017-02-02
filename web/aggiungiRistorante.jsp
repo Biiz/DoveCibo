@@ -14,7 +14,7 @@
         <script src="./bootstrap-slider/bootstrap-slider.js"></script>
         <script type="text/javascript" src="/DoveCiboGit/script/goback_window.js"></script>
         <script type="text/javascript" src="/DoveCiboGit/script/slider.js"></script>
-        
+        <script type="text/javascript" src="/DoveCiboGit/script/slider_price.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -85,7 +85,7 @@
                         <!-- 4° row: coordinate geografiche-->
                         <div class="row" > <%@include file="aggiungiRistoranteMap.jsp" %> </div>
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
+            <div id="afterGeocode" style="display: none;">
                         <!-- 5° row: descrizione ristorante-->
                         <div class="row">
                             <div class="col-md-12">
@@ -149,7 +149,7 @@
                                 <h4><b>Fascia di prezzo:</b></h4>
                                 <div class="row">
                                     <div class="col-md-12"> <%@include file="aggiungiRistoranteSliderPrice.jsp" %> </div>
-                                </div> <!-- fine row cena -->
+                                </div> 
                             </div>
                         </div>
                         <br>
@@ -292,6 +292,7 @@
                             </div>
                         </div>
                         <br>
+            </div>
                     </div>
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
                 </div><br>

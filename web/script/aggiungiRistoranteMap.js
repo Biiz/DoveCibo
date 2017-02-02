@@ -30,6 +30,8 @@ function codeAddress() {
                 map: map,
                 position: results[0].geometry.location
             });
+            
+            document.getElementById("afterGeocode").style.display = "block";
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }

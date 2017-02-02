@@ -53,7 +53,7 @@ public class ServletLogin1 extends HttpServlet {
                 request.getRequestDispatcher("erroreConnessione.jsp").forward(request, response);
             }
         } catch (Exception ex) {
-            request.setAttribute("error", ex.toString());
+            request.setAttribute("error", "Ops! C'è stato un errore.");
             request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     }
