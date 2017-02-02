@@ -59,6 +59,9 @@
                 marker<%= Res.getId() %>.addListener('click', function() {
                     infowindow<%= Res.getId() %>.open(map, marker<%= Res.getId() %>);
                 });
+                
+                document.getElementById("afterGeocode").style.display = "block";
+                document.getElementById("beforeGeocode").style.display = "none";
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
