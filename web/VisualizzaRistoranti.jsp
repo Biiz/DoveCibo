@@ -37,7 +37,6 @@
                             <th>VALUTAZIONE</th>
                             <th>RANK</th>
                             <th>COMMENTI</th>
-                            <th>INDIRIZZO</th>
                             <th>CUCINA</th>
                         </tr>
                     </thead>
@@ -47,7 +46,6 @@
                             <th>Valutazione</th>
                             <th>Rank</th>
                             <th>Review</th>
-                            <th>Indirizzo</th>
                             <th>Cucine</th>
                         </tr>
                     </tfoot>

@@ -79,7 +79,6 @@ public class Riempi {
                 new DB_GestioneRestaurant().updateRate(res, newGV);
             else
                 new DB_GestioneRestaurant().updateRate(res, 5);
-            
                 
             rev = ALRev.get(randomNumber2);
             new DB_Reviews().inserisciReview(rev, res.getId());
@@ -93,20 +92,13 @@ public class Riempi {
                     rev.getAtmosphere())/5) + 
                     res.getGlobal_value().intValue() + 
                     reviews_value[0])/3.0);
-            if (newGV <= 5) {
+            if (newGV <= 5)
                 new DB_GestioneRestaurant().updateRate(res, newGV);
-            }else{
+            else
                 new DB_GestioneRestaurant().updateRate(res, 5);
-            }
-            
-            
-            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber3), res.getId());
-            
-            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber4), res.getId());
-            
+
+            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber3), res.getId());           
+            new DB_RestaurantPhoto().inserisciPhoto(ALPh.get(randomNumber4), res.getId());           
         }
-        
-        
-    }
-    
+    } 
 }

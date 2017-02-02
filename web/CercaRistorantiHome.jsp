@@ -42,7 +42,6 @@
                             <th>COMMENTI</th>
                             <th>€ MIN</th>
                             <th>€ MAX</th>
-                            <th>INDIRIZZO</th>
                             <th>CUCINA</th>
                         </tr>
                     </thead>
@@ -54,7 +53,6 @@
                             <th>Review</th>
                             <th>Min</th>
                             <th>Max</th>
-                            <th>Indirizzo</th>
                             <th>Cucine</th>
                         </tr>
                     </tfoot>
