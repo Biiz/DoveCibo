@@ -175,8 +175,8 @@ public class DB_Notifica extends HttpServlet {
                           user,
                           rs.getInt("id_review"));
                 
-                ALN.add(new Notifica("<p>RISPOSTA AL COMMENTO</p>" +
-                                     "<p>Ristorante: <b>" + rest.getName() + "</b></p>", 
+                ALN.add(new Notifica("RISPOSTA AL COMMENTO: " +
+                                     "Ristorante: " + rest.getName(), 
                                      rep.getDate_creation(), 
                                      "confermaRep", rep.getId(), rep.getOwner()));
             }
