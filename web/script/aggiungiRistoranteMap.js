@@ -32,6 +32,7 @@ function codeAddress() {
             });
             
             document.getElementById("afterGeocode").style.display = "block";
+            document.getElementById("beforeGeocode").style.display = "none";
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }

@@ -85,6 +85,12 @@
                         <!-- 4° row: coordinate geografiche-->
                         <div class="row" > <%@include file="aggiungiRistoranteMap.jsp" %> </div>
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
+                        <div class="row" id="beforeGeocode">
+                            <div class="col-md-12">
+                            <h4>Per proseguire con le modifiche, convalida le coordinate</h4>
+                            <br>
+                            </div>
+                        </div>
             <div id="afterGeocode" style="display: none;">
                         <!-- 5° row: descrizione ristorante-->
                         <div class="row">
