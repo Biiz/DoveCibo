@@ -56,9 +56,9 @@ public class ServletNotifiche extends HttpServlet {
                         if (rev.getRepile() == null){
                             new DB_GestioneUser().cercaUser_perId(rev.getCreator());
                             id.add(rest.getId());
-                            ALN.add(new Notifica("<p>COMMENTO</p>"+
-                                                 "<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>"+
-                                                 "<p>Commento: <b>"+rev.getDescription()+"</b></p>", 
+                            ALN.add(new Notifica("COMMENTO: "+
+                                                 "Ristorante: "+rest.getName()+
+                                                 ". Commento: "+rev.getDescription(), 
                                     rev.getDate_creation(), "nuovaRec", rev.getId(), rev.getCreator()));
                         }
                     }
@@ -68,12 +68,12 @@ public class ServletNotifiche extends HttpServlet {
                     for (Photo ph: rest.getPhotos()) {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         if (!ph.getOwner().getRole().equals("1")) {
-                            ALN.add( new Notifica("<p>AGGIUNTA NUOVA FOTO</p> "
-                                                 +"<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                            ALN.add( new Notifica("AGGIUNTA NUOVA FOTO "
+                                                 +"Ristorante: "+rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         } else {
-                            ALN.add( new Notifica("<p>RIMOZIONE FOTO ANNULLATA</p> "
-                                                 +"<p>L'<b>amministratore</b> del sito non ritiene che la foto sia impropria per il ristorante.</p> "
-                                                 +"<p>Ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+rest.getId()+" '>"+rest.getName()+"</a></b></p>",ph, "nuovaFoto", ph.getId(), ph.getOwner()));
+                            ALN.add( new Notifica("RIMOZIONE FOTO ANNULLATA: "
+                                                 +"L'amministratore del sito non ritiene che la foto sia impropria per il ristorante. "
+                                                 +"Ristorante: "+rest.getName(),ph, "nuovaFoto", ph.getId(), ph.getOwner()));
                         }
                     }
                 }
@@ -96,8 +96,8 @@ public class ServletNotifiche extends HttpServlet {
                         new DB_GestioneUser().cercaUser_perId(ph.getOwner());
                         Restaurant res = new Restaurant (ph.getId_Restaurant());
                         new DB_GestioneRestaurant().cercaRistorante_perId(res);
-                        ALN.add( new Notifica("<p>SEGNALAZIONE PHOTO<p> "
-                                             +"<p>ristorante: <b><a href='/DoveCiboGit/ServletGetRistorante?idR="+res.getId()+" '>"+res.getName()+"</a></b></p>",ph, "invalidaFoto", ph.getId(), ph.getOwner()));
+                        ALN.add( new Notifica("SEGNALAZIONE PHOTO: "
+                                             +"ristorante: "+res.getName(),ph, "invalidaFoto", ph.getId(), ph.getOwner()));
                 } 
             }        
         
