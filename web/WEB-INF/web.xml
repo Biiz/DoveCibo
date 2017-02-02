@@ -206,10 +206,6 @@
         </session-timeout>
     </session-config>
     <error-page>
-        <error-code>500</error-code>
-        <location>/errorUnhandled.jsp</location>
-    </error-page>
-    <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/errorUnhandled.jsp</location>
     </error-page>
@@ -226,11 +222,39 @@
         <location>/errorUnhandled.jsp</location> 
     </error-page>
     <error-page> 
+        <error-code>402</error-code> 
+        <location>/errorUnhandled.jsp</location> 
+    </error-page>
+    <error-page> 
         <error-code>401</error-code> 
         <location>/errorUnhandled.jsp</location> 
     </error-page>
     <error-page> 
         <error-code>403</error-code> 
         <location>/errorUnhandled.jsp</location> 
-    </error-page> 
+    </error-page>
+    <error-page> 
+        <error-code>405</error-code> 
+        <location>/errorUnhandled.jsp</location> 
+    </error-page>
+    <error-page>
+        <error-code>408</error-code>
+        <location>/errorUnhandled.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>410</error-code>
+        <location>/errorUnhandled.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errorUnhandled.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>502</error-code>
+        <location>/errorUnhandled.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/errorUnhandled.jsp</location>
+    </error-page>
 </web-app>
