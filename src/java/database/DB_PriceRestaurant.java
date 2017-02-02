@@ -15,12 +15,29 @@ public class DB_PriceRestaurant extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_PriceRestaurant() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Aggiorna range di prezzo di un ristorante
+     *
+     * @param price
+     * @return
+     * @throws SQLException
+     */
     public Boolean updatePriceRange(Price_range price) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -44,6 +61,13 @@ public class DB_PriceRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiungi nuovo range di prezzo
+     * 
+     * @param pr
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciPrice_range(Price_range pr) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -68,6 +92,13 @@ public class DB_PriceRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca range di prezzo per id
+     *
+     * @param price
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaPriceRangeId(Price_range price) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

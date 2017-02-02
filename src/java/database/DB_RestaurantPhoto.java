@@ -29,12 +29,30 @@ public class DB_RestaurantPhoto extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_RestaurantPhoto() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Aggiungi foto a un ristorante
+     *
+     * @param p
+     * @param id_restourant
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciPhoto(Photo p, Integer id_restourant) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -67,6 +85,14 @@ public class DB_RestaurantPhoto extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca foto di un ristorante
+     *
+     * @param res
+     * @param val
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaPhotos_perRistorante(Restaurant res, Integer val) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -105,6 +131,14 @@ public class DB_RestaurantPhoto extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca tutte le foto validate
+     *
+     * @param ALP
+     * @param val
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaPhotos(ArrayList <Photo> ALP, Integer val) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -142,6 +176,15 @@ public class DB_RestaurantPhoto extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna valizaione foto
+     *
+     * @param idPh
+     * @param val
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public Boolean updatePhotoVal(Integer idPh, Integer val, User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

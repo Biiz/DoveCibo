@@ -17,12 +17,29 @@ public class DB_CuisineRestaurant extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_CuisineRestaurant() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna stringa di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Rimuove cuisine da un ristorante
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Boolean removeCuisine(Integer id) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -44,6 +61,14 @@ public class DB_CuisineRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiunge cuisine a un ristorante
+     *
+     * @param id_restourant
+     * @param id_cuisine
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciRelazioneCuisinesRestaurant(Integer id_restourant, Integer id_cuisine) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -66,6 +91,14 @@ public class DB_CuisineRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Prende ristoranti per cuisine
+     *
+     * @param cuis
+     * @param id_cu
+     * @return
+     * @throws SQLException
+     */
     public Boolean SetResForCuisine (String cuis, ArrayList <Integer> id_cu) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -89,6 +122,14 @@ public class DB_CuisineRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Prende risoranti per cuisineId
+     *
+     * @param id_cu
+     * @param id_res
+     * @return
+     * @throws SQLException
+     */
     public Boolean SetResForCuisineId (Integer id_cu, ArrayList <Integer> id_res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -112,6 +153,13 @@ public class DB_CuisineRestaurant extends HttpServlet {
         }
     }
 
+    /**
+     * Cerca cuisines per ristorante
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaCusines_perRistoranye(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

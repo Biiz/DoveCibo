@@ -15,12 +15,29 @@ public class DB_OrariRestaurant extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_OrariRestaurant() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Aggiorna l'orario di apertura di un ristorante
+     *
+     * @param dh
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateOrario(Day_hours dh) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -50,6 +67,13 @@ public class DB_OrariRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiunge un orario di apertura di un ristorante
+     *
+     * @param dh
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciOrario(Day_hours dh) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -79,6 +103,13 @@ public class DB_OrariRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca l'orario di apertura dato un id
+     *
+     * @param h
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaDay_hours_perId(Day_hours h) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

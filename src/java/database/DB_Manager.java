@@ -15,6 +15,11 @@ public class DB_Manager {
     final String DB_USER = "postgres"; // Nome utente
     final String DB_PASSWORD = "postgres"; //Password
  
+    /**
+     * Costruttore, connessione al db
+     *
+     * @throws SQLException
+     */
     public DB_Manager() throws SQLException {
         try {
             Class.forName(DRIVER); //Carica il driver

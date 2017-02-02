@@ -16,24 +16,34 @@ import users.User;
  * @author michael
  */
 public class DB_Reviews extends HttpServlet {
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_Reviews() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Aggiunge nuova recensione
+     *
+     * @param rew
+     * @param id_restaurant
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciReview(Review rew, Integer id_restaurant) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -88,6 +98,13 @@ public class DB_Reviews extends HttpServlet {
         }
     }
     
+    /**
+     * Imposta info commento in base al ristoratore
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean setCommenti_perRistorante(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -129,6 +146,13 @@ public class DB_Reviews extends HttpServlet {
         }
     }
     
+    /**
+     * Aumenta il numero di like a un commento
+     *
+     * @param rew
+     * @return
+     * @throws SQLException
+     */
     public Boolean increaseLikeReview(Review rew) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -151,6 +175,13 @@ public class DB_Reviews extends HttpServlet {
         }
     }
     
+    /**
+     * Aumenta il numero di recensioni di un ristorante
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean increaseReviewRestaurant(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -173,6 +204,14 @@ public class DB_Reviews extends HttpServlet {
         }
     }
     
+    /**
+     * Conta il numero di recensioni di un ristorante
+     *
+     * @param res
+     * @param reviews_value
+     * @return
+     * @throws SQLException
+     */
     public Boolean countReviews(Restaurant res, Double reviews_value[]) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -210,6 +249,13 @@ public class DB_Reviews extends HttpServlet {
         }
     }
     
+    /**
+     * Imposta info recensione in base all'id
+     *
+     * @param rev
+     * @return
+     * @throws SQLException
+     */
     public Boolean setReviewPerId(Review rev) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

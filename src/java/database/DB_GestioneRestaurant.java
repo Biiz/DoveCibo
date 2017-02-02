@@ -20,24 +20,33 @@ import users.User;
  * @author michael
  */
 public class DB_GestioneRestaurant extends HttpServlet {
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_GestioneRestaurant() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna strigna di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Crea classifica ristoranti per global_value
+     *
+     * @param classifica
+     * @return
+     * @throws SQLException
+     */
     public Boolean classificaRisto(ArrayList <Integer> classifica) throws SQLException {
         Boolean r = true;
         PreparedStatement sp = null;
@@ -60,6 +69,14 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Set id ristorante
+     *
+     * @param u
+     * @param id_restaurant
+     * @return
+     * @throws SQLException
+     */
     public boolean SetIdRestaurant2(User u, List<Integer> id_restaurant) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -83,6 +100,13 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna info ristorante
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateRestaurant(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -107,6 +131,13 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca tutti i ristoranti
+     *
+     * @param RES
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaTuttiRes(ArrayList <Restaurant> RES) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -131,6 +162,13 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Inserisci nuovo ristorante
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciRistorante(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -162,6 +200,13 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca ristorante in base all'id
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaRistorante_perId(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -198,6 +243,13 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca tutti i ristoranti
+     *
+     * @param ALR
+     * @return
+     * @throws SQLException
+     */
     public Boolean tuttiRistoranti(ArrayList <Restaurant> ALR) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -233,6 +285,14 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca ristoranti in base al nome
+     *
+     * @param res
+     * @param r
+     * @return
+     * @throws SQLException
+     */
     public Boolean SetResForName (Restaurant res, ArrayList <Integer> r) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -256,6 +316,16 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca ristoranti in base alla classifica e alla vicinanza
+     *
+     * @param ALR
+     * @param coo
+     * @param rangeLat
+     * @param rangeLon
+     * @return
+     * @throws SQLException
+     */
     public Boolean ricercaRistorantiPerClassificaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -322,6 +392,17 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }   
     
+    /**
+     * Cerca ristoranti per tupo di cuisine e vicinanza
+     *
+     * @param ALR
+     * @param coo
+     * @param rangeLat
+     * @param rangeLon
+     * @param cucina
+     * @return
+     * @throws SQLException
+     */
     public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon, String cucina) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -391,6 +472,14 @@ public class DB_GestioneRestaurant extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna valuzatione
+     *
+     * @param res
+     * @param newGV
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateRate(Restaurant res, double newGV) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

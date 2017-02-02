@@ -30,12 +30,29 @@ public class DB_Notifica extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_Notifica() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorta messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Cerca notifiche di reclamo di un ristorante
+     *
+     * @param ALN
+     * @return
+     * @throws SQLException
+     */
     public Boolean setNotificheReclamo (ArrayList <Notifica> ALN) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -69,6 +86,13 @@ public class DB_Notifica extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca notifiche di reclamo di un ristorante senza link
+     *
+     * @param ALN
+     * @return
+     * @throws SQLException
+     */
     public Boolean setNotificheReclamoNoLink (ArrayList <Notifica> ALN) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -102,6 +126,13 @@ public class DB_Notifica extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca notifiche di risposta da confermare
+     *
+     * @param ALN
+     * @return
+     * @throws SQLException
+     */
     public Boolean setNotificheRepil_daConfermare(ArrayList <Notifica> ALN ) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -148,6 +179,13 @@ public class DB_Notifica extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca notifiche di risposta da condermare senza link
+     *
+     * @param ALN
+     * @return
+     * @throws SQLException
+     */
     public Boolean setNotificheRepil_daConfermareNoLink(ArrayList <Notifica> ALN ) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -191,6 +229,13 @@ public class DB_Notifica extends HttpServlet {
         }
     }
     
+    /**
+     * Rifiuta commento di risposta
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Boolean rifiutaRisposta(Integer id) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -213,6 +258,13 @@ public class DB_Notifica extends HttpServlet {
         }
     } 
 
+    /**
+     * Rifiuta reclamo ristorante
+     *
+     * @param idRO
+     * @return
+     * @throws SQLException
+     */
     public Boolean rifiutaReclamo(Integer idRO) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

@@ -14,24 +14,34 @@ import restaurants.Coordinate;
  * @author michael
  */
 public class DB_Coordinate extends HttpServlet {
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_Coordinate() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna stringa di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Trova la posizione in classifica di un ristorante per citta'
+     *
+     * @param ristoId
+     * @param classifica
+     * @return
+     * @throws SQLException
+     */
     public Boolean classificaRistoCitta(Integer ristoId, ArrayList <Integer> classifica) throws SQLException {
         Boolean r = true;
         PreparedStatement sp = null;
@@ -70,6 +80,13 @@ public class DB_Coordinate extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna le coordinate nel db
+     *
+     * @param coor
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateCoordinate(Coordinate coor) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -97,6 +114,13 @@ public class DB_Coordinate extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiunge nuove coordinate al db
+     *
+     * @param coo
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciCoordinate(Coordinate coo) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -126,6 +150,13 @@ public class DB_Coordinate extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca coordinate tramite id ristorante
+     *
+     * @param c
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaCoordinate_perId(Coordinate c) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -162,6 +193,14 @@ public class DB_Coordinate extends HttpServlet {
         }
     }
     
+    /**
+     * Prende ristoranti per nazione
+     *
+     * @param cor
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean SetResForNazione (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -185,6 +224,14 @@ public class DB_Coordinate extends HttpServlet {
         }
     }
     
+    /**
+     * Prende ristoranti per citta'
+     *
+     * @param cor
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean SetResForCity (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -208,6 +255,14 @@ public class DB_Coordinate extends HttpServlet {
         }
     }
     
+    /**
+     * Prende ristoranti per indirizzo
+     *
+     * @param cor
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean SetResForAdrers (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;

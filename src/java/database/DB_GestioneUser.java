@@ -9,18 +9,35 @@ import users.User;
 
 /**
  *
- * @author michael
+ * @author postal
  */
 public class DB_GestioneUser extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_GestioneUser() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Inserisce nuovo account
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciAccount(User u) throws SQLException {
             PreparedStatement sp = null;
             String query = null;
@@ -45,6 +62,13 @@ public class DB_GestioneUser extends HttpServlet {
             }
     }
 
+    /**
+     * Controlla se il nickname esiste gia'
+     *
+     * @param nik
+     * @return
+     * @throws SQLException
+     */
     public Boolean niknameEsistente(String nik) throws SQLException {
             Boolean r = false;
             PreparedStatement sp = null;
@@ -67,6 +91,13 @@ public class DB_GestioneUser extends HttpServlet {
             }
     }
     
+    /**
+     * Controlla se la mail esiste gia'
+     *
+     * @param em
+     * @return
+     * @throws SQLException
+     */
     public Boolean emailEsistente(String em) throws SQLException {
         Boolean r = false;
         PreparedStatement sp = null;
@@ -90,6 +121,13 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Prende le info dell'utente attraverso la mail 
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public boolean CheckEmail (User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -118,7 +156,15 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
-    public Boolean modificaAccount(User u, String string) throws SQLException {
+    /**
+     * Modifica l'account 
+     *
+     * @param u
+     * @param pw
+     * @return
+     * @throws SQLException
+     */
+    public Boolean modificaAccount(User u, String pw) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;
@@ -130,7 +176,7 @@ public class DB_GestioneUser extends HttpServlet {
             sp.setString(2, u.getSurname());
             sp.setString(3, u.getEmail());
             sp.setString(4, u.getPassword());
-            sp.setString(5, string);
+            sp.setString(5, pw);
             sp.executeUpdate();
             r = true;
         } catch (SQLException e) {
@@ -143,6 +189,13 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Prende le info dell'utente attraverso il nickname
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public boolean CheckProfilo (User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -173,6 +226,13 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Esegue il login al sito
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public Boolean accedi(User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -243,6 +303,13 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna il ruolo dell'utente
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateRuolo(User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -266,6 +333,15 @@ public class DB_GestioneUser extends HttpServlet {
         }
     } 
     
+    /**
+     * Controlla se l'utente e' un ristoratore
+     *
+     * @param res
+     * @param user
+     * @param risposta
+     * @return
+     * @throws SQLException
+     */
     public Boolean checkUserIsRisto(Restaurant res, User user, String risposta[]) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -293,6 +369,15 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Controlla se l'utente e' un ristoratore del ristorante
+     *
+     * @param res
+     * @param user
+     * @param risposta
+     * @return
+     * @throws SQLException
+     */
     public Boolean checkUserIsRistoNoValidation(Restaurant res, User user, String risposta[]) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -320,6 +405,15 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Trova creatore commento
+     *
+     * @param idRep
+     * @param val
+     * @param user
+     * @return
+     * @throws SQLException
+     */
     public Boolean findUserRepli(Integer idRep, User val, User user) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -347,7 +441,14 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
-     public Boolean increaseLikeUser(User u) throws SQLException {
+    /**
+     * Aumenta il numero di like dell'utente
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
+    public Boolean increaseLikeUser(User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
         Boolean r = null;

@@ -28,12 +28,30 @@ public class DB_RestaurantOwner extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_RestaurantOwner() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Crea relazione tra ristorante e ristoratore
+     *
+     * @param id_restourant
+     * @param id_owner
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciRelazioneOwnerRestaurant(Integer id_restourant, Integer id_owner) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -56,6 +74,13 @@ public class DB_RestaurantOwner extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca ristoratori di un ristorante
+     *
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean cercaOwners_perRistoranti( Restaurant res) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -82,6 +107,13 @@ public class DB_RestaurantOwner extends HttpServlet {
         }
     } 
     
+    /**
+     * Cerca ristoranti di un ristoratore
+     *
+     * @param u
+     * @return
+     * @throws SQLException
+     */
     public ArrayList <Restaurant> cercaRistoranti_perOwner(User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -108,6 +140,14 @@ public class DB_RestaurantOwner extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna ristoratore 
+     *
+     * @param idRO
+     * @param val
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateResOwn(Integer idRO, User val) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -131,6 +171,15 @@ public class DB_RestaurantOwner extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca risotratore per valitadore e id restaurant owner
+     *
+     * @param idRO
+     * @param val
+     * @param user
+     * @return
+     * @throws SQLException
+     */
     public Boolean selectOwn(Integer idRO, User val, User user) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -158,6 +207,14 @@ public class DB_RestaurantOwner extends HttpServlet {
         }
     }
     
+    /**
+     * Controlla se un utente e' un ristoratore del ristorante
+     *
+     * @param user
+     * @param res
+     * @return
+     * @throws SQLException
+     */
     public Boolean isOwners_perRistoranti(User user, Restaurant res) throws SQLException { 
         PreparedStatement sp = null;
         String query = null;

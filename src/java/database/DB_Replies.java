@@ -18,12 +18,30 @@ public class DB_Replies extends HttpServlet {
     private String errore = "";
     DB_Manager connessione;
 
+    /**
+     * Costruttore
+     *
+     * @throws SQLException
+     */
     public DB_Replies() throws SQLException {
         connessione = new DB_Manager ();
     }
     
+    /**
+     * Ritorna messaggio di errore
+     *
+     * @return
+     */
     public String getErrore() { return errore; }
     
+    /**
+     * Aggiungi nuova risposta
+     *
+     * @param rep
+     * @param idRew
+     * @return
+     * @throws SQLException
+     */
     public Boolean inserisciRisposta(Replies rep, Integer idRew) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -48,6 +66,14 @@ public class DB_Replies extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca risposte in base al commento
+     *
+     * @param rew
+     * @param replies
+     * @return
+     * @throws SQLException
+     */
     public Boolean setRepli_perRew(Review rew, ArrayList <Replies> replies) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -84,8 +110,13 @@ public class DB_Replies extends HttpServlet {
         }
     }
     
-    
-    
+    /**
+     * Cerca risposte validate per commenti
+     *
+     * @param rew
+     * @return
+     * @throws SQLException
+     */
     public Boolean setRepli(Review rew) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -123,6 +154,14 @@ public class DB_Replies extends HttpServlet {
         }
     }
     
+    /**
+     * Aggiorna commento
+     *
+     * @param idRep
+     * @param val
+     * @return
+     * @throws SQLException
+     */
     public Boolean updateRepli(Integer idRep, User val) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -146,8 +185,13 @@ public class DB_Replies extends HttpServlet {
         }
     } 
        
-    
-    
+    /**
+     * Cancella commento
+     *
+     * @param user
+     * @return
+     * @throws SQLException
+     */
     public Boolean deleteRepli(User user) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -170,6 +214,15 @@ public class DB_Replies extends HttpServlet {
         }
     }
     
+    /**
+     * Controlla esistenza risposta per commento e proprietario
+     *
+     * @param rep
+     * @param idRew
+     * @param check
+     * @return
+     * @throws SQLException
+     */
     public Boolean checkReplies(Replies rep, Integer idRew, ArrayList <String> check ) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
