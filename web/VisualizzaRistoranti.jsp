@@ -6,6 +6,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Mostra i ristoranti inseriti nel database di cui l’utente è proprietario
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

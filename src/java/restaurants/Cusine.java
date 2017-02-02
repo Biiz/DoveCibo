@@ -1,6 +1,7 @@
 package restaurants;
 
 /**
+ * Contiene i metodi per la gestione delle tipologie di cucine
  *
  * @author stefano
  */

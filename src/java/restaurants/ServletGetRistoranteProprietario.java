@@ -20,6 +20,7 @@ import restaurant_comments.Review;
 import users.User;
 
 /**
+ * Manda a modificaRistorante.jsp i dati da visualizzare
  *
  * @author postal
  */

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import restaurants.Day_hours;
 
 /**
+ * Gestisce le informazioni sugli orari dei ristoranti nel database
  *
  * @author michael
  */

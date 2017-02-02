@@ -12,6 +12,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce il rifiuto da parte dell’Admin di pubblicare la risposta di un ristoratore ad un recensione di un utente
  *
  * @author stefano
  */

@@ -11,6 +11,7 @@ import restaurant_photos.Photo;
 import users.User;
 
 /**
+ * Main per il riempimento veloce dei commenti ai ristoranti
  *
  * @author postal
  */

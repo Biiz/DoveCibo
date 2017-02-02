@@ -14,6 +14,7 @@ import javax.servlet.http.*;
 import users.User;
 
 /**
+ * Mostra tutti i ristoranti reclamati con successo da un ristoratore
  *
  * @author stefano
  */

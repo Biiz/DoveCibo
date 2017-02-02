@@ -12,6 +12,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce il rifiuto da parte dell’Admin di assegnare un ristorante ad un utente
  *
  * @author stefano
  */

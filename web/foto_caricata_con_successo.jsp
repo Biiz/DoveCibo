@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Notifica del caricamento con successo di una foto
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

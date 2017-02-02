@@ -1,3 +1,7 @@
+<%--
+    Notifica di un possibile errore nella connessione al database
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

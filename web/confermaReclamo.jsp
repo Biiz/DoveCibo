@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Notifica dell’avvenuto reclamo di un ristorante
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

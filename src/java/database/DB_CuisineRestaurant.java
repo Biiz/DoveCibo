@@ -10,6 +10,7 @@ import restaurants.Cusine;
 import restaurants.Restaurant;
 
 /**
+ * Gestisce le informazioni sulle cucine nel database
  *
  * @author michael
  */

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import users.User;
 
 /**
+ * Gestice il reclamo di un ristoratore da parte di un utente
  *
  * @author stefano
  */

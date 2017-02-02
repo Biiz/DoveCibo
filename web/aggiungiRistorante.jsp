@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Pagina per aggiungere un ristorante al database
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

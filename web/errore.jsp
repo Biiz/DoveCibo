@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Pagina di errore con la possibilità di ritornare alla pagina precedentemente visualizzata
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

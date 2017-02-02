@@ -1,6 +1,7 @@
 package restaurants;
 
 /**
+ * Contiene i metodi per la gestione dei giorni di apertura settimanali dei ristoranti
  *
  * @author stefano
  */

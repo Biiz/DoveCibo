@@ -1,6 +1,7 @@
 package restaurants;
 
 /**
+ * Contiene i metodi per la gestione dei prezzi dei ristoranti
  *
  * @author stefano
  */

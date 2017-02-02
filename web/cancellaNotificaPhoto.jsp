@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Notifica dell’avvenuta rimozione di una foto dopo una segnalazione
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

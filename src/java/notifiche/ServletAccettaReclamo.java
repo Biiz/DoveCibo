@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import users.User;
 
 /**
+ * Gestisce l’assegnamento di un ristorante ad un ristoratore
  *
  * @author stefano
  */

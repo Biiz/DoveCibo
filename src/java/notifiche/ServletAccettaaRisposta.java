@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import users.User;
 
 /**
+ * Gestisce la pubblicazione della risposta del ristoratore ad un commento
  *
  * @author stefano
  */

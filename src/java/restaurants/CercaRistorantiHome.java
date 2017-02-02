@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Manda a CercaRistorantiHome la lista dei ristoranti da visualizzare secondo 
+ * i criteri della ricerca generale
  *
  * @author stefano
  */

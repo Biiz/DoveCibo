@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Notifica della segnalazione di una foto non consona all’Admin
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

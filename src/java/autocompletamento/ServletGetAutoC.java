@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import restaurants.Restaurant;
 
 /**
+ * Prende tutti i valori dal database e li manda alla home.jsp 
+ * per l’autocompletamento nel textfield della ricerca generale
  *
  * @author postal 
  */

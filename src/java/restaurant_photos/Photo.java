@@ -4,6 +4,7 @@ import java.sql.Date;
 import users.User;
 
 /**
+ * Contiene i metodi per la gestione delle foto
  *
  * @author stefano
  */

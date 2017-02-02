@@ -1,6 +1,7 @@
 package restaurants;
 
 /**
+ * Crea il QR di ogni ristoranti
  *
  * @author IO-PC
  */

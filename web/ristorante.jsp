@@ -13,6 +13,10 @@
 <%@page import="restaurant_photos.Photo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Mostra la pagina contenente i dati di un ristorante con i suoi commenti e le sue foto
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

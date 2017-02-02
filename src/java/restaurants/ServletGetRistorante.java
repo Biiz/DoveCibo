@@ -23,6 +23,7 @@ import restaurant_comments.Review;
 import users.User;
 
 /**
+ * Manda a ristorante.jsp le informazioni di un ristorante per poter visualizzare
  *
  * @author postal
  */

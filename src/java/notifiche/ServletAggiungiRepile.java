@@ -15,6 +15,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce la possibilità di aggiungere una recensione ad un ristorante
  *
  * @author stefano
  */

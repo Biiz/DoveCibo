@@ -1,6 +1,7 @@
 package restaurants;
 
 /**
+ * Contiene i metodi per la gestione degli orari di apertura dei ristoranti
  *
  * @author stefano
  */

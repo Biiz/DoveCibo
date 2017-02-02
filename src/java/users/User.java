@@ -1,6 +1,7 @@
 package users;
 
 /**
+ * Contiene i metodi per la gestione di ogni utente dal sito
  *
  * @author stefano
  */

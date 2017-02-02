@@ -3,6 +3,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Pagina per modificare i dati di un ristorante reclamato da un ristoratore
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

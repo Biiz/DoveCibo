@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Pagina per registrarsi al sito come Utenti Registrato
+--%>
+
 <!DOCTYPE HTML>
 <html>
     <head>

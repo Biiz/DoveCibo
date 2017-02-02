@@ -2,6 +2,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Landing page del sito
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

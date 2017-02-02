@@ -2,6 +2,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Pagina semplice per gli errori non gestiti
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

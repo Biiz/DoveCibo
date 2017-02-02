@@ -1,7 +1,7 @@
 package restaurants;
 
 /**
- *
+ * Contiene i metodi per la gestione delle coordinate
  * 
  * @author stefano
  */

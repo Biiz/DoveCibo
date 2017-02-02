@@ -1,4 +1,9 @@
 <%@page import="users.User"%>
+
+<%--
+    Navbar del sito
+--%>
+
 <div class="navbar navbar-inverse navbar-static-top navbar-fixed-top" role="navigation">
 
             <!-- bottone menù che compare quando la finestra è piccola-->

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 /**
+ * Gestisce il log-in di ogni utente dal sito
  *
  * @author stefano
  */

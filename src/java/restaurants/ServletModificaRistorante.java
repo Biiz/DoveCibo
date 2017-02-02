@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import users.User;
 
 /**
+ * Convalida le modifiche apportate ad un ristorante da modificaRistorante.jsp
  *
  * @author stefano
  */

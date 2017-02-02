@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Manda a cercaRistoHomeValue.jsp la lista dei ristoranti filtrati per classifica e posizione
  *
  * @author postal
  */

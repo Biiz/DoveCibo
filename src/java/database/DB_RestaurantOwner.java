@@ -12,6 +12,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce le informazioni sui proprietari di ristoranti nel database
  *
  * @author michael
  */

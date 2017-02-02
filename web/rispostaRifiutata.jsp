@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Notifica del rifiuto da parte dell’Admin di pubblicare una risposta del ristoratore ad un commento
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

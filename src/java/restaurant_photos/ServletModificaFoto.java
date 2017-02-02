@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import users.User;
 
 /**
+ * Gestisce la rimozione delle foto
  *
  * @author stefano
  */

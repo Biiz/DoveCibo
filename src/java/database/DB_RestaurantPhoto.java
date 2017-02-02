@@ -13,6 +13,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce le informazioni sulle foto dei ristoranti nel database
  *
  * @author michael
  */

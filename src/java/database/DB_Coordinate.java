@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import restaurants.Coordinate;
 
 /**
+ * Gestisce le informazioni sulla posizione di un ristorante nel database
  *
  * @author michael
  */

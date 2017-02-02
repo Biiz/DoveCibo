@@ -1,3 +1,7 @@
+<%--
+    Pagina che contiene le funzioni per localizzare un ristorante durante l'inserimento
+--%>
+
 <link rel="stylesheet" type="text/css" href="/DoveCiboGit/css/ristoranteMap.css" />
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC2yRPFE60Fp4Q05ezqySYocW9zpmqeIwI" async defer></script>

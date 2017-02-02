@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Gestisce le modifiche dei dati di ogni utente dal sito
  *
  * @author stefano
  */

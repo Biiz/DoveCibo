@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import users.User;
 
 /**
+ * Inserisce le informazione di un ristorante nel database
  *
  * @author stefano
  */

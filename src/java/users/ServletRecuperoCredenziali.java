@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Gestisce il recupero di credenziali di ogni utente dal sito
  *
  * @author stefano
  */

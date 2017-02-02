@@ -3,12 +3,13 @@ package notifiche;
 import java.util.Comparator;
 
 /**
+ * Ordina le notifiche in ordine temporale
  *
  * @author postal
  */
 public class comparatorNotifiche implements Comparator<Notifica>{
     /**
-     * compara notifice per data
+     * compara notifiche inbase alla data
      * 
      * @param n1
      * @param n2

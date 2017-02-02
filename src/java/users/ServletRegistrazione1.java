@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Gestisce la registrazione di ogni utente dal sito
  *
  * @author stefano
  */

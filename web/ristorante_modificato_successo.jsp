@@ -1,6 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Notifica delle modifiche fatte ad un ristorante completate con successo
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

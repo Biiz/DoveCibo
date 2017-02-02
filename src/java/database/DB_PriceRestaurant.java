@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import restaurants.Price_range;
 
 /**
+ * Gestisce le informazioni sui prezzi dei ristoranti nel database
  *
  * @author michael
  */

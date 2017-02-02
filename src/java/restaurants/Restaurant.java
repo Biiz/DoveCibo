@@ -7,6 +7,7 @@ import restaurant_photos.Photo;
 import users.User;
 
 /**
+ * Contiene i metodi per la gestione dei ristoranti
  *
  * @author stefano
  */

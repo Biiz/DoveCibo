@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Manda cercaRistoHomeValue.jsp la lista dei ristoranti filtrati per tipologia di cucina e posizione
+ * 
  * @author postal
  */
 @WebServlet(name = "ServletGetRistorantiHomeCucine", urlPatterns = {"/ServletGetRistorantiHomeCucine"})

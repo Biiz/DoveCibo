@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
  
 /**
+ * Gestisce la connessione con il database
  *
  * @author stefano
  */

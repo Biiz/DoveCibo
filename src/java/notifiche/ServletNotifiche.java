@@ -22,6 +22,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce la visualizzazione delle notifiche
  *
  * @author postal
  */

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Gestisce il log-out di ogni utente dal sito
  *
  * @author stefano
  */

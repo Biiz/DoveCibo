@@ -11,6 +11,7 @@ import restaurant_comments.Review;
 import users.User;
 
 /**
+ * Gestisce le informazioni sulle risposte ai commenti nel database
  *
  * @author michael
  */

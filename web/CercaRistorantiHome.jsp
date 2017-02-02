@@ -8,6 +8,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Mostra una tabella DataTable dei risultati ottenuti dalla ricerca generale
+--%>
+
 <!DOCTYPE html>
 <html>
     <head>

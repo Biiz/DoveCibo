@@ -14,6 +14,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce l’aggiunta di un like ad una recensione
  *
  * @author stefano
  */

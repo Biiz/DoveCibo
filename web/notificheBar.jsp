@@ -2,6 +2,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Popup che mostra un’anteprima delle notifiche presenti
+--%>
+
 <!DOCTYPE HTML>
 <html>
     <head>

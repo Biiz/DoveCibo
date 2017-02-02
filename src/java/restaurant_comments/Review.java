@@ -5,6 +5,7 @@ import notifiche.Replies;
 import users.User;
 
 /**
+ * Contiene i metodi per la gestione delle recensioni
  *
  * @author stefano
  */

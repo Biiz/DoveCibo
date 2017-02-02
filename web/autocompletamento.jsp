@@ -3,6 +3,9 @@
 <%@page import="users.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%--
+    Esegue la ricerca generale all’interno del database
+--%>
 
 <!DOCTYPE html>
 <html>

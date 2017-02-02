@@ -14,6 +14,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce le informazioni sulle notifiche nel database
  *
  * @author michael
  */

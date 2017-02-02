@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import users.User;
 
 /**
+ * Gestisce l’upload delle foto
  *
- * @author aeon
+ * @author giorgio
  */
 @WebServlet(urlPatterns = {"/ServletUpload"})
 public class ServletUpload extends HttpServlet {

@@ -14,6 +14,7 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce l’aggiunta di un recensione e la valutazione di un ristorante
  *
  * @author stefano
  */

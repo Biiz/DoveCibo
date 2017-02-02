@@ -8,8 +8,9 @@ import restaurants.Restaurant;
 import users.User;
 
 /**
+ * Gestisce le informazioni sugli user nel database
  *
- * @author postal
+ * @author stefano
  */
 public class DB_GestioneUser extends HttpServlet {
     private String errore = "";
