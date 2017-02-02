@@ -89,13 +89,7 @@
                         <!-- 4° row: coordinate geografiche-->
                         <div class="row" > <%@include file="modificaRistoranteMap.jsp" %> </div>
                         <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-                        <div class="row" id="beforeGeocode" align="center">
-                            <div class="col-md-12">
-                            <h4>Per proseguire con le modifiche, clicca "Genera coordinate"</h4>
-                            <br>
-                            </div>
-                        </div>
-                        <div id="afterGeocode" style="display: none;">
+                        
                         <!-- 5° row: descrizione ristorante-->
                         <div class="row">
                             <div class="col-md-12">
@@ -599,9 +593,15 @@
                         </div>
                         <br>
                         
-                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>
-
-                        <!-- 10° row: bottoni-->
+                        <hr align=”left” size=”1″ width=”300″ style="border-top-color: grey;" noshade>                       
+                        <div class="row" id="beforeGeocode" align="center">
+                            <div class="col-md-12">
+                            <h4>Per proseguire con le modifiche, clicca "Genera coordinate"</h4>
+                            <br>
+                            </div>
+                        </div>
+                        <div id="afterGeocode" style="display: none;">
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-success btn-lg pull-right"><span class="glyphicon glyphicon glyphicon-ok"></span> Conferma</button>
@@ -610,7 +610,7 @@
                             </div>
                         </div>
                         <br>
-            </div>
+                        </div>
                     </div>
                     <div class="col-md-3 col-sm-2 col-xs-1"></div>
                 </div><br>
