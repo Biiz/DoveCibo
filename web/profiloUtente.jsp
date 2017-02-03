@@ -104,6 +104,9 @@
         <br>
         <br>
     <%
+        } else {
+            request.setAttribute("error", "Ops! Si è verificato un errore");
+            request.getRequestDispatcher("errore.jsp").forward(request, response);
         }
     %>
     </body>
