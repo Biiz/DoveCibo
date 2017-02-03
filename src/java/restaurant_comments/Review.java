@@ -26,17 +26,17 @@ public class Review {
     /**
      * Costruttore recensione
      *
-     * @param id
-     * @param global_value
-     * @param food
-     * @param service
-     * @param value_of_money
-     * @param atmosphere
-     * @param name
-     * @param description
-     * @param date_creation
-     * @param like
-     * @param creator
+     * @param id id recensione
+     * @param global_value voto globale
+     * @param food voto cibo
+     * @param service voto servizio
+     * @param value_of_money voto rapporto qualita'/prezzo
+     * @param atmosphere voto atmosfera
+     * @param name titolo recensione
+     * @param description testo recensione
+     * @param date_creation data creazione recensione
+     * @param like numero di like recensione
+     * @param creator utente creatore della recensione
      */
     public Review(Integer id, Integer global_value, Integer food, Integer service, Integer value_of_money, Integer atmosphere, String name, String description, Date date_creation, Integer like, User creator) {
         this.id = id;

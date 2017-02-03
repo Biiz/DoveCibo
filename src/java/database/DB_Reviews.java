@@ -22,7 +22,7 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_Reviews() throws SQLException {
         connessione = new DB_Manager ();
@@ -31,17 +31,17 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Ritorna messaggio di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Aggiunge nuova recensione
      *
-     * @param rew
-     * @param id_restaurant
-     * @return
-     * @throws SQLException
+     * @param rew recensione
+     * @param id_restaurant id ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciReview(Review rew, Integer id_restaurant) throws SQLException {
         PreparedStatement sp = null;
@@ -100,9 +100,9 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Imposta info commento in base al ristoratore
      *
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean setCommenti_perRistorante(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
@@ -148,9 +148,9 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Aumenta il numero di like a un commento
      *
-     * @param rew
-     * @return
-     * @throws SQLException
+     * @param rew recensione
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean increaseLikeReview(Review rew) throws SQLException {
         PreparedStatement sp = null;
@@ -177,9 +177,9 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Aumenta il numero di recensioni di un ristorante
      *
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @return  true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean increaseReviewRestaurant(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
@@ -206,10 +206,10 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Conta il numero di recensioni di un ristorante
      *
-     * @param res
-     * @param reviews_value
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @param reviews_value voti recensione
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean countReviews(Restaurant res, Double reviews_value[]) throws SQLException {
         PreparedStatement sp = null;
@@ -251,9 +251,9 @@ public class DB_Reviews extends HttpServlet {
     /**
      * Imposta info recensione in base all'id
      *
-     * @param rev
-     * @return
-     * @throws SQLException
+     * @param rev recensione
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean setReviewPerId(Review rev) throws SQLException {
         PreparedStatement sp = null;

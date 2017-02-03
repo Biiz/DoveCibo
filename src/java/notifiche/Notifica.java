@@ -20,11 +20,11 @@ public class Notifica {
     /**
      * Costruttore notifica di recensione
      *
-     * @param descrizione
-     * @param data
-     * @param tipo
-     * @param idGen
-     * @param user
+     * @param descrizione testo della notifica
+     * @param data data di creazione della notifica
+     * @param tipo tipologia notifica
+     * @param idGen id generale
+     * @param user utente che ha creato la notifica
      */
     public Notifica(String descrizione, Date data, String tipo, Integer idGen, User user) {
         this.descrizione = descrizione;
@@ -37,11 +37,11 @@ public class Notifica {
     /**
      * Costruttore notifica di caricamento foto
      *
-     * @param descrizione
-     * @param foto
-     * @param tipo
-     * @param idGen
-     * @param user
+     * @param descrizione testo della notifica
+     * @param foto foto oggetto della notifica
+     * @param tipo tpologia della notifica
+     * @param idGen id generale
+     * @param user utente che ha creato la notifica
      */
     public Notifica(String descrizione, Photo foto, String tipo, Integer idGen, User user) {
         this.descrizione = descrizione;

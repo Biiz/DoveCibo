@@ -13,9 +13,9 @@ public class Price_range {
     /**
      * Costruttore price range
      *
-     * @param id_restaurant
-     * @param min_value
-     * @param max_value
+     * @param id_restaurant id ristorante
+     * @param min_value valore minimo prezzi
+     * @param max_value valore massimo prezzi
      */
     public Price_range(Integer id_restaurant, Double min_value, Double max_value) {
         this.id_restaurant = id_restaurant;
@@ -26,7 +26,7 @@ public class Price_range {
     /**
      * Costruttore price range
      *
-     * @param id_restaurant
+     * @param id_restaurant id ristorante
      */
     public Price_range(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;

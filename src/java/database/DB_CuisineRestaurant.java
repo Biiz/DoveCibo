@@ -21,7 +21,7 @@ public class DB_CuisineRestaurant extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_CuisineRestaurant() throws SQLException {
         connessione = new DB_Manager ();
@@ -30,16 +30,16 @@ public class DB_CuisineRestaurant extends HttpServlet {
     /**
      * Ritorna stringa di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Rimuove cuisine da un ristorante
      *
-     * @param id
-     * @return
-     * @throws SQLException
+     * @param id id cucina
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean removeCuisine(Integer id) throws SQLException {
         PreparedStatement sp = null;
@@ -65,10 +65,10 @@ public class DB_CuisineRestaurant extends HttpServlet {
     /**
      * Aggiunge cuisine a un ristorante
      *
-     * @param id_restourant
-     * @param id_cuisine
-     * @return
-     * @throws SQLException
+     * @param id_restourant id ristorante
+     * @param id_cuisine id cucina
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciRelazioneCuisinesRestaurant(Integer id_restourant, Integer id_cuisine) throws SQLException {
         PreparedStatement sp = null;
@@ -95,10 +95,10 @@ public class DB_CuisineRestaurant extends HttpServlet {
     /**
      * Prende ristoranti per cuisine
      *
-     * @param cuis
-     * @param id_cu
-     * @return
-     * @throws SQLException
+     * @param cuis cucina
+     * @param id_cu arralylist di id cucine
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean SetResForCuisine (String cuis, ArrayList <Integer> id_cu) throws SQLException {
         PreparedStatement sp = null;
@@ -126,10 +126,10 @@ public class DB_CuisineRestaurant extends HttpServlet {
     /**
      * Prende risoranti per cuisineId
      *
-     * @param id_cu
-     * @param id_res
-     * @return
-     * @throws SQLException
+     * @param id_cu id cucina
+     * @param id_res arraylist di id ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean SetResForCuisineId (Integer id_cu, ArrayList <Integer> id_res) throws SQLException {
         PreparedStatement sp = null;
@@ -157,9 +157,9 @@ public class DB_CuisineRestaurant extends HttpServlet {
     /**
      * Cerca cuisines per ristorante
      *
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaCusines_perRistoranye(Restaurant res) throws SQLException {
         PreparedStatement sp = null;

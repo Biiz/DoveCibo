@@ -16,7 +16,7 @@ public class QR_generator {
     /**
      * Costruttore QR code
      *
-     * @param rest
+     * @param rest nome ristorante
      */
     public QR_generator(Restaurant rest) {
         this.rest = rest;
@@ -25,7 +25,7 @@ public class QR_generator {
     /**
      * Ritorna QR code generato
      *
-     * @return
+     * @return stringa del QR code
      */
     public String qr_Gen() {
         String qrText = rest.RestDescriptionToText();

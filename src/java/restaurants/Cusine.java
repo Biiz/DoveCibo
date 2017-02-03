@@ -12,7 +12,7 @@ public class Cusine {
     /**
      * Costruttore Cuisine
      *
-     * @param id
+     * @param id id tipologia di cucina
      */
     public Cusine(Integer id) {
         this.id = id;
@@ -21,7 +21,7 @@ public class Cusine {
     /**
      * Costruttore cuisine
      *
-     * @param name
+     * @param name nome della tipologia di cucina
      */
     public Cusine(String name) {
         this.name = name;

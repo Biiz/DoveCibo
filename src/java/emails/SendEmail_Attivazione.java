@@ -19,10 +19,10 @@ public class SendEmail_Attivazione {
     /**
      * Invia mail di avvenuta validazione account
      *
-     * @param name
-     * @param nick
-     * @param psw
-     * @param email
+     * @param name nome utente da inviare
+     * @param nick nickname utente da inviare
+     * @param psw password utente da inviare
+     * @param email indirizzo email utente a cui inviare la mail
      */
     public SendEmail_Attivazione(String name, String nick, String psw, String email) {
         try{

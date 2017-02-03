@@ -21,12 +21,12 @@ public class Photo {
     /**
      * Costruttore foto
      *
-     * @param id
-     * @param name
-     * @param description
-     * @param path
-     * @param owner
-     * @param validation
+     * @param id id foto
+     * @param name nome foto
+     * @param description descrizione foto
+     * @param path path di salvataggio foto
+     * @param owner utente che ha caricato la foto
+     * @param validation stato validazione foto
      */
     public Photo(Integer id, String name, String description, String path, User owner, Integer validation) {
         this.id = id;
@@ -40,14 +40,14 @@ public class Photo {
     /**
      * Costruttore foto
      *
-     * @param id
-     * @param name
-     * @param description
-     * @param path
-     * @param owner
-     * @param validation
-     * @param date_creation
-     * @param id_Restaurant
+     * @param id id foto
+     * @param name nome foto
+     * @param description descrizione foto
+     * @param path path di salvataggio foto
+     * @param owner utente che ha caricato la foto
+     * @param validation stato validazione foto
+     * @param date_creation data creazione foto
+     * @param id_Restaurant id ristorante foto
      */
     public Photo(Integer id, String name, String description, String path, User owner, Integer validation, Date date_creation, Integer id_Restaurant) {
         this.id = id;

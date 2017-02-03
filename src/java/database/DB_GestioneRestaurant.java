@@ -26,7 +26,7 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_GestioneRestaurant() throws SQLException {
         connessione = new DB_Manager ();
@@ -35,16 +35,16 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Ritorna strigna di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Crea classifica ristoranti per global_value
      *
-     * @param classifica
-     * @return
-     * @throws SQLException
+     * @param classifica classifica ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean classificaRisto(ArrayList <Integer> classifica) throws SQLException {
         Boolean r = true;
@@ -71,10 +71,10 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Set id ristorante
      *
-     * @param u
-     * @param id_restaurant
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @param id_restaurant id ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public boolean SetIdRestaurant2(User u, List<Integer> id_restaurant) throws SQLException {
         PreparedStatement sp = null;
@@ -102,9 +102,9 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Aggiorna info ristorante
      *
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updateRestaurant(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
@@ -133,9 +133,9 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Cerca tutti i ristoranti
      *
-     * @param RES
-     * @return
-     * @throws SQLException
+     * @param RES arraylist di ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaTuttiRes(ArrayList <Restaurant> RES) throws SQLException {
         PreparedStatement sp = null;
@@ -164,9 +164,9 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Inserisci nuovo ristorante
      *
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciRistorante(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
@@ -202,9 +202,9 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Cerca ristorante in base all'id
      *
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaRistorante_perId(Restaurant res) throws SQLException {
         PreparedStatement sp = null;
@@ -245,9 +245,9 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Cerca tutti i ristoranti
      *
-     * @param ALR
-     * @return
-     * @throws SQLException
+     * @param ALR arraylist di ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean tuttiRistoranti(ArrayList <Restaurant> ALR) throws SQLException {
         PreparedStatement sp = null;
@@ -287,10 +287,10 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Cerca ristoranti in base al nome
      *
-     * @param res
-     * @param r
-     * @return
-     * @throws SQLException
+     * @param res risotrante
+     * @param r arraylist di ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean SetResForName (Restaurant res, ArrayList <Integer> r) throws SQLException {
         PreparedStatement sp = null;
@@ -318,12 +318,12 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Cerca ristoranti in base alla classifica e alla vicinanza
      *
-     * @param ALR
-     * @param coo
-     * @param rangeLat
-     * @param rangeLon
-     * @return
-     * @throws SQLException
+     * @param ALR arraylist di ristoranti
+     * @param coo coordinate
+     * @param rangeLat range per la latitudine
+     * @param rangeLon range per la longitudine
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean ricercaRistorantiPerClassificaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon) throws SQLException {
         PreparedStatement sp = null;
@@ -394,13 +394,13 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Cerca ristoranti per tupo di cuisine e vicinanza
      *
-     * @param ALR
-     * @param coo
-     * @param rangeLat
-     * @param rangeLon
-     * @param cucina
-     * @return
-     * @throws SQLException
+     * @param ALR arraylist di ristoranti
+     * @param coo coordinate
+     * @param rangeLat range per la latitudine
+     * @param rangeLon tange per la longitudine
+     * @param cucina tipo cucina
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean ricercaRistorantiPerCucinaEVicinanza(ArrayList <Restaurant> ALR, Coordinate coo, double rangeLat, double rangeLon, String cucina) throws SQLException {
         PreparedStatement sp = null;
@@ -474,10 +474,10 @@ public class DB_GestioneRestaurant extends HttpServlet {
     /**
      * Aggiorna valuzatione
      *
-     * @param res
-     * @param newGV
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @param newGV voto globale
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updateRate(Restaurant res, double newGV) throws SQLException {
         PreparedStatement sp = null;

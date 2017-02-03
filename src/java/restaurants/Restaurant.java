@@ -30,7 +30,7 @@ public class Restaurant {
     /**
      * Costruttore ristorante
      *
-     * @param id
+     * @param id id ristorante
      */
     public Restaurant(Integer id) {
         this.id = id;
@@ -39,14 +39,14 @@ public class Restaurant {
     /**
      * Costruttore ristorante
      *
-     * @param id
-     * @param name
-     * @param description
-     * @param web_site_url
-     * @param creator
-     * @param cordinate
-     * @param price_range
-     * @param day_hours
+     * @param id id ristorante
+     * @param name nome ristorante
+     * @param description descrizione ristorante
+     * @param web_site_url sito web del ristorante
+     * @param creator creatore del ristorante nel sito
+     * @param cordinate coordinate geografiche del ristorante
+     * @param price_range fascia di przzi del ristorante
+     * @param day_hours orari di apertura del ristorante
      */
     public Restaurant(Integer id, String name, String description, String web_site_url, User creator, Coordinate cordinate, Price_range price_range, Day_hours day_hours) {
         this.id = id;
@@ -140,6 +140,11 @@ public class Restaurant {
         return photos;
     }
 
+    /**
+     *
+     * @param user utente da testare
+     * @return true se l'utente e' il proprietario del ristorante, false altrimenti
+     */
     public Boolean isOwner(User user){
         for (User uf : owners) {
             if(uf.getId() == user.getId()) return true;
@@ -150,14 +155,14 @@ public class Restaurant {
     /**
      * Set di piu' dati assieme
      *
-     * @param description
-     * @param global_value
-     * @param price_range
-     * @param name
-     * @param web_site_url
-     * @param creator
-     * @param c
-     * @param dh
+     * @param description descrizione del ristorante
+     * @param global_value voto globale ristorante
+     * @param price_range fascia di prezzo ristorante
+     * @param name nome ristorante
+     * @param web_site_url sito web del ristorante
+     * @param creator utente creatore del ristorante
+     * @param c coordinate del ristorante
+     * @param dh orari di apertura del ristorante
      */
     public void setAltro(String description, Float global_value, 
             Price_range price_range, String name, String web_site_url, User creator, Coordinate c, Day_hours dh) {
@@ -174,7 +179,7 @@ public class Restaurant {
     /**
      * Ritorna stringa di descrizione di un ristorante
      *
-     * @return
+     * @return stringa che riassume le informazioni del ristorante
      */
     public String RestDescriptionToText(){
         //ottengo la stringa degli orari di apertura

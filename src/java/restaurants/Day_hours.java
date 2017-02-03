@@ -19,14 +19,14 @@ public class Day_hours {
     /**
      * Costruttore data e ora
      *
-     * @param start_H_M
-     * @param start_M_M
-     * @param end_H_M
-     * @param end_M_M
-     * @param start_H_P
-     * @param start_M_P
-     * @param end_H_P
-     * @param end_M_P
+     * @param start_H_M ore apertura mattina
+     * @param start_M_M minuti apertura mattina
+     * @param end_H_M ore chiusura mattina
+     * @param end_M_M minuti chiusura mattina
+     * @param start_H_P ore apertura pomeriggio
+     * @param start_M_P minuti apertura pomeriggio
+     * @param end_H_P ore chiusura pomeriggio
+     * @param end_M_P minuti chiusura pomeriggio
      */
     public Day_hours(Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M, Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
         this.start_H_M = start_H_M;
@@ -42,15 +42,15 @@ public class Day_hours {
     /**
      * Costruttore data e ora
      *
-     * @param id_restaurant
-     * @param start_H_M
-     * @param start_M_M
-     * @param end_H_M
-     * @param end_M_M
-     * @param start_H_P
-     * @param start_M_P
-     * @param end_H_P
-     * @param end_M_P
+     * @param id_restaurant id ristorante
+     * @param start_H_M ore apertura mattina
+     * @param start_M_M minuti apertura mattina
+     * @param end_H_M ore chiusura mattina
+     * @param end_M_M minuti chiusura mattina
+     * @param start_H_P ore apertura pomeriggio
+     * @param start_M_P minuti apertura pomeriggio
+     * @param end_H_P ore chiusura pomeriggio
+     * @param end_M_P minuti chiusura pomeriggio
      */
     public Day_hours(Integer id_restaurant, Integer start_H_M, Integer start_M_M, Integer end_H_M, Integer end_M_M, Integer start_H_P, Integer start_M_P, Integer end_H_P, Integer end_M_P) {
         this.id_restaurant = id_restaurant;
@@ -67,7 +67,7 @@ public class Day_hours {
     /**
      * Costruttore data e ora
      *
-     * @param id_restaurant
+     * @param id_restaurant id ristorante
      */
     public Day_hours(Integer id_restaurant) {
         this.id_restaurant = id_restaurant;
@@ -148,7 +148,7 @@ public class Day_hours {
     /**
      * Ritorna stringa di descrizione dell'orario, mostrata nel QR
      *
-     * @return
+     * @return stringa riassuntiva orario di apertura
      */
     public String DayHoursDescriptionToText() {
         //Stringa descrittiva dell'orario, mostrata nel QR

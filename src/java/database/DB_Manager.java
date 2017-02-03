@@ -19,7 +19,7 @@ public class DB_Manager {
     /**
      * Costruttore, connessione al db
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_Manager() throws SQLException {
         try {

@@ -11,7 +11,7 @@ public class Week_hours {
     /**
      * Costruttore giorni della settimana per orari
      *
-     * @param orari
+     * @param orari array coi giorni di apertura settimanali
      */
     public Week_hours(Day_hours[] orari) {
         this.orari = orari;

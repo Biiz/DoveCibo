@@ -19,7 +19,7 @@ public class DB_OrariRestaurant extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_OrariRestaurant() throws SQLException {
         connessione = new DB_Manager ();
@@ -28,16 +28,16 @@ public class DB_OrariRestaurant extends HttpServlet {
     /**
      * Ritorna messaggio di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Aggiorna l'orario di apertura di un ristorante
      *
-     * @param dh
-     * @return
-     * @throws SQLException
+     * @param dh orari apertura
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updateOrario(Day_hours dh) throws SQLException {
         PreparedStatement sp = null;
@@ -71,9 +71,9 @@ public class DB_OrariRestaurant extends HttpServlet {
     /**
      * Aggiunge un orario di apertura di un ristorante
      *
-     * @param dh
-     * @return
-     * @throws SQLException
+     * @param dh orari apertura
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciOrario(Day_hours dh) throws SQLException {
         PreparedStatement sp = null;
@@ -107,9 +107,9 @@ public class DB_OrariRestaurant extends HttpServlet {
     /**
      * Cerca l'orario di apertura dato un id
      *
-     * @param h
-     * @return
-     * @throws SQLException
+     * @param h orari apertura
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaDay_hours_perId(Day_hours h) throws SQLException {
         PreparedStatement sp = null;

@@ -25,7 +25,7 @@ public class DB_RestaurantPhoto extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_RestaurantPhoto() throws SQLException {
         connessione = new DB_Manager ();
@@ -34,17 +34,17 @@ public class DB_RestaurantPhoto extends HttpServlet {
     /**
      * Ritorna messaggio di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Aggiungi foto a un ristorante
      *
-     * @param p
-     * @param id_restourant
-     * @return
-     * @throws SQLException
+     * @param p foto
+     * @param id_restourant id ristorante
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciPhoto(Photo p, Integer id_restourant) throws SQLException {
         PreparedStatement sp = null;
@@ -81,10 +81,10 @@ public class DB_RestaurantPhoto extends HttpServlet {
     /**
      * Cerca foto di un ristorante
      *
-     * @param res
-     * @param val
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @param val validazione
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaPhotos_perRistorante(Restaurant res, Integer val) throws SQLException {
         PreparedStatement sp = null;
@@ -127,10 +127,10 @@ public class DB_RestaurantPhoto extends HttpServlet {
     /**
      * Cerca tutte le foto validate
      *
-     * @param ALP
-     * @param val
-     * @return
-     * @throws SQLException
+     * @param ALP arraylist foto
+     * @param val validazone
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaPhotos(ArrayList <Photo> ALP, Integer val) throws SQLException {
         PreparedStatement sp = null;
@@ -172,11 +172,11 @@ public class DB_RestaurantPhoto extends HttpServlet {
     /**
      * Aggiorna valizaione foto
      *
-     * @param idPh
-     * @param val
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param idPh id foto
+     * @param val validazione
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updatePhotoVal(Integer idPh, Integer val, User u) throws SQLException {
         PreparedStatement sp = null;

@@ -11,9 +11,9 @@ public class comparatorNotifiche implements Comparator<Notifica>{
     /**
      * compara notifiche inbase alla data
      * 
-     * @param n1
-     * @param n2
-     * @return 
+     * @param n1 notifica 1 da comparare
+     * @param n2 notifica 2 da comparare
+     * @return r ritorna risultato comparazione
      */
     @Override
     public int compare(Notifica n1, Notifica n2) {

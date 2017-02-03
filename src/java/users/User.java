@@ -18,7 +18,7 @@ public class User {
     /**
      * Costruttore utente
      *
-     * @param id
+     * @param id id utente
      */
     public User(Integer id) {
         this.id = id;
@@ -27,7 +27,13 @@ public class User {
     /**
      * Costruttore utente
      *
-     * @param id
+     * @param id id utente
+     * @param name nome utente
+     * @param surname cognome utente
+     * @param nickname nickname utente
+     * @param email indirizzo email utente
+     * @param password password utente
+     * @param role ruolo utente
      */
     public User(Integer id, String name, String surname, String nickname, String email, String password, String role) {
         this.id = id;

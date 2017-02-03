@@ -20,7 +20,7 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_Coordinate() throws SQLException {
         connessione = new DB_Manager ();
@@ -29,17 +29,18 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Ritorna stringa di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Trova la posizione in classifica di un ristorante per citta'
      *
-     * @param ristoId
-     * @param classifica
-     * @return
-     * @throws SQLException
+     * @param ristoId ID del ristorante
+     * @param classifica ArrayList della classifica
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * 
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean classificaRistoCitta(Integer ristoId, ArrayList <Integer> classifica) throws SQLException {
         Boolean r = true;
@@ -82,9 +83,9 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Aggiorna le coordinate nel db
      *
-     * @param coor
-     * @return
-     * @throws SQLException
+     * @param coor le coordinate da modificare nel db
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updateCoordinate(Coordinate coor) throws SQLException {
         PreparedStatement sp = null;
@@ -116,9 +117,9 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Aggiunge nuove coordinate al db
      *
-     * @param coo
-     * @return
-     * @throws SQLException
+     * @param coo le coordinate da aggiungere al db
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciCoordinate(Coordinate coo) throws SQLException {
         PreparedStatement sp = null;
@@ -152,9 +153,9 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Cerca coordinate tramite id ristorante
      *
-     * @param c
-     * @return
-     * @throws SQLException
+     * @param c coordinate da cercare
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean cercaCoordinate_perId(Coordinate c) throws SQLException {
         PreparedStatement sp = null;
@@ -195,10 +196,10 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Prende ristoranti per nazione
      *
-     * @param cor
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param cor coordinate
+     * @param res ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean SetResForNazione (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
@@ -226,10 +227,10 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Prende ristoranti per citta'
      *
-     * @param cor
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param cor coordinate
+     * @param res ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean SetResForCity (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;
@@ -257,10 +258,10 @@ public class DB_Coordinate extends HttpServlet {
     /**
      * Prende ristoranti per indirizzo
      *
-     * @param cor
-     * @param res
-     * @return
-     * @throws SQLException
+     * @param cor coordinate
+     * @param res ristoranti
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean SetResForAdrers (Coordinate cor, ArrayList <Integer> res) throws SQLException {
         PreparedStatement sp = null;

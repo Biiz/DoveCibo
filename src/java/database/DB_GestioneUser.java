@@ -19,7 +19,7 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_GestioneUser() throws SQLException {
         connessione = new DB_Manager ();
@@ -28,16 +28,16 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Ritorna messaggio di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Inserisce nuovo account
      *
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciAccount(User u) throws SQLException {
             PreparedStatement sp = null;
@@ -66,9 +66,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Controlla se il nickname esiste gia'
      *
-     * @param nik
-     * @return
-     * @throws SQLException
+     * @param nik nickname
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean niknameEsistente(String nik) throws SQLException {
             Boolean r = false;
@@ -95,9 +95,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Controlla se la mail esiste gia'
      *
-     * @param em
-     * @return
-     * @throws SQLException
+     * @param em email
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean emailEsistente(String em) throws SQLException {
         Boolean r = false;
@@ -125,9 +125,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Prende le info dell'utente attraverso la mail 
      *
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public boolean CheckEmail (User u) throws SQLException {
         PreparedStatement sp = null;
@@ -160,10 +160,10 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Modifica l'account 
      *
-     * @param u
-     * @param pw
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @param pw password
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean modificaAccount(User u, String pw) throws SQLException {
         PreparedStatement sp = null;
@@ -193,9 +193,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Prende le info dell'utente attraverso il nickname
      *
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public boolean CheckProfilo (User u) throws SQLException {
         PreparedStatement sp = null;
@@ -230,9 +230,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Esegue il login al sito
      *
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean accedi(User u) throws SQLException {
         PreparedStatement sp = null;
@@ -266,6 +266,13 @@ public class DB_GestioneUser extends HttpServlet {
         }
     }
     
+    /**
+     * Cerca utente in base all'id
+     *
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
+     */
     public Boolean cercaUser_perId(User u) throws SQLException {
         PreparedStatement sp = null;
         String query = null;
@@ -307,9 +314,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Aggiorna il ruolo dell'utente
      *
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updateRuolo(User u) throws SQLException {
         PreparedStatement sp = null;
@@ -337,11 +344,11 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Controlla se l'utente e' un ristoratore
      *
-     * @param res
-     * @param user
-     * @param risposta
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @param user utente
+     * @param risposta risposta
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean checkUserIsRisto(Restaurant res, User user, String risposta[]) throws SQLException {
         PreparedStatement sp = null;
@@ -373,11 +380,11 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Controlla se l'utente e' un ristoratore del ristorante
      *
-     * @param res
-     * @param user
-     * @param risposta
-     * @return
-     * @throws SQLException
+     * @param res ristorante
+     * @param user utente
+     * @param risposta risposta
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean checkUserIsRistoNoValidation(Restaurant res, User user, String risposta[]) throws SQLException {
         PreparedStatement sp = null;
@@ -409,11 +416,11 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Trova creatore commento
      *
-     * @param idRep
-     * @param val
-     * @param user
-     * @return
-     * @throws SQLException
+     * @param idRep id risposta
+     * @param val utente validatore (admin)
+     * @param user utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean findUserRepli(Integer idRep, User val, User user) throws SQLException {
         PreparedStatement sp = null;
@@ -445,9 +452,9 @@ public class DB_GestioneUser extends HttpServlet {
     /**
      * Aumenta il numero di like dell'utente
      *
-     * @param u
-     * @return
-     * @throws SQLException
+     * @param u utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean increaseLikeUser(User u) throws SQLException {
         PreparedStatement sp = null;

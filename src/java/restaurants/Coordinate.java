@@ -17,7 +17,7 @@ public class Coordinate {
     /**
      * Costruttore coordinate
      *
-     * @param id_resturant
+     * @param id_resturant id ristorante
      */
     public Coordinate(Integer id_resturant) {
         this.id_resturant = id_resturant;
@@ -26,12 +26,12 @@ public class Coordinate {
     /**
      * Costruttore coordinate
      *
-     * @param latitude
-     * @param longitude
-     * @param adrers
-     * @param numero
-     * @param city
-     * @param nazione
+     * @param latitude latitudine
+     * @param longitude longitudine
+     * @param adrers indirizzo
+     * @param numero numero civico
+     * @param city citta'
+     * @param nazione nazione
      */
     public Coordinate(Float latitude, Float longitude, String adrers, Integer numero, String city, String nazione) {
         this.latitude = latitude;
@@ -45,8 +45,8 @@ public class Coordinate {
     /**
      * Costruttore coordinate con solo address
      *
-     * @param id_resturant
-     * @param adrers
+     * @param id_resturant id ristorante
+     * @param adrers indirizzo
      */
     public Coordinate(Integer id_resturant, String adrers) {
         this.id_resturant = id_resturant;

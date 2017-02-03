@@ -22,7 +22,7 @@ public class DB_Replies extends HttpServlet {
     /**
      * Costruttore
      *
-     * @throws SQLException
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public DB_Replies() throws SQLException {
         connessione = new DB_Manager ();
@@ -31,17 +31,17 @@ public class DB_Replies extends HttpServlet {
     /**
      * Ritorna messaggio di errore
      *
-     * @return
+     * @return stringa con messaggio di errore
      */
     public String getErrore() { return errore; }
     
     /**
      * Aggiungi nuova risposta
      *
-     * @param rep
-     * @param idRew
-     * @return
-     * @throws SQLException
+     * @param rep risposta
+     * @param idRew id recensione
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean inserisciRisposta(Replies rep, Integer idRew) throws SQLException {
         PreparedStatement sp = null;
@@ -70,10 +70,10 @@ public class DB_Replies extends HttpServlet {
     /**
      * Cerca risposte in base al commento
      *
-     * @param rew
-     * @param replies
-     * @return
-     * @throws SQLException
+     * @param rew recensione
+     * @param replies arraylist delle risposte
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean setRepli_perRew(Review rew, ArrayList <Replies> replies) throws SQLException {
         PreparedStatement sp = null;
@@ -114,9 +114,9 @@ public class DB_Replies extends HttpServlet {
     /**
      * Cerca risposte validate per commenti
      *
-     * @param rew
-     * @return
-     * @throws SQLException
+     * @param rew recensione
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean setRepli(Review rew) throws SQLException {
         PreparedStatement sp = null;
@@ -158,10 +158,10 @@ public class DB_Replies extends HttpServlet {
     /**
      * Aggiorna commento
      *
-     * @param idRep
-     * @param val
-     * @return
-     * @throws SQLException
+     * @param idRep id risposta
+     * @param val utente validatore (admin)
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean updateRepli(Integer idRep, User val) throws SQLException {
         PreparedStatement sp = null;
@@ -189,9 +189,9 @@ public class DB_Replies extends HttpServlet {
     /**
      * Cancella commento
      *
-     * @param user
-     * @return
-     * @throws SQLException
+     * @param user utente
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean deleteRepli(User user) throws SQLException {
         PreparedStatement sp = null;
@@ -218,11 +218,11 @@ public class DB_Replies extends HttpServlet {
     /**
      * Controlla esistenza risposta per commento e proprietario
      *
-     * @param rep
-     * @param idRew
-     * @param check
-     * @return
-     * @throws SQLException
+     * @param rep risposta
+     * @param idRew id recensione
+     * @param check arraylist di verifica
+     * @return true se la procedura e' andata a buon fine, false altrimenti
+     * @throws SQLException se c'e' stato un problema di connessione al db
      */
     public Boolean checkReplies(Replies rep, Integer idRew, ArrayList <String> check ) throws SQLException {
         PreparedStatement sp = null;

@@ -20,11 +20,11 @@ public class SendEmail_Modifica_Profilo {
     /**
      * Invia mail di avvenuta modifica al profilo
      *
-     * @param name
-     * @param surname
-     * @param email
-     * @param nick
-     * @param psw
+     * @param name nome utente da inviare
+     * @param surname cognome utente da inviare
+     * @param email indirizzo email utente a cui inviare la mail
+     * @param nick nickname utente da inviare
+     * @param psw password utente da inviare
      */
     public SendEmail_Modifica_Profilo(String name, String surname, String email, String nick, String psw) {
         try{
