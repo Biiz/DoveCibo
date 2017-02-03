@@ -48,13 +48,12 @@
                                 <td style="vertical-align: middle;"> <%= n.getDescrizione() %></td>
                                 <td style="vertical-align: middle;">                                  
                                     <% if( n.getTipo().equals("nuovaRec") ){ %>
-                                    <form method="POST" action="ServletAggiungiRepile" >
+                                    
                                         <input type="hidden" name="ristorante" value="<%= id.get(index) %>">
                                         <input type="hidden" name="commento" value="<%=n.getIdGen()%>">
-                                        <input type="text" class="form-control" id="descrizione" name="descrizione" pattern=".{1,25}" required>
                                         <br>
-                                        <button style="align-items: left" type="submit" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Rispondi alla recensione</button>                                              
-                                    </form>
+                                            <b><a href='/DoveCiboGit/ServletGetRistorante?idR=<%= id.get(index)%> ' style="color: blue">Vai al ristorante</a></b>
+                                    
                                     <%   index++; }%>
                                     
                                     <% if( n.getTipo().equals("confermaRep") ){ %>
